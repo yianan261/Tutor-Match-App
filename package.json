@@ -1,0 +1,30 @@
+{
+  "name": "tutormatchapp",
+  "version": "1.0.0",
+  "description": "MERN stack application that helps students get the academic help they need",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "NODE_ENV=production node server.js",
+    "dev": "NODE_ENV=development nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yianan261/Tutor-Match-App.git"
+  },
+  "keywords": [],
+  "author": "Amanda Au-Yeung,Yian Chen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yianan261/Tutor-Match-App/issues"
+  },
+  "homepage": "https://github.com/yianan261/Tutor-Match-App#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^4.11.0"
+  }
+}
