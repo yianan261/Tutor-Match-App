@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/yianan261/Tutor-Match-App#readme",
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "eslint": "^8.27.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
