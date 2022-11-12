@@ -1,7 +1,13 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 
 function Landing() {
-  return <h1>Home</h1>;
+  return (
+    <>
+      <Navbar />
+      <h1>Home Page</h1>
+    </>
+  );
 }
 
 export default Landing;
