@@ -54,7 +54,7 @@ function Navbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/profile">
+                <NavLink className="nav-link" to="/book">
                   Book Class
                 </NavLink>
               </li>

@@ -3,3 +3,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.mainContainer {
+  padding-top: 10%;
+}
+
+.img {
+  width: 20vw;
+  height: 30vh;
+}

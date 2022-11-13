@@ -16,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/book" element={<BookClass />}></Route>
         <Route
           path="/profile"
           element={
