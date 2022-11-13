@@ -3,10 +3,9 @@ const app = express();
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import passport from "passport";
-require("./config/passport")(app);
-// import register from "./routes/register";
-// import login from "./routers/login";
-// import auth from "./routes/auth";
+import tutor from "./routers/tutors.js";
+// require("./config/passport")(app);
+
 import session from "express-session";
 // import { dirname } from 'path';
 // import { fileURLToPath } from 'url';
@@ -18,25 +17,30 @@ const PORT = process.env.PORT || 5001;
 
 // use passport here
 // export default = (passport) => {
-  
+
 // }
 
 app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(session({
-  secret: 'secret',
-  resave: false,
-  saveUninitialized: false,
-  // store: 
-}));
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false,
+    // store:
+  })
+);
 
-app.use(passport.authenticate('session'));
+app.use(passport.authenticate("session"));
 
 app.get("/", (req, res) => {
   res.send("welcome");
 });
+
+app.use("/", tutor);
+
 
 app.listen(
   PORT,

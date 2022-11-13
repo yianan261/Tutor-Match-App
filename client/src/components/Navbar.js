@@ -2,7 +2,7 @@ import React from "react";
 import "../assets/styles/Navbar.css";
 import { NavLink, redirect } from "react-router-dom";
 import { useAuth } from "../utils/auth";
-// import tutor1 from "../assets/images/tutor1.png";
+import bulb2 from "../assets/images/bulb2.png";
 
 //Yian
 function Navbar() {
@@ -31,8 +31,11 @@ function Navbar() {
         id="mainNavbar"
         className="navbar navbar-dark navbar-expand-md fixed-top"
       >
-        <div className="container">
-          {/* <img src={tutor1} alt="tutor app logo" /> */}
+        <div className="container-xl navContainer">
+          <span className="logoSpan">
+            <img src={bulb2} className="logo" alt="tutor app logo" />
+          </span>
+
           <div className="navbar-brand">Tutor Match</div>
           <button
             className="navbar-toggler"

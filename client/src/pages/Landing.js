@@ -9,11 +9,11 @@ function Landing() {
       <h1>Home Page Testing</h1>
       <div className="container mainContainer">
         <div className="test">Test</div>
-        <img
+        {/* <img
           className="img"
           src="https://i.postimg.cc/Y9WbGBpp/f7.png"
           alt="tutor"
-        />
+        /> */}
       </div>
     </>
   );

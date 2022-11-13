@@ -4,15 +4,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.mainContainer {
-  padding-top: 3%;
-}
-
-.img {
-  width: 20vw;
-  height: 30vh;
-}
-
-body{
-  background-color: #FEFFFE;
+body {
+  background-color: #fefffe;
 }
