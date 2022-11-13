@@ -27,6 +27,10 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mongodb": "^4.11.0"
-  }
+    "express-session": "^1.17.3",
+    "mongodb": "^4.11.0",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
+  },
+  "proxy": "https://localhost:3000"
 }
