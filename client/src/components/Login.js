@@ -3,23 +3,22 @@ import { useAuth } from "../utils/auth";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  //initializing user with temp value "placeholder",this should be replaced with user data from backend
-  const [user, setUser] = useState("Placeholder");
+  const [user, setUser] = useState("");
   const auth = useAuth();
   const navigate = useNavigate();
-  //Todo: implement fetch to fetch user data from backend (express session),wrap in useEffect
+  //Todo: get user data through Context (useAuth in ./utils/auth.js)
   useEffect(() => {
-    setUser("placeholder"); //temporary placement
+    setUser("placeholder"); //temporary placement, this value should be replaced with user data from Context
   }, []);
 
   const handleLogin = () => {
     auth.login(user);
-    navigate("/profile");
+    navigate("/profile", { replace: true });
   };
   return (
     <div>
       Login
-      {/* temporary button */}
+      {/* temporary button, Todo: replace with login form*/}
       <button onClick={handleLogin}>Login</button>
     </div>
   );

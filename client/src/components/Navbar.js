@@ -1,11 +1,31 @@
 import React from "react";
 import "../assets/styles/Navbar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, redirect } from "react-router-dom";
 import { useAuth } from "../utils/auth";
 // import tutor1 from "../assets/images/tutor1.png";
 
+//Yian
 function Navbar() {
   const auth = useAuth();
+
+  //Todo: decorate buttons
+  const handleLogin = () => {
+    auth.login();
+    redirect("/login");
+  };
+  //conditional rendering when unauthenticated
+  const unauthenticated = (
+    <NavLink to="/login">
+      <button onClick={handleLogin}>Login</button>
+    </NavLink>
+  );
+  const handleLogout = () => {
+    auth.logout();
+    redirect("/");
+  };
+
+  //conditional rendering when authenticated
+  const authenticated = <button onClick={handleLogout}>Logout</button>;
   return (
     <div>
       <nav
@@ -30,14 +50,19 @@ function Navbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/">
-                  My Account
+                <NavLink className="nav-link" to="/profile">
+                  My Profile
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/profile">
+                  Book Class
                 </NavLink>
               </li>
             </ul>
           </div>
           <span>
-            {!auth.user && <NavLink to="/profile">Login</NavLink>}
+            {auth.user ? authenticated : unauthenticated}
             <i className="fa-solid fa-right-from-bracket"></i>
           </span>
         </div>

@@ -1,11 +1,16 @@
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 
 const AuthContext = createContext(null);
 
 //Yian Chen
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("temp");
+
+  //Todo: implement fetch to fetch user data from backend (express session),wrap in useEffect
+  useEffect(() => {
+    setUser("placeholder"); //temporary placement, this value should be replaced with user data from fetch
+  }, []);
   const login = (user) => {
     setUser(user);
   };
