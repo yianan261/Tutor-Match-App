@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/styles/Navbar.css";
 import { NavLink, redirect } from "react-router-dom";
 import { useAuth } from "../utils/auth";
@@ -7,8 +7,16 @@ import bulb2 from "../assets/images/bulb2.png";
 //Yian
 function Navbar() {
   const auth = useAuth();
+  const [navColor, setNavColor] = useState(false);
 
-  //Todo: decorate buttons
+  const changeNavBackground = () => {
+    window.scrollY >= 66 ? setNavColor(true) : setNavColor(false);
+  };
+  useEffect(() => {
+    changeNavBackground();
+    window.addEventListener("scroll", changeNavBackground);
+  },[navColor]);
+
   const handleLogin = () => {
     auth.login();
     redirect("/login");
@@ -29,7 +37,7 @@ function Navbar() {
     <div>
       <nav
         id="mainNavbar"
-        className="navbar navbar-dark navbar-expand-md fixed-top"
+        className={navColor? "navbar navbar-dark navbar-expand-md fixed-top navbarActive":"navbar navbar-dark navbar-expand-md fixed-top"}
       >
         <div className="container-xl navContainer">
           <span className="logoSpan">

@@ -11,7 +11,7 @@
 }
 nav {
   padding-bottom: 12%;
-  background: #9ab2a5;
+  background-color: #9ab2a5;
 }
 
 .logo {
@@ -69,4 +69,8 @@ button:hover {
   color: #16442c;
   background-color: #ffffff;
   opacity: 0.5;
+}
+
+.navbarActive {
+  background-color: #aec7bb;
 }
