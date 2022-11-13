@@ -23,7 +23,6 @@ function Navbar() {
     auth.logout();
     redirect("/");
   };
-
   //conditional rendering when authenticated
   const authenticated = <button onClick={handleLogout}>Logout</button>;
   return (

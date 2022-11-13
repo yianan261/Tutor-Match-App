@@ -5,6 +5,11 @@ import PropTypes from "prop-types";
 
 //Yian Chen
 //Authentication and protected routes source: https://youtu.be/X8eAbu1RWZ4
+/**
+ * Function that ensures user is authenticated by getting info from context
+ * @param {prop} children props
+ * @returns children when auth.user else redirects user to login page
+ */
 function RequireAuth({ children }) {
   const auth = useAuth();
   if (!auth.user) {

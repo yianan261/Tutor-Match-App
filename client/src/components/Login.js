@@ -8,7 +8,7 @@ function Login() {
   const navigate = useNavigate();
   //Todo: get user data through Context (useAuth in ./utils/auth.js)
   useEffect(() => {
-    setUser("placeholder"); //temporary placement, this value should be replaced with user data from Context
+    setUser("placeholder"); //temporary placement, this value should be replaced with user login from form data
   }, []);
 
   const handleLogin = () => {

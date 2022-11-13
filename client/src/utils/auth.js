@@ -4,6 +4,11 @@ import PropTypes from "prop-types";
 const AuthContext = createContext(null);
 
 //Yian Chen
+/**
+ * function that checks current user in session
+ * @param {props} children
+ * @returns AuthContext provider and children
+ */
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("temp");
 
@@ -29,6 +34,7 @@ AuthProvider.propTypes = {
   children: PropTypes.any.isRequired,
 };
 
+//function that returns current user
 export const useAuth = () => {
   return useContext(AuthContext);
 };
