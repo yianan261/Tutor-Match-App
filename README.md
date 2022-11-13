@@ -6,6 +6,7 @@ MERN stack application that helps students get the academic help they need
 
 1. Run `npm install`
 2. Run `npm run dev ` to run in development mode
+3. Run `npm initDB` to get tutor data in your local MongoDB
 
 # Design Document
 

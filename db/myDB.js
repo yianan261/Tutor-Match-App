@@ -1,8 +1,8 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 dotenv.config({ path: ".env" });
 
-//Yian Chen
+//Yian + Amanda
 /**
  * MyMongoDB module funciton has authenticate, get, and create functionalities for the DB
  * @returns myDB object contianing the functions
@@ -13,6 +13,36 @@ function MyMongoDB() {
   const DB_NAME = "TutorsApp";
   const USER_COLLECTION = "users";
   const TUTORS_COLLECTION = "tutors";
+  const PAGE_SIZE = 18;
+
+  /** Yian
+   * function that queries tutors when users type key word
+   * @param {string} key search word
+   * @param {int} page number (for pagination)
+   * @returns documents of related searches
+   */
+  myDB.findTutors = async function (word, page = 0) {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const postsCol = client.db(DB_NAME).collection(TUTORS_COLLECTION);
+      return await postsCol
+        .find({
+          $or: [
+            { first_name: { $regex: word, $options: "i" } },
+            { subjects: { $regex: word, $options: "i" } },
+            { education: { $regex: word, $options: "i" } },
+            { last_name: { $regex: word, $options: "i" } },
+            { gender: { $regex: word, $options: "i" } },
+          ],
+        })
+        .skip(PAGE_SIZE * page)
+        .limit(PAGE_SIZE)
+        .toArray();
+    } finally {
+      client.close();
+    }
+  };
 
   
   
