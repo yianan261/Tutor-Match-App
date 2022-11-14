@@ -21,12 +21,15 @@ app.use(cors());
 dotenv.config();
 const PORT = process.env.PORT || 5001;
 
+<<<<<<< HEAD
+=======
 // use passport here
 // export default = (passport) => {
 
 // }
 
 // app.use(express.static(path.join(__dirname, "..", "build")));
+>>>>>>> 2a2bd2faf4b99d8e42b3f1f6eedcc954043edbf1
 app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -40,6 +43,7 @@ app.use(
   })
 );
 
+app.use(passport.initialize());
 app.use(passport.authenticate("session"));
 
 app.get("/", (req, res) => {

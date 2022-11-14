@@ -1,5 +1,7 @@
 import express from "express";
 import passport from "passport";
+import LocalStrategy from "passport-local";
+import myDB from "../db/myDB";
 const router = express.Router();
 
 // Amanda Au-Yeung
@@ -24,5 +26,17 @@ router.post("/logout", function (req, res, next) {
     res.redirect("/");
   });
 });
+
+// local authenication using passport
+passport.use(new LocalStrategy(
+  async function(user, password, done) {
+    await myDB.getUsers(user.email), (err, user) => {
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+      if (!user.verifyPassword(password)) { return done(null, false); }
+      return done(null, user);
+    }
+  }
+));
 
 export default router;

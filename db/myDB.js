@@ -18,22 +18,43 @@ function MyMongoDB() {
   /**
    * Amanda
    * function that creates user
-   * @param {int} object_id from user
-   * @returns
+   * @param {String} user from user
+   * @returns user
    */
-  myDB.createUser = async (id) => {
+  myDB.createUser = async (user) => {
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      const res = await usersCol.insertOne(id);
+      const res = await usersCol.insertOne(user);
       return res;
     } finally {
       client.close();
     }
   };
 
+  /**
+   * Amanda
+   * @param {String} email 
+   * @returns the user email
+   */
+  myDB.getUsers = async (_email) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const usersCol = db.collection(USER_COLLECTION);
+      const query = {email: _email};
+      const options = {
+        projection: {password: 0, confirmed_pw: 0}
+      };
+      const res = await usersCol.findOne(query, options);
+      return res;
+    } finally {
+      client.close();
+    }
+  };
 
 
   /** Yian
