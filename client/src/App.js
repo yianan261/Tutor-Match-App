@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import BookClass from "./pages/BookClass";
 import { AuthProvider } from "./utils/auth";
 import RequireAuth from "./components/RequireAuth";
+import TutorInfo from "./components/TutorInfo";
 const LazySearch = React.lazy(() => import("./components/SearchTutor"));
 
 //Yian Chen
@@ -16,7 +17,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/book" element={<BookClass />}></Route>
+        <Route path="/book" element={<BookClass />}>
+        <Route path="tutors/:tutorId" element={<TutorInfo />} />
+        </Route>
         <Route
           path="/profile"
           element={

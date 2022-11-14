@@ -34,29 +34,33 @@ function MyMongoDB() {
     }
   };
 
-  
+
 
   /** Yian
    * function that queries tutors when users type key word
    * @param {string} key search word
    * @param {int} page number (for pagination)
-   * @returns documents of related searches
+   * @returns array of objects of related searches
    */
-  myDB.findTutors = async function (word, page = 0) {
+  myDB.findTutors = async (word, page = 0) => {
     let client;
     try {
       client = new MongoClient(url);
-      const postsCol = client.db(DB_NAME).collection(TUTORS_COLLECTION);
-      return await postsCol
-        .find({
-          $or: [
-            { first_name: { $regex: word, $options: "i" } },
-            { subjects: { $regex: word, $options: "i" } },
-            { education: { $regex: word, $options: "i" } },
-            { last_name: { $regex: word, $options: "i" } },
-            { gender: { $regex: word, $options: "i" } },
-          ],
-        })
+      const tutorsCol = client.db(DB_NAME).collection(TUTORS_COLLECTION);
+      const options = { projection: { reviews: 0 } };
+      return await tutorsCol
+        .find(
+          {
+            $or: [
+              { first_name: { $regex: word, $options: "i" } },
+              { subjects: { $regex: word, $options: "i" } },
+              { education: { $regex: word, $options: "i" } },
+              { last_name: { $regex: word, $options: "i" } },
+              { gender: { $regex: word, $options: "i" } },
+            ],
+          },
+          options
+        )
         .skip(PAGE_SIZE * page)
         .limit(PAGE_SIZE)
         .toArray();

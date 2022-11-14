@@ -1,22 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/styles/Navbar.css";
-import { NavLink, redirect } from "react-router-dom";
+import { NavLink, redirect, useLocation } from "react-router-dom";
 import { useAuth } from "../utils/auth";
-// import tutor1 from "../assets/images/tutor1.png";
+import bulb2 from "../assets/images/bulb2.png";
 
 //Yian
 function Navbar() {
   const auth = useAuth();
+  const location = useLocation();
+  const [navColor, setNavColor] = useState(false);
+  const [navClassName, setNavClassName] = useState(
+    "navbar navbar-dark navbar-expand-md fixed-top navHome"
+  );
 
-  //Todo: decorate buttons
+  const changeNavBackground = () => {
+    window.scrollY >= 66 ? setNavColor(true) : setNavColor(false);
+  };
+  useEffect(() => {
+    changeNavBackground();
+    window.addEventListener("scroll", changeNavBackground);
+  }, [navColor]);
+
   const handleLogin = () => {
     auth.login();
     redirect("/login");
   };
+
   //conditional rendering when unauthenticated
   const unauthenticated = (
     <NavLink to="/login">
-      <button onClick={handleLogin}>Login</button>
+      <button className="loginBtn" onClick={handleLogin}>
+        Login
+      </button>
     </NavLink>
   );
   const handleLogout = () => {
@@ -24,23 +39,39 @@ function Navbar() {
     redirect("/");
   };
   //conditional rendering when authenticated
-  const authenticated = <button onClick={handleLogout}>Logout</button>;
+  const authenticated = (
+    <button className="loginBtn" onClick={handleLogout}>
+      Logout
+    </button>
+  );
+
+  /**
+   * this function determines navbar design according to location path
+   * if at Homepage activate navHome css selector (default),else use navAll
+   * on scroll activate navActive
+   */
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      navColor
+        ? setNavClassName(
+            "navbar navbar-dark navbar-expand-md fixed-top navbarActive"
+          )
+        : setNavClassName(
+            "navbar navbar-dark navbar-expand-md fixed-top navAll"
+          );
+    }
+  }, []);
+
   return (
     <div>
-      <nav
-        id="mainNavbar"
-        className="navbar navbar-dark navbar-expand-md fixed-top"
-      >
-        <div className="container">
-          {/* <img src={tutor1} alt="tutor app logo" /> */}
+      <nav id="mainNavbar" className={navClassName}>
+        <div className="container-xl navContainer">
+          <span className="logoSpan">
+            <img src={bulb2} className="logo" alt="tutor app logo" />
+          </span>
+
           <div className="navbar-brand">Tutor Match</div>
-          <button
-            className="navbar-toggler"
-            data-toggle="collapse"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+
           <div className="collapse navbar-collapse" id="navLinks">
             <ul className="navbar-nav">
               <li className="nav-item">
@@ -60,10 +91,7 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <span>
-            {auth.user ? authenticated : unauthenticated}
-            <i className="fa-solid fa-right-from-bracket"></i>
-          </span>
+          <span>{auth.user ? authenticated : unauthenticated}</span>
         </div>
       </nav>
     </div>
