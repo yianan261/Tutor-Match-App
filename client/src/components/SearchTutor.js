@@ -5,10 +5,10 @@ import { useSearchParams } from "react-router-dom";
 import study2 from "../assets/images/study2.jpg";
 import PropTypes from "prop-types";
 
-/**
+/** Yian
  * This module handles the search query for tutors
  * @param {function} handleQuery prop passed in from parent component in SearchTutor.js
- * @returns
+ * @returns JSX of rendering
  */
 function SearchTutor({ handleQuery, search }) {
   const [searchword, setSearchword] = useState("");
@@ -20,11 +20,15 @@ function SearchTutor({ handleQuery, search }) {
     setSearchParams({ query: evt.target.value });
   };
 
+  /**
+   * This function clears searchParams when search is false
+   */
   useEffect(() => {
     if (!search) {
       setSearchParams("");
     }
   }, [search]);
+
   /**
    * This function allows users to search with keypress "enter", activates whenever optimizeDebounce is triggered
    */
@@ -36,6 +40,7 @@ function SearchTutor({ handleQuery, search }) {
       }
     };
     window.addEventListener("keydown", keyDownHandler);
+    //cleanup (unmount)
     return () => {
       window.removeEventListener("keydown", keyDownHandler);
     };
@@ -64,7 +69,7 @@ function SearchTutor({ handleQuery, search }) {
         console.log("no search result");
       } else {
         console.log("resQuery.data", resQuery.data);
-        // setSearchData(resQuery.data);
+        //calls handleQuery function in parent component
         handleQuery(searchParams.get("query"), resQuery.data);
       }
     } catch (err) {
