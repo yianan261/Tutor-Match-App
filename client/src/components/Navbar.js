@@ -17,8 +17,12 @@ function Navbar() {
     window.scrollY >= 66 ? setNavColor(true) : setNavColor(false);
   };
   useEffect(() => {
-    changeNavBackground();
-    window.addEventListener("scroll", changeNavBackground);
+    try {
+      changeNavBackground();
+      window.addEventListener("scroll", changeNavBackground);
+    } catch (err) {
+      console.error(err);
+    }
   }, [navColor]);
 
   const handleLogin = () => {
@@ -51,14 +55,18 @@ function Navbar() {
    * on scroll activate navActive
    */
   useEffect(() => {
-    if (location.pathname !== "/") {
-      navColor
-        ? setNavClassName(
-            "navbar navbar-dark navbar-expand-md fixed-top navbarActive"
-          )
-        : setNavClassName(
-            "navbar navbar-dark navbar-expand-md fixed-top navAll"
-          );
+    try {
+      if (location.pathname !== "/") {
+        navColor
+          ? setNavClassName(
+              "navbar navbar-dark navbar-expand-md fixed-top navbarActive"
+            )
+          : setNavClassName(
+              "navbar navbar-dark navbar-expand-md fixed-top navAll"
+            );
+      }
+    } catch (err) {
+      console.error(err);
     }
   }, []);
 
