@@ -5,7 +5,7 @@ import myDB from "../db/myDB.js";
 /** Yian
  * function that lets users search tutors
  */
-router.get("/book/tutors", async (req, res) => {
+router.post("/book/tutors", async (req, res) => {
   try {
     const page = req.query.page || 0;
     const keyword = req.query.keyword;
