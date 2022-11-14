@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../utils/auth";
-import { useNavigate, NavLink } from "react-router-dom";
-import "../assets/styles/Login.css";
+import { useNavigate, Link } from "react-router-dom";
+import "../assets/styles/LoginRegister.css";
 // import { response } from "express";
 
 function Login() {
@@ -26,9 +26,9 @@ function Login() {
     <div className="card">
       <h5 className="card-title">Sign In</h5>
       <p id="no-ac">No Account?</p>
-      <NavLink id="reg-link" to="/register">
+      <Link id="reg-link" to="/register">
         Sign Up!
-      </NavLink>
+      </Link>
       <div className="card-body">
         <form className="form-body" action="/login/password" method="POST">
           <div className="mb-3">
@@ -58,7 +58,7 @@ function Login() {
           <button
             onClick={handleLogin}
             type="submit"
-            className="btn btn-primary"
+            className="btn"
           >
             Submit
           </button>

@@ -1,9 +1,8 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Login from "../components/Login";
-// import Register from "../compoenets/Register";
 import blackboard from "../assets/images/blackboard.png";
-import "../assets/styles/Login.css";
+import "../assets/styles/LoginRegister.css";
 
 function LoginPage() {
   return (
