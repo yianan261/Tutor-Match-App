@@ -1,20 +1,33 @@
 import React, { useState, useEffect } from "react";
 import "../assets/styles/SearchTutor.css";
-import TutorProfile from "../components/TutorProfile";
-import { useSearchParams, redirect } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 // import TutorInfo from "../components/TutorInfo";
 import study2 from "../assets/images/study2.jpg";
+import PropTypes from "prop-types";
 
-function SearchTutor() {
+/** Yian
+ * This module handles the search query for tutors
+ * @param {function} handleQuery prop passed in from parent component in SearchTutor.js
+ * @returns JSX of rendering
+ */
+function SearchTutor({ handleQuery, search }) {
   const [searchword, setSearchword] = useState("");
   const [searchParams, setSearchParams] = useSearchParams("");
-  const [searchData, setSearchData] = useState([]);
 
   const handleChange = (evt) => {
     evt.preventDefault();
     setSearchword(evt.target.value);
     setSearchParams({ query: evt.target.value });
   };
+
+  /**
+   * This function clears searchParams when search is false
+   */
+  useEffect(() => {
+    if (!search) {
+      setSearchParams("");
+    }
+  }, [search]);
 
   /**
    * This function allows users to search with keypress "enter", activates whenever optimizeDebounce is triggered
@@ -27,6 +40,7 @@ function SearchTutor() {
       }
     };
     window.addEventListener("keydown", keyDownHandler);
+    //cleanup (unmount)
     return () => {
       window.removeEventListener("keydown", keyDownHandler);
     };
@@ -52,13 +66,11 @@ function SearchTutor() {
       );
       const resQuery = await res.json();
       if (resQuery.data.length === 0) {
-        //todo render no search result
         console.log("no search result");
       } else {
         console.log("resQuery.data", resQuery.data);
-        setSearchData(resQuery.data);
-        redirect(searchParams.get("query"));
-        //todo: render result
+        //calls handleQuery function in parent component
+        handleQuery(searchParams.get("query"), resQuery.data);
       }
     } catch (err) {
       console.error(err);
@@ -86,10 +98,12 @@ function SearchTutor() {
           <img src={study2} className="study2pic" alt="study picture" />
         </div>
       </div>
-      <TutorProfile searchword={searchword} searchData={searchData} />
-      {/* <h3>TEST USERS: {user}</h3> */}
     </>
   );
 }
 
+SearchTutor.propTypes = {
+  handleQuery: PropTypes.func,
+  search: PropTypes.bool,
+};
 export default SearchTutor;

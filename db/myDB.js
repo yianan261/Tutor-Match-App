@@ -35,6 +35,7 @@ function MyMongoDB() {
   };
 
   /**
+<<<<<<< HEAD
    * Amanda
    * @param {String} email 
    * @returns the user email
@@ -56,6 +57,8 @@ function MyMongoDB() {
     }
   };
   /**
+=======
+>>>>>>> yian-dev
    * Yian
    * function that gets the info of specific tutor
    * @param {string} tutor_id
