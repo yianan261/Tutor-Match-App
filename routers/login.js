@@ -2,6 +2,8 @@ import express from "express";
 import passport from "passport";
 const router = express.Router();
 
+// Amanda Au-Yeung
+
 router.get("/login", (req, res) => {
   res.render("login");
 });

@@ -3,10 +3,17 @@ const app = express();
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import passport from "passport";
+
 import tutor from "./routers/tutors.js";
 import test from "./routers/test.js";
 import cors from "cors";
+
 // require("./config/passport")(app);
+// import register from "./routes/register";
+// import login from "./routers/login";
+// import auth from "./routes/auth";
+
+import tutor from "./routers/tutors.js";
 
 import session from "express-session";
 // import { dirname } from "path";
