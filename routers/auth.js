@@ -6,51 +6,46 @@ import myDB from "../db/myDB";
 // Amanda Au-Yeung
 // configures local strategy, from passport.js documentation
 passport.use(
-  new LocalStrategy(function verify(username, password, cb) {
-    myDB.get(
-      "SELECT * FROM users WHERE username = ?",
-      [username],
-      function (err, row) {
-        if (err) {
-          return cb(err);
-        }
-        if (!row) {
-          return cb(null, false, {
-            message: "Incorrect username or password.",
-          });
-        }
-
-        crypto.pbkdf2(
-          password,
-          row.salt,
-          310000,
-          32,
-          "sha256",
-          function (err, hashedPassword) {
-            if (err) {
-              return cb(err);
-            }
-            if (!crypto.timingSafeEqual(row.hashed_password, hashedPassword)) {
-              return cb(null, false, {
-                message: "Incorrect username or password.",
-              });
-            }
-            return cb(null, row);
-          }
-        );
+  new LocalStrategy(async function verify(user, password, done) {
+    await myDB.getUsers(user.email, (err, user) => {
+      if (err) {
+        return done(err);
       }
-    );
+      if (!user) {
+        return done(null, false, {
+          message: "Incorrect username or password.",
+        });
+      }
+      crypto.pbkdf2(
+        password,
+        user.salt,
+        310000,
+        32,
+        "sha256",
+        function (err, hashedPassword) {
+          if (err) {
+            return done(err);
+          }
+          if (!crypto.timingSafeEqual(user.hashed_password, hashedPassword)) {
+            return done(null, false, {
+              message: "Incorrect username or password.",
+            });
+          }
+          return done(null, user);
+        }
+      );
+    });
   })
 );
 
-passport.serializeUser(function (user, cb) {
+passport.serializeUser(function (user, done) {
   process.nextTick(function () {
-    cb(null, { id: user.id, username: user.username });
+    done(null, { id: user.id, username: user.username });
   });
 });
 
-passport.deserializeUser(function (user, cb) {
+passport.deserializeUser(function (user, done) {
   process.nextTick(function () {
-    return cb(null, user);
+    return done(null, user);
   });
 });

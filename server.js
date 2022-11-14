@@ -20,11 +20,6 @@ import session from "express-session";
 dotenv.config();
 const PORT = process.env.PORT || 5001;
 
-// use passport here
-// export default = (passport) => {
-
-// }
-
 app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -38,6 +33,7 @@ app.use(
   })
 );
 
+app.use(passport.initialize());
 app.use(passport.authenticate("session"));
 
 app.get("/", (req, res) => {
