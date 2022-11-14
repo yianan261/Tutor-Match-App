@@ -11,9 +11,25 @@
 }
 nav {
   padding-bottom: 12%;
-  background: #9ab2a5;
 }
-.container {
+
+.navAll{
+  background-color: #9ab2a5;
+}
+.navHome{
+  background-color: transparent;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  transform: translateY(-5px);
+}
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.Navcontainer {
   display: flex;
   justify-self: start;
 }
@@ -22,10 +38,42 @@ nav {
   justify-content: start;
 }
 
+.nav-link {
+  font-size: 1.1rem;
+}
+.nav-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 1rem;
+  text-decoration-thickness: 0.15rem;
+  color: #ffffff;
+}
+
 nav {
   transition: background 0.5s;
 }
 
-nav.scrolled {
-  background: #6746f9;
+
+.loginBtn {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.16rem solid #fefffe;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.1em;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: #25352d;
+  font-weight: 300;
+  background-color:inherit;
+  /* opacity: 0.7; */
+  text-align: center;
+  transition: all 0.2s;
+}
+.loginBtn:hover {
+  color: #16442c;
+  background-color: #ffffff;
+  opacity: 0.5;
+}
+
+.navbarActive {
+  background-color: #aec7bb;
 }
