@@ -23,6 +23,10 @@ function BookClass() {
     setSearchData(data);
   };
 
+  const handleReturn = () => {
+    setSearch(false);
+  };
+
   /**Yian
    * local storage to persist state when browser is refreshed
    */
@@ -80,12 +84,14 @@ function BookClass() {
       <div className="container BookContainer">
         <div className="searchDiv">
           {search && query ? (
-            <TutorProfile searchData={searchData} query={query} />
+            <TutorProfile
+              searchData={searchData}
+              query={query}
+              handleReturn={handleReturn}
+            />
           ) : (
             <SearchTutor handleQuery={handleQuery} search={search} />
           )}
-          {console.log("search", search)}
-          Query:{query}
         </div>
         <Outlet />
       </div>
