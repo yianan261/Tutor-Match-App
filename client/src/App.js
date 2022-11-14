@@ -8,6 +8,7 @@ import BookClass from "./pages/BookClass";
 import { AuthProvider } from "./utils/auth";
 import RequireAuth from "./components/RequireAuth";
 import TutorInfo from "./components/TutorInfo";
+import TutorProfile from "./components/TutorProfile";
 const LazySearch = React.lazy(() => import("./components/SearchTutor"));
 
 //Yian Chen
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Landing />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/book" element={<BookClass />}>
+          <Route path="tutors/:subject" element={<TutorProfile />} />
           <Route path="tutors/:tutorId" element={<TutorInfo />} />
         </Route>
         <Route
