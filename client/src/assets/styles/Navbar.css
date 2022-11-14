@@ -11,7 +11,13 @@
 }
 nav {
   padding-bottom: 12%;
+}
+
+.navAll{
   background-color: #9ab2a5;
+}
+.navHome{
+  background-color: transparent;
 }
 
 .logo {
@@ -60,7 +66,7 @@ nav {
   text-decoration: none;
   color: #25352d;
   font-weight: 300;
-  background-color: #a6beb1;
+  background-color:inherit;
   /* opacity: 0.7; */
   text-align: center;
   transition: all 0.2s;

@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "../assets/styles/Navbar.css";
-import { NavLink, redirect } from "react-router-dom";
+import { NavLink, redirect, useLocation } from "react-router-dom";
 import { useAuth } from "../utils/auth";
 import bulb2 from "../assets/images/bulb2.png";
 
 //Yian
 function Navbar() {
   const auth = useAuth();
+  const location = useLocation();
   const [navColor, setNavColor] = useState(false);
+  const [navClassName, setNavClassName] = useState(
+    "navbar navbar-dark navbar-expand-md fixed-top navHome"
+  );
 
   const changeNavBackground = () => {
     window.scrollY >= 66 ? setNavColor(true) : setNavColor(false);
@@ -39,16 +43,27 @@ function Navbar() {
       Logout
     </button>
   );
+
+  /**
+   * this function determines navbar design according to location path
+   * if at Homepage activate navHome css selector (default),else use navAll
+   * on scroll activate navActive
+   */
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      navColor
+        ? setNavClassName(
+            "navbar navbar-dark navbar-expand-md fixed-top navbarActive"
+          )
+        : setNavClassName(
+            "navbar navbar-dark navbar-expand-md fixed-top navAll"
+          );
+    }
+  }, []);
+
   return (
     <div>
-      <nav
-        id="mainNavbar"
-        className={
-          navColor
-            ? "navbar navbar-dark navbar-expand-md fixed-top navbarActive"
-            : "navbar navbar-dark navbar-expand-md fixed-top"
-        }
-      >
+      <nav id="mainNavbar" className={navClassName}>
         <div className="container-xl navContainer">
           <span className="logoSpan">
             <img src={bulb2} className="logo" alt="tutor app logo" />
