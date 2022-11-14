@@ -52,9 +52,6 @@ nav {
   transition: background 0.5s;
 }
 
-/* nav.scrolled {
-  background: #6746f9;
-} */
 
 .loginBtn {
   display: inline-block;

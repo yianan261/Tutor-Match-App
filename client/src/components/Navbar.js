@@ -25,6 +25,7 @@ function Navbar() {
     auth.login();
     redirect("/login");
   };
+
   //conditional rendering when unauthenticated
   const unauthenticated = (
     <NavLink to="/login">
@@ -90,10 +91,7 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <span>
-            {auth.user ? authenticated : unauthenticated}
-            <i className="fa-solid fa-right-from-bracket"></i>
-          </span>
+          <span>{auth.user ? authenticated : unauthenticated}</span>
         </div>
       </nav>
     </div>
