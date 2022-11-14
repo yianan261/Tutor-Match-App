@@ -15,6 +15,27 @@ function MyMongoDB() {
   const TUTORS_COLLECTION = "tutors";
   const PAGE_SIZE = 18;
 
+  /**
+   * Amanda
+   * function that creates user
+   * @param {int} object_id from user
+   * @returns
+   */
+  myDB.createUser = async (id) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const usersCol = db.collection(USER_COLLECTION);
+      const res = await usersCol.insertOne(id);
+      return res;
+    } finally {
+      client.close();
+    }
+  };
+
+
+
   /** Yian
    * function that queries tutors when users type key word
    * @param {string} key search word
@@ -43,21 +64,6 @@ function MyMongoDB() {
         .skip(PAGE_SIZE * page)
         .limit(PAGE_SIZE)
         .toArray();
-    } finally {
-      client.close();
-    }
-  };
-  /** Yian
-   * function that gets the info of specific tutor
-   * @param {string} tutor ID
-   * @returns one tutor object
-   */
-  myDB.getTutor = async (tutor_id) => {
-    let client;
-    try {
-      client = new MongoClient(url);
-      const tutorsCol = client.db(DB_NAME).collection(TUTORS_COLLECTION);
-      return await tutorsCol.findOne({ _id: ObjectId(tutor_id) });
     } finally {
       client.close();
     }

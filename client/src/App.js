@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Login from "./components/Login";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage"
 import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
@@ -16,9 +17,10 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route path="/" element={<Landing />}></Route>
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/register" element={<RegisterPage />}></Route>
         <Route path="/book" element={<BookClass />}>
-          <Route path="tutors/:tutorId" element={<TutorInfo />} />
+        <Route path="tutors/:tutorId" element={<TutorInfo />} />
         </Route>
         <Route
           path="/profile"
