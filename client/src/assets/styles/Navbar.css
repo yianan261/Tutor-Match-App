@@ -50,7 +50,7 @@ nav {
   background: #6746f9;
 } */
 
-button {
+.loginBtn {
   display: inline-block;
   padding: 0.35em 1.2em;
   border: 0.16rem solid #fefffe;
@@ -65,7 +65,7 @@ button {
   text-align: center;
   transition: all 0.2s;
 }
-button:hover {
+.loginBtn:hover {
   color: #16442c;
   background-color: #ffffff;
   opacity: 0.5;

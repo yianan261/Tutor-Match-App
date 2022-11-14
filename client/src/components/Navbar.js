@@ -15,7 +15,7 @@ function Navbar() {
   useEffect(() => {
     changeNavBackground();
     window.addEventListener("scroll", changeNavBackground);
-  },[navColor]);
+  }, [navColor]);
 
   const handleLogin = () => {
     auth.login();
@@ -24,7 +24,9 @@ function Navbar() {
   //conditional rendering when unauthenticated
   const unauthenticated = (
     <NavLink to="/login">
-      <button onClick={handleLogin}>Login</button>
+      <button className="loginBtn" onClick={handleLogin}>
+        Login
+      </button>
     </NavLink>
   );
   const handleLogout = () => {
@@ -32,12 +34,20 @@ function Navbar() {
     redirect("/");
   };
   //conditional rendering when authenticated
-  const authenticated = <button onClick={handleLogout}>Logout</button>;
+  const authenticated = (
+    <button className="loginBtn" onClick={handleLogout}>
+      Logout
+    </button>
+  );
   return (
     <div>
       <nav
         id="mainNavbar"
-        className={navColor? "navbar navbar-dark navbar-expand-md fixed-top navbarActive":"navbar navbar-dark navbar-expand-md fixed-top"}
+        className={
+          navColor
+            ? "navbar navbar-dark navbar-expand-md fixed-top navbarActive"
+            : "navbar navbar-dark navbar-expand-md fixed-top"
+        }
       >
         <div className="container-xl navContainer">
           <span className="logoSpan">
@@ -45,13 +55,7 @@ function Navbar() {
           </span>
 
           <div className="navbar-brand">Tutor Match</div>
-          <button
-            className="navbar-toggler"
-            data-toggle="collapse"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+
           <div className="collapse navbar-collapse" id="navLinks">
             <ul className="navbar-nav">
               <li className="nav-item">
