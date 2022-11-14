@@ -11,6 +11,9 @@ function LoginPage() {
       <Navbar />
       <div className="row">
         <div className="col">
+          <p className="quote">
+            Sign In to Find the Perfect Match!
+          </p>
           <img className="blackboard" src={blackboard} alt="A+" />
         </div>
         <div className="col">

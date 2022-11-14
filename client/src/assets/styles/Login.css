@@ -3,11 +3,10 @@
 }
 
 .blackboard {
-    align-items: center;
-    justify-content: center;
     display: flex;
     width: 500px;
     height: 500px;
+    margin-left: 20%;
 }
 
 .card {
@@ -32,4 +31,11 @@
 
 #no-ac {
     color: gray;
+}
+
+.quote {
+    padding-top: 5%;
+    align-items: left;
+    justify-content: left;
+    margin-left: 10%;
 }
