@@ -72,8 +72,8 @@ function BookClass() {
       console.error(err);
     }
   }, []);
-  
-  //Yian 
+
+  //Yian
   return (
     <>
       <Navbar />
