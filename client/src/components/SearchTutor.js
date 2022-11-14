@@ -13,6 +13,7 @@ import PropTypes from "prop-types";
 function SearchTutor({ handleQuery, search }) {
   const [searchword, setSearchword] = useState("");
   const [searchParams, setSearchParams] = useSearchParams("");
+  const [notFound, setNotFound] = useState(false);
 
   const handleChange = (evt) => {
     evt.preventDefault();
@@ -67,6 +68,11 @@ function SearchTutor({ handleQuery, search }) {
       const resQuery = await res.json();
       if (resQuery.data.length === 0) {
         console.log("no search result");
+        setNotFound(true);
+        //reset notFound to false after 3 seconds
+        setTimeout(() => {
+          setNotFound(false);
+        }, 3000);
       } else {
         console.log("resQuery.data", resQuery.data);
         //calls handleQuery function in parent component
@@ -75,6 +81,22 @@ function SearchTutor({ handleQuery, search }) {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  //renders no result
+  const noRes = () => {
+    const res = (
+      <div
+        className="flash flash-warning alert alert-dismissible fade show"
+        role="alert"
+      >
+        <span>No search results </span>
+        <a data-bs-dismiss="alert" aria-label="Close">
+          <i className="fas fa-times"></i>
+        </a>
+      </div>
+    );
+    return res;
   };
 
   return (
@@ -94,6 +116,7 @@ function SearchTutor({ handleQuery, search }) {
         </div>
       </div>
       <div className="imgContainer">
+        {notFound ? noRes() : null}
         <div className="imageDiv">
           <img src={study2} className="study2pic" alt="study picture" />
         </div>
