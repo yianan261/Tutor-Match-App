@@ -12,6 +12,8 @@ function BookClass() {
   const [search, setSearch] = useState(false);
   const [searchData, setSearchData] = useState([]);
   const [render, setRender] = useState(1);
+  const [tutorID,setTutorID] = useState(null)
+
 
   /**Yian
    * function that sets state in BookClass when search is triggered in SearchTutor.js
@@ -99,6 +101,11 @@ function BookClass() {
   console.log("render", render);
   console.log("search", search);
 
+  //sets render to 3 when called
+  const searchProfile = (_id)=>{
+    setRender(3)
+    setTutorID(_id)
+  }
   /**
    * function that renders component based on render flag value
    * @returns component for rendering
@@ -112,10 +119,11 @@ function BookClass() {
           searchData={searchData}
           query={query}
           handleReturn={handleReturn}
+          searchProfile={searchProfile}
         />
       );
     } else if (render === 3) {
-      return <TutorInfo />;
+      return <TutorInfo tutorID={tutorID}/>;
     }
   };
 

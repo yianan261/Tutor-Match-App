@@ -53,6 +53,7 @@
   border: none;
   border-radius: 2rem;
   height: 80vh;
+  cursor: pointer;
 }
 
 .card-body {
