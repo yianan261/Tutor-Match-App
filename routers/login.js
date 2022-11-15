@@ -1,5 +1,7 @@
 import express from "express";
 import passport from "passport";
+// import LocalStrategy from "passport-local";
+// import myDB from "../db/myDB";
 const router = express.Router();
 
 // Amanda Au-Yeung
@@ -16,6 +18,11 @@ router.post(
   })
 );
 
+router.get("/getUser", (req, res) => {
+  console.log(req.body);
+  res.send({username: req.user ? req.user.email: null})
+})
+
 router.post("/logout", function (req, res, next) {
   req.logout(function (err) {
     if (err) {
@@ -24,5 +31,6 @@ router.post("/logout", function (req, res, next) {
     res.redirect("/");
   });
 });
+
 
 export default router;
