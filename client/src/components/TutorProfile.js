@@ -21,7 +21,7 @@ function TutorProfile({ searchData, query, handleReturn }) {
       while (i < searchData.length) {
         if (searchData.length && 1) {
           pairs.push(searchData.slice(i, (i += 2)));
-        } 
+        }
       }
       setDisplayPairs(pairs);
     } catch (err) {
@@ -36,6 +36,19 @@ function TutorProfile({ searchData, query, handleReturn }) {
   console.log("displaypairs", displayPairs);
 
   console.log("tutor profile data", searchData);
+
+  /**
+   * function that generates number of stars in tutor profile
+   * @param {int} num of stars
+   * @returns star icon JSX element
+   */
+  const starReview = (num) => {
+    let s = [];
+    for (let i = 0; i < num; i++) {
+      s.push(<i className="fa-solid fa-star" />);
+    }
+    return s;
+  };
 
   return (
     <div>
@@ -65,15 +78,14 @@ function TutorProfile({ searchData, query, handleReturn }) {
                     alt="image of tutor"
                   />
                   <div className="card-text-div">
-                  <p className="card-text">
-                    Subject: {tutorProfile.subjects}
-                    <br />
-                    Ratings: {tutorProfile.stars}{" "}
-                    <i className="fa-solid fa-star"></i> by{" "}
-                    {tutorProfile.num_of_ratings} members
-                    <br />
-                    Education: {tutorProfile.education}
-                  </p>
+                    <p className="card-text">
+                      Subject: {tutorProfile.subjects}
+                      <br />
+                      Ratings: {starReview(tutorProfile.stars)} by{" "}
+                      {tutorProfile.num_of_ratings} members
+                      <br />
+                      Education: {tutorProfile.education}
+                    </p>
                   </div>
                   <div className="cardlink"></div>
                 </div>

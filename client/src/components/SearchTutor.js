@@ -51,6 +51,7 @@ function SearchTutor({ handleQuery, search }) {
   const handleClick = (evt) => {
     evt.preventDefault();
     handleSubmit();
+    console.log("CLICKED,evt", evt);
   };
 
   /**
