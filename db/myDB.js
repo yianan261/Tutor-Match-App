@@ -1,4 +1,4 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 dotenv.config({ path: ".env" });
 
@@ -19,6 +19,8 @@ function MyMongoDB() {
    * Amanda
    * function that creates user
    * @param {String} user from user
+   * @param {String} hash from user
+   * @param {String} salt from user
    * @returns user
    */
   myDB.createUser = async (user) => {
@@ -28,6 +30,7 @@ function MyMongoDB() {
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
       const res = await usersCol.insertOne(user);
+      console.log("user inserted", res);
       return res;
     } finally {
       client.close();
@@ -36,6 +39,7 @@ function MyMongoDB() {
 
   /**
    * Amanda
+   * gets user from the registration form
    * @param {String} email 
    * @returns the user email
    */
@@ -47,7 +51,7 @@ function MyMongoDB() {
       const usersCol = db.collection(USER_COLLECTION);
       const query = {email: _email};
       const options = {
-        projection: {password: 0, confirmed_pw: 0}
+        projection: {email: 1, password: 1}
       };
       const res = await usersCol.findOne(query, options);
       return res;

@@ -80,5 +80,9 @@
   transform: scale(0.95);
 }
 
+.err {
+    color:#FF512F;
+    font-size:small;
+}
 
 
