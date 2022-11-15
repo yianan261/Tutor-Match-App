@@ -58,21 +58,18 @@ function SearchTutor({ handleQuery, search }) {
    */
   const handleSubmit = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:5001/book/tutors/?query=${searchword}`,
-        {
-          method: "POST",
-          body: searchParams.get("query"),
-        }
-      );
+      const res = await fetch(`/book/tutors/?query=${searchword}`, {
+        method: "POST",
+        body: searchParams.get("query"),
+      });
       const resQuery = await res.json();
       if (resQuery.data.length === 0) {
         console.log("no search result");
         setNotFound(true);
-        //reset notFound to false after 3 seconds
+        //reset notFound to false after 2 seconds
         setTimeout(() => {
           setNotFound(false);
-        }, 3000);
+        }, 2000);
       } else {
         console.log("resQuery.data", resQuery.data);
         //calls handleQuery function in parent component

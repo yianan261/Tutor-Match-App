@@ -7,7 +7,6 @@ import TutorProfile from "../components/TutorProfile";
 
 function BookClass() {
   //Todo: implement paginated search for tutors when users search by keyword
-  //Todo: when users click on specific tutor, will redirect to profile page of tutor
   const [query, setQuery] = useState(null);
   const [search, setSearch] = useState(false);
   const [searchData, setSearchData] = useState([]);
