@@ -22,7 +22,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />}></Route>
         <Route path="/book" element={<BookClass />}>
           <Route path=":subject" element={<TutorProfile />} />
-          <Route path="tutors/:tutorId" element={<TutorInfo />} />
+          <Route path=":tutorId" element={<TutorInfo />} />
         </Route>
         <Route
           path="/profile"
