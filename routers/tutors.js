@@ -26,6 +26,7 @@ router.get("/book/tutors/:tutorId", async (req, res) => {
     const tutorId = req.params.tutorId;
     const getTutor = await myDB.getTutor(tutorId);
     res.status(200).json({ data: getTutor });
+    console.log("GOT TUTOR DATA")
   } catch (err) {
     console.error(err);
     res.status(404).json({ msg: "There was an error" });

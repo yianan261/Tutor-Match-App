@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "../assets/styles/TutorProfile.css";
 
+
 /**
  * Yian
  * @param {props} searchData object and query string
@@ -29,10 +30,12 @@ function TutorProfile({ searchData, query, handleReturn, searchProfile }) {
     }
   }, [searchData]);
 
+  //This function handles the back button
   const handleClick = () => {
     window.localStorage.removeItem("Current_Query");
     handleReturn();
   };
+
   console.log("displaypairs", displayPairs);
   console.log("tutor profile data", searchData);
 
@@ -67,7 +70,7 @@ function TutorProfile({ searchData, query, handleReturn, searchProfile }) {
                 key={tutorProfile._id}
                 onClick={(evt) => {
                   evt.preventDefault;
-                  searchProfile(tutorProfile._id);
+                  searchProfile(tutorProfile);
                 }}
               >
                 <div className="card-body">

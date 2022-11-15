@@ -8,10 +8,10 @@ import NotFound from "./pages/NotFound";
 import BookClass from "./pages/BookClass";
 import { AuthProvider } from "./utils/auth";
 import RequireAuth from "./components/RequireAuth";
-import TutorInfo from "./components/TutorInfo";
+// import TutorInfo from "./components/TutorInfo";
 import TutorProfile from "./components/TutorProfile";
 const LazySearch = React.lazy(() => import("./components/SearchTutor"));
-
+const LazySearch2 = React.lazy(() => import("./components/TutorInfo"));
 //Yian Chen
 function App() {
   return (
@@ -22,7 +22,9 @@ function App() {
         <Route path="/register" element={<RegisterPage />}></Route>
         <Route path="/book" element={<BookClass />}>
           <Route path=":subject" element={<TutorProfile />} />
-          <Route path=":tutorId" element={<TutorInfo />} />
+          <Route path=":tutorId" element={<React.Suspense fallback="Searching...">
+              <LazySearch2 />
+            </React.Suspense>} />
         </Route>
         <Route
           path="/profile"
