@@ -1,28 +1,71 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAuth } from "../utils/auth";
 import { useNavigate, Link } from "react-router-dom";
 import "../assets/styles/LoginRegister.css";
 
-// import { response } from "express";
-
 function Register() {
-  const [user, setUser] = useState("");
+  // const [user, setUser] = useState("");
+
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+    confirmedPassword: "",
+  });
+
+  const [error, setError] = useState({
+    email: "",
+    password: "",
+    confirmedPassword: "",
+  });
+
   const auth = useAuth();
   const navigate = useNavigate();
-  useEffect(() => {
-    // const fetchData = async () => {
-    //     await fetch("/utils/auth.js");
-    //     const json = await response.json();
-    //     setUser(json);
-    //   };
-    //   fetchData().catch(console.error);
-    setUser("placeholder");
-  }, []);
+
+  const createUser = async (e) => {
+    e.preventDefault();
+    console.log(input.email);
+    console.log(input.password);
+    const res = await fetch("/register", {
+      method: "POST",
+      body: JSON.stringify({
+        email: input.email,
+        password: input.password
+      })
+    });
+    console.log("res", res);
+    handleRegister();
+    console.log("res.json", res.json);
+    const resRegUser = await res.json();
+    console.log("resRegUser", resRegUser);
+    console.log("USER",resRegUser.message)
+    // setUser(resRegUser.user);
+  };
+
+  const onInputChange = (evt) => {
+    const { value, name } = evt.target;
+    setInput((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    validateInput(evt);
+  };
+
+  const validateInput = (evt) => {
+    let { name, value } = evt.target;
+    setError((prev) => {
+      const obj = { ...prev, [name]: "" };
+      if (input.password && value !== input.password) {
+        obj[name] = "The confirmed password does not match with the password";
+      }
+      return obj;
+    });
+  };
 
   const handleRegister = () => {
-    auth.login(user);
+    auth.login("user");
     navigate("/profile", { replace: true });
   };
+
   return (
     <div className="card">
       <h5 className="card-title">Sign Up</h5>
@@ -31,7 +74,7 @@ function Register() {
         Sign In
       </Link>
       <div className="container">
-        <form action="/login/password" method="POST">
+        <form  onSubmit={createUser}>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
@@ -41,6 +84,11 @@ function Register() {
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
+              placeholder="Enter Email"
+              value={input.email}
+              onChange={onInputChange}
+              name="email"
+              required
             />
             <div id="emailHelp" className="form-text">
               We will never share your email with anyone else.
@@ -53,27 +101,32 @@ function Register() {
               id="inputPassword5"
               className="form-control"
               aria-describedby="passwordHelpBlock"
+              placeholder="Enter your password"
+              name="password"
+              value={input.password}
+              onChange={onInputChange}
+              required
             />
-            <small id="passwordHelpBlock" className="form-text text-muted">
-              Your password must be 8-20 characters long, contain letters and
-              numbers, and must not contain spaces, special characters, or
-              emoji.
-            </small>
           </div>
           <div className="mb-3">
             <label htmlFor="inputPassword5">Confirm Password</label>
             <input
               type="password"
-              id="inputPassword5"
+              id="inputConfirmedPassword5"
               className="form-control"
               aria-describedby="passwordHelpBlock"
+              placeholder="Confirm your password"
+              name="confirmedPassword"
+              value={input.confirmedPassword}
+              onChange={onInputChange}
+              onBlur={validateInput}
+              required
             />
+            {error.confirmedPassword && (
+              <span className="err">{error.confirmedPassword}</span>
+            )}
           </div>
-          <button
-            onClick={handleRegister}
-            type="submit"
-            className="btn"
-          >
+          <button type="submit" className="btn">
             Submit
           </button>
         </form>
