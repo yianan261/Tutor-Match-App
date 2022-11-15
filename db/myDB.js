@@ -63,18 +63,15 @@ function MyMongoDB() {
       console.log("word", word);
       client = new MongoClient(url);
       const tutorsCol = client.db(DB_NAME).collection(TUTORS_COLLECTION);
-      const options = { projection: { reviews: 0 } };
+      // const options = { projection: { reviews: 0 } };
       const res = await tutorsCol
-        .find(
-          {
-            $or: [
-              { first_name: { $regex: word, $options: "i" } },
-              { subjects: { $regex: word, $options: "i" } },
-              { last_name: { $regex: word, $options: "i" } },
-            ],
-          },
-          options
-        )
+        .find({
+          $or: [
+            { first_name: { $regex: word, $options: "i" } },
+            { subjects: { $regex: word, $options: "i" } },
+            { last_name: { $regex: word, $options: "i" } },
+          ],
+        })
         .skip(PAGE_SIZE * page)
         .limit(PAGE_SIZE)
         .toArray();
