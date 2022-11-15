@@ -131,6 +131,9 @@ function BookClass() {
     setSearchParams(profile._id)
   };
 
+  const returnToSearch = ()=>{
+    setRender(2)
+  }
 
   /**
    * function that renders component based on render flag value
@@ -151,7 +154,7 @@ function BookClass() {
       );
     } else if (render === 3) {
       console.log("RENDER3")
-      return <TutorInfo tutorProfile={tutorProfile} searchParams={searchParams} />;
+      return <TutorInfo tutorProfile={tutorProfile} searchParams={searchParams} returnToSearch={returnToSearch}/>;
     }
   };
 
