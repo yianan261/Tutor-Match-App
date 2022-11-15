@@ -4,13 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "../assets/styles/LoginRegister.css";
 
 function Register() {
-  // const [user, setUser] = useState({}
-  // //   {
-  // //   email: "",
-  // //   password: "",
-  // //   confirmedPassword: "",
-  // // }
-  // );
+  // const [user, setUser] = useState("");
 
   const [input, setInput] = useState({
     email: "",
@@ -26,35 +20,6 @@ function Register() {
 
   const auth = useAuth();
   const navigate = useNavigate();
-  // const form = useRef(null);
-  // useEffect(() => {
-  //   try {
-  //     const fetchData = async () => {
-  //       const res = await fetch("http://localhost:5001/register", {
-  //         method: "POST",
-  //         body: {
-  //           email: input.email,
-  //           password: input.password
-  //         }
-  //       });
-  //       const resRegUser = await res.json();
-  //       setUser(resRegUser.user);
-  //     };
-  //     fetchData();
-  //   } catch (err) {
-  //     alert(`Error: ${err}`);
-  //   }
-  // }, []);
-
-  // const handleSubmit = (e)=>{
-  //   e.preventDefault();
-  //  const emailInput = e.target.email.value;
-  //  const passInput = e.target.password.value;
-  //  console.log("emailINput",emailInput)
-  //  console.log("passwordInput",passInput)
-  //   handleRegister()
-  //   // console.log(setUser)
-  // }
 
   const createUser = async (e) => {
     e.preventDefault();
@@ -69,7 +34,9 @@ function Register() {
     });
     console.log("res", res);
     handleRegister();
+    console.log("res.json", res.json);
     const resRegUser = await res.json();
+    console.log("resRegUser", resRegUser);
     console.log("USER",resRegUser.message)
     // setUser(resRegUser.user);
   };
@@ -95,7 +62,7 @@ function Register() {
   };
 
   const handleRegister = () => {
-    auth.login(input);
+    auth.login("user");
     navigate("/profile", { replace: true });
   };
 

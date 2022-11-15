@@ -54,6 +54,7 @@ function MyMongoDB() {
         projection: {email: 1, password: 1}
       };
       const res = await usersCol.findOne(query, options);
+      console.log("res in DB get user", res);
       return res;
     } finally {
       client.close();

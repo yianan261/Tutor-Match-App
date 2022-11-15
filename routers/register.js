@@ -20,6 +20,7 @@ router.post("/register", async (req, res) => {
   try {
     console.log("CREATING USER");
     checkExistUser = await myDB.getUsers(req.body.email);
+    console.log(checkExistUser);
     if (checkExistUser === null ) {
       await myDB.createUser(req.body);
       res
@@ -27,7 +28,7 @@ router.post("/register", async (req, res) => {
         .json({ message: "Successfuly register! Head over to sign in!" });
     } else {
       res.json({
-        error: "User email already exist, you may sign in!",
+        message: "User email already exist, you may sign in!",
         err: "Email",
       });
     }
