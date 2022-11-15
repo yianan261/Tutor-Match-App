@@ -53,6 +53,7 @@
   border: none;
   border-radius: 2rem;
   height: 80vh;
+  cursor: pointer;
 }
 
 .card-body {
@@ -78,6 +79,6 @@
   padding-top: 1%;
 }
 
-.fa-star{
+.fa-star {
   color: rgb(243, 224, 49);
 }
