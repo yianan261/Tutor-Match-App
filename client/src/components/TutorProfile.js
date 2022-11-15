@@ -7,7 +7,7 @@ import "../assets/styles/TutorProfile.css";
  * @param {props} searchData object and query string
  * @returns JSX
  */
-function TutorProfile({ searchData, query,handleReturn }) {
+function TutorProfile({ searchData, query, handleReturn }) {
   const [displayPairs, setDisplayPairs] = useState([]);
 
   /**
@@ -19,7 +19,9 @@ function TutorProfile({ searchData, query,handleReturn }) {
       let pairs = [];
       let i = 0;
       while (i < searchData.length) {
-        pairs.push(searchData.slice(i, (i += 2)));
+        if (searchData.length && 1) {
+          pairs.push(searchData.slice(i, (i += 2)));
+        } 
       }
       setDisplayPairs(pairs);
     } catch (err) {
@@ -27,11 +29,10 @@ function TutorProfile({ searchData, query,handleReturn }) {
     }
   }, [searchData]);
 
-
-const handleClick = ()=>{
-  window.localStorage.removeItem("Current_Query");
-  handleReturn();
-}
+  const handleClick = () => {
+    window.localStorage.removeItem("Current_Query");
+    handleReturn();
+  };
   console.log("displaypairs", displayPairs);
 
   console.log("tutor profile data", searchData);
@@ -40,7 +41,9 @@ const handleClick = ()=>{
     <div>
       <h3 className="searchRes">Search Results for &quot;{query}&quot;</h3>
       <div className="backDiv">
-        <span className="back" onClick={handleClick}><i className="fa-solid fa-arrow-left-long"/> Back to Search</span>
+        <span className="back" onClick={handleClick}>
+          <i className="fa-solid fa-arrow-left-long" /> Back to Search
+        </span>
       </div>
       <div className="imgRender">
         {displayPairs.map((tutorData, idx) => (
@@ -61,6 +64,7 @@ const handleClick = ()=>{
                     src={tutorProfile.image}
                     alt="image of tutor"
                   />
+                  <div className="card-text-div">
                   <p className="card-text">
                     Subject: {tutorProfile.subjects}
                     <br />
@@ -70,6 +74,7 @@ const handleClick = ()=>{
                     <br />
                     Education: {tutorProfile.education}
                   </p>
+                  </div>
                   <div className="cardlink"></div>
                 </div>
               </div>
@@ -83,6 +88,6 @@ const handleClick = ()=>{
 TutorProfile.propTypes = {
   searchData: PropTypes.array,
   query: PropTypes.string,
-  handleReturn: PropTypes.func
+  handleReturn: PropTypes.func,
 };
 export default TutorProfile;

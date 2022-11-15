@@ -12,10 +12,10 @@ import cors from "cors";
 // import auth from "./routes/auth";
 
 import session from "express-session";
-// import { dirname } from "path";
-// import { fileURLToPath } from 'url';
+import path,{ dirname } from "path";
+import { fileURLToPath } from 'url';
 
-// const __dirname = dirname(fileURLToPath(import.meta.url));
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(cors());
 dotenv.config();
@@ -26,7 +26,7 @@ const PORT = process.env.PORT || 5001;
 
 // }
 
-// app.use(express.static(path.join(__dirname, "..", "build")));
+app.use(express.static(path.join(__dirname, "client/build")));
 app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
