@@ -16,7 +16,8 @@ function TutorInfo({ tutorProfile }) {
     }
     return s;
   };
-
+  console.log("Check type",typeof(tutorProfile.reviews))
+  
   const renderProfile = (reviews) => {
     return reviews.map((review, idx) => {
       <div className="innerDiv" key={idx}>
@@ -82,6 +83,11 @@ function TutorInfo({ tutorProfile }) {
               </div>
             </div>
           </div>
+          <span className="btnSpan">
+            <button className="bookBtn">
+              Book Class with {tutorProfile.first_name}
+            </button>
+          </span>
         </div>
       </div>
     </>

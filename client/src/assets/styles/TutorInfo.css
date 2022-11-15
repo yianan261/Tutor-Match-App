@@ -1,6 +1,6 @@
 .imgs2 {
   width: 30rem;
-  margin-left: 3%;
+  margin-left: 5%;
   min-width: auto;
   height: 50vh;
   object-fit: cover;
@@ -10,7 +10,7 @@
 #cardimage2 {
   /* margin: 3%; */
   width: 90vw;
-  background-color: #d7ded1;
+  background-color: #cdd3c7;
 }
 
 .card-body2 {
@@ -21,9 +21,9 @@
 }
 
 .card-title2 {
-  padding-top: 3%;
+  padding-top: 5%;
   font-size: x-large;
-  padding-left: 3%;
+  padding-left: 5%;
 }
 
 .cardlink2 {
@@ -52,7 +52,7 @@
   box-shadow: none;
   border: none;
   border-radius: 1rem;
-  height: 80vh;
+  height: 100vh;
 }
 
 .card-body2 {
@@ -62,7 +62,7 @@
 .card-text-div2 {
   /* display: flex;
   justify-content: start; */
-  padding-left: 3%;
+  padding-left: 5%;
   padding-top: 1%;
 }
 
@@ -71,41 +71,66 @@
 }
 
 .review .review-base {
-    background: white;
-    padding: 20px 40px 40px 40px;
-    border-radius: 10px;
-    margin-bottom: 40px;
-    position: relative;
+  background: white;
+  padding: 20px 40px 40px 40px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  position: relative;
 }
 
 .review .review-base .review-text {
-   text-indent: 5em;
-    line-height: 1.8em;
+  text-indent: 5em;
+  line-height: 1.8em;
 }
 
 .review .review-base .review-text:before {
-    content: "\201C";
-    position: absolute;
-    left: -55px;
-    top: 35px;
-    font-family: Georgia, serif;
-    font-size: 10rem;
-    color: #cecece;
+  content: "\201C";
+  position: absolute;
+  left: -55px;
+  top: 35px;
+  font-family: Georgia, serif;
+  font-size: 10rem;
+  color: #cecece;
 }
 
 .review .review-base .review-text2:before {
-    content: "\201D";
-    position: absolute;
-    bottom: -66%;
-    right: 35px;
-    font-family: Georgia, serif;
-    font-size: 10rem;
-    color: #cecece;
+  content: "\201D";
+  position: absolute;
+  bottom: -66%;
+  right: 35px;
+  font-family: Georgia, serif;
+  font-size: 10rem;
+  color: #cecece;
 }
 
-.innerDiv{
-    padding-top: 3%;
-    transform: translateX(-10%);
-    
+.innerDiv {
+  padding-top: 3%;
+  transform: translateX(-10%);
 }
 
+.bookBtn {
+  display: inline-block;
+  padding: 0.8em 2em;
+  border: 0.16rem solid #fefffe;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.1em;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: #25352d;
+  font-weight: 300;
+  background-color: inherit;
+  /* opacity: 0.7; */
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.bookBtn:hover {
+  color: #f4f4f4;
+  border: 0.16rem solid#f4f4f4;
+}
+
+.btnSpan {
+  display: flex;
+  justify-content: center;
+  transform: translateY(8rem);
+}
