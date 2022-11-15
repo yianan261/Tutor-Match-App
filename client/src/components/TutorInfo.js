@@ -2,8 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../assets/styles/TutorInfo.css";
 
-function TutorInfo({ tutorProfile }) {
-  console.log("TutorID", tutorProfile);
+/**
+ * Yian
+ * @param {object} object prop
+ * @returns JSX rendering of tutor personal profile
+ */
+function TutorInfo({ tutorProfile, returnToSearch }) {
   /**
    * function that generates number of stars in tutor profile
    * @param {int} num of stars
@@ -16,22 +20,11 @@ function TutorInfo({ tutorProfile }) {
     }
     return s;
   };
-  console.log("Check type",typeof(tutorProfile.reviews))
-  
-  const renderProfile = (reviews) => {
-    return reviews.map((review, idx) => {
-      <div className="innerDiv" key={idx}>
-        <section className="rectangle">
-          <div className="wrapper">
-            <div className="review">
-              <div className="review-base">
-                <blockquote className="review-text">{review}</blockquote>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>;
-    });
+  console.log("Check type", typeof tutorProfile.reviews);
+
+  //function that handles click (returns to search)
+  const handleClick = () => {
+    returnToSearch();
   };
 
   return (
@@ -39,7 +32,7 @@ function TutorInfo({ tutorProfile }) {
       <div className="card-group2 " id="cardGroup2">
         <div className="card2 container-xl" id="cardimage2">
           <div className="card-body2">
-            <div className="row">
+            <div className="row rowDiv">
               <div className="col div1">
                 <h5 className="card-title2">
                   {" "}
@@ -63,23 +56,30 @@ function TutorInfo({ tutorProfile }) {
                 <div className="cardlink2"></div>
               </div>
               <div className="col div2">
-                {console.log(tutorProfile.reviews)}
-                {renderProfile(tutorProfile.reviews)}
-                {/* {tutorProfile.reviews.map((review, idx) => {
-                  <div className="innerDiv" key={idx}>
-                    <section className="rectangle">
-                      <div className="wrapper">
-                        <div className="review">
-                          <div className="review-base">
-                            <blockquote className="review-text">
-                              {review}
-                            </blockquote>
+                <h4 className="student">Student Reviews</h4>
+                {tutorProfile.reviews.map((review, idx) => {
+                  const regex = /Tutor/i;
+                  const r = review.replace(regex, `${tutorProfile.first_name}`);
+                  return (
+                    <div className="innerDiv" key={idx}>
+                      <section className="rectangle">
+                        <div className="wrapper">
+                          <div className="review">
+                            <div className="review-base">
+                              <blockquote
+                                className={
+                                  idx % 2 === 0 ? "review-text" : "review-text2"
+                                }
+                              >
+                                {r}
+                              </blockquote>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </section>
-                  </div>;
-                })} */}
+                      </section>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -88,7 +88,15 @@ function TutorInfo({ tutorProfile }) {
               Book Class with {tutorProfile.first_name}
             </button>
           </span>
+         
         </div>
+        <div className="backDiv">
+            <span className="back">
+              <button className="backBtn" onClick={handleClick}>
+                <i className="fa-solid fa-arrow-left-long" /> Back to Search
+              </button>
+            </span>
+          </div>
       </div>
     </>
   );
@@ -96,5 +104,6 @@ function TutorInfo({ tutorProfile }) {
 
 TutorInfo.propTypes = {
   tutorProfile: PropTypes.object,
+  returnToSearch: PropTypes.func,
 };
 export default TutorInfo;
