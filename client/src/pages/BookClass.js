@@ -4,12 +4,14 @@ import { Outlet } from "react-router-dom";
 import SearchTutor from "../components/SearchTutor";
 import "../assets/styles/BookClass.css";
 import TutorProfile from "../components/TutorProfile";
+import TutorInfo from "../components/TutorInfo";
 
 function BookClass() {
   //Todo: implement paginated search for tutors when users search by keyword
   const [query, setQuery] = useState(null);
   const [search, setSearch] = useState(false);
   const [searchData, setSearchData] = useState([]);
+  const [render, setRender] = useState(1);
 
   /**Yian
    * function that sets state in BookClass when search is triggered in SearchTutor.js
@@ -32,7 +34,7 @@ function BookClass() {
   useEffect(() => {
     try {
       const data = window.localStorage.getItem("Current_Query");
-      if (data !== null) {
+      if (data !== null && data !== "null") {
         setQuery(JSON.parse(data));
         setSearch(true);
       }
@@ -46,8 +48,9 @@ function BookClass() {
    */
   useEffect(() => {
     try {
-      window.localStorage.setItem("Current_Query", JSON.stringify(query));
-      console.log("Query", query);
+      if (query) {
+        window.localStorage.setItem("Current_Query", JSON.stringify(query));
+      }
     } catch (err) {
       console.error(err);
     }
@@ -76,22 +79,52 @@ function BookClass() {
     }
   }, []);
 
+  /**
+   * render flag values: 1->SearchTutor component, 2->TutorProfile, 3->TutorInfo
+   * function that decides which component to render
+   */
+  useEffect(() => {
+    try {
+      if (search && query) {
+        setRender(2);
+      } else if (!search) {
+        setRender(1);
+      } else {
+        setRender(3);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }, [search]);
+  console.log("render", render);
+  console.log("search", search);
+
+  /**
+   * function that renders component based on render flag value
+   * @returns component for rendering
+   */
+  const renderFunc = () => {
+    if (render === 1) {
+      return <SearchTutor handleQuery={handleQuery} search={search} />;
+    } else if (render === 2) {
+      return (
+        <TutorProfile
+          searchData={searchData}
+          query={query}
+          handleReturn={handleReturn}
+        />
+      );
+    } else if (render === 3) {
+      return <TutorInfo />;
+    }
+  };
+
   //Yian
   return (
     <>
       <Navbar />
       <div className="container BookContainer">
-        <div className="searchDiv">
-          {search && query ? (
-            <TutorProfile
-              searchData={searchData}
-              query={query}
-              handleReturn={handleReturn}
-            />
-          ) : (
-            <SearchTutor handleQuery={handleQuery} search={search} />
-          )}
-        </div>
+        <div className="searchDiv">{renderFunc()}</div>
         <Outlet />
       </div>
     </>
