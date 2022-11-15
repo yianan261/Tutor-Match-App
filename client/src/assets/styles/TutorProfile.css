@@ -1,0 +1,83 @@
+.imgs {
+  width: 30rem;
+  min-width: auto;
+  height: 50vh;
+  object-fit: cover;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+#cardimage {
+  margin: 3%;
+  width: 800px;
+  background-color: #d7ded1;
+}
+
+.card-body {
+  padding: 5px;
+  /* font-size: large; */
+  color: rgb(69, 80, 77);
+  font-weight: 200;
+}
+.searchRes {
+  color: rgb(58, 68, 65);
+}
+
+.card-title {
+  font-size: x-large;
+}
+
+.cardlink {
+  padding-left: 5%;
+}
+
+.card-text {
+  padding-top: 2%;
+  font-weight: 200;
+  color: rgb(69, 80, 77);
+  font-size: 18px;
+  text-shadow: 0.5px 0.5px 1px rgb(156, 178, 160);
+}
+.fa-star {
+  color: rgb(98, 112, 108);
+}
+
+@media all and (max-width: 1198px) {
+  #cardGroup {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.card {
+  box-shadow: none;
+  border: none;
+  border-radius: 2rem;
+  height: 80vh;
+}
+
+.card-body {
+  margin: auto;
+}
+
+.backDiv {
+  padding-top: 1%;
+  padding-bottom: 2%;
+}
+.back {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.back:hover {
+  cursor: pointer;
+  color: rgb(51, 59, 57);
+}
+.card-text-div {
+  display: flex;
+  justify-content: center;
+  padding-top: 1%;
+}
+
+.fa-star{
+  color: rgb(243, 224, 49);
+}

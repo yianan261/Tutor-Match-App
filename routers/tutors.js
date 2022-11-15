@@ -7,8 +7,9 @@ import myDB from "../db/myDB.js";
  */
 router.post("/book/tutors", async (req, res) => {
   try {
+    console.log("req.query", req.query);
     const page = req.query.page || 0;
-    const keyword = req.query.keyword;
+    const keyword = req.query.query;
     const getTutors = await myDB.findTutors(keyword, page);
     res.status(200).json({ data: getTutors });
   } catch (err) {
