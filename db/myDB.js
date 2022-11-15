@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import dotenv from "dotenv";
 dotenv.config({ path: ".env" });
 
@@ -38,7 +38,6 @@ function MyMongoDB() {
   };
 
   /**
-<<<<<<< HEAD
    * Amanda
    * gets user from the registration form
    * @param {String} email 
@@ -62,8 +61,6 @@ function MyMongoDB() {
     }
   };
   /**
-=======
->>>>>>> yian-dev
    * Yian
    * function that gets the info of specific tutor
    * @param {string} tutor_id
