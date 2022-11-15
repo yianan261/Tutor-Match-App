@@ -23,13 +23,13 @@ function MyMongoDB() {
    * @param {String} salt from user
    * @returns user
    */
-  myDB.createUser = async (user) => {
+  myDB.createUser = async (_user, _hash, _salt) => {
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      const res = await usersCol.insertOne(user);
+      const res = await usersCol.insertOne({user: _user, hash: _hash, salt: _salt});
       console.log("user inserted", res);
       return res;
     } finally {
@@ -44,6 +44,7 @@ function MyMongoDB() {
    * @returns the user email
    */
   myDB.getUsers = async (_email) => {
+    console.log(_email);
     let client;
     try {
       client = new MongoClient(url);
