@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
-// import passport from "passport";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import tutor from "./routers/tutors.js";
@@ -20,6 +19,7 @@ const PORT = process.env.PORT || 5001;
 
 app.use(express.static(path.join(__dirname, "client/build")));
 app.use(logger("dev"));
+
 app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

@@ -38,6 +38,7 @@ function MyMongoDB() {
   };
 
   /**
+<<<<<<< HEAD
    * Amanda
    * gets user from the registration form
    * @param {String} email 
@@ -60,7 +61,24 @@ function MyMongoDB() {
       client.close();
     }
   };
-
+  /**
+=======
+>>>>>>> yian-dev
+   * Yian
+   * function that gets the info of specific tutor
+   * @param {string} tutor_id
+   * @returns one tutor object
+   */
+  myDB.getTutor = async (tutor_id) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const tutorsCol = client.db(DB_NAME).collection(TUTORS_COLLECTION);
+      return await tutorsCol.findOne({ _id: ObjectId(tutor_id) });
+    } finally {
+      client.close();
+    }
+  };
 
   /** Yian
    * function that queries tutors when users type key word
@@ -71,18 +89,17 @@ function MyMongoDB() {
   myDB.findTutors = async (word, page = 0) => {
     let client;
     try {
+      console.log("word", word);
       client = new MongoClient(url);
       const tutorsCol = client.db(DB_NAME).collection(TUTORS_COLLECTION);
       const options = { projection: { reviews: 0 } };
-      return await tutorsCol
+      const res = await tutorsCol
         .find(
           {
             $or: [
               { first_name: { $regex: word, $options: "i" } },
               { subjects: { $regex: word, $options: "i" } },
-              { education: { $regex: word, $options: "i" } },
               { last_name: { $regex: word, $options: "i" } },
-              { gender: { $regex: word, $options: "i" } },
             ],
           },
           options
@@ -90,6 +107,8 @@ function MyMongoDB() {
         .skip(PAGE_SIZE * page)
         .limit(PAGE_SIZE)
         .toArray();
+
+      return res;
     } finally {
       client.close();
     }
