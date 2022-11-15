@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "../assets/styles/TutorProfile.css";
 
+
 /**
  * Yian
  * @param {props} searchData object and query string
  * @returns JSX
  */
-function TutorProfile({ searchData, query, handleReturn }) {
+function TutorProfile({ searchData, query, handleReturn, searchProfile }) {
   const [displayPairs, setDisplayPairs] = useState([]);
 
   /**
@@ -29,12 +30,13 @@ function TutorProfile({ searchData, query, handleReturn }) {
     }
   }, [searchData]);
 
+  //This function handles the back button
   const handleClick = () => {
     window.localStorage.removeItem("Current_Query");
     handleReturn();
   };
-  console.log("displaypairs", displayPairs);
 
+  console.log("displaypairs", displayPairs);
   console.log("tutor profile data", searchData);
 
   /**
@@ -45,7 +47,7 @@ function TutorProfile({ searchData, query, handleReturn }) {
   const starReview = (num) => {
     let s = [];
     for (let i = 0; i < num; i++) {
-      s.push(<i className="fa-solid fa-star" />);
+      s.push(<i key={i} className="fa-solid fa-star" />);
     }
     return s;
   };
@@ -66,6 +68,10 @@ function TutorProfile({ searchData, query, handleReturn }) {
                 className="card container"
                 id="cardimage"
                 key={tutorProfile._id}
+                onClick={(evt) => {
+                  evt.preventDefault;
+                  searchProfile(tutorProfile);
+                }}
               >
                 <div className="card-body">
                   <h5 className="card-title">
@@ -101,5 +107,6 @@ TutorProfile.propTypes = {
   searchData: PropTypes.array,
   query: PropTypes.string,
   handleReturn: PropTypes.func,
+  searchProfile: PropTypes.func,
 };
 export default TutorProfile;
