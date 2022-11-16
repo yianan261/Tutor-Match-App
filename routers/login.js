@@ -18,7 +18,7 @@ const validatePassword = (password, hash, salt) => {
 const strategy = new LocalStrategy(async function verify(email, password, cb) {
   console.log("verify", email, password);
   try {
-    const res = await myDB.getUsers(email, password);
+    const res = await myDB.getUsers(email);
     console.log("strategy res".res.email);
     if (!res) {
       return cb(null, false);
@@ -59,12 +59,12 @@ router.get("/login", (req, res) => {
 router.post("/login/password", async (req, res, next) => {
   console.log("login body router", req.body);
   // if user in DB
-  const user = await myDB.getUsers(req.body.email);
-  console.log("user id", user._id);
-  console.log("user routing", user);
-  if (user) {
+  const checkExistUser = await myDB.getUsers(req.body.email);
+  console.log("user routing", checkExistUser);
+  if (checkExistUser) {
     console.log("user exists, you can login");
     passport.authenticate("local", function (err, user) {
+      console.log("passport authenticate user", user);
       if (err) {
         return next(err);
       }
@@ -80,12 +80,11 @@ router.post("/login/password", async (req, res, next) => {
         }
         return res
           .status(320)
-          .json({ redirectUrl: "/", status: "ok", message: "Logged in" });
+          .json({ redirectUrl: "/profile", status: "ok", message: "Logged in" });
       });
     })(req, res, next);
   } else {
-    console.log("user not registered");
-    res.status(403).json({ err: "You are not registered" });
+    res.status(403).json({ message: "You are not registered" });
   }
 });
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../utils/auth";
 import { useNavigate, Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "../assets/styles/LoginRegister.css";
 
 function Login() {
@@ -27,8 +28,11 @@ function Login() {
       }),
     });
     const resUser = await loginUser.json();
-    console.log("resUser", resUser.err);
-    handleLogin();
+    if (resUser.status === "ok") {
+      handleLogin();
+    } else {
+      alert(resUser.message);
+    }
   }
 
   const onInputChange = (evt) => {
