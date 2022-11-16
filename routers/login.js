@@ -6,9 +6,9 @@ const router = express.Router();
 
 // Amanda Au-Yeung
 
-router.get("/login", (req, res) => {
-  res.render("login");
-});
+// router.get("/login", (req, res) => {
+//   res.render("login");
+// });
 
 router.post(
   "/login/password",
@@ -19,7 +19,7 @@ router.post(
 );
 
 router.get("/getUser", (req, res) => {
-  console.log(req.body);
+  console.log("get user in routes", req.body);
   res.send({username: req.user ? req.user.email: null})
 })
 

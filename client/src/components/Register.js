@@ -4,8 +4,6 @@ import { useNavigate, Link } from "react-router-dom";
 import "../assets/styles/LoginRegister.css";
 
 function Register() {
-  // const [user, setUser] = useState("");
-
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -41,8 +39,7 @@ function Register() {
     console.log("res.json", res.json);
     const resRegUser = await res.json();
     console.log("resRegUser", resRegUser);
-    console.log("USER",resRegUser.message)
-    // setUser(resRegUser.user);
+    console.log("USER",resRegUser.message);
   };
 
   const onInputChange = (evt) => {
