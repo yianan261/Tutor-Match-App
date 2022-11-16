@@ -6,16 +6,11 @@ function SideNav() {
     <div className="grid-container">
       <aside className="sidenav">
         <ul className="sidenav__list">
-          <li
-            className="sidenav__list-item"
-            data-bs-toggle="tooltip"
-            data-bs-title="click to edit profile"
-            data-bs-placement="right"
-          >
+          <li className="sidenav__list-item">
             <i className="fa-solid fa-pen-to-square sideNavIcon" /> Edit Profile
           </li>
           <li className="sidenav__list-item">
-            <i className="fa-solid fa-calendar sideNavIcon" /> Manage Booking
+            <i className="fa-solid fa-calendar sideNavIcon" /> Manage Bookings
           </li>
           <li className="sidenav__list-item">
             <i className="fa-solid fa-clock-rotate-left sideNavIcon" />
