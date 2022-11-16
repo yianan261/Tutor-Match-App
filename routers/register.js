@@ -10,8 +10,8 @@ const router = express.Router();
 // });
 
 router.get("/register", (req, res) => {
-  console.log("Register page")
-  res.status(200)
+  console.log("Register page");
+  res.status(200);
 });
 
 router.post("/register", async (req, res) => {
@@ -21,7 +21,7 @@ router.post("/register", async (req, res) => {
     console.log("CREATING USER");
     checkExistUser = await myDB.getUsers(req.body.email);
     console.log(checkExistUser);
-    if (checkExistUser === null ) {
+    if (checkExistUser === null) {
       await myDB.createUser(req.body);
       res
         .status(201)
@@ -33,7 +33,6 @@ router.post("/register", async (req, res) => {
       });
     }
   } catch (err) {
-    // alert(`${err} exist`);
     console.log(err);
     res.status(400).send({ err: err });
   }
@@ -41,37 +40,48 @@ router.post("/register", async (req, res) => {
 
 // router.post("/register", async (req, res, next) => {
 //   console.log(req.body);
+//   let checkExistUser;
 //   try {
-//     let salt = crypto.randomBytes(16);
-//     crypto.pbkdf2(
-//       req.body.password,
-//       salt,
-//       310000,
-//       32,
-//       "sha256",
-//       async (err, hashed_pw) => {
-//         if (err) {
-//           return next(err);
-//         }
-//         await myDB.createUser((req.body.email, hashed_pw, salt), (err) => {
+//     console.log("CREATING USER");
+//     checkExistUser = await myDB.getUsers(req.body.email);
+//     console.log(checkExistUser);
+//     if (checkExistUser === null) {
+//       let salt = crypto.randomBytes(16);
+//       crypto.pbkdf2(
+//         req.body.password,
+//         salt,
+//         310000,
+//         32,
+//         "sha256",
+//         async (err, hashed_pw) => {
 //           if (err) {
 //             return next(err);
 //           }
-//           let user = {
-//             id: this.lastID,
-//             username: req.body.email,
-//           };
-//           req.login(user, function (err) {
+//           await myDB.createUser((req.body.email, hashed_pw, salt), (err) => {
 //             if (err) {
 //               return next(err);
 //             }
-//             res.redirect("/");
+//             let user = {
+//               id: this.lastID,
+//               username: req.body.email,
+//             };
+//             req.login(user, function (err) {
+//               if (err) {
+//                 return next(err);
+//               }
+//               res.redirect("/");
+//             });
 //           });
-//         });
-//       }
-//     );
+//         }
+//       );
+//     } else {
+//       res.json({
+//         message: "User email already exist, you may sign in!",
+//         err: "Email",
+//       });
+//     }
 //   } catch (err) {
-//     alert(`There is an error ${err}`);
+//     // alert(`There is an error ${err}`);
 //     res.status(400).send({ err: err });
 //   }
 // });

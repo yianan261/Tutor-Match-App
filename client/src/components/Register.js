@@ -27,12 +27,16 @@ function Register() {
     console.log(input.password);
     const res = await fetch("/register", {
       method: "POST",
+      headers:{ 
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         email: input.email,
         password: input.password
       })
     });
     console.log("res", res);
+    console.log("res.body", res.body);
     handleRegister();
     console.log("res.json", res.json);
     const resRegUser = await res.json();
