@@ -62,7 +62,7 @@ function TutorInfo({ tutorProfile, returnToSearch }) {
                   const regex = /Tutor/i;
                   const r = review.replace(regex, `${tutorProfile.first_name}`);
                   return (
-                    <div className="innerDiv" key={idx}>
+                    <div className="innerDiv" key={`tutor_${idx}`}>
                       <section className="rectangle">
                         <div className="wrapper">
                           <div className="review">
