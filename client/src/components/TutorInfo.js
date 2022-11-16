@@ -4,7 +4,8 @@ import "../assets/styles/TutorInfo.css";
 
 /**
  * Yian
- * @param {object} object prop
+ * TutorInfo component
+ * @param {props} tutorProfile is the object prop of tutor data, returnToSearch is a function that returns to search component
  * @returns JSX rendering of tutor personal profile
  */
 function TutorInfo({ tutorProfile, returnToSearch }) {
@@ -88,15 +89,14 @@ function TutorInfo({ tutorProfile, returnToSearch }) {
               Book Class with {tutorProfile.first_name}
             </button>
           </span>
-         
         </div>
         <div className="backDiv">
-            <span className="back">
-              <button className="backBtn" onClick={handleClick}>
-                <i className="fa-solid fa-arrow-left-long" /> Back to Search
-              </button>
-            </span>
-          </div>
+          <span className="back">
+            <button className="backBtn" onClick={handleClick}>
+              <i className="fa-solid fa-arrow-left-long" /> Back to Search
+            </button>
+          </span>
+        </div>
       </div>
     </>
   );

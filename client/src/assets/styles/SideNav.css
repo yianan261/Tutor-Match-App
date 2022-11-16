@@ -1,0 +1,47 @@
+.grid-container {
+    padding-top: 2%;
+  }
+  
+  .grid-container {
+    display: grid;
+    /* grid-template-columns: 240px 1fr; */
+    grid-template-columns: 240px 82vw;
+    grid-template-rows: 50px 1fr 50px;
+    grid-template-areas:
+      "sidenav header"
+      "sidenav main"
+      "sidenav footer";
+    height: 100vh;
+  }
+  
+  .sidenav {
+    width: 240px;
+    background-color: #d1f2ff;
+  }
+  
+.sidenav {
+    display: flex; /* Will be hidden on mobile */
+    flex-direction: column;
+    grid-area: sidenav;
+    background-color: #afbef6;
+  }
+  
+  .sidenav__list {
+    padding: 0;
+    padding-bottom: 5%;
+    margin-top: 85px;
+    list-style-type: none;
+  }
+  
+  .sidenav__list-item {
+    padding: 20px 20px 30px 40px;
+    color: rgb(15, 2, 85);
+  }
+  
+  .sidenav__list-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+  }
+  .sideNavIcon{
+    padding-right: 5%;
+  }
