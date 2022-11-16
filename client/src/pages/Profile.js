@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "../utils/auth";
 import { useNavigate } from "react-router-dom";
+import SharedLayout from "./SharedLayout";
 
 function Profile() {
   const auth = useAuth();
@@ -14,6 +15,7 @@ function Profile() {
 
   return (
     <div>
+    <SharedLayout/>
       Welcome {auth.user}
       {/* temporary */}
       <button onClick={handleLogout}>Logout</button>
