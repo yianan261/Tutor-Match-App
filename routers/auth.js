@@ -1,27 +1,26 @@
 // import express from "express";
-import passport from "passport";
-import LocalStrategy from "passport-local";
+// import passport from "passport";
+// import LocalStrategy from "passport-local";
 // import crypto from "crypto";
-import myDB from "../db/myDB.js";
-import session from "express-session";
+// import myDB from "../db/myDB.js";
+// import session from "express-session";
 
 // Amanda Au-Yeung
 // configures local strategy, from passport.js documentation
 // const router = express.Router();
-function configurePassport(app) {
-  const strategy = new LocalStrategy(async function verify(username, password, cb) {
-    console.log("verify", username, password);
-    const res = await myDB.getUsers(username);
-    const user = {
-      email: res.email,
-      password: res.password
-    }
-    console.log("user", user);
-    return cb(null, user);
+// function configurePassport(app) {
+//   const strategy = new LocalStrategy(async function verify(username, password, cb) {
+//     console.log("verify", username, password);
+//     const res = await myDB.getUsers(username);
+//     const user = {
+//       email: res.email,
+//       password: res.password
+//     }
+//     console.log("user", user);
+//     return cb(null, user);
+//   })
   
-  })
-  
-  passport.use(strategy);
+//   passport.use(strategy);
   
   
   // passport.use(
@@ -56,19 +55,19 @@ function configurePassport(app) {
   //     });
   //   })
   // );
-  passport.serializeUser(function (user, cb) {
-    console.log("serialize", user);
-    process.nextTick(function () {
-      cb(null, { id: user.id, username: user.username });
-    });
-  });
+  // passport.serializeUser(function (user, cb) {
+  //   console.log("serialize", user);
+  //   process.nextTick(function () {
+  //     cb(null, { id: user.id, username: user.username });
+  //   });
+  // });
   
-  passport.deserializeUser(function (user, cb) {
-    console.log("deserialize", user);
-    process.nextTick(function () {
-      return cb(null, user);
-    });
-  });
+  // passport.deserializeUser(function (user, cb) {
+  //   console.log("deserialize", user);
+  //   process.nextTick(function () {
+  //     return cb(null, user);
+  //   });
+  // });
   
   // passport.serializeUser(function (user, done) {
   //   done(null, user.email);
@@ -84,19 +83,19 @@ function configurePassport(app) {
   // });
   
   // };
-  app.use(
-    session({
-      secret: "secret",
-      resave: false,
-      saveUninitialized: false,
-    })
-  );
+  // app.use(
+  //   session({
+  //     secret: "secret",
+  //     resave: false,
+  //     saveUninitialized: false,
+  //   })
+  // );
   
   // initialize passport and restore authentication state
-  app.use(passport.initialize());
-  app.use(passport.authenticate("session"));
+//   app.use(passport.initialize());
+//   app.use(passport.authenticate("session"));
 
-}
+// }
 
-export default configurePassport;
+// export default configurePassport;
 

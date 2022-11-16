@@ -7,14 +7,17 @@ function Login() {
   const [user, setUser] = useState({
     email: "",
     password: "",
-    confirmedPassword: "",
   });
   const auth = useAuth();
   const navigate = useNavigate();
 
-  const getUser = async () => {
-    const user = await fetch("/getUser", {
-      method: "GET",
+  const getUser = async (e) => {
+    e.preventDefault();
+    console.log("user email", user.email);
+    console.log("user pw", user.password);
+    const loginUser = await fetch("/login"
+    , {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -23,12 +26,11 @@ function Login() {
         password: user.password,
       }),
     });
-    const resUser = await user.json();
-    console.log("resUser", resUser);
-    setUser(resUser.email);
-    getUser();
+    console.log("user in front login", loginUser.json);
+    const resUser = await loginUser.json();
+    console.log("resUser", resUser.email);
     handleLogin();
-  };
+  }
 
   const onInputChange = (evt) => {
     const { value, name } = evt.target;
