@@ -15,7 +15,7 @@ function Login() {
     e.preventDefault();
     console.log("user email", user.email);
     console.log("user pw", user.password);
-    const loginUser = await fetch("/login"
+    const loginUser = await fetch("/login/password"
     , {
       method: "POST",
       headers: {
@@ -26,9 +26,8 @@ function Login() {
         password: user.password,
       }),
     });
-    console.log("user in front login", loginUser.json);
     const resUser = await loginUser.json();
-    console.log("resUser", resUser.email);
+    console.log("resUser", resUser.err);
     handleLogin();
   }
 
@@ -41,9 +40,10 @@ function Login() {
   };
 
   const handleLogin = () => {
-    auth.login(user);
+    auth.login("user");
     navigate("/profile", { replace: true });
   };
+
   return (
     <div className="card">
       <h5 className="card-title">Sign In</h5>

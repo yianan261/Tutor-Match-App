@@ -23,13 +23,13 @@ function MyMongoDB() {
    * @param {String} salt from user
    * @returns user
    */
-  myDB.createUser = async (_user, hash, _salt) => {
+  myDB.createUser = async (_user, _salt, _hash) => {
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      const res = await usersCol.insertOne({user: _user, pw: hash, salt: _salt});
+      const res = await usersCol.insertOne({user: _user, salt: _salt, hash: _hash});
       console.log("user inserted", res);
       return res;
     } finally {
@@ -43,20 +43,47 @@ function MyMongoDB() {
    * @param {String} email 
    * @returns the user email
    */
-  myDB.getUsers = async (_email, _password) => {
+  myDB.getUsers = async (_email) => {
     console.log("DB email", _email);
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      const res = await usersCol.findOne({email: _email, pw: _password});
+      const options = {
+        projection: {password: 0}
+      }
+      const res = await usersCol.findOne({user: _email}, options);
       console.log("res in DB get user", res);
       return res;
     } finally {
       client.close();
     }
   };
+  /**
+   * Amanda
+   * gets user by id
+   * @param {int} id
+   * @returns the user id
+   */
+   myDB.getUsersById = async (id) => {
+    console.log("DB email", id);
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const usersCol = db.collection(USER_COLLECTION);
+      const options = {
+        projection: {email: 1, password: 0}
+      }
+      const res = await usersCol.findOne({_id: ObjectId(id)}, options);
+      console.log("res in DB get user", res);
+      return res;
+    } finally {
+      client.close();
+    }
+  };
+
   /**
    * Yian
    * function that gets the info of specific tutor

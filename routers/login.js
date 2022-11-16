@@ -5,64 +5,46 @@ import myDB from "../db/myDB.js";
 const router = express.Router();
 
 // Amanda Au-Yeung
-// const strategy = new LocalStrategy(async function verify(username, password, cb) {
-//   console.log("verify", username, password);
-//   const res = await myDB.getUsers(username);
-//   const user = {
-//     id: res._id,
-//     email: res.email,
-//     password: res.password
-//   }
-//   console.log("user", user);
-//   return cb(null, user);
-// })
+// encryption source: https://github.com/Oliwier965/Photo-App/blob/main/authentication/passwordUtils.js
+const validatePassword = (password, hash, salt) => {
+  console.log("validate password test", password)
+  const hashVerify = crypto
+    .pbkdf2Sync(password, salt, 10000, 64, "sha512")
+    .toString("hex");
 
- passport.use(
-    new LocalStrategy(async function verify(user, password, done) {
-      console.log("verify", user);
-      await myDB.getUsers(user.email, (err, user) => {
-        if (err) {
-          return done(err);
-        }
-        if (!user) {
-          return done(null, false, {
-            message: "Incorrect username or password.",
-          });
-        }
-        crypto.pbkdf2(
-          password,
-          user.salt,
-          310000,
-          32,
-          "sha256",
-          function (err, hashedPassword) {
-            if (err) {
-              return done(err);
-            }
-            if (!crypto.timingSafeEqual(user.hashed_password, hashedPassword)) {
-              return done(null, false, {
-                message: "Incorrect username or password.",
-              });
-            }
-            return done(null, user);
-          }
-        );
-      });
-    })
-  );
+  return hashVerify === hash;
+};
 
-// passport.use(strategy);
+const strategy = new LocalStrategy(async function verify(email, password, cb) {
+  console.log("verify", email, password);
+  try {
+    const res = await myDB.getUsers(email, password);
+    console.log("strategy res".res.email);
+    if (!res) {
+      return cb(null, false);
+    }
+    if (!res || !validatePassword(password, res.hash, res.salt)) {
+      return cb(null, false);
+    } else {
+      return cb(null, res);
+    }
+  } catch (err) {
+    cb(err);
+  }
+});
 
-passport.serializeUser(async function (user, cb) {
-  const res = await myDB.getUsers(user);
-  console.log("serialize", res);
+passport.use(strategy);
+
+passport.serializeUser((user, cb) => {
+  console.log("user in serialize", user);
   process.nextTick(function () {
-    cb(null, { id: res._id, username: res.email });
+    cb(null, user._id);
   });
 });
 
-passport.deserializeUser(async function (user, cb) {
-  const res = await myDB.getUsers(user);
+passport.deserializeUser(async (user_id, cb) => {
+  console.log("deserialize user", user_id);
+  const res = await myDB.getUsersByID(user_id);
   console.log("deserialize", res);
   process.nextTick(function () {
     return cb(null, res);
@@ -71,42 +53,41 @@ passport.deserializeUser(async function (user, cb) {
 
 router.get("/login", (req, res) => {
   res.render("login");
-})
+});
 
-router.post("/login", async (req, res) => {
-  console.log("login router req.body", req.body);
+// used part of the source of https://stackoverflow.com/questions/72128646/passport-authenticate-isnt-redirecting
+router.post("/login/password", async (req, res, next) => {
+  console.log("login body router", req.body);
   // if user in DB
-  const user = await myDB.getUsers(req.body.email, req.body.pw);
+  const user = await myDB.getUsers(req.body.email);
+  console.log("user id", user._id);
   console.log("user routing", user);
-  if (user){
-    req.login(user, function(err) {
+  if (user) {
+    console.log("user exists, you can login");
+    passport.authenticate("local", function (err, user) {
       if (err) {
-        console.log(err);
-      } else {
-        passport.authenticate("local")(req, res, () => {
-          res.redirect("/profile");
+        return next(err);
+      }
+      if (!user) {
+        return res.status(320).json({
+          status: "error",
+          message: "Invalid credentials",
         });
       }
-    })
+      req.logIn(user, function (err) {
+        if (err) {
+          return next(err);
+        }
+        return res
+          .status(320)
+          .json({ redirectUrl: "/", status: "ok", message: "Logged in" });
+      });
+    })(req, res, next);
   } else {
     console.log("user not registered");
-    return res.redirect("/register");
+    res.status(403).json({ err: "You are not registered" });
   }
- 
-})
-
-router.post(
-  "/login/password",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-  })
-);
-
-// router.get("/getUser", (req, res) => {
-//   console.log("get user", req.body);
-//   res.send({ email: req.body.email });
-// })
+});
 
 router.post("/logout", function (req, res, next) {
   req.logout(function (err) {
@@ -116,6 +97,5 @@ router.post("/logout", function (req, res, next) {
     res.redirect("/");
   });
 });
-
 
 export default router;
