@@ -73,9 +73,6 @@ function MyMongoDB() {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      // const options = {
-      //   projection: {email: 1, password: 0}
-      // }
       const res = await usersCol.findOne({_id: ObjectId(id)});
       console.log("res in DB get user", res);
       return res;
