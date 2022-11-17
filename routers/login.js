@@ -3,26 +3,32 @@ import passport from "passport";
 import LocalStrategy from "passport-local";
 import myDB from "../db/myDB.js";
 const router = express.Router();
+import crypto from "crypto";
 
 // Amanda Au-Yeung
 // encryption source: https://github.com/Oliwier965/Photo-App/blob/main/authentication/passwordUtils.js
 const validatePassword = (password, hash, salt) => {
-  console.log("validate password test", password);
+  console.log("validate password test", password, "\nhash", hash, "\nsalt", salt);
   const hashVerify = crypto
     .pbkdf2Sync(password, salt, 10000, 64, "sha512")
     .toString("hex");
-
+  console.log("hashVerify", hashVerify);
+  console.log("true or false validate Password", hashVerify === hash);
   return hashVerify === hash;
 };
 
 // verify with local strategy in passport
-const strategy = new LocalStrategy(async (email, password, cb) => {
+const strategy = new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, async (email, password, cb) => {
   console.log("verify", email, password);
   try {
     const res = await myDB.getUsers(email);
-    console.log("strategy res", res.email);
-    if (!res || !validatePassword(password, res.hash, res.salt)) {
-      return cb(null, false);
+    console.log("strategy res", res);
+    console.log("password after strategy", password);
+    if (!res) {
+      return cb(null, false, {message: "Don't forget to register!"});
+    }
+    if (!validatePassword(password, res.hash, res.salt)) {
+      return cb(null, false, {message: "Invalid credentials"});
     } else {
       return cb(null, res);
     }
@@ -41,7 +47,8 @@ passport.serializeUser((user, cb) => {
 });
 
 passport.deserializeUser(async (user_id, cb) => {
-  console.log("deserialize user", user_id);
+  console.log("deserialize called");
+  // const res = await myDB.getUsers(email);
   const res = await myDB.getUsersByID(user_id);
   console.log("deserialize", res);
   process.nextTick(function () {
@@ -64,7 +71,7 @@ router.post("/login/password", (req, res, next) => {
       if (!user) {
         return res.status(320).json({
           status: "error",
-          message: "Invalid credentials",
+          message: "Invalid credentials. Have you signed up?",
         });
       }
       req.logIn(user, function (err) {
@@ -73,7 +80,7 @@ router.post("/login/password", (req, res, next) => {
         }
         return res
           .status(320)
-          .json({ redirectUrl: "/profile", status: "ok", message: "Logged in" });
+          .json({ redirectUrl: "/profile", status: "ok" });
       });
     })(req, res, next);
 });

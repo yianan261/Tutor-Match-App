@@ -27,7 +27,7 @@ app.use(
     secret: "secret",
     resave: false,
     saveUninitialized: true,
-    cookie: {secure: true}
+    // cookie: {secure: true}
   })
 );
 
@@ -37,7 +37,6 @@ app.get("/", (req, res) => {
 
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(passport.authenticate("session"));
 
 app.use("/", tutor);
 app.use("/", test);
