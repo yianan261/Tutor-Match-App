@@ -1,7 +1,5 @@
 import express from "express";
-// import passport from "passport";
 import myDB from "../db/myDB.js";
-// import myDB from "../db/myDB";
 const router = express.Router();
 import crypto from "crypto";
 
@@ -35,7 +33,6 @@ router.post("/register", async (req, res) => {
     if (checkExistUser === null) {
       console.log("CREATING USER");
       const {salt, hash} = genPassword(req.body.password);
-      console.log("salt", salt, "\nhash", hash);
       await myDB.createUser(req.body.email, salt, hash);
       res
         .status(201)
