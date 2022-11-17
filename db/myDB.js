@@ -63,7 +63,7 @@ function MyMongoDB() {
   /**
    * Amanda
    * gets user by id
-   * @param {int} id
+   * @param {String} id
    * @returns the user id
    */
    myDB.getUsersById = async (id) => {
