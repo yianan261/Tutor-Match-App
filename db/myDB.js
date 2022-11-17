@@ -51,7 +51,7 @@ function MyMongoDB() {
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
       const options = {
-        projection: {password: 0}
+        projection: {salt: 0, hash: 0}
       }
       const res = await usersCol.findOne({user: _email}, options);
       console.log("res in DB get user", res);
