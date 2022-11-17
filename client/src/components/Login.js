@@ -26,6 +26,7 @@ function Login() {
         email: user.email,
         password: user.password,
       }),
+      credentials: "include",
     });
     const resUser = await loginUser.json();
     if (resUser.status === "ok") {

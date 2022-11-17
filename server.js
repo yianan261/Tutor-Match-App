@@ -16,7 +16,6 @@ dotenv.config();
 const PORT = process.env.PORT || 5001;
 
 app.use(logger("dev"));
-
 app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -27,7 +26,7 @@ app.use(
     secret: "secret",
     resave: false,
     saveUninitialized: true,
-    // cookie: {secure: true}
+    // cookie: {secure: false}
   })
 );
 

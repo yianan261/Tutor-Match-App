@@ -40,16 +40,15 @@ const strategy = new LocalStrategy({ usernameField: 'email', passwordField: 'pas
 passport.use(strategy);
 
 passport.serializeUser((user, cb) => {
-  console.log("user in serialize", user);
+  console.log("user in serialize", user._id.toString());
   process.nextTick(function () {
-    cb(null, user._id);
+    cb(null, user._id.toString());
   });
 });
 
 passport.deserializeUser(async (user_id, cb) => {
   console.log("deserialize called");
-  // const res = await myDB.getUsers(email);
-  const res = await myDB.getUsersByID(user_id);
+  const res = await myDB.getUsersById(user_id);
   console.log("deserialize", res);
   process.nextTick(function () {
     return cb(null, res);
