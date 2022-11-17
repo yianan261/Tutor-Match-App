@@ -73,7 +73,7 @@ function MyMongoDB() {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      const res = await usersCol.findOne({_id: ObjectId(id)});
+      const res = await usersCol.findOne({_id: id});
       console.log("res in DB get user", res);
       return res;
     } finally {

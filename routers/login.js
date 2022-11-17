@@ -48,10 +48,10 @@ const strategy = new LocalStrategy(
 passport.use(strategy);
 
 passport.serializeUser((user, cb) => {
-  console.log("user in serialize", user._id.toString());
+  console.log("user in serialize", user._id);
   process.nextTick(function () {
     console.log("serialized");
-    cb(null, user._id.toString());
+    cb(null, user._id);
   });
 });
 
@@ -83,6 +83,8 @@ router.post("/login/password", (req, res, next) => {
       });
     }
     req.logIn(user, function (err) {
+      console.log("test req.session.passport.user", req.session.passport.user);
+      console.log("req.user", req.user);
       if (err) {
         return next(err);
       }

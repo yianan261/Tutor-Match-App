@@ -33,13 +33,9 @@ function Register() {
         password: user.password
       })
     });
-    console.log("res", res);
-    console.log("res.body", res.body);
     handleRegister();
-    console.log("res.json", res.json);
     const resRegUser = await res.json();
-    console.log("resRegUser", resRegUser);
-    console.log("USER",resRegUser.message);
+    alert(resRegUser.message);
   };
 
   const onInputChange = (evt) => {
