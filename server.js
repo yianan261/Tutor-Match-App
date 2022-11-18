@@ -5,11 +5,12 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import tutor from "./routers/tutors.js";
 import test from "./routers/test.js";
-import configurePassport from "./routers/auth.js";
+import session from "express-session";
+import passport from "passport";
 import register from "./routers/register.js";
 import login from "./routers/login.js";
-import path, { dirname } from "path";
-import { fileURLToPath } from 'url';
+import path, {dirname} from "path";
+import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -19,21 +20,32 @@ const PORT = process.env.PORT || 5001;
 
 app.use(express.static(path.join(__dirname, "client/build")));
 app.use(logger("dev"));
-
 app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-configurePassport(app);
+
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: true,
+    // cookie: {secure: false}
+  })
+);
 
 app.get("/", (req, res) => {
   res.send("welcome");
 });
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use("/", tutor);
 app.use("/", test);
 app.use("/", login);
 app.use("/", register);
+
 
 app.listen(
   PORT,

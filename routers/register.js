@@ -1,28 +1,39 @@
 import express from "express";
 import myDB from "../db/myDB.js";
-// import myDB from "../db/myDB";
 const router = express.Router();
+import crypto from "crypto";
 
 // Amanda Au-Yeung
+// hashing source from https://stackoverflow.com/questions/72128646/passport-authenticate-isnt-redirecting
+const genPassword = (password) => {
+  const salt = crypto.randomBytes(32).toString("hex");
+  const genHash = crypto
+    .pbkdf2Sync(password, salt, 10000, 64, "sha512")
+    .toString("hex");
 
-// router.post("/register", async (req, res) => {
-//   res.status(200);
-// });
+  return {
+    salt: salt,
+    hash: genHash,
+  };
+};
+
 
 router.get("/register", (req, res) => {
   console.log("Register page");
-  res.status(200);
+  res.status(200).redirect("/register");
 });
 
 router.post("/register", async (req, res) => {
   console.log("register", req.body);
   let checkExistUser;
   try {
-    console.log("CREATING USER");
+    
     checkExistUser = await myDB.getUsers(req.body.email);
     console.log(checkExistUser);
     if (checkExistUser === null) {
-      await myDB.createUser(req.body);
+      console.log("CREATING USER");
+      const {salt, hash} = genPassword(req.body.password);
+      await myDB.createUser(req.body.email, salt, hash);
       res
         .status(201)
         .json({ message: "Successfuly register! Head over to sign in!" });
@@ -32,58 +43,10 @@ router.post("/register", async (req, res) => {
         err: "Email",
       });
     }
+    
   } catch (err) {
-    console.log(err);
     res.status(400).send({ err: err });
   }
 });
-
-// router.post("/register", async (req, res, next) => {
-//   console.log(req.body);
-//   let checkExistUser;
-//   try {
-//     console.log("CREATING USER");
-//     checkExistUser = await myDB.getUsers(req.body.email);
-//     console.log(checkExistUser);
-//     if (checkExistUser === null) {
-//       let salt = crypto.randomBytes(16);
-//       crypto.pbkdf2(
-//         req.body.password,
-//         salt,
-//         310000,
-//         32,
-//         "sha256",
-//         async (err, hashed_pw) => {
-//           if (err) {
-//             return next(err);
-//           }
-//           await myDB.createUser((req.body.email, hashed_pw, salt), (err) => {
-//             if (err) {
-//               return next(err);
-//             }
-//             let user = {
-//               id: this.lastID,
-//               username: req.body.email,
-//             };
-//             req.login(user, function (err) {
-//               if (err) {
-//                 return next(err);
-//               }
-//               res.redirect("/");
-//             });
-//           });
-//         }
-//       );
-//     } else {
-//       res.json({
-//         message: "User email already exist, you may sign in!",
-//         err: "Email",
-//       });
-//     }
-//   } catch (err) {
-//     // alert(`There is an error ${err}`);
-//     res.status(400).send({ err: err });
-//   }
-// });
 
 export default router;

@@ -4,9 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "../assets/styles/LoginRegister.css";
 
 function Register() {
-  // const [user, setUser] = useState("");
-
-  const [input, setInput] = useState({
+  const [user, setUser] = useState({
     email: "",
     password: "",
     confirmedPassword: "",
@@ -23,31 +21,26 @@ function Register() {
 
   const createUser = async (e) => {
     e.preventDefault();
-    console.log(input.email);
-    console.log(input.password);
+    console.log(user.email);
+    console.log(user.password);
     const res = await fetch("/register", {
       method: "POST",
       headers:{ 
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email: input.email,
-        password: input.password
+        email: user.email,
+        password: user.password
       })
     });
-    console.log("res", res);
-    console.log("res.body", res.body);
     handleRegister();
-    console.log("res.json", res.json);
     const resRegUser = await res.json();
-    console.log("resRegUser", resRegUser);
-    console.log("USER",resRegUser.message)
-    // setUser(resRegUser.user);
+    alert(resRegUser.message);
   };
 
   const onInputChange = (evt) => {
     const { value, name } = evt.target;
-    setInput((prev) => ({
+    setUser((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -58,7 +51,7 @@ function Register() {
     let { name, value } = evt.target;
     setError((prev) => {
       const obj = { ...prev, [name]: "" };
-      if (input.password && value !== input.password) {
+      if (user.password && value !== user.password) {
         obj[name] = "The confirmed password does not match with the password";
       }
       return obj;
@@ -66,8 +59,8 @@ function Register() {
   };
 
   const handleRegister = () => {
-    auth.login("user");
-    navigate("/profile", { replace: true });
+    auth.login(user);
+    navigate("/login", { replace: true });
   };
 
   return (
@@ -78,7 +71,7 @@ function Register() {
         Sign In
       </Link>
       <div className="container">
-        <form  onSubmit={createUser}>
+        <form onSubmit={createUser}>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
@@ -89,7 +82,7 @@ function Register() {
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="Enter Email"
-              value={input.email}
+              value={user.email}
               onChange={onInputChange}
               name="email"
               required
@@ -107,7 +100,7 @@ function Register() {
               aria-describedby="passwordHelpBlock"
               placeholder="Enter your password"
               name="password"
-              value={input.password}
+              value={user.password}
               onChange={onInputChange}
               required
             />
@@ -121,7 +114,7 @@ function Register() {
               aria-describedby="passwordHelpBlock"
               placeholder="Confirm your password"
               name="confirmedPassword"
-              value={input.confirmedPassword}
+              value={user.confirmedPassword}
               onChange={onInputChange}
               onBlur={validateInput}
               required

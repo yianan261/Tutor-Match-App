@@ -19,14 +19,18 @@ function App() {
     
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<Landing />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/register" element={<RegisterPage />}></Route>
         <Route path="/book" element={<BookClass />}>
           <Route path=":subject" element={<TutorProfile />} />
-          <Route path=":tutorId" element={<React.Suspense fallback="Searching...">
-              <LazySearch2 />
-            </React.Suspense>} />
+          <Route
+            path=":tutorId"
+            element={
+              <React.Suspense fallback="Searching...">
+                <LazySearch2 />
+              </React.Suspense>
+            }
+          />
         </Route>
         <Route
           path="/profile"
@@ -46,6 +50,7 @@ function App() {
             </React.Suspense>
           }
         ></Route>
+        <Route path="/" element={<Landing />}></Route>
 
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
