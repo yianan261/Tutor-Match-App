@@ -16,14 +16,13 @@
 
 .sidenav {
   width: 240px;
-  background-color: #d1f2ff;
 }
 
 .sidenav {
   display: flex; /* Will be hidden on mobile */
   flex-direction: column;
   grid-area: sidenav;
-  background-color: #f4f1d8;
+  background-color: #95a698;
 }
 
 .sidenav__list {
@@ -36,8 +35,9 @@
 
 .sidenav__list-item {
   padding: 15% 10% 15% 20%;
-  color: rgb(53, 68, 66);
-  background-color: rgba(210, 209, 181, 0.2);
+  /* color: rgb(53, 68, 66); */
+  color: rgb(255, 255, 255);
+  background-color: rgba(121, 123, 107, 0.2);
   box-shadow: rgba(70, 99, 70, 0.1) 0px 1px 1px 0px;
   margin: auto;
 }

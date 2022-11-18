@@ -12,9 +12,11 @@ import RequireAuth from "./components/RequireAuth";
 import TutorProfile from "./components/TutorProfile";
 const LazySearch = React.lazy(() => import("./components/SearchTutor"));
 const LazySearch2 = React.lazy(() => import("./components/TutorInfo"));
+
 //Yian Chen
 function App() {
   return (
+    
     <AuthProvider>
       <Routes>
         <Route path="/" element={<Landing />}></Route>
@@ -48,6 +50,7 @@ function App() {
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </AuthProvider>
+    
   );
 }
 

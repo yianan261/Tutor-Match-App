@@ -8,7 +8,7 @@ import "../assets/styles/TutorInfo.css";
  * @param {props} tutorProfile is the object prop of tutor data, returnToSearch is a function that returns to search component
  * @returns JSX rendering of tutor personal profile
  */
-function TutorInfo({ tutorProfile, returnToSearch }) {
+function TutorInfo({ tutorProfile, returnToSearch, handleModal }) {
   /**
    * function that generates number of stars in tutor profile
    * @param {int} num of stars
@@ -30,7 +30,7 @@ function TutorInfo({ tutorProfile, returnToSearch }) {
 
   return (
     <>
-      <div className="card-group2 " id="cardGroup2">
+      <div className="card-group2" id="cardGroup2">
         <div className="card2 container-xl" id="cardimage2">
           <div className="card-body2">
             <div className="row rowDiv">
@@ -85,7 +85,12 @@ function TutorInfo({ tutorProfile, returnToSearch }) {
             </div>
           </div>
           <span className="btnSpan">
-            <button className="bookBtn">
+            <button
+              className="bookBtn"
+              onClick={() => {
+                handleModal();
+              }}
+            >
               Book Class with {tutorProfile.first_name}
             </button>
           </span>
@@ -105,5 +110,6 @@ function TutorInfo({ tutorProfile, returnToSearch }) {
 TutorInfo.propTypes = {
   tutorProfile: PropTypes.object,
   returnToSearch: PropTypes.func,
+  handleModal: PropTypes.func,
 };
 export default TutorInfo;

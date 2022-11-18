@@ -1,0 +1,52 @@
+.modalContainer {
+  top: 0;
+  width: 60rem;
+  height: 60%;
+  transform: translateY(10%);
+  background-color: rgb(230, 239, 229);
+  border-radius: 2rem;
+  padding: 3%;
+  display: inline-block;
+  position: relative;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  justify-self:center;
+}
+
+.closeBtn{
+    float: right;
+    font-size:20px
+}
+
+.closeBtn:hover {
+  cursor: pointer;
+}
+.content{
+    padding:5%;
+    height:45vh
+}
+
+.btnContainer{
+    display: flex;
+    justify-content: center;
+}
+.confirmBtn{
+display: inline-block;
+  padding: 0.8em 2em;
+  border: 0.16rem solid #fd8b56;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.1em;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: #e17542;
+  font-weight: 300;
+  background-color: rgb(250, 235, 219);
+  /* opacity: 0.7; */
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.confirmBtn:hover{
+    border: 0.16rem solid #f7a681;
+    color: #ff8248;
+    background-color: rgb(253, 245, 243)
+}
