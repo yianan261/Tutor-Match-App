@@ -29,7 +29,11 @@ function MyMongoDB() {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      const res = await usersCol.insertOne({user: _user, salt: _salt, hash: _hash});
+      const res = await usersCol.insertOne({
+        user: _user,
+        salt: _salt,
+        hash: _hash,
+      });
       console.log("user inserted", res);
       return res;
     } finally {
@@ -40,7 +44,7 @@ function MyMongoDB() {
   /**
    * Amanda
    * gets user from the registration form
-   * @param {String} email 
+   * @param {String} email
    * @returns the user email
    */
   myDB.getUsers = async (_email) => {
@@ -51,9 +55,9 @@ function MyMongoDB() {
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
       const options = {
-        projection: {salt: 1, hash: 1}
-      }
-      const res = await usersCol.findOne({user: _email}, options);
+        projection: { salt: 1, hash: 1 },
+      };
+      const res = await usersCol.findOne({ user: _email }, options);
       console.log("res in DB get user", res);
       return res;
     } finally {
@@ -66,14 +70,14 @@ function MyMongoDB() {
    * @param {String} id
    * @returns the user id
    */
-   myDB.getUsersById = async (id) => {
+  myDB.getUsersById = async (id) => {
     console.log("DB id", id);
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      const res = await usersCol.findOne({_id: id});
+      const res = await usersCol.findOne({ _id: id });
       console.log("res in DB get user", res);
       return res;
     } finally {
@@ -129,6 +133,26 @@ function MyMongoDB() {
     }
   };
 
+  /**Yian
+   * Updates new booking to "schedule" for user, if "schedule" doesn't exist one will be created
+   * @param {string} _user (ID)
+   * @param {Map} _booking
+   */
+  myDB.createBooking = async (_user, _booking) => {
+    let client;
+    try {
+      console.log("show Booking DB", _booking);
+      client = new MongoClient(url);
+      const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
+      // const options = { projection: { reviews: 0 } };
+      return await userCol.updateOne(
+        { user: _user },
+        { $push: { schedule: _booking } }
+      );
+    } finally {
+      client.close();
+    }
+  };
   return myDB;
 }
 

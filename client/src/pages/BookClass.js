@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Navbar from "../components/Navbar";
 import { Outlet } from "react-router-dom";
 import SearchTutor from "../components/SearchTutor";
@@ -8,10 +8,12 @@ import TutorProfile from "../components/TutorProfile";
 import TutorInfo from "../components/TutorInfo";
 import { useSearchParams } from "react-router-dom";
 import BookModal from "../components/BookModal";
-// import Modal from "react-modal";
 
+/**Yian
+ * BookClass module handles Book class page rendering
+ * @returns JSX of Book class UI
+ */
 function BookClass() {
-  //Todo: implement paginated search for tutors when users search by keyword
   const [query, setQuery] = useState(null);
   const [search, setSearch] = useState(false);
   const [searchData, setSearchData] = useState([]);
@@ -19,6 +21,7 @@ function BookClass() {
   const [tutorProfile, setTutorProfile] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const bookClass = useRef({})
   /**Yian
    * function that sets state in BookClass when search is triggered in SearchTutor.js
    * @param {string} the query string
@@ -106,7 +109,7 @@ function BookClass() {
     }
   }, []);
 
-  /**
+  /**Yian
    * render flag values: 1->SearchTutor component, 2->TutorProfile, 3->TutorInfo
    * function that decides which component to render
    */
@@ -138,12 +141,13 @@ function BookClass() {
     setRender(2);
   };
 
+  //toggle function for modal
   const handleModal = () => {
     console.log("open modal");
     setModalIsOpen(!modalIsOpen);
   };
 
-  /**
+  /**Yian
    * function that renders component based on render flag value
    * @returns component for rendering
    */
@@ -172,6 +176,48 @@ function BookClass() {
       );
     }
   };
+//todo: update add class/delete class to backend
+
+//Todo: get schedule for backend to check schedule conflicts
+useEffect(()=>{},[])
+ const addClassBackend = (user,scheduleObj)=>{
+  // try{
+  //   const tempMapString = mapToString(scheduleMap);
+  //   fetch(`/api/addClass?user=${user}`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: tempMapString,
+  //   });}
+  try{
+    fetch("/api/addClass?user=test@123", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: scheduleObj,
+    });}
+  catch(err){console.error(err)}
+ }
+
+  /**Yian 
+   * function that adds class to bookClass
+   * @param {string} date 
+   * @param {string} time 
+   */
+  const addClass = (date, time) => {
+    console.log("line 209 BookClass.js, Date",date,"time",time)
+    console.log("bookClass.current: ",bookClass.current)
+    if (bookClass.current.has(`Date: ${date}, Time: ${time}`)) {
+      //to
+      console.log("Schedule Conlict, please select a different time")
+      alert("Schedule Conlict, please select a different time");
+    } else {
+      bookClass.current = {...bookClass.current}
+      addClassBackend("test_user",bookClass.current)
+    }
+  };
 
   //Yian
   return (
@@ -181,7 +227,7 @@ function BookClass() {
         <div className="searchDiv">{renderFunc()}</div>
 
         {render === 3 ? (
-          <BookModal open={modalIsOpen} handleModal={handleModal} />
+          <BookModal open={modalIsOpen} handleModal={handleModal} addClass={addClass}/>
         ) : null}
         <Outlet />
       </div>

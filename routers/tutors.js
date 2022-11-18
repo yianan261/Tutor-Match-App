@@ -33,4 +33,18 @@ router.get("/book/tutors/:tutorId", async (req, res) => {
   }
 });
 
+router.post("/api/addClass/:user",async(req,res)=>{
+  try{
+    const user = req.params.user;
+    const booking = req.body
+    console.log("booking",req.body)
+    await myDB.createBooking(user,booking)
+    res.status(200).json({msg: "successfully created booking"})
+  }catch(err){
+    console.error(err);
+    res.status(404).json({ msg: "There was an error" })
+  }
+})
+
+
 export default router;

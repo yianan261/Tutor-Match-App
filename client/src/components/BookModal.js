@@ -1,24 +1,17 @@
-import React, { useState,useRef } from "react";
+import React from "react";
 import "../assets/styles/BookModal.css";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { dateHelper } from "../utils/bookDates";
 import { randHours } from "../utils/dates";
 
-function BookModal({ open, handleModal }) {
-  // const [bookClass,setBookClass] = useState(new Map())
-  const addedClass = useRef({})
-  const [isClicked, setClicked] = useState(false);
+function BookModal({ open, handleModal, addClass }) {
   const newDates = [...new Set(dateHelper(4))];
   if (!open) return null;
 
-  const handleDate = (date, time) => {
-    // const tempMap = new Map(bookClass);
-    // const
-    // setBookClass()
-    addedClass.current = {...addedClass,date:date,time:time}
-    setClicked(!isClicked);
-    console.log(date, time);
+  const handleDate = (_date, _time) => {
+    console.log(_date, _time);
+    addClass(_date,_time)
   };
   return ReactDOM.createPortal(
     <div
@@ -75,5 +68,6 @@ function BookModal({ open, handleModal }) {
 BookModal.propTypes = {
   open: PropTypes.bool,
   handleModal: PropTypes.func,
+  addClass: PropTypes.func
 };
 export default BookModal;
