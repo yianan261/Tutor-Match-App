@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState,useRef } from "react";
 import "../assets/styles/BookModal.css";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
+import { dateHelper } from "../utils/bookDates";
+import { randHours } from "../utils/dates";
 
 function BookModal({ open, handleModal }) {
+  // const [bookClass,setBookClass] = useState(new Map())
+  const addedClass = useRef({})
+  const [isClicked, setClicked] = useState(false);
+  const newDates = [...new Set(dateHelper(4))];
   if (!open) return null;
+
+  const handleDate = (date, time) => {
+    // const tempMap = new Map(bookClass);
+    // const
+    // setBookClass()
+    addedClass.current = {...addedClass,date:date,time:time}
+    setClicked(!isClicked);
+    console.log(date, time);
+  };
   return ReactDOM.createPortal(
     <div
       className="overlay"
@@ -21,21 +36,36 @@ function BookModal({ open, handleModal }) {
         backgroundColor: "rgba(0,0,0,0.5)",
       }}
     >
-        
       <div className="modalContainer">
         <div className="modalRight">
           <p className="closeBtn" onClick={handleModal}>
             <i className="fa-regular fa-x"></i>
           </p>
           <div className="content">
-            <p>Book1</p>
-            <p>Book2</p>
-            <p>Book3</p>
+            {newDates.map((date, idx) => {
+              return (
+                <div className="time" key={idx}>
+                  <p>{date}</p>
+                  {[...new Set(randHours())].map((hr, i) => {
+                    return (
+                      <div key={i} className="hourDiv">
+                        <button
+                          className="hourBtn"
+                          onClick={() => handleDate(date, hr)}
+                        >
+                          {hr}
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="btnContainer">
-            <button className="confirmBtn">Confirm Booking</button>
-          </div>
+          <button className="confirmBtn">Confirm Booking</button>
+        </div>
       </div>
     </div>,
     document.getElementById("modalRoot")
