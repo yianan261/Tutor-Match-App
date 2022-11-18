@@ -22,7 +22,6 @@
   padding-top: 5%;
   font-size: x-large;
   padding-left: 5%;
-  
 }
 
 .cardlink2 {
@@ -46,7 +45,6 @@
     flex-direction: column;
   }
 }
-
 
 .card2 {
   box-shadow: none;
@@ -81,16 +79,16 @@
 }
 
 .review .review-base .review-text {
-font-weight: 200;
+  font-weight: 200;
   text-indent: 5em;
   line-height: 1.8em;
 }
 
 .review .review-base .review-text2 {
-    font-weight: 200;
-      text-indent: 5em;
-      line-height: 1.8em;
-    }
+  font-weight: 200;
+  text-indent: 5em;
+  line-height: 1.8em;
+}
 
 .review .review-base .review-text:before {
   content: "\201C";
@@ -152,9 +150,11 @@ html {
   transform: translateY(5%);
   height: 40rem;
   overflow-y: scroll;
+  scrollbar-color: light;
   white-space: no-wrap;
   margin-left: 0;
 }
+
 
 .div1 {
   width: 10rem;
@@ -163,11 +163,10 @@ html {
 }
 .student {
   text-align: center;
-
 }
 
-.backBtn{
-display: inline-block;
+.backBtn {
+  display: inline-block;
   padding: 0.6em 1em;
   border: 0.14rem solid #8f968f;
   border-radius: 0.1em;
@@ -180,14 +179,13 @@ display: inline-block;
   text-align: center;
   transition: all 0.2s;
 }
-.backBtn:hover{
-    color: #707769;
+.backBtn:hover {
+  color: #707769;
   border: 0.16rem solid#707769;
-    }
-.backDiv{
-    right:0;
-    margin:0;
-    padding-top:1%;
-    padding-bottom:1%
 }
-
+.backDiv {
+  right: 0;
+  margin: 0;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
