@@ -3,9 +3,12 @@ import Navbar from "../components/Navbar";
 import { Outlet } from "react-router-dom";
 import SearchTutor from "../components/SearchTutor";
 import "../assets/styles/BookClass.css";
+import "../assets/styles/BookModal.css";
 import TutorProfile from "../components/TutorProfile";
 import TutorInfo from "../components/TutorInfo";
 import { useSearchParams } from "react-router-dom";
+import BookModal from "../components/BookModal";
+// import Modal from "react-modal";
 
 function BookClass() {
   //Todo: implement paginated search for tutors when users search by keyword
@@ -15,8 +18,7 @@ function BookClass() {
   const [render, setRender] = useState(1);
   const [tutorProfile, setTutorProfile] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams("");
-
-
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   /**Yian
    * function that sets state in BookClass when search is triggered in SearchTutor.js
    * @param {string} the query string
@@ -128,12 +130,18 @@ function BookClass() {
   const searchProfile = (profile) => {
     setRender(3);
     setTutorProfile(profile);
-    setSearchParams(profile._id)
+    setSearchParams(profile._id);
   };
 
-  const returnToSearch = ()=>{
-    setRender(2)
-  }
+  //when called sets render to value 2
+  const returnToSearch = () => {
+    setRender(2);
+  };
+
+  const handleModal = () => {
+    console.log("open modal");
+    setModalIsOpen(!modalIsOpen);
+  };
 
   /**
    * function that renders component based on render flag value
@@ -143,7 +151,7 @@ function BookClass() {
     if (render === 1) {
       return <SearchTutor handleQuery={handleQuery} search={search} />;
     } else if (render === 2) {
-      console.log("RENDER2")
+      console.log("RENDER2");
       return (
         <TutorProfile
           searchData={searchData}
@@ -153,20 +161,31 @@ function BookClass() {
         />
       );
     } else if (render === 3) {
-      console.log("RENDER3")
-      return <TutorInfo tutorProfile={tutorProfile} searchParams={searchParams} returnToSearch={returnToSearch}/>;
+      console.log("RENDER3");
+      return (
+        <TutorInfo
+          tutorProfile={tutorProfile}
+          searchParams={searchParams}
+          returnToSearch={returnToSearch}
+          handleModal={handleModal}
+        />
+      );
     }
   };
 
   //Yian
   return (
-    <>
+    <div className="BookClassMain">
       <Navbar />
       <div className="container BookContainer">
         <div className="searchDiv">{renderFunc()}</div>
+
+        {render === 3 ? (
+          <BookModal open={modalIsOpen} handleModal={handleModal} />
+        ) : null}
         <Outlet />
       </div>
-    </>
+    </div>
   );
 }
 
