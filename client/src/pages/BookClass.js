@@ -21,7 +21,8 @@ function BookClass() {
   const [tutorProfile, setTutorProfile] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const bookClass = useRef({})
+  const bookClass = useRef(new Map());
+
   /**Yian
    * function that sets state in BookClass when search is triggered in SearchTutor.js
    * @param {string} the query string
@@ -176,48 +177,72 @@ function BookClass() {
       );
     }
   };
-//todo: update add class/delete class to backend
+  //todo: update add class/delete class to backend
 
-//Todo: get schedule for backend to check schedule conflicts
-useEffect(()=>{},[])
- const addClassBackend = (user,scheduleObj)=>{
-  // try{
-  //   const tempMapString = mapToString(scheduleMap);
-  //   fetch(`/api/addClass?user=${user}`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: tempMapString,
-  //   });}
-  try{
-    fetch("/api/addClass?user=test@123", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: scheduleObj,
-    });}
-  catch(err){console.error(err)}
- }
+  //Todo: get schedule for backend to check schedule conflicts
+  useEffect(() => {
+    try {
+      const fetchSchedule = async () => {
+        const res = await fetch("/api/getSchedule");
+        const resSchedule = await res.json();
+        console.log("resSchedule",resSchedule)
+        const sched = resSchedule.data.schedule
+        if (resSchedule.schedule !== null && resSchedule.schedule !== []) {
+          sched.forEach((item)=>bookClass.current.set(`${item.date} ${item.time}`,item))
+          console.log("bookClass.current HERE", bookClass.current);
+        }
+      };
+      fetchSchedule();
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
 
-  /**Yian 
-   * function that adds class to bookClass
-   * @param {string} date 
-   * @param {string} time 
-   */
-  const addClass = (date, time) => {
-    console.log("line 209 BookClass.js, Date",date,"time",time)
-    console.log("bookClass.current: ",bookClass.current)
-    if (bookClass.current.has(`Date: ${date}, Time: ${time}`)) {
-      //to
-      console.log("Schedule Conlict, please select a different time")
-      alert("Schedule Conlict, please select a different time");
-    } else {
-      bookClass.current = {...bookClass.current}
-      addClassBackend("test_user",bookClass.current)
+  const addClassBackend = async (user, schedule) => {
+    try {
+      
+      const scheduleArray = Array.from(schedule)
+      console.log("scheduleArr", scheduleArray);
+      
+      await fetch("/api/addClass", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(scheduleArray),
+      });
+    } catch (err) {
+      console.error(err);
     }
   };
+
+  /**Yian
+   * function that adds class to bookClass
+   * @param {string} date
+   * @param {string} time
+   */
+  const addClass = (date, time) => {
+    console.log("line 209 BookClass.js, Date", date, "time", time);
+    console.log("bookClass.current: ", bookClass.current);
+    if (bookClass.current.has(`${date} ${time}`)) {
+      console.log("schedule conflict");
+      //to
+      console.log("Schedule Conlict, please select a different time");
+      alert("Schedule Conlict, please select a different time");
+    } else {
+      bookClass.current.set(`${date} ${time}`, {
+        date: date,
+        time: time,
+        tutor: tutorProfile.first_name,
+      });
+    }
+  };
+
+  //when confirm button is clicked, classes are added to DB
+  const confirmClasses = ()=>{
+    addClassBackend("test_user", bookClass.current.values());
+  }
+  
 
   //Yian
   return (
@@ -227,7 +252,13 @@ useEffect(()=>{},[])
         <div className="searchDiv">{renderFunc()}</div>
 
         {render === 3 ? (
-          <BookModal open={modalIsOpen} handleModal={handleModal} addClass={addClass}/>
+          <BookModal
+            open={modalIsOpen}
+            handleModal={handleModal}
+            addClass={addClass}
+            confirmClasses={confirmClasses}
+           
+          />
         ) : null}
         <Outlet />
       </div>

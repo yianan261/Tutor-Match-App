@@ -5,14 +5,20 @@ import ReactDOM from "react-dom";
 import { dateHelper } from "../utils/bookDates";
 import { randHours } from "../utils/dates";
 
-function BookModal({ open, handleModal, addClass }) {
+function BookModal({ open, handleModal, addClass, confirmClasses }) {
   const newDates = [...new Set(dateHelper(4))];
   if (!open) return null;
 
   const handleDate = (_date, _time) => {
     console.log(_date, _time);
-    addClass(_date,_time)
+    addClass(_date, _time);
   };
+
+  // const renderButton = ()=>{
+  // console.log("check bookClass",bookClass)
+  // }
+ 
+
   return ReactDOM.createPortal(
     <div
       className="overlay"
@@ -57,17 +63,20 @@ function BookModal({ open, handleModal, addClass }) {
           </div>
         </div>
         <div className="btnContainer">
-          <button className="confirmBtn">Confirm Booking</button>
+          <button className="confirmBtn" onClick={() => confirmClasses()}>
+            Confirm Booking
+          </button>
         </div>
       </div>
     </div>,
     document.getElementById("modalRoot")
   );
 }
-
 BookModal.propTypes = {
   open: PropTypes.bool,
   handleModal: PropTypes.func,
-  addClass: PropTypes.func
+  addClass: PropTypes.func,
+  confirmClasses: PropTypes.func,
+  ref: PropTypes.any,
 };
 export default BookModal;

@@ -26,25 +26,42 @@ router.get("/book/tutors/:tutorId", async (req, res) => {
     const tutorId = req.params.tutorId;
     const getTutor = await myDB.getTutor(tutorId);
     res.status(200).json({ data: getTutor });
-    console.log("GOT TUTOR DATA")
+    console.log("GOT TUTOR DATA");
   } catch (err) {
     console.error(err);
     res.status(404).json({ msg: "There was an error" });
   }
 });
 
-router.post("/api/addClass/:user",async(req,res)=>{
-  try{
-    const user = req.params.user;
-    const booking = req.body
-    console.log("booking",req.body)
-    await myDB.createBooking(user,booking)
-    res.status(200).json({msg: "successfully created booking"})
-  }catch(err){
+/**Yian
+ * function that updates user class schedule
+ */
+router.post("/api/addClass", async (req, res) => {
+  try {
+    //todo: get user in session
+    const user = "test@123" //temporary, change later
+    const booking = req.body;
+    console.log("booking", req.body);
+    await myDB.createBooking(user, booking);
+    res.status(200).json({ msg: "successfully created booking" });
+  } catch (err) {
     console.error(err);
-    res.status(404).json({ msg: "There was an error" })
+    res.status(404).json({ msg: "There was an error" });
   }
-})
+});
 
+router.get("/api/getSchedule", async (req, res) => {
+  try {
+    //todo: get user in session
+    const user = "test@123" //temporary, change later
+    const getSchedule = await myDB.getUserSchedule(user);
+    if (getSchedule) {
+      res.status(200).json({ data: getSchedule });
+    }
+  } catch (err) {
+    console.error(err);
+    res.send(404).json({ msg: `There was an error ${err}` });
+  }
+});
 
 export default router;
