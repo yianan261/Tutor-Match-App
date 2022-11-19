@@ -5,10 +5,9 @@ import SharedLayout from "./SharedLayout";
 function Profile() {
   const auth = useAuth();
 
-
   return (
     <div>
-    <SharedLayout/>
+    <SharedLayout/> 
       Welcome {auth.user}
     </div>
   );

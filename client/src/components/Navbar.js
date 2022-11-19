@@ -26,7 +26,7 @@ function Navbar() {
   }, [navColor]);
 
   const handleLogin = () => {
-    auth.login();
+    auth.login(auth.user);
     redirect("/login");
   };
 
@@ -38,6 +38,7 @@ function Navbar() {
       </button>
     </NavLink>
   );
+
   const handleLogout = () => {
     auth.logout();
     redirect("/");

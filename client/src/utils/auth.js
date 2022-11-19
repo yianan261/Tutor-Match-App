@@ -3,23 +3,37 @@ import PropTypes from "prop-types";
 
 const AuthContext = createContext(null);
 
-//Yian Chen
+//Yian Chen, Amanda Au-Yeung
 /**
  * function that checks current user in session
  * @param {props} children
  * @returns AuthContext provider and children
  */
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState("temp");
+  const [user, setUser] = useState(null);
 
-  //Todo: implement fetch to fetch user data from backend (express session),wrap in useEffect
   useEffect(() => {
-    setUser("placeholder"); //temporary placement, this value should be replaced with user data from fetch
-  }, []);
+    const getCurrentUser = async () => {
+      await fetch("/getUser")
+      .then(res=>res.json())
+      .then(data=>{
+       if (data.user !== null){
+         setUser(data.user);
+       }
+       console.log("user from login", data.user);
+      })
+   }
+   getCurrentUser();
+  })
+
   const login = (user) => {
     setUser(user);
-  };
-  const logout = () => {
+  }
+
+  const logout = async () => {
+    await fetch("/logout", {
+      method: "POST"
+    })
     setUser(null);
   };
 
@@ -30,6 +44,7 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
 AuthProvider.propTypes = {
   children: PropTypes.any.isRequired,
 };

@@ -9,7 +9,7 @@ import session from "express-session";
 import passport from "passport";
 import register from "./routers/register.js";
 import login from "./routers/login.js";
-import path, {dirname} from "path";
+import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -30,7 +30,7 @@ app.use(
     secret: "secret",
     resave: false,
     saveUninitialized: true,
-    // cookie: {secure: false}
+    cookie: { secure: false },
   })
 );
 
@@ -40,6 +40,8 @@ app.get("/", (req, res) => {
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.authenticate("session"));
+
 
 app.use("/", tutor);
 app.use("/", test);
