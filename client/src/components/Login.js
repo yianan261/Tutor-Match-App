@@ -30,7 +30,7 @@ function Login() {
     if (resUser.status === "ok") {
       console.log("it should redirect");
       auth.login(resUser.user);
-      console.log("after auth.getCurrentUser");
+      console.log("after auth login");
       navigate("/profile", {replace: true});
     } else {
       alert(resUser.message);
