@@ -30,7 +30,7 @@ function MyMongoDB() {
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
       const res = await usersCol.insertOne({user: _user, salt: _salt, hash: _hash});
-      console.log("user inserted", res);
+      // console.log("user inserted", res);
       return res;
     } finally {
       client.close();
@@ -44,17 +44,16 @@ function MyMongoDB() {
    * @returns the user email
    */
   myDB.getUsers = async (_email) => {
-    console.log("DB email", _email);
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
       const options = {
-        projection: {salt: 1, hash: 1}
+        projection: {user: 1, salt: 1, hash: 1}
       }
       const res = await usersCol.findOne({user: _email}, options);
-      console.log("res in DB get user", res);
+      // console.log("res in getUser by email", res);
       return res;
     } finally {
       client.close();
@@ -73,8 +72,8 @@ function MyMongoDB() {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      const res = await usersCol.findOne({_id: id});
-      console.log("res in DB get user", res);
+      const res = await usersCol.findOne({_id: ObjectId(id)});
+      // console.log("res in DB get user", res);
       return res;
     } finally {
       client.close();

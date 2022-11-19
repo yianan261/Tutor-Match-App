@@ -1,6 +1,7 @@
 import React from "react";
 import "../assets/styles/Landing.css";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer"
 import {NavLink} from "react-router-dom"
 
 //Yian 
@@ -17,11 +18,11 @@ function Landing() {
             <button className="bookBtn">Book class Now</button>
             </NavLink>
           </div>
-          <span className="footer">
-            <footer id="footer">
-              © Tutor App, Inc. 2022 All Rights Reserved
-            </footer>
-          </span>
+          {/* <span className="footer">
+            <footer id="footer"> */}
+              <Footer/>
+            {/* </footer> */}
+          {/* </span> */}
         </div>
       </div>
     </>

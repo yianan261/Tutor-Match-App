@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useAuth } from "../utils/auth";
+// import { useAuth } from "../utils/auth";
 import { useNavigate, Link } from "react-router-dom";
 import "../assets/styles/LoginRegister.css";
 
+// Amanda Au-Yeung
 function Register() {
   const [user, setUser] = useState({
     email: "",
@@ -16,7 +17,7 @@ function Register() {
     confirmedPassword: "",
   });
 
-  const auth = useAuth();
+  // const auth = useAuth();
   const navigate = useNavigate();
 
   const createUser = async (e) => {
@@ -59,7 +60,8 @@ function Register() {
   };
 
   const handleRegister = () => {
-    auth.login(user);
+    // console.log("user in register", user);
+    // auth.login(user);
     navigate("/login", { replace: true });
   };
 

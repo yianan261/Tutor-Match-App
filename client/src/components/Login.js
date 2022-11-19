@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useAuth } from "../utils/auth";
-import { useNavigate, Link } from "react-router-dom";
-// import { Link } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
 import "../assets/styles/LoginRegister.css";
 
+// Amanda Au-Yeung
 function Login() {
   const [user, setUser] = useState({
     email: "",
@@ -12,10 +12,8 @@ function Login() {
   const auth = useAuth();
   const navigate = useNavigate();
 
-  const getUser = async (e) => {
+  const findUser = async (e) => {
     e.preventDefault();
-    console.log("user email", user.email);
-    console.log("user pw", user.password);
     const loginUser = await fetch("/login/password"
     , {
       method: "POST",
@@ -30,7 +28,10 @@ function Login() {
     });
     const resUser = await loginUser.json();
     if (resUser.status === "ok") {
-      handleLogin();
+      console.log("it should redirect");
+      auth.login(resUser.user);
+      console.log("after auth.getCurrentUser");
+      navigate("/profile", {replace: true});
     } else {
       alert(resUser.message);
     }
@@ -44,11 +45,6 @@ function Login() {
     }));
   };
 
-  const handleLogin = () => {
-    auth.login("user");
-    navigate("/profile", { replace: true });
-  };
-
   return (
     <div className="card">
       <h5 className="card-title">Sign In</h5>
@@ -57,7 +53,7 @@ function Login() {
         Sign Up!
       </Link>
       <div className="card-body">
-        <form className="form-body" onSubmit={getUser}>
+        <form className="form-body" onSubmit={findUser}>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
