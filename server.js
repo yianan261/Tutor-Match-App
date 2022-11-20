@@ -42,11 +42,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate("session"));
 
+
 app.use("/", tutor);
 app.use("/", test);
 app.use("/", login);
 app.use("/", register);
 app.use("/", editProfile);
+
 
 app.listen(
   PORT,
