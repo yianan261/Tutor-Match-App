@@ -1,29 +1,12 @@
-.grid-container {
-  padding-top: 2%;
-}
-
-.grid-container {
-  display: grid;
-  /* grid-template-columns: 240px 1fr; */
-  grid-template-columns: 240px 82vw;
-  grid-template-rows: 50px 1fr 50px;
-  grid-template-areas:
-    "sidenav header"
-    "sidenav main"
-    "sidenav footer";
+.sidenav {
+  width: 250px;
   height: 100vh;
-}
-
-.sidenav {
-  width: 240px;
-  background-color: #d1f2ff;
-}
-
-.sidenav {
-  display: flex; /* Will be hidden on mobile */
+  display: flex;
   flex-direction: column;
-  grid-area: sidenav;
-  background-color: #f4f1d8;
+  justify-content: flex-start;
+  align-items: center;
+  width: 240px;
+  background-color: #f1f6eb;
 }
 
 .sidenav__list {
@@ -35,21 +18,28 @@
 }
 
 .sidenav__list-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   padding: 15% 10% 15% 20%;
-  color: rgb(53, 68, 66);
-  background-color: rgba(210, 209, 181, 0.2);
+  font-size: 1.05rem;
   box-shadow: rgba(70, 99, 70, 0.1) 0px 1px 1px 0px;
-  margin: auto;
+}
+
+.sidenav__list-item a {
+  text-decoration: none;
+  color: rgb(53, 68, 66);
+  font-size: 18px;
+  width: 95%;
+  height: 100%;
+  display: flex;
 }
 
 .sidenav__list-item:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #cccab3;
   cursor: pointer;
 }
+
 .sideNavIcon {
   padding-right: 5%;
-}
-
-.sidenav__list-item {
-  font-size: 1.05rem;
 }

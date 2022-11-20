@@ -35,6 +35,7 @@ export const AuthProvider = ({ children }) => {
       method: "POST"
     })
     setUser(null);
+    console.log("user in logout", user);
   };
 
   //wrapping children props in AuthContext Provider

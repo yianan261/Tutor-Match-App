@@ -12,6 +12,7 @@ function MyMongoDB() {
   const url = process.env.MONGO_URI || "mongodb://localhost:27017";
   const DB_NAME = "TutorsApp";
   const USER_COLLECTION = "users";
+  // const PROFILE_COLLECTION = "profile";
   const TUTORS_COLLECTION = "tutors";
   const PAGE_SIZE = 18;
 
@@ -21,15 +22,21 @@ function MyMongoDB() {
    * @param {String} user from user
    * @param {String} hash from user
    * @param {String} salt from user
+   * @param {String} displayName from user
    * @returns user
    */
-  myDB.createUser = async (_user, _salt, _hash) => {
+  myDB.createUser = async (_user, _salt, _hash, displayName) => {
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      const res = await usersCol.insertOne({user: _user, salt: _salt, hash: _hash});
+      const res = await usersCol.insertOne({
+        user: _user,
+        salt: _salt,
+        hash: _hash,
+        profile: displayName,
+      });
       // console.log("user inserted", res);
       return res;
     } finally {
@@ -40,7 +47,7 @@ function MyMongoDB() {
   /**
    * Amanda
    * gets user from the registration form
-   * @param {String} email 
+   * @param {String} email
    * @returns the user email
    */
   myDB.getUsers = async (_email) => {
@@ -50,10 +57,10 @@ function MyMongoDB() {
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
       const options = {
-        projection: {user: 1, salt: 1, hash: 1}
-      }
-      const res = await usersCol.findOne({user: _email}, options);
-      // console.log("res in getUser by email", res);
+        projection: { salt: 1, hash: 1, profile: 1 },
+      };
+      const res = await usersCol.findOne({ user: _email }, options);
+      console.log("res in getUser by email", res);
       return res;
     } finally {
       client.close();
@@ -65,20 +72,128 @@ function MyMongoDB() {
    * @param {String} id
    * @returns the user id
    */
-   myDB.getUsersById = async (id) => {
+  myDB.getUsersById = async (id) => {
     console.log("DB id", id);
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      const res = await usersCol.findOne({_id: ObjectId(id)});
+      const res = await usersCol.findOne({ _id: ObjectId(id) });
       // console.log("res in DB get user", res);
       return res;
     } finally {
       client.close();
     }
   };
+
+  /**
+   * Amanda
+   * updates profile after the user edits the profile
+   * @param {String} id 
+   * @param {*} displayName 
+   * @param {*} updatedProfile 
+   * @returns 
+   */
+  myDB.updatesProfile = async (id, updatedProfile) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const usersCol = db.collection(USER_COLLECTION);
+      const res = await usersCol.updateOne(
+        {
+          _id: ObjectId(id),
+        },
+        {
+          $set: {
+            profile: updatedProfile,
+          },
+        }
+      );
+      return res;
+    } finally {
+      client.close();
+    }
+  };
+
+  // /**
+  //  * Amanda
+  //  * create profile
+  //  * @param {String} profile
+  //  * @returns user profile
+  //  */
+  // myDB.createProfile = async (profile) => {
+  //   let client;
+  //   try {
+  //     client = new MongoClient(url);
+  //     const db = client.db(DB_NAME);
+  //     const usersCol = db.collection(PROFILE_COLLECTION);
+  //     const res = await usersCol.insertOne(profile);
+  //     console.log("insert profile", profile);
+  //     return res;
+  //   } finally {
+  //     client.close();
+  //   }
+  // };
+
+  // /**
+  //  * Amanda
+  //  * get Profile
+  //  * @param {String} displayName
+  //  * @returns
+  //  */
+  // myDB.getProfile = async (displayName) => {
+  //   let client;
+  //   try {
+  //     client = new MongoClient(url);
+  //     const db = client.db(DB_NAME);
+  //     const usersCol = db.collection(PROFILE_COLLECTION);
+  //     const options = {
+  //       projection: {
+  //         profile: 1,
+  //       },
+  //     };
+  //     const res = await usersCol.findOne(
+  //       {
+  //         username: displayName,
+  //       },
+  //       options
+  //     );
+  //     return res;
+  //   } finally {
+  //     client.close();
+  //   }
+  // };
+
+  // /**
+  //  * Amanda
+  //  * update Profile
+  //  * @param {String} displayName
+  //  * @param {String} updatedProfile
+  //  * @returns
+  //  */
+  // myDB.getProfile = async (displayName, updatedProfile) => {
+  //   let client;
+  //   try {
+  //     client = new MongoClient(url);
+  //     const db = client.db(DB_NAME);
+  //     const usersCol = db.collection(PROFILE_COLLECTION);
+  //     const res = await usersCol.updateOne(
+  //       {
+  //         username: displayName,
+  //       },
+  //       {
+  //         $set: {
+  //           profile: updatedProfile,
+  //         },
+  //       }
+  //     );
+  //     return res;
+  //   } finally {
+  //     client.close();
+  //   }
+  // };
 
   /**
    * Yian

@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
+import EditProfilePage from "./pages/EditProfile";
 import NotFound from "./pages/NotFound";
 import BookClass from "./pages/BookClass";
 import { AuthProvider } from "./utils/auth";
@@ -18,6 +19,7 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/profile/editProfile" element={<EditProfilePage />}></Route>
         <Route path="/register" element={<RegisterPage />}></Route>
         <Route path="/book" element={<BookClass />}>
           <Route path=":subject" element={<TutorProfile />} />

@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import tutor from "./routers/tutors.js";
 import test from "./routers/test.js";
+import editProfile from "./routers/editProfile.js"
 import session from "express-session";
 import passport from "passport";
 import register from "./routers/register.js";
@@ -30,7 +31,6 @@ app.use(
     secret: "secret",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false },
   })
 );
 
@@ -46,6 +46,7 @@ app.use("/", tutor);
 app.use("/", test);
 app.use("/", login);
 app.use("/", register);
+app.use("/", editProfile);
 
 app.listen(
   PORT,

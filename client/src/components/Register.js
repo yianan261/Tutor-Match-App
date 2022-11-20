@@ -134,4 +134,6 @@ function Register() {
   );
 }
 
+Register.protTypes = {};
+
 export default Register;
