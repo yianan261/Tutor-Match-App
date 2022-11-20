@@ -1,5 +1,4 @@
 import React from "react";
-// import SharedLayout from "./SharedLayout";
 import EditProfile from "../components/EditProfile";
 import Navbar from "../components/Navbar";
 import SideNav from "../components/SideNav";
@@ -14,7 +13,6 @@ function EditProfilePage() {
                 <EditProfile />
             </div>
             <Footer />
-            
         </div>
     )
 }

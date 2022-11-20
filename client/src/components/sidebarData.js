@@ -1,6 +1,7 @@
 import { FaEdit, FaRegCalendarCheck, FaHistory } from "react-icons/fa";
 import { BsFillGearFill } from "react-icons/bs";
 
+// Amanda Au-Yeung
 export const sidebarData = [
     {
         title: 'Edit Profile',

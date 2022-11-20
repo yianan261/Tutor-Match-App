@@ -3,6 +3,7 @@ import "../assets/styles/SideNav.css";
 import { Link } from "react-router-dom";
 import { sidebarData } from "./sidebarData";
 
+// Amanda Au-Yeung
 function SideNav() {
   return (
     <>
