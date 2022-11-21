@@ -17,6 +17,7 @@ const LazySearch2 = React.lazy(() => import("./components/TutorInfo"));
 //Yian Chen
 function App() {
   return (
+    
     <AuthProvider>
       <Routes>
         <Route path="/login" element={<LoginPage />}></Route>
@@ -63,6 +64,7 @@ function App() {
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </AuthProvider>
+    
   );
 }
 
