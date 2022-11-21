@@ -71,7 +71,7 @@ function Register() {
     <div className="signUp-title">
     <h2 className="card-title" id="signUp">Sign Up</h2>
     </div>
-      <div className="card-body">
+      <div className="log-reg-body">
         <form className="form-body" onSubmit={createUser}>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
