@@ -152,6 +152,8 @@ function MyMongoDB() {
     }
   };
 
+
+
   /**Yian
    * Updates new bookings to "schedule" for user, if "schedule" doesn't exist one will be created
    * @param {string} _user (ID)

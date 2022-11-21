@@ -3,7 +3,7 @@ import "../assets/styles/SideNav.css";
 
 function SideNav() {
   return (
-    <div className="grid-container">
+    <div>
       <aside className="sidenav">
         <ul className="sidenav__list">
           <li className="sidenav__list-item">

@@ -1,7 +1,8 @@
+
 /** Yian Chen
- * dateHelper module to generate next n days randomly
+ * dateHelper module to generate next n days randomly to simulate booking date for tutors
  * @param {int} next n number of days (num_days)
- * @returns array of sorted days of the next n days
+ * @returns array of objects with "date" property in ascending sorted date order
  */
 export function dateHelper(num_days) {
   //future date helper object to pick future dates
@@ -21,6 +22,7 @@ export function dateHelper(num_days) {
 
   //pick the next 10 days and sort
   let dates = [];
+  
   for (let i = 0; i < num_days; i++) {
     let newDate = futureDateHelper.format(
       futureDateHelper.addDays(
@@ -28,8 +30,9 @@ export function dateHelper(num_days) {
         Math.floor(Math.random() * 10) + 1
       )
     );
+
     dates.push(newDate);
   }
 
-  return dates.sort();
+  return dates.sort()
 }

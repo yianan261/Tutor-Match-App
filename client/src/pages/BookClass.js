@@ -8,6 +8,7 @@ import TutorProfile from "../components/TutorProfile";
 import TutorInfo from "../components/TutorInfo";
 import { useSearchParams } from "react-router-dom";
 import BookModal from "../components/BookModal";
+import { dateHelper } from "../utils/bookDates";
 
 /**Yian
  * BookClass module handles Book class page rendering
@@ -22,6 +23,7 @@ function BookClass() {
   const [searchParams, setSearchParams] = useSearchParams("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const bookClass = useRef(new Map());
+  const [bookDates, setBookDates] = useState(dateHelper(4));
 
   /**Yian
    * function that sets state in BookClass when search is triggered in SearchTutor.js
@@ -149,6 +151,22 @@ function BookClass() {
   };
 
   /**Yian
+   * this function simulates booking date for tutors by calling dateHelper() function from bookDates.js
+   * which generates random dates for users to select book time
+   */
+  useEffect(() => {
+    try {
+      if (tutorProfile) {
+        const newArr = new Set(dateHelper(4));
+        setBookDates([...newArr]);
+        console.log("BOOKDATES", bookDates);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }, [modalIsOpen]);
+
+  /**Yian
    * function that renders component based on render flag value
    * @returns component for rendering
    */
@@ -185,10 +203,12 @@ function BookClass() {
       const fetchSchedule = async () => {
         const res = await fetch("/api/getSchedule");
         const resSchedule = await res.json();
-        console.log("resSchedule",resSchedule)
-        const sched = resSchedule.data.schedule
+        console.log("resSchedule", resSchedule);
+        const sched = resSchedule.data.schedule;
         if (resSchedule.schedule !== null && resSchedule.schedule !== []) {
-          sched.forEach((item)=>bookClass.current.set(`${item.date} ${item.time}`,item))
+          sched.forEach((item) =>
+            bookClass.current.set(`${item.date} ${item.time}`, item)
+          );
           console.log("bookClass.current HERE", bookClass.current);
         }
       };
@@ -200,10 +220,9 @@ function BookClass() {
 
   const addClassBackend = async (user, schedule) => {
     try {
-      
-      const scheduleArray = Array.from(schedule)
+      const scheduleArray = Array.from(schedule);
       console.log("scheduleArr", scheduleArray);
-      
+
       await fetch("/api/addClass", {
         method: "POST",
         headers: {
@@ -239,10 +258,9 @@ function BookClass() {
   };
 
   //when confirm button is clicked, classes are added to DB
-  const confirmClasses = ()=>{
+  const confirmClasses = () => {
     addClassBackend("test_user", bookClass.current.values());
-  }
-  
+  };
 
   //Yian
   return (
@@ -257,7 +275,8 @@ function BookClass() {
             handleModal={handleModal}
             addClass={addClass}
             confirmClasses={confirmClasses}
-           
+            tutorProfile={tutorProfile}
+            bookDates={bookDates}
           />
         ) : null}
         <Outlet />

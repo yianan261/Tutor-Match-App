@@ -6,7 +6,7 @@ function SharedLayout() {
   return (
     <>
       <Navbar />
-      <SideNav/>
+      <SideNav />
     </>
   );
 }

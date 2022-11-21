@@ -2,11 +2,15 @@ import React from "react";
 import "../assets/styles/BookModal.css";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
-import { dateHelper } from "../utils/bookDates";
-import { randHours } from "../utils/dates";
 
-function BookModal({ open, handleModal, addClass, confirmClasses }) {
-  const newDates = [...new Set(dateHelper(4))];
+function BookModal({
+  open,
+  handleModal,
+  addClass,
+  confirmClasses,
+  tutorProfile,
+  bookDates,
+}) {
   if (!open) return null;
 
   const handleDate = (_date, _time) => {
@@ -17,7 +21,6 @@ function BookModal({ open, handleModal, addClass, confirmClasses }) {
   // const renderButton = ()=>{
   // console.log("check bookClass",bookClass)
   // }
- 
 
   return ReactDOM.createPortal(
     <div
@@ -41,11 +44,11 @@ function BookModal({ open, handleModal, addClass, confirmClasses }) {
             <i className="fa-regular fa-x"></i>
           </p>
           <div className="content">
-            {newDates.map((date, idx) => {
+            {bookDates.map((date, idx) => {
               return (
                 <div className="time" key={idx}>
                   <p>{date}</p>
-                  {[...new Set(randHours())].map((hr, i) => {
+                  {tutorProfile.hours[idx].map((hr, i) => {
                     return (
                       <div key={i} className="hourDiv">
                         <button
@@ -77,6 +80,7 @@ BookModal.propTypes = {
   handleModal: PropTypes.func,
   addClass: PropTypes.func,
   confirmClasses: PropTypes.func,
-  ref: PropTypes.any,
+  tutorProfile: PropTypes.object,
+  bookDates: PropTypes.array,
 };
 export default BookModal;
