@@ -7,7 +7,7 @@
   "scripts": {
     "start": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=development nodemon server.js",
-    "initDB": "mongoimport -d TutorsApp -c tutors --jsonArray --file ./db/data/tutors.json"
+    "initDB": "mongoimport -d TutorsApp -c tutors --jsonArray --file ./db/data/tutors2.json"
   },
   "repository": {
     "type": "git",

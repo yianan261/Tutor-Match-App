@@ -28,6 +28,8 @@ function TutorInfo({ tutorProfile, returnToSearch, handleModal }) {
     returnToSearch();
   };
 
+  
+
   return (
     <>
       <div className="card-group2" id="cardGroup2">

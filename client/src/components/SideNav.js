@@ -6,8 +6,13 @@ import { sidebarData } from "./sidebarData";
 // Amanda Au-Yeung
 function SideNav() {
   return (
+<<<<<<< HEAD
     <>
       <div className="sidenav">
+=======
+    <div>
+      <aside className="sidenav">
+>>>>>>> cc43e1a (fixed book date functions in BookClass.js and BookModal)
         <ul className="sidenav__list">
           {sidebarData.map((item, index) => {
             return (
