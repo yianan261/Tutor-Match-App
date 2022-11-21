@@ -162,6 +162,26 @@ function MyMongoDB() {
     }
   };
 
+  /**Yian
+   * Updates new booking to "schedule" for user, if "schedule" doesn't exist one will be created
+   * @param {string} _user (ID)
+   * @param {Map} _booking
+   */
+  myDB.createBooking = async (_user, _booking) => {
+    let client;
+    try {
+      console.log("show Booking DB", _booking);
+      client = new MongoClient(url);
+      const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
+      // const options = { projection: { reviews: 0 } };
+      return await userCol.updateOne(
+        { user: _user },
+        { $push: { schedule: _booking } }
+      );
+    } finally {
+      client.close();
+    }
+  };
   return myDB;
 }
 
