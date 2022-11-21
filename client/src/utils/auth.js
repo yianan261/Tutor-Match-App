@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
        if (data.user !== null){
          setUser(data.user);
        }
-       console.log("user from login", data.user);
       })
    }
    getCurrentUser();
@@ -35,7 +34,6 @@ export const AuthProvider = ({ children }) => {
       method: "POST"
     })
     setUser(null);
-    console.log("user in logout", user);
   };
 
   //wrapping children props in AuthContext Provider

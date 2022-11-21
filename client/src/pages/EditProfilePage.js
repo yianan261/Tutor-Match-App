@@ -5,16 +5,16 @@ import SideNav from "../components/SideNav";
 import Footer from "../components/Footer";
 
 function EditProfilePage() {
-    return (
-        <div>
-            <Navbar />
-            <div className="flex">
-                <SideNav/>
-                <EditProfile />
-            </div>
-            <Footer />
-        </div>
-    )
+  return (
+    <div>
+      <Navbar />
+      <div className="flex">
+        <SideNav />
+        <EditProfile />
+      </div>
+      <Footer />
+    </div>
+  );
 }
 
 EditProfilePage.propTypes = {};

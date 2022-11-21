@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import "../assets/styles/EditProfile.css";
 import bulb2 from "../assets/images/bulb2.png";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 // Amanda Au-Yeung
 function EditProfile() {
   const navigate = useNavigate();
+
   const [profile, setProfile] = useState({
     username: "",
     fName: "",
@@ -14,13 +15,35 @@ function EditProfile() {
     subjects: "",
     location: "",
   });
-
   const [schedule, setSchedule] = useState([]);
   const [pic, setPic] = useState(null);
 
+  // setting default values
+  useEffect(() => {
+    const fetchExistData = async () => {
+      await fetch("/profile/editProfile")
+      .then(res => res.json())
+      .then(data => {
+        let profileInDB = data.profile;
+        let profileData = new Map();
+        profileData['username'] = profileInDB.displayName;
+        profileData['fName'] = profileInDB.fName;
+        profileData['lName'] = profileInDB.lName;
+        profileData['email'] = profileInDB.email;
+        profileData['subjects'] = profileInDB.subjects;
+        profileData['location'] = profileInDB.location;
+        console.log("profiledata", profileData);
+        setProfile(profileData);
+        setSchedule(data.profile.schedule);
+        setPic(data.profile.pic);
+      })
+    } 
+    fetchExistData();
+  }, [])
+  
+  // updates the value
   const handleSaveProfile = async (e) => {
     e.preventDefault();
-    console.log("test", profile);
     const profileInfo = await fetch("/profile/editProfile", {
       method: "POST",
       headers: {
@@ -53,8 +76,8 @@ function EditProfile() {
 
   const handleMultiSelect = (schedule) => {
     let preferredSchedule = [];
-    for (let i = 0; i < schedule.length; i++) {
-      preferredSchedule.push(schedule[i].value);
+    for (const element of schedule) {
+      preferredSchedule.push(element.value);
     }
     setSchedule(preferredSchedule);
   };
@@ -66,11 +89,11 @@ function EditProfile() {
 
   return (
     <div className="EditProfile">
-      <div className=" container-xl px-4 mt-4">
-        <div className="row">
-          <div className="col-xl-4">
+      <div className="container-xl px-4 mt-4">
+        <div className="row background-white">
+          <div className="col-xl-4 no-padding">
             {/* <!-- Profile picture card--> */}
-            <div className="card mb-4 mb-xl-0">
+            <div className="mb-4 mb-xl-0" id="uploadProfileCard">
               <div className="card-header">Profile Picture</div>
               <div className="card-body text-center">
                 {/* <!-- Profile picture image--> */}
@@ -96,12 +119,12 @@ function EditProfile() {
                     }}
                   />
                 </div>
-              </div>    
+              </div>
             </div>
           </div>
-          <div className="col-xl-8">
+          <div className="col-xl-8 pl-3">
             {/* <!-- Account details card--> */}
-            <div className="card mb-4">
+            <div className="mb-4 pl-3">
               <div className="card-header">Account Details</div>
               <div className="card-body">
                 <form onSubmit={handleSaveProfile}>
@@ -173,7 +196,7 @@ function EditProfile() {
                     {/* <!-- Form Group (organization name)--> */}
                     <div className="col-md-6">
                       <label className="small mb-1" htmlFor="Subject">
-                        Subjects
+                        Interested Subjects
                       </label>
                       <input
                         className="form-control"
@@ -240,6 +263,8 @@ function EditProfile() {
   );
 }
 
-// EditProfile.propTypes = {};
+// EditProfile.propTypes = {
+//   name: PropTypes.string,
+// };
 
 export default EditProfile;

@@ -5,7 +5,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 240px;
   background-color: #f1f6eb;
 }
 
@@ -39,6 +38,11 @@
   background-color: #cccab3;
   cursor: pointer;
 }
+
+.sidenav__list-item:focus {
+  background-color: #cccab3;
+}
+
 
 .sideNavIcon {
   padding-right: 5%;
