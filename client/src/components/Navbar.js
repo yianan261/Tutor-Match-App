@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../assets/styles/Navbar.css";
-import { NavLink, redirect, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/auth";
 import bulb2 from "../assets/images/bulb2.png";
 
 //Yian
 function Navbar() {
   const auth = useAuth();
+  const navigate = useNavigate()
   const location = useLocation();
   const [navColor, setNavColor] = useState(false);
   const [navClassName, setNavClassName] = useState(
@@ -25,9 +26,10 @@ function Navbar() {
     }
   }, [navColor]);
 
+  // Amanda
   const handleLogin = () => {
     auth.login(auth.user);
-    redirect("/login");
+    navigate("/login");
   };
 
   //conditional rendering when unauthenticated
@@ -39,10 +41,13 @@ function Navbar() {
     </NavLink>
   );
 
+  // Amanda
   const handleLogout = () => {
     auth.logout();
-    redirect("/");
+    console.log("after logout user", auth.user);
+    navigate("/");
   };
+  
   //conditional rendering when authenticated
   const authenticated = (
     <button className="loginBtn" onClick={handleLogout}>

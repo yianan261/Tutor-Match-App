@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../utils/auth";
-import {  Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../assets/styles/LoginRegister.css";
 
 // Amanda Au-Yeung
@@ -14,8 +14,7 @@ function Login() {
 
   const findUser = async (e) => {
     e.preventDefault();
-    const loginUser = await fetch("/login/password"
-    , {
+    const loginUser = await fetch("/login/password", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,14 +27,12 @@ function Login() {
     });
     const resUser = await loginUser.json();
     if (resUser.status === "ok") {
-      console.log("it should redirect");
       auth.login(resUser.user);
-      console.log("after auth login");
-      navigate("/profile", {replace: true});
+      navigate("/profile", { replace: true });
     } else {
       alert(resUser.message);
     }
-  }
+  };
 
   const onInputChange = (evt) => {
     const { value, name } = evt.target;
@@ -46,13 +43,19 @@ function Login() {
   };
 
   return (
-    <div className="card">
-      <h5 className="card-title">Sign In</h5>
-      <p id="no-ac">No Account?</p>
-      <Link id="reg-link" to="/register">
-        Sign Up!
-      </Link>
-      <div className="card-body">
+    <div className="card" id="loginCard">
+      <div className="alternate-text">
+        <p id="no-ac">No Account?</p>
+        <Link id="reg-link" to="/register">
+          Sign Up!
+        </Link>
+      </div>
+      {/* <div className="signin-title"> */}
+        <h2 className="card-title" id="signIn">
+          Sign In
+        </h2>
+      {/* </div> */}
+      <div className="log-reg-body">
         <form className="form-body" onSubmit={findUser}>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
@@ -96,5 +99,7 @@ function Login() {
     </div>
   );
 }
+
+// Login.propTypes = {};
 
 export default Login;

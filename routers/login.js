@@ -2,17 +2,11 @@ import express from "express";
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import myDB from "../db/myDB.js";
+import {validatePassword} from "./passwordUtilites.js";
+
 const router = express.Router();
-import crypto from "crypto";
 
 // Amanda Au-Yeung
-// encryption source: https://github.com/Oliwier965/Photo-App/blob/main/authentication/passwordUtils.js
-const validatePassword = (password, hash, salt) => {
-  const hashVerify = crypto
-    .pbkdf2Sync(password, salt, 10000, 64, "sha512")
-    .toString("hex");
-  return hashVerify === hash;
-};
 
 // verify with local strategy in passport
 const strategy = new LocalStrategy(
@@ -37,9 +31,8 @@ const strategy = new LocalStrategy(
 passport.use(strategy);
 
 passport.serializeUser((user, cb) => {
-  console.log("user in serialize", user._id.toString());
   process.nextTick(function () {
-    console.log("serialized");
+    console.log("user in serialize", user._id.toString());
     cb(null, user._id.toString());
   });
 });
@@ -52,7 +45,6 @@ passport.deserializeUser(async (user_id, cb) => {
   });
 });
 
-// used part of the source of https://stackoverflow.com/questions/72128646/passport-authenticate-isnt-redirecting
 router.post("/login/password", (req, res, next) => {
   console.log("login body router", req.body);
   passport.authenticate("local", function (err, user) {

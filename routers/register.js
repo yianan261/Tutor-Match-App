@@ -1,23 +1,9 @@
 import express from "express";
 import myDB from "../db/myDB.js";
 const router = express.Router();
-import crypto from "crypto";
+import {genPassword} from "./passwordUtilites.js";
 
 // Amanda Au-Yeung
-// hashing source from https://stackoverflow.com/questions/72128646/passport-authenticate-isnt-redirecting
-const genPassword = (password) => {
-  const salt = crypto.randomBytes(32).toString("hex");
-  const genHash = crypto
-    .pbkdf2Sync(password, salt, 10000, 64, "sha512")
-    .toString("hex");
-
-  return {
-    salt: salt,
-    hash: genHash,
-  };
-};
-
-
 router.get("/register", (req, res) => {
   console.log("Register page");
   res.status(200).redirect("/register");
@@ -27,7 +13,6 @@ router.post("/register", async (req, res) => {
   console.log("register", req.body);
   let checkExistUser;
   try {
-    
     checkExistUser = await myDB.getUsers(req.body.email);
     console.log(checkExistUser);
     if (checkExistUser === null) {

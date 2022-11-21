@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
        if (data.user !== null){
          setUser(data.user);
        }
-       console.log("user from login", data.user);
       })
    }
    getCurrentUser();

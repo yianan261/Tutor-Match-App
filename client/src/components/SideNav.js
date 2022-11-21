@@ -1,28 +1,27 @@
 import React from "react";
 import "../assets/styles/SideNav.css";
+import { Link } from "react-router-dom";
+import { sidebarData } from "./sidebarData";
 
+// Amanda Au-Yeung
 function SideNav() {
   return (
-    <div className="grid-container">
-      <aside className="sidenav">
+    <>
+      <div className="sidenav">
         <ul className="sidenav__list">
-          <li className="sidenav__list-item">
-            <i className="fa-solid fa-pen-to-square sideNavIcon" /> Edit Profile
-          </li>
-          <li className="sidenav__list-item">
-            <i className="fa-solid fa-calendar sideNavIcon" /> Manage Bookings
-          </li>
-          <li className="sidenav__list-item">
-            <i className="fa-solid fa-clock-rotate-left sideNavIcon" />
-            Class History
-          </li>
-          <li className="sidenav__list-item">
-            <i className="fa-solid fa-gear sideNavIcon" />
-            Account Settings
-          </li>
+          {sidebarData.map((item, index) => {
+            return (
+              <li key={index} className={item.cName}>
+                <Link to={item.path}>
+                  <span className="sideNavIcon">{item.icon}</span>
+                  <span className="sideNavText">{item.title}</span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
-      </aside>
-    </div>
+      </div>
+    </>
   );
 }
 

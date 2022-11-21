@@ -21,16 +21,21 @@ function MyMongoDB() {
    * @param {String} user from user
    * @param {String} hash from user
    * @param {String} salt from user
+   * @param {String} displayName from user
    * @returns user
    */
-  myDB.createUser = async (_user, _salt, _hash) => {
+  myDB.createUser = async (_user, _salt, _hash, displayName) => {
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      const res = await usersCol.insertOne({user: _user, salt: _salt, hash: _hash});
-      // console.log("user inserted", res);
+      const res = await usersCol.insertOne({
+        user: _user,
+        salt: _salt,
+        hash: _hash,
+        profile: displayName,
+      });
       return res;
     } finally {
       client.close();
@@ -40,7 +45,7 @@ function MyMongoDB() {
   /**
    * Amanda
    * gets user from the registration form
-   * @param {String} email 
+   * @param {String} email
    * @returns the user email
    */
   myDB.getUsers = async (_email) => {
@@ -50,10 +55,10 @@ function MyMongoDB() {
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
       const options = {
-        projection: {user: 1, salt: 1, hash: 1}
-      }
-      const res = await usersCol.findOne({user: _email}, options);
-      // console.log("res in getUser by email", res);
+        projection: { salt: 1, hash: 1, profile: 1 },
+      };
+      const res = await usersCol.findOne({ user: _email }, options);
+      console.log("res in getUser by email", res);
       return res;
     } finally {
       client.close();
@@ -65,15 +70,44 @@ function MyMongoDB() {
    * @param {String} id
    * @returns the user id
    */
-   myDB.getUsersById = async (id) => {
-    console.log("DB id", id);
+  myDB.getUsersById = async (id) => {
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      const res = await usersCol.findOne({_id: ObjectId(id)});
-      // console.log("res in DB get user", res);
+      const res = await usersCol.findOne({ _id: ObjectId(id) });
+      console.log("res in get user by ID ", res);
+      return res;
+    } finally {
+      client.close();
+    }
+  };
+
+  /**
+   * Amanda
+   * updates profile after the user edits the profile
+   * @param {String} id 
+   * @param {*} displayName 
+   * @param {*} updatedProfile 
+   * @returns 
+   */
+  myDB.updatesProfile = async (id, updatedProfile) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const usersCol = db.collection(USER_COLLECTION);
+      const res = await usersCol.updateOne(
+        {
+          _id: ObjectId(id),
+        },
+        {
+          $set: {
+            profile: updatedProfile,
+          },
+        }
+      );
       return res;
     } finally {
       client.close();

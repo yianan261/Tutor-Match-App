@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { useAuth } from "../utils/auth";
 import { useNavigate, Link } from "react-router-dom";
 import "../assets/styles/LoginRegister.css";
 
@@ -17,13 +16,10 @@ function Register() {
     confirmedPassword: "",
   });
 
-  // const auth = useAuth();
   const navigate = useNavigate();
 
   const createUser = async (e) => {
     e.preventDefault();
-    console.log(user.email);
-    console.log(user.password);
     const res = await fetch("/register", {
       method: "POST",
       headers:{ 
@@ -60,20 +56,23 @@ function Register() {
   };
 
   const handleRegister = () => {
-    // console.log("user in register", user);
-    // auth.login(user);
     navigate("/login", { replace: true });
   };
 
   return (
-    <div className="card">
-      <h5 className="card-title">Sign Up</h5>
-      <p id="acc-holder">Already have an account?</p>
+    <div className="card" id="signupCard">
+    
+    <div className="alternate-text">
+    <p id="acc-holder">Already have an account?</p>
       <Link id="sign-in" to="/login">
         Sign In
       </Link>
-      <div className="container">
-        <form onSubmit={createUser}>
+    </div>
+    <div className="signUp-title">
+    <h2 className="card-title" id="signUp">Sign Up</h2>
+    </div>
+      <div className="log-reg-body">
+        <form className="form-body" onSubmit={createUser}>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
@@ -133,5 +132,7 @@ function Register() {
     </div>
   );
 }
+
+Register.protTypes = {};
 
 export default Register;
