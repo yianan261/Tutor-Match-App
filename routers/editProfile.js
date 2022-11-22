@@ -34,6 +34,7 @@ router.get("/profile/editProfile", async (req, res) => {
   try {
     if (userIdInSession) {
       const profileInfo = await myDB.getUsersById(userIdInSession);
+      // take care of the images
       res.status(200).json({profile: profileInfo.profile, schedule: profileInfo.profile.schedule, pic: profileInfo.profile.pic});
     }
   } catch (err) {

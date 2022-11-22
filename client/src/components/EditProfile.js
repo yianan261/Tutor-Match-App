@@ -245,10 +245,10 @@ function EditProfile() {
                         handleMultiSelect(e.target.selectedOptions);
                       }}
                     >
-                      <option value="weekdaysAM">Weekdays AM</option>
-                      <option value="weekdaysPM">Weekends PM</option>
-                      <option value="weekendsAM">Weekends AM</option>
-                      <option value="weekendsPM">Weekends PM</option>
+                      <option value="weekdays AM">Weekdays AM</option>
+                      <option value="weekdays PM">Weekends PM</option>
+                      <option value="weekends AM">Weekends AM</option>
+                      <option value="weekends PM">Weekends PM</option>
                       <option value="flexible">Flexible</option>
                     </select>
                   </div>

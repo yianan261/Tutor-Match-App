@@ -1,10 +1,11 @@
 import React from "react";
 import "../assets/styles/Landing.css";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer"
-import {NavLink} from "react-router-dom"
+import Footer from "../components/Footer";
+import PricePanel from "../components/PricePanel";
+import { NavLink } from "react-router-dom";
 
-//Yian 
+//Yian
 function Landing() {
   return (
     <>
@@ -15,15 +16,18 @@ function Landing() {
             <h1>Tutor Match helps you get the help you need</h1>
             <p>Change your life and learn efficiently</p>
             <NavLink to="/book">
-            <button className="bookBtn">Book class Now</button>
+              <button className="bookBtn">Book class Now</button>
             </NavLink>
           </div>
+          <Footer />
           {/* <span className="footer">
             <footer id="footer"> */}
-              <Footer/>
-            {/* </footer> */}
+          
+          {/* </footer> */}
           {/* </span> */}
         </div>
+        <PricePanel />
+          
       </div>
     </>
   );
