@@ -1,8 +1,8 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect} from "react";
 // import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/styles/Profile.css";
-import { AiOutlineMail } from "react-icons/ai";
+// import { AiOutlineMail } from "react-icons/ai";
 // import PropTypes from "prop-types";
 
 /**
@@ -68,6 +68,7 @@ function Profile() {
     <div className="container-profile">
       <div className="main-profile">
       <div>
+<<<<<<< HEAD
       {profile.username ? "Hi, " + profile.username : "Welcome! Please proceed to edit your profile."}
       </div>
       <div>
@@ -76,6 +77,16 @@ function Profile() {
       </div>
       <div>
       {profile.schedule? "My preferred schedule is " + schedule.join(", ") : "Please select your preferred schedule in Edit Profile"}.
+=======
+      {/* Hi, {profile.username}! */}
+      </div>
+      <div>
+      {/* <AiOutlineMail /> {profile.email} */}
+      {/* image */}
+      </div>
+      <div>
+      {/* My preferred schedule is {schedule.join(", ")}. */}
+>>>>>>> 8ce1bb9 (login refresh again)
       </div>
       <div>
       Welcome! Here is your overview of your schedule.
