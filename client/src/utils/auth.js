@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
 
 AuthProvider.propTypes = {
   children: PropTypes.any.isRequired,
-  render: PropTypes.any.isRequired,
+  // render: PropTypes.any.isRequired,
 };
 
 //function that returns current user
