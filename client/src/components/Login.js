@@ -104,6 +104,6 @@ function Login() {
   );
 }
 
-// Login.propTypes = {};
+Login.propTypes = {};
 
 export default Login;

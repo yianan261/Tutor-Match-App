@@ -1,21 +1,13 @@
 
 .PricePanel {
-    /* display: grid;
-    row-gap: 50px;
-    background-color: #f1f6eb;
-    padding: 1em 1em 1em 1em; */
     background-color: #f1f6eb;
   border-radius: 10px;
   padding: 1em 1em 1em 1em;
   width: 80vw;
   margin-left: auto;
   margin-right: auto;
-  /* align-items: center;
-  justify-content: center; */
-  /* max-width: 960px; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  /* flex-direction: column; */
   text-align: center;
   text-transform: uppercase;
 }
