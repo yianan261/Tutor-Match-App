@@ -205,16 +205,18 @@ function BookClass() {
         const res = await fetch("/api/getSchedule");
         const resSchedule = await res.json();
         console.log("resSchedule", resSchedule);
-        const sched = resSchedule.data.schedule;
-        console.log("SCHED", sched);
-        const tempMap = new Map(bookClassMap);
-        if (resSchedule.schedule !== null && resSchedule.schedule !== []) {
-          sched.forEach((item) =>
-            tempMap.set(`${item.date} ${item.time}`, item)
-          );
-          console.log("TEMP MAP", tempMap);
-          setBookClassMap(tempMap);
-        }
+        // const sched = resSchedule.data.schedule;
+        // console.log("SCHED", sched);
+        // const tempMap = new Map(bookClassMap);
+        // if (sched !== null && sched !== []) {
+        //   sched.forEach((item) =>
+        //     tempMap.set(`${item.date} ${item.time}`, item)
+        //   );
+        //   console.log("TEMP MAP", tempMap);
+        //   setBookClassMap(tempMap);
+        // }else{
+        //   console.log("schedule empty",sched)
+        // }
       };
       fetchSchedule();
     } catch (err) {
@@ -245,28 +247,34 @@ function BookClass() {
    * @param {string} time
    */
   const addClass = (date, time) => {
-    console.log("line 209 BookClass.js, Date", date, "time", time);
-    console.log("bookClassMap: ", bookClassMap);
-    if (bookClassMap.has(`${date} ${time}`)) {
-      console.log("schedule conflict");
-      //to
-      console.log("Schedule Conflict, please select a different time");
-      alert("Schedule Conflict, please select a different time");
-    } else {
-      // const tempMap = new Map(bookClassMap)
-      // tempMap.set(`${date} ${time}`, {
-      //   date: date,
-      //   time: time,
-      //   tutor: tutorProfile.first_name,
-      // })
-      setBookClassMap((prev) => {
-        const tempMap = new Map(prev);
-        tempMap.set(`${date} ${time}`, {
-          date: date,
-          time: time,
-          tutor: tutorProfile.first_name,
+    try {
+      console.log("line 209 BookClass.js, Date", date, "time", time);
+      console.log("bookClassMap: ", bookClassMap);
+      if (bookClassMap.has(`${date} ${time}`)) {
+        console.log("schedule conflict");
+        //to
+        console.log("Schedule Conflict, please select a different time");
+        alert("Schedule Conflict, please select a different time");
+      } else {
+        // const tempMap = new Map(bookClassMap)
+        // tempMap.set(`${date} ${time}`, {
+        //   date: date,
+        //   time: time,
+        //   tutor: tutorProfile.first_name,
+        // })
+        setBookClassMap((prev) => {
+          const tempMap = new Map(prev);
+          tempMap.set(`${date} ${time}`, {
+            date: date,
+            time: time,
+            tutor: tutorProfile.first_name,
+          });
         });
-      });
+        console.log("added class showing bookClassMap",bookClassMap)
+      }
+    } catch (err) {
+      console.error(err);
+      alert(`There was an error ${err}`);
     }
   };
 

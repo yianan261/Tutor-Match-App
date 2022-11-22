@@ -17,6 +17,7 @@ function MyMongoDB() {
 
   /**
    * Amanda
+   * 2022/11/22: added schedule property 
    * function that creates user
    * @param {String} user from user
    * @param {String} hash from user
@@ -35,7 +36,9 @@ function MyMongoDB() {
         salt: _salt,
         hash: _hash,
         profile: displayName,
+        schedule: []
       });
+      console.log("user created")
       return res;
     } finally {
       client.close();
@@ -164,8 +167,8 @@ function MyMongoDB() {
 
   /**
    * Yian
-   * @param {String} user email
-   * @returns user's schedule
+   * @param {String} user ID
+   * @returns user's schedule and doesn't return salt and hash information to client
    */
   myDB.getUserSchedule = async (_user) => {
     let client;
@@ -175,12 +178,12 @@ function MyMongoDB() {
       const options = {
         projection: { salt: 0, hash: 0 },
       };
-      return await userCol.findOne({ user: _user }, options);
+      const res = await userCol.findOne({ _id: ObjectId(_user) }, options);
+      return res
     } finally {
       client.close();
     }
   };
-
 
 
   /**Yian
