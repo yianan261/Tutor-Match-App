@@ -29,12 +29,13 @@ export const AuthProvider = ({ children }) => {
 
   const login = (user) => {
     setUser(user);
-  }
+  };
 
   const logout = async () => {
     await fetch("/logout", {
-      method: "POST"
-    })
+      method: "POST",
+    });
+
     setUser(null);
   };
 
@@ -47,7 +48,7 @@ export const AuthProvider = ({ children }) => {
 };
 
 AuthProvider.propTypes = {
-  children: PropTypes.any.isRequired
+  children: PropTypes.any.isRequired,
 };
 
 //function that returns current user

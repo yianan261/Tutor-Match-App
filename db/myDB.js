@@ -17,7 +17,7 @@ function MyMongoDB() {
 
   /**
    * Amanda
-   * 2022/11/22: added schedule property 
+   * 2022/11/22: added schedule property
    * function that creates user
    * @param {String} user from user
    * @param {String} hash from user
@@ -36,9 +36,9 @@ function MyMongoDB() {
         salt: _salt,
         hash: _hash,
         profile: displayName,
-        schedule: []
+        schedule: [],
       });
-      console.log("user created")
+      console.log("user created");
       return res;
     } finally {
       client.close();
@@ -90,10 +90,10 @@ function MyMongoDB() {
   /**
    * Amanda
    * updates profile after the user edits the profile
-   * @param {String} id 
-   * @param {*} displayName 
-   * @param {*} updatedProfile 
-   * @returns 
+   * @param {String} id
+   * @param {*} displayName
+   * @param {*} updatedProfile
+   * @returns
    */
   myDB.updatesProfile = async (id, updatedProfile) => {
     let client;
@@ -167,11 +167,14 @@ function MyMongoDB() {
 
   /**
    * Yian
+   * function that gets user current schedule, also sorts history,
+   * if the schedule date is a past date it will create a history property
    * @param {String} user ID
    * @returns user's schedule and doesn't return salt and hash information to client
    */
   myDB.getUserSchedule = async (_user) => {
     let client;
+    let historyDate = [];
     try {
       client = new MongoClient(url);
       const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
@@ -179,12 +182,36 @@ function MyMongoDB() {
         projection: { salt: 0, hash: 0 },
       };
       const res = await userCol.findOne({ _id: ObjectId(_user) }, options);
-      return res
+      if (res.schedule !== []) {
+        const todayDate = new Date();
+        res.schedule.forEach((d) => {
+          const newTemp = d.date.split("/").join("-");
+          const currDate = new Date(newTemp);
+          if (todayDate > currDate) {
+            const newHistoryObj = {};
+            //convert date object back to string
+            const currTemp =
+              ("0" + (currDate.getMonth() + 1)).slice(-2) +
+              "/" +
+              ("0" + currDate.getDate()).slice(-2) +
+              "/" +
+              currDate.getFullYear();
+            newHistoryObj.date = currTemp;
+            newHistoryObj.time = d.time;
+            newHistoryObj.tutor = d.tutor;
+            historyDate.push(newHistoryObj);
+          }
+        });
+      }
+      await userCol.updateOne(
+        { _id: ObjectId(_user) },
+        { $set: { history: historyDate } }
+      );
+      return res;
     } finally {
       client.close();
     }
   };
-
 
   /**Yian
    * Updates new bookings to "schedule" for user, if "schedule" doesn't exist one will be created
@@ -195,7 +222,7 @@ function MyMongoDB() {
     let client;
     try {
       console.log("show Booking DB", _booking);
-      
+
       client = new MongoClient(url);
       const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
       return await userCol.updateOne(
