@@ -214,18 +214,16 @@ function BookClass() {
         const res = await fetch("/api/getSchedule");
         const resSchedule = await res.json();
         console.log("resSchedule", resSchedule);
-        // const sched = resSchedule.data.schedule;
-        // console.log("SCHED", sched);
-        // const tempMap = new Map(bookClassMap);
-        // if (sched !== null && sched !== []) {
-        //   sched.forEach((item) =>
-        //     tempMap.set(`${item.date} ${item.time}`, item)
-        //   );
-        //   console.log("TEMP MAP", tempMap);
-        //   setBookClassMap(tempMap);
-        // }else{
-        //   console.log("schedule empty",sched)
-        // }
+        const sched = resSchedule.data.schedule;
+        console.log("SCHED", sched);
+        const tempMap = new Map(bookClassMap);
+        if (sched !== null && sched !== []) {
+          sched.forEach((item) =>
+            tempMap.set(`${item.date} ${item.time}`, item)
+          );
+          console.log("TEMP MAP", tempMap);
+          setBookClassMap(tempMap);
+        }
       };
       fetchSchedule();
     } catch (err) {
@@ -265,20 +263,14 @@ function BookClass() {
         console.log("Schedule Conflict, please select a different time");
         alert("Schedule Conflict, please select a different time");
       } else {
-        // const tempMap = new Map(bookClassMap)
-        // tempMap.set(`${date} ${time}`, {
-        //   date: date,
-        //   time: time,
-        //   tutor: tutorProfile.first_name,
-        // })
-        setBookClassMap((prev) => {
-          const tempMap = new Map(prev);
-          tempMap.set(`${date} ${time}`, {
-            date: date,
-            time: time,
-            tutor: tutorProfile.first_name,
-          });
-        });
+        const tempMap = new Map(bookClassMap)
+        tempMap.set(`${date} ${time}`, {
+          date: date,
+          time: time,
+          tutor: tutorProfile.first_name,
+        })
+        setBookClassMap(tempMap)
+     
         console.log("added class showing bookClassMap",bookClassMap)
       }
     } catch (err) {
