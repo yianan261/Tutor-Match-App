@@ -13,6 +13,7 @@ import PropTypes from "prop-types";
 function RequireAuth({ children }) {
 
   const auth = useAuth();
+
   if (!auth.user) {
     return <Navigate to="/login" />;
   }
