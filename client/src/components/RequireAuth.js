@@ -11,10 +11,12 @@ import PropTypes from "prop-types";
  * @returns children when auth.user else redirects user to login page
  */
 function RequireAuth({ children }) {
+
   const auth = useAuth();
   if (!auth.user) {
     return <Navigate to="/login" />;
   }
+
   return children;
 }
 

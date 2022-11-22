@@ -3,10 +3,14 @@ import "../assets/styles/EditProfile.css";
 import bulb2 from "../assets/images/bulb2.png";
 import { useNavigate } from "react-router-dom";
 
-// Amanda Au-Yeung
+/**
+ * Amanda Au-Yeung
+ * Edits profile by making sure it pulls out default information 
+ * from the DB before updating
+ * @returns jsx of edit-profile rendering
+ */
 function EditProfile() {
   const navigate = useNavigate();
-
   const [profile, setProfile] = useState({
     username: "",
     fName: "",
@@ -32,14 +36,13 @@ function EditProfile() {
         profileData['email'] = profileInDB.email;
         profileData['subjects'] = profileInDB.subjects;
         profileData['location'] = profileInDB.location;
-        console.log("profiledata", profileData);
         setProfile(profileData);
         setSchedule(data.profile.schedule);
         setPic(data.profile.pic);
       })
     } 
     fetchExistData();
-  }, [])
+  }, []);
   
   // updates the value
   const handleSaveProfile = async (e) => {

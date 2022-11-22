@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import tutor from "./routers/tutors.js";
+import test from "./routers/test.js";
 import editProfile from "./routers/editProfile.js";
 import profile from "./routers/profile.js";
 import session from "express-session";
