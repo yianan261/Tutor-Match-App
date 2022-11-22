@@ -3,7 +3,11 @@ import { useAuth } from "../utils/auth";
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/styles/LoginRegister.css";
 
-// Amanda Au-Yeung
+/**
+ * Amanda Au-Yeung
+ * login users by finding the user via passport, session
+ * @returns jsx of the login form
+ */
 function Login() {
   const [user, setUser] = useState({
     email: "",

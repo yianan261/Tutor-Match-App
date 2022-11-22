@@ -1,7 +1,10 @@
 import { FaEdit, FaRegCalendarCheck, FaHistory } from "react-icons/fa";
 import { BsFillGearFill } from "react-icons/bs";
 
-// Amanda Au-Yeung
+/**
+ * Amanda Au-Yeung
+ * exports sidebar data, including title, path, icon, className
+ */
 export const sidebarData = [
     {
         title: 'Edit Profile',

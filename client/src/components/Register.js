@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../assets/styles/LoginRegister.css";
 
-// Amanda Au-Yeung
+/**
+ * Amanda Au-Yeung
+ * registers user with the email and pw to passport, session
+ * @returns jsx of registration form
+ */
 function Register() {
   const [user, setUser] = useState({
     email: "",
