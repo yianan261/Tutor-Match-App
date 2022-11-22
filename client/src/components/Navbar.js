@@ -105,7 +105,7 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <span>{auth.user ? authenticated : unauthenticated}</span>
+          <span>{auth.user? authenticated : unauthenticated}</span>
         </div>
       </nav>
     </div>

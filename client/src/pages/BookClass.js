@@ -9,6 +9,7 @@ import TutorInfo from "../components/TutorInfo";
 import { useSearchParams } from "react-router-dom";
 import BookModal from "../components/BookModal";
 import { dateHelper } from "../utils/bookDates";
+import { useAuth } from "../utils/auth";
 
 /**Yian
  * BookClass module handles Book class page rendering
@@ -25,6 +26,7 @@ function BookClass() {
   // const bookClass = useRef(new Map());
   const [bookDates, setBookDates] = useState(dateHelper(4));
   const [bookClassMap, setBookClassMap] = useState(new Map());
+  const auth = useAuth();
 
   /**Yian
    * function that sets state in BookClass when search is triggered in SearchTutor.js
@@ -145,10 +147,17 @@ function BookClass() {
     setRender(2);
   };
 
-  //toggle function for modal
+  /**
+   * toggle function for modal
+   * book modal can only be opened when signed-in
+   */
   const handleModal = () => {
-    console.log("open modal");
-    setModalIsOpen(!modalIsOpen);
+    if(auth.user){console.log("open modal");
+    setModalIsOpen(!modalIsOpen);}
+    else{
+      alert("Please sign in to book class")
+    }
+    
   };
 
   /**Yian
