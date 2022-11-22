@@ -77,6 +77,7 @@ router.get("/getUser", async (req, res) => {
   console.log("getUSer123", req.session.passport);
   if (req.isAuthenticated()) {
     console.log("authenticated 123");
+    console.log("getUser", req.session.passport);
     res.status(200).json({ user: req.session.passport.user });
   } else {
     console.log("not authenticated?????");
