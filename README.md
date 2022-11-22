@@ -19,3 +19,10 @@ https://github.com/yianan261/Tutor-Match-App/tree/602a17dd0e83302ea39311b539f687
 
 # 80% completion by Nov 22
 https://github.com/yianan261/Tutor-Match-App/tree/a0a0bdea6f071ef2d0fe2534192e95a47d190df8
+# Design Mockup
+
+Mockup docs [here](https://www.figma.com/file/xn2avkmMPsgbc284Jr5bZn/Tutor-Web-App?node-id=0%3A1&t=h2xWxAeI8CSOG33x-0)
+
+# Component Diagram
+
+![Tutor App component diagram](https://i.postimg.cc/ZnsTZHNV/Tutor-Match-App.png)
