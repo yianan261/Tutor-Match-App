@@ -52,9 +52,9 @@ function App() {
         <Route
           path="/profile/editProfile"
           element={
-            <RequireAuth>
+            // <RequireAuth>
               <EditProfilePage />
-            </RequireAuth>
+            // </RequireAuth>
           }
         ></Route>
         <Route path="/bookclass" element={<BookClass />}></Route>
