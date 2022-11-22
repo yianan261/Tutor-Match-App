@@ -1,8 +1,8 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect} from "react";
 // import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/styles/Profile.css";
-import { AiOutlineMail } from "react-icons/ai";
+// import { AiOutlineMail } from "react-icons/ai";
 // import PropTypes from "prop-types";
 
 /**
@@ -12,7 +12,14 @@ import { AiOutlineMail } from "react-icons/ai";
  */
 function Profile() {
   const navigate = useNavigate();
+<<<<<<< HEAD
   useEffect(() => {
+=======
+  
+
+   // if there is no user, then we redirect to login
+   useEffect(() => {
+>>>>>>> 8ce1bb9 (login refresh again)
     const getCurrentUser = async () => {
       await fetch("/getUser")
       .then(res=>{ console.log(res);
@@ -70,7 +77,11 @@ function Profile() {
       {/* Hi, {profile.username}! */}
       </div>
       <div>
+<<<<<<< HEAD
       <AiOutlineMail/> {profile.email?  + profile.email: "Add your email in your edit profile settings."}
+=======
+      {/* <AiOutlineMail /> {profile.email} */}
+>>>>>>> 8ce1bb9 (login refresh again)
       {/* image */}
       </div>
       <div>

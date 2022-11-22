@@ -41,6 +41,14 @@ function App() {
             // </RequireAuth>
           }
         ></Route>
+        {/* <Route
+          path="/profile/editProfile"
+          element={
+            // <RequireAuth>
+              <EditProfilePage />
+            // </RequireAuth>
+          }
+        ></Route> */}
         <Route
           path="/profile/editProfile"
           element={
