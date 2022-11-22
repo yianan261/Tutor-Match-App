@@ -1,4 +1,4 @@
-# Tutor-Match-App 
+# Tutor-Match-App
 
 MERN stack application that helps students get the academic help they need
 
@@ -8,7 +8,6 @@ MERN stack application that helps students get the academic help they need
 2. Run `npm run dev ` to run in development mode
 3. Run `npm run initDB` to get tutor data in your local MongoDB
 4. Run `npm start` to run the client side React App on port 3000
-
 
 # Design Document
 
