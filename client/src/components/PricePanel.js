@@ -7,23 +7,19 @@ import { pricePanelData } from "./PricePanelData";
  */
 function PricePanel() {
   return (
-    <>
-      <div className="PricePanel">
-        <div>
-          {pricePanelData.map((each, index) => {
-            return (
-              <li key={index} className="eachPlan">
-                <span>{each.icon}</span>
-                <span>{each.plan}</span>
-                <span>{each.description}</span>
-                <span>{each.specifics}</span>
-                <span>{each.price}</span>
-              </li>
-            );
-          })}
-        </div>
-      </div>
-    </>
+    <div className="PricePanel">
+      {pricePanelData.map((each, index) => {
+        return (
+          <div key={index} className="eachPlan">
+            <ul>{each.icon}</ul>
+            <ul>{each.plan}</ul>
+            <ul>{each.description}</ul>
+            <ul>{each.specifics}</ul>
+            <ul>{each.price}</ul>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
