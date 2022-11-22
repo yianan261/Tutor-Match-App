@@ -13,3 +13,9 @@ MERN stack application that helps students get the academic help they need
 # Design Document
 
 Design Docs [here](https://docs.google.com/document/d/1TX83QjBXnOxksskJH8em_gzH6H0qPJJN0GKg5r-C-mE/edit)
+
+
+# 60% completion by Nov 15
+https://github.com/yianan261/Tutor-Match-App/tree/602a17dd0e83302ea39311b539f68717950999fb
+
+# 80% completion by Nov 22 is tagged
