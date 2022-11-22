@@ -3,17 +3,32 @@
     background-color: #f1f6eb;
   border-radius: 10px;
   padding: 1em 1em 1em 1em;
+<<<<<<< HEAD
   /* width: 80vw; */
   /* margin-top: 1em;
   margin-left: auto;
   margin-right: auto; */
+=======
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+>>>>>>> facb90b (price panel testing (#51))
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
   text-transform: uppercase;
 }
 
+<<<<<<< HEAD
 .price-img {
+=======
+.eachPlan {
+    
+}
+
+.price-img {
+    /* width: 200px; */
+>>>>>>> facb90b (price panel testing (#51))
     margin-bottom: 25px;
     max-width: 300px;
 }

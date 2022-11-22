@@ -10,7 +10,7 @@ function PricePanel() {
     <div className="PricePanel">
       {pricePanelData.map((each, index) => {
         return (
-          <div key={index}>
+          <div key={index} className="eachPlan">
             <ul>{each.icon}</ul>
             <ul>{each.plan}</ul>
             <ul>{each.description}</ul>
