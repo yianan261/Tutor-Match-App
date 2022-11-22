@@ -4,7 +4,6 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import tutor from "./routers/tutors.js";
-import test from "./routers/test.js";
 import editProfile from "./routers/editProfile.js";
 import profile from "./routers/profile.js";
 import session from "express-session";
@@ -35,22 +34,20 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  res.send("welcome");
-});
+// app.get("/", (req, res) => {
+//   console.log("TEST")
+//   res.send("welcome");
+// });
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate("session"));
 
-
 app.use("/", tutor);
-app.use("/", test);
 app.use("/", login);
 app.use("/", register);
 app.use("/", profile);
 app.use("/", editProfile);
-
 
 app.listen(
   PORT,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Outlet } from "react-router-dom";
 import SearchTutor from "../components/SearchTutor";
@@ -22,8 +22,9 @@ function BookClass() {
   const [tutorProfile, setTutorProfile] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const bookClass = useRef(new Map());
+  // const bookClass = useRef(new Map());
   const [bookDates, setBookDates] = useState(dateHelper(4));
+  const [bookClassMap, setBookClassMap] = useState(new Map());
 
   /**Yian
    * function that sets state in BookClass when search is triggered in SearchTutor.js
@@ -196,7 +197,7 @@ function BookClass() {
     }
   };
   //todo: update add class/delete class to backend
-
+  console.log("bookClassMap HERE INITIAL FETCH", bookClassMap);
   //Todo: get schedule for backend to check schedule conflicts
   useEffect(() => {
     try {
@@ -205,11 +206,14 @@ function BookClass() {
         const resSchedule = await res.json();
         console.log("resSchedule", resSchedule);
         const sched = resSchedule.data.schedule;
+        console.log("SCHED", sched);
+        const tempMap = new Map(bookClassMap);
         if (resSchedule.schedule !== null && resSchedule.schedule !== []) {
           sched.forEach((item) =>
-            bookClass.current.set(`${item.date} ${item.time}`, item)
+            tempMap.set(`${item.date} ${item.time}`, item)
           );
-          console.log("bookClass.current HERE", bookClass.current);
+          console.log("TEMP MAP", tempMap);
+          setBookClassMap(tempMap);
         }
       };
       fetchSchedule();
@@ -242,24 +246,33 @@ function BookClass() {
    */
   const addClass = (date, time) => {
     console.log("line 209 BookClass.js, Date", date, "time", time);
-    console.log("bookClass.current: ", bookClass.current);
-    if (bookClass.current.has(`${date} ${time}`)) {
+    console.log("bookClassMap: ", bookClassMap);
+    if (bookClassMap.has(`${date} ${time}`)) {
       console.log("schedule conflict");
       //to
-      console.log("Schedule Conlict, please select a different time");
-      alert("Schedule Conlict, please select a different time");
+      console.log("Schedule Conflict, please select a different time");
+      alert("Schedule Conflict, please select a different time");
     } else {
-      bookClass.current.set(`${date} ${time}`, {
-        date: date,
-        time: time,
-        tutor: tutorProfile.first_name,
+      // const tempMap = new Map(bookClassMap)
+      // tempMap.set(`${date} ${time}`, {
+      //   date: date,
+      //   time: time,
+      //   tutor: tutorProfile.first_name,
+      // })
+      setBookClassMap((prev) => {
+        const tempMap = new Map(prev);
+        tempMap.set(`${date} ${time}`, {
+          date: date,
+          time: time,
+          tutor: tutorProfile.first_name,
+        });
       });
     }
   };
 
   //when confirm button is clicked, classes are added to DB
   const confirmClasses = () => {
-    addClassBackend("test_user", bookClass.current.values());
+    addClassBackend("test_user", bookClassMap.values());
   };
 
   //Yian

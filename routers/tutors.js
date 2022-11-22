@@ -53,6 +53,7 @@ router.post("/api/addClass", async (req, res) => {
 router.get("/api/getSchedule", async (req, res) => {
   try {
     //todo: get user in session
+    //const user = req.session.passport.user
     const user = "test@123" //temporary, change later
     const getSchedule = await myDB.getUserSchedule(user);
     if (getSchedule) {
