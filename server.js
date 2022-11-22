@@ -35,22 +35,20 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  res.send("welcome");
-});
+// app.get("/", (req, res) => {
+//   console.log("TEST")
+//   res.send("welcome");
+// });
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate("session"));
 
-
 app.use("/", tutor);
-app.use("/", test);
 app.use("/", login);
 app.use("/", register);
 app.use("/", profile);
 app.use("/", editProfile);
-
 
 app.listen(
   PORT,

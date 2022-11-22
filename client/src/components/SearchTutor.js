@@ -31,7 +31,7 @@ function SearchTutor({ handleQuery, search }) {
   }, [search]);
 
   /**
-   * This function allows users to search with keypress "enter", activates whenever optimizeDebounce is triggered
+   * This function allows users to search with keypress "enter"
    */
   useEffect(() => {
     const keyDownHandler = (evt) => {

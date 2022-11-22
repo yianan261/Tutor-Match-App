@@ -3,8 +3,25 @@ import "../assets/styles/BookModal.css";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 
-function BookModal({ open, handleModal }) {
+function BookModal({
+  open,
+  handleModal,
+  addClass,
+  confirmClasses,
+  tutorProfile,
+  bookDates,
+}) {
   if (!open) return null;
+
+  const handleDate = (_date, _time) => {
+    console.log(_date, _time);
+    addClass(_date, _time);
+  };
+
+  // const renderButton = ()=>{
+  // console.log("check bookClass",bookClass)
+  // }
+
   return ReactDOM.createPortal(
     <div
       className="overlay"
@@ -21,29 +38,49 @@ function BookModal({ open, handleModal }) {
         backgroundColor: "rgba(0,0,0,0.5)",
       }}
     >
-        
       <div className="modalContainer">
         <div className="modalRight">
           <p className="closeBtn" onClick={handleModal}>
             <i className="fa-regular fa-x"></i>
           </p>
           <div className="content">
-            <p>Book1</p>
-            <p>Book2</p>
-            <p>Book3</p>
+            {bookDates.map((date, idx) => {
+              return (
+                <div className="time" key={idx}>
+                  <p>{date}</p>
+                  {tutorProfile.hours[idx].map((hr, i) => {
+                    return (
+                      <div key={i} className="hourDiv">
+                        <button
+                          className="hourBtn"
+                          onClick={() => handleDate(date, hr)}
+                        >
+                          {hr}
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="btnContainer">
-            <button className="confirmBtn">Confirm Booking</button>
-          </div>
+          <button className="confirmBtn" onClick={() => confirmClasses()}>
+            Confirm Booking
+          </button>
+        </div>
       </div>
     </div>,
     document.getElementById("modalRoot")
   );
 }
-
 BookModal.propTypes = {
   open: PropTypes.bool,
   handleModal: PropTypes.func,
+  addClass: PropTypes.func,
+  confirmClasses: PropTypes.func,
+  tutorProfile: PropTypes.object,
+  bookDates: PropTypes.array,
 };
 export default BookModal;

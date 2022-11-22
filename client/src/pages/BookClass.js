@@ -8,10 +8,13 @@ import TutorProfile from "../components/TutorProfile";
 import TutorInfo from "../components/TutorInfo";
 import { useSearchParams } from "react-router-dom";
 import BookModal from "../components/BookModal";
-// import Modal from "react-modal";
+import { dateHelper } from "../utils/bookDates";
 
+/**Yian
+ * BookClass module handles Book class page rendering
+ * @returns JSX of Book class UI
+ */
 function BookClass() {
-  //Todo: implement paginated search for tutors when users search by keyword
   const [query, setQuery] = useState(null);
   const [search, setSearch] = useState(false);
   const [searchData, setSearchData] = useState([]);
@@ -19,6 +22,10 @@ function BookClass() {
   const [tutorProfile, setTutorProfile] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  // const bookClass = useRef(new Map());
+  const [bookDates, setBookDates] = useState(dateHelper(4));
+  const [bookClassMap, setBookClassMap] = useState(new Map());
+
   /**Yian
    * function that sets state in BookClass when search is triggered in SearchTutor.js
    * @param {string} the query string
@@ -106,7 +113,7 @@ function BookClass() {
     }
   }, []);
 
-  /**
+  /**Yian
    * render flag values: 1->SearchTutor component, 2->TutorProfile, 3->TutorInfo
    * function that decides which component to render
    */
@@ -138,12 +145,29 @@ function BookClass() {
     setRender(2);
   };
 
+  //toggle function for modal
   const handleModal = () => {
     console.log("open modal");
     setModalIsOpen(!modalIsOpen);
   };
 
-  /**
+  /**Yian
+   * this function simulates booking date for tutors by calling dateHelper() function from bookDates.js
+   * which generates random dates for users to select book time
+   */
+  useEffect(() => {
+    try {
+      if (tutorProfile) {
+        const newArr = new Set(dateHelper(4));
+        setBookDates([...newArr]);
+        console.log("BOOKDATES", bookDates);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }, [modalIsOpen]);
+
+  /**Yian
    * function that renders component based on render flag value
    * @returns component for rendering
    */
@@ -172,6 +196,84 @@ function BookClass() {
       );
     }
   };
+  //todo: update add class/delete class to backend
+  console.log("bookClassMap HERE INITIAL FETCH", bookClassMap);
+  //Todo: get schedule for backend to check schedule conflicts
+  useEffect(() => {
+    try {
+      const fetchSchedule = async () => {
+        const res = await fetch("/api/getSchedule");
+        const resSchedule = await res.json();
+        console.log("resSchedule", resSchedule);
+        const sched = resSchedule.data.schedule;
+        console.log("SCHED", sched);
+        const tempMap = new Map(bookClassMap);
+        if (resSchedule.schedule !== null && resSchedule.schedule !== []) {
+          sched.forEach((item) =>
+            tempMap.set(`${item.date} ${item.time}`, item)
+          );
+          console.log("TEMP MAP", tempMap);
+          setBookClassMap(tempMap);
+        }
+      };
+      fetchSchedule();
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
+
+  const addClassBackend = async (user, schedule) => {
+    try {
+      const scheduleArray = Array.from(schedule);
+      console.log("scheduleArr", scheduleArray);
+
+      await fetch("/api/addClass", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(scheduleArray),
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  /**Yian
+   * function that adds class to bookClass
+   * @param {string} date
+   * @param {string} time
+   */
+  const addClass = (date, time) => {
+    console.log("line 209 BookClass.js, Date", date, "time", time);
+    console.log("bookClassMap: ", bookClassMap);
+    if (bookClassMap.has(`${date} ${time}`)) {
+      console.log("schedule conflict");
+      //to
+      console.log("Schedule Conflict, please select a different time");
+      alert("Schedule Conflict, please select a different time");
+    } else {
+      // const tempMap = new Map(bookClassMap)
+      // tempMap.set(`${date} ${time}`, {
+      //   date: date,
+      //   time: time,
+      //   tutor: tutorProfile.first_name,
+      // })
+      setBookClassMap((prev) => {
+        const tempMap = new Map(prev);
+        tempMap.set(`${date} ${time}`, {
+          date: date,
+          time: time,
+          tutor: tutorProfile.first_name,
+        });
+      });
+    }
+  };
+
+  //when confirm button is clicked, classes are added to DB
+  const confirmClasses = () => {
+    addClassBackend("test_user", bookClassMap.values());
+  };
 
   //Yian
   return (
@@ -181,7 +283,14 @@ function BookClass() {
         <div className="searchDiv">{renderFunc()}</div>
 
         {render === 3 ? (
-          <BookModal open={modalIsOpen} handleModal={handleModal} />
+          <BookModal
+            open={modalIsOpen}
+            handleModal={handleModal}
+            addClass={addClass}
+            confirmClasses={confirmClasses}
+            tutorProfile={tutorProfile}
+            bookDates={bookDates}
+          />
         ) : null}
         <Outlet />
       </div>

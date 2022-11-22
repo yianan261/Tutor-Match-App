@@ -8,12 +8,14 @@
 }
 
 #cardimage2 {
+  /* margin: 3%; */
   width: 90vw;
   background-color: #cdd3c7;
 }
 
 .card-body2 {
   padding: 5px;
+  /* font-size: large; */
   color: rgb(69, 80, 77);
   font-weight: 200;
 }
@@ -69,51 +71,41 @@
 }
 
 .review .review-base {
-  transform: translateX(10%);
   background: white;
-  opacity: 0.9;
-  font-weight: 300;
-  padding: 2% 5% 5% 5%;
+  padding: 20px 40px 40px 40px;
   border-radius: 10px;
+  margin-bottom: 40px;
   position: relative;
 }
 
 .review .review-base .review-text {
-  font-weight: 200;
-  text-indent: 5em;
-  line-height: 1.8em;
-}
-
-.review .review-base .review-text2 {
-  font-weight: 200;
   text-indent: 5em;
   line-height: 1.8em;
 }
 
 .review .review-base .review-text:before {
   content: "\201C";
-  position: fixed;
-  left: -50px;
-  top: 20px;
+  position: absolute;
+  left: -55px;
+  top: 35px;
   font-family: Georgia, serif;
-  font-size: 5rem;
+  font-size: 10rem;
   color: #cecece;
 }
 
 .review .review-base .review-text2:before {
   content: "\201D";
-  position: fixed;
-  bottom: -10%;
+  position: absolute;
+  bottom: -66%;
   right: 35px;
   font-family: Georgia, serif;
-  font-size: 5rem;
+  font-size: 10rem;
   color: #cecece;
 }
 
 .innerDiv {
   padding-top: 3%;
   transform: translateX(-10%);
-  padding-right: 2%;
 }
 
 .bookBtn {
@@ -140,52 +132,5 @@
 .btnSpan {
   display: flex;
   justify-content: center;
-  transform: translateY(5rem);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-.div2 {
-  transform: translateY(5%);
-  height: 40rem;
-  overflow-y: scroll;
-  scrollbar-color: light;
-  white-space: no-wrap;
-  margin-left: 0;
-}
-
-
-.div1 {
-  width: 10rem;
-  margin-right: 0;
-  padding-right: 0;
-}
-.student {
-  text-align: center;
-}
-
-.backBtn {
-  display: inline-block;
-  padding: 0.6em 1em;
-  border: 0.14rem solid #8f968f;
-  border-radius: 0.1em;
-  box-sizing: border-box;
-  text-decoration: none;
-  color: #666c69;
-  font-weight: 300;
-  background-color: inherit;
-  /* opacity: 0.7; */
-  text-align: center;
-  transition: all 0.2s;
-}
-.backBtn:hover {
-  color: #707769;
-  border: 0.16rem solid#707769;
-}
-.backDiv {
-  right: 0;
-  margin: 0;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  transform: translateY(8rem);
 }

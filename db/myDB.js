@@ -162,6 +162,47 @@ function MyMongoDB() {
     }
   };
 
+  /**
+   * Yian
+   * @param {String} user email
+   * @returns user's schedule
+   */
+  myDB.getUserSchedule = async (_user) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
+      const options = {
+        projection: { salt: 0, hash: 0 },
+      };
+      return await userCol.findOne({ user: _user }, options);
+    } finally {
+      client.close();
+    }
+  };
+
+
+
+  /**Yian
+   * Updates new bookings to "schedule" for user, if "schedule" doesn't exist one will be created
+   * @param {string} _user (ID)
+   * @param {array} _booking
+   */
+  myDB.createBooking = async (_user, _booking) => {
+    let client;
+    try {
+      console.log("show Booking DB", _booking);
+      
+      client = new MongoClient(url);
+      const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
+      return await userCol.updateOne(
+        { user: _user },
+        { $push: { schedule: { $each: _booking } } }
+      );
+    } finally {
+      client.close();
+    }
+  };
   return myDB;
 }
 

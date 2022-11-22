@@ -16,6 +16,7 @@ const LazySearch2 = React.lazy(() => import("./components/TutorInfo"));
 
 //Yian Chen
 function App() {
+
   return (
     <AuthProvider>
       <Routes>
@@ -46,6 +47,14 @@ function App() {
             // <RequireAuth>
               <EditProfilePage />
             // </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/profile/editProfile"
+          element={
+            <RequireAuth>
+              <EditProfilePage />
+            </RequireAuth>
           }
         ></Route>
         <Route path="/bookclass" element={<BookClass />}></Route>
