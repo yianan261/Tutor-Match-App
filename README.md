@@ -18,4 +18,5 @@ Design Docs [here](https://docs.google.com/document/d/1TX83QjBXnOxksskJH8em_gzH6
 # 60% completion by Nov 15
 https://github.com/yianan261/Tutor-Match-App/tree/602a17dd0e83302ea39311b539f68717950999fb
 
-# 80% completion by Nov 22 is tagged
+# 80% completion by Nov 22
+https://github.com/yianan261/Tutor-Match-App/tree/a0a0bdea6f071ef2d0fe2534192e95a47d190df8
