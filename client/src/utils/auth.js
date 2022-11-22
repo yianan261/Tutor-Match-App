@@ -1,4 +1,4 @@
-import { useState, createContext, useContext, useEffect} from "react";
+import { useState, createContext, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 
 const AuthContext = createContext(null);
@@ -15,26 +15,29 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const getCurrentUser = async () => {
       await fetch("/getUser")
-      .then(res=>{ console.log(res);
-        return res.json()})
-      .then(data=>{
-       if (data.user !== null){
-         setUser(data.user);
-       }
-      })
-   }
-   getCurrentUser();
-   console.log("user in get user", user);
+        .then((res) => {
+          console.log(res);
+          return res.json();
+        })
+        .then((data) => {
+          if (data.user !== null) {
+            setUser(data.user);
+          }
+        });
+    };
+    getCurrentUser();
+    console.log("user in get user", user);
   }, [user]);
 
   const login = (user) => {
     setUser(user);
-  }
+  };
 
   const logout = async () => {
     await fetch("/logout", {
-      method: "POST"
-    })
+      method: "POST",
+    });
+
     setUser(null);
   };
 
@@ -47,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 };
 
 AuthProvider.propTypes = {
-  children: PropTypes.any.isRequired
+  children: PropTypes.any.isRequired,
 };
 
 //function that returns current user
