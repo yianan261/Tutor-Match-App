@@ -62,7 +62,7 @@ router.get("/api/getSchedule", async (req, res) => {
     }
   } catch (err) {
     console.error(err);
-    res.status(404).json({ msg: `There was an error ${err}` });
+    res.status(404).json({ msg: `User not logged in ${err}` });
   }
 });
 
