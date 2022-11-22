@@ -41,14 +41,14 @@ function App() {
             // </RequireAuth>
           }
         ></Route>
-        <Route
+        {/* <Route
           path="/profile/editProfile"
           element={
             // <RequireAuth>
               <EditProfilePage />
             // </RequireAuth>
           }
-        ></Route>
+        ></Route> */}
         <Route
           path="/profile/editProfile"
           element={
