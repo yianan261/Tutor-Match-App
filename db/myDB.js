@@ -35,7 +35,9 @@ function MyMongoDB() {
         salt: _salt,
         hash: _hash,
         profile: displayName,
+        schedule: []
       });
+      console.log("user created")
       return res;
     } finally {
       client.close();
@@ -164,8 +166,8 @@ function MyMongoDB() {
 
   /**
    * Yian
-   * @param {String} user email
-   * @returns user's schedule
+   * @param {String} user ID
+   * @returns user's schedule if it exists or creates a schedule property and returns if not
    */
   myDB.getUserSchedule = async (_user) => {
     let client;
@@ -175,7 +177,18 @@ function MyMongoDB() {
       const options = {
         projection: { salt: 0, hash: 0 },
       };
-      return await userCol.findOne({ user: _user }, options);
+      const res = await userCol.findOne({ _id: ObjectId(_user) }, options);
+      return res
+      // console.log("res.schedule in db",res.schedule)
+      // if(res.schedule == null)console.log("res.schedule is null")
+      // if(res.schedule !== [] || res.schedule !== null){
+      //   console.log("logging db res.schedule",res.schedule)
+      //   return res
+      // }
+      // else{
+        
+      //   return await userCol.findOneAndUpdate({user:_user},{$set:{schedule:[]}})
+      // }
     } finally {
       client.close();
     }
