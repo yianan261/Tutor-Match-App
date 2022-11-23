@@ -152,12 +152,12 @@ function BookClass() {
    * book modal can only be opened when signed-in
    */
   const handleModal = () => {
-    if(auth.user){console.log("open modal");
-    setModalIsOpen(!modalIsOpen);}
-    else{
-      alert("Please sign in to book class")
+    if (auth.user) {
+      console.log("open modal");
+      setModalIsOpen(!modalIsOpen);
+    } else {
+      alert("Please sign in to book class");
     }
-    
   };
 
   /**Yian
@@ -207,7 +207,10 @@ function BookClass() {
   };
   //todo: update add class/delete class to backend
   console.log("bookClassMap HERE INITIAL FETCH", bookClassMap);
-  //Todo: get schedule for backend to check schedule conflicts
+  
+  /**Yian
+   * this function gets the schedule of the user and maps to bookClassMap
+   */
   useEffect(() => {
     try {
       const fetchSchedule = async () => {
@@ -225,7 +228,10 @@ function BookClass() {
           setBookClassMap(tempMap);
         }
       };
-      fetchSchedule();
+      //only fetch schedule if user is logged in
+      if (auth.user) {
+        fetchSchedule();
+      }
     } catch (err) {
       console.error(err);
     }
@@ -255,27 +261,36 @@ function BookClass() {
    */
   const addClass = (date, time) => {
     try {
-      console.log("line 209 BookClass.js, Date", date, "time", time);
-      console.log("bookClassMap: ", bookClassMap);
       if (bookClassMap.has(`${date} ${time}`)) {
-        console.log("schedule conflict");
-        //to
-        console.log("Schedule Conflict, please select a different time");
         alert("Schedule Conflict, please select a different time");
       } else {
-        const tempMap = new Map(bookClassMap)
+        const tempMap = new Map(bookClassMap);
         tempMap.set(`${date} ${time}`, {
           date: date,
           time: time,
           tutor: tutorProfile.first_name,
-        })
-        setBookClassMap(tempMap)
-     
-        console.log("added class showing bookClassMap",bookClassMap)
+        });
+        setBookClassMap(tempMap);
       }
     } catch (err) {
       console.error(err);
       alert(`There was an error ${err}`);
+    }
+  };
+
+  /**Yian Chen
+   * function that removes class from bookClassMap
+   * this function is passed to BookModal as prop
+   * @param {string} date 
+   * @param {string} time 
+   */
+  const removeClass = (date, time) => {
+    try {
+      const tempMap = new Map(bookClassMap)
+      tempMap.delete(`${date} ${time}`)
+      setBookClassMap(tempMap)
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -296,9 +311,11 @@ function BookClass() {
             open={modalIsOpen}
             handleModal={handleModal}
             addClass={addClass}
+            removeClass={removeClass}
             confirmClasses={confirmClasses}
             tutorProfile={tutorProfile}
             bookDates={bookDates}
+            bookClassMap={bookClassMap}
           />
         ) : null}
         <Outlet />
