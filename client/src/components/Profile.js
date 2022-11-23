@@ -12,10 +12,7 @@ import { AiOutlineMail } from "react-icons/ai";
  */
 function Profile() {
   const navigate = useNavigate();
-  
-
-   // if there is no user, then we redirect to login
-   useEffect(() => {
+  useEffect(() => {
     const getCurrentUser = async () => {
       await fetch("/getUser")
       .then(res=>{ console.log(res);
@@ -74,7 +71,7 @@ function Profile() {
       {profile.username ? "Hi, " + profile.username : "Welcome! Please proceed to edit your profile."}
       </div>
       <div>
-      {/* <AiOutlineMail /> {profile.email} */}
+      <AiOutlineMail/> {profile.email?  + profile.email: "Add your email in your edit profile settings."}
       {/* image */}
       </div>
       <div>
