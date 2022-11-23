@@ -3,24 +3,38 @@ import "../assets/styles/BookModal.css";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 
+/**
+ * Yian Chen
+ * @param {props} props from parent component BookClass.js
+ * @returns JSX of book modal UI
+ */
 function BookModal({
   open,
   handleModal,
   addClass,
+  removeClass,
   confirmClasses,
   tutorProfile,
   bookDates,
+  bookClassMap
 }) {
   if (!open) return null;
 
-  const handleDate = (_date, _time) => {
-    console.log(_date, _time);
-    addClass(_date, _time);
-  };
-
-  // const renderButton = ()=>{
-  // console.log("check bookClass",bookClass)
-  // }
+  /**
+   * function that renders button 
+   * adds time to bookClassMap when clicked
+   * removes from bookClassMap when clicked again
+   * @param {string} _date 
+   * @param {string} _time 
+   * @returns button UI
+   */
+  const renderButton = (_date,_time)=>{
+   return(<button
+    className= {bookClassMap.get(`${_date} ${_time}`)? "hourBtnSelect": "hourBtn"}
+    onClick={() => bookClassMap.get(`${_date} ${_time}`)? removeClass(_date, _time):addClass(_date, _time)}>
+    {_time}  {console.log("CHECK BOOKCLASSMAP BUTTON",bookClassMap.get(`${_date} ${_time}`))}
+  </button>) 
+  }
 
   return ReactDOM.createPortal(
     <div
@@ -51,12 +65,7 @@ function BookModal({
                   {tutorProfile.hours[idx].map((hr, i) => {
                     return (
                       <div key={i} className="hourDiv">
-                        <button
-                          className="hourBtn"
-                          onClick={() => handleDate(date, hr)}
-                        >
-                          {hr}
-                        </button>
+                      {renderButton(date,hr)}
                       </div>
                     );
                   })}
@@ -79,8 +88,10 @@ BookModal.propTypes = {
   open: PropTypes.bool,
   handleModal: PropTypes.func,
   addClass: PropTypes.func,
+  removeClass: PropTypes.func,
   confirmClasses: PropTypes.func,
   tutorProfile: PropTypes.object,
   bookDates: PropTypes.array,
+  bookClassMap:PropTypes.any
 };
 export default BookModal;
