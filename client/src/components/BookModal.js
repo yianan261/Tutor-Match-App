@@ -16,25 +16,34 @@ function BookModal({
   confirmClasses,
   tutorProfile,
   bookDates,
-  bookClassMap
+  bookClassMap,
 }) {
   if (!open) return null;
 
   /**
-   * function that renders button 
+   * function that renders time buttons
    * adds time to bookClassMap when clicked
    * removes from bookClassMap when clicked again
-   * @param {string} _date 
-   * @param {string} _time 
+   * @param {string} _date
+   * @param {string} _time
    * @returns button UI
    */
-  const renderButton = (_date,_time)=>{
-   return(<button
-    className= {bookClassMap.get(`${_date} ${_time}`)? "hourBtnSelect": "hourBtn"}
-    onClick={() => bookClassMap.get(`${_date} ${_time}`)? removeClass(_date, _time):addClass(_date, _time)}>
-    {_time}  {console.log("CHECK BOOKCLASSMAP BUTTON",bookClassMap.get(`${_date} ${_time}`))}
-  </button>) 
-  }
+  const renderButton = (_date, _time) => {
+    return (
+      <button
+        className={
+          bookClassMap.get(`${_date} ${_time}`) ? "hourBtnSelect" : "hourBtn"
+        }
+        onClick={() =>
+          bookClassMap.get(`${_date} ${_time}`)
+            ? removeClass(_date, _time)
+            : addClass(_date, _time)
+        }
+      >
+        {_time}
+      </button>
+    );
+  };
 
   return ReactDOM.createPortal(
     <div
@@ -65,7 +74,7 @@ function BookModal({
                   {tutorProfile.hours[idx].map((hr, i) => {
                     return (
                       <div key={i} className="hourDiv">
-                      {renderButton(date,hr)}
+                        {renderButton(date, hr)}
                       </div>
                     );
                   })}
@@ -92,6 +101,6 @@ BookModal.propTypes = {
   confirmClasses: PropTypes.func,
   tutorProfile: PropTypes.object,
   bookDates: PropTypes.array,
-  bookClassMap:PropTypes.any
+  bookClassMap: PropTypes.any,
 };
 export default BookModal;
