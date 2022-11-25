@@ -12,6 +12,7 @@ import { AuthProvider } from "./utils/auth";
 // import TutorInfo from "./components/TutorInfo";
 import TutorProfile from "./components/TutorProfile";
 import ManageBookingPage from "./pages/ManageBookingPage";
+import ClassHistoryPage from "./pages/ClassHistoryPage";
 const LazySearch = React.lazy(() => import("./components/SearchTutor"));
 const LazySearch2 = React.lazy(() => import("./components/TutorInfo"));
 
@@ -51,6 +52,7 @@ function App() {
           }
         ></Route>
         <Route path="/profile/manageBooking" element={<ManageBookingPage/>}></Route>
+        <Route path="/profile/classHistory" element={<ClassHistoryPage/>}></Route>
         <Route path="/bookclass" element={<BookClass />}></Route>
         {/* lazy loading source: https://www.youtube.com/watch?v=MJn4W7pR6RU&list=PLC3y8-rFHvwjkxt8TOteFdT_YmzwpBlrG&index=14 */}
         <Route

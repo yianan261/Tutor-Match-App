@@ -247,7 +247,6 @@ function MyMongoDB() {
   myDB.makeBooking = async (_user, _booking) => {
     let client;
     try {
-      console.log("show Booking DB", _booking);
       client = new MongoClient(url);
       const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
       return await userCol.updateOne(
@@ -259,10 +258,14 @@ function MyMongoDB() {
     }
   };
 
+  /**Yian Chen
+   * function that deletes user class booking 
+   * @param {object} _booking object 
+   * @returns 
+   */
   myDB.deleteBooking = async (_booking) => {
     let client;
     try {
-      console.log("BOOKING DB", _booking);
       client = new MongoClient(url);
       const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
       return await userCol.updateOne(

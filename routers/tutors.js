@@ -50,6 +50,9 @@ router.post("/api/addClass", async (req, res) => {
   }
 });
 
+/**Yian Chen
+ * function that gets user schedule for user to make booking
+ */
 router.get("/api/getSchedule", async (req, res) => {
   try {
     const user = req.session.passport.user;

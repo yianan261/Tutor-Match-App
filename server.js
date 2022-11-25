@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import tutor from "./routers/tutors.js";
 import manageBooking from "./routers/manageBooking.js"
+import classHistory from "./routers/classHistory.js"
 import editProfile from "./routers/editProfile.js";
 import profile from "./routers/profile.js";
 import session from "express-session";
@@ -50,6 +51,7 @@ app.use("/", register);
 app.use("/", profile);
 app.use("/", editProfile);
 app.use("/", manageBooking);
+app.use("/", classHistory);
 
 app.listen(
   PORT,

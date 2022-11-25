@@ -3,9 +3,11 @@ import ManageBook from '../components/ManageBook'
 import Navbar from '../components/Navbar'
 import SideNav from '../components/SideNav'
 
+//Yian Chen
+//Manage Booking page 
 function ManageBookingPage() {
   return (
-    <div>ManageBookingPage
+    <div>
     <Navbar />
       <div className="flex">
       <SideNav />
