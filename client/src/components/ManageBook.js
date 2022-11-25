@@ -103,6 +103,9 @@ function ManageBook() {
             <p className="tutorp">
               <strong>Tutor :</strong> {i.tutor}
             </p>
+            <p className="subjectp">
+              <strong>Subject :</strong> {i.subject}
+            </p>
             <span className="deleteBtnSpanBook">
               {renderDeleteBtn(i.date, i.time, i.tutor)}
             </span>

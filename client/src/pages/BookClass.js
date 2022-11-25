@@ -274,8 +274,10 @@ function BookClass() {
           date: date,
           time: time,
           tutor: tutorProfile.first_name,
+          subject: tutorProfile.subjects
         });
         setBookClassMap(tempMap);
+    
       }
     } catch (err) {
       console.error(err);
