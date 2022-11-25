@@ -32,23 +32,19 @@ passport.use(strategy);
 
 passport.serializeUser((user, cb) => {
   process.nextTick(function () {
-    console.log("user in serialize", user._id.toString());
     cb(null, user._id.toString());
   });
 });
 
 passport.deserializeUser(async (user_id, cb) => {
   const res = await myDB.getUsersById(user_id);
-  console.log("deserialize", res._id.toString());
   process.nextTick(function () {
     return cb(null, res);
   });
 });
 
 router.post("/login/password", (req, res, next) => {
-  console.log("login body router", req.body);
   passport.authenticate("local", function (err, user) {
-    console.log("passport authenticate user", user._id);
     if (err) {
       return next(err);
     }
@@ -59,12 +55,9 @@ router.post("/login/password", (req, res, next) => {
       });
     }
     req.logIn(user, function (err) {
-      console.log("req.session.passport.user", req.session.passport.user);
       if (err) {
-        console.log("unsuccess");
         return next(err);
       }
-      console.log("success pw correct and user existed");
       return res
         .status(320)
         .json({ status: "ok", user: req.session.passport.user });
@@ -74,21 +67,15 @@ router.post("/login/password", (req, res, next) => {
 
 
 router.get("/getUser", async (req, res) => {
-  console.log("getUSer123", req.session.passport);
   if (req.isAuthenticated()) {
-    console.log("authenticated 123");
-    console.log("getUser", req.session.passport);
     res.status(200).json({ user: req.session.passport.user });
   } else {
-    console.log("not authenticated?????");
     res.json({ user: null });
   }
 });
 
 router.post("/logout", async (req, res, next) => {
-  console.log("logout", req.session.passport);
   req.logout(function (err) {
-    console.log("logout", req.session.passport);
     if (err) {
       return next(err);
     }

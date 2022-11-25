@@ -1,11 +1,11 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/styles/EditProfile.css";
 import bulb2 from "../assets/images/bulb2.png";
 import { useNavigate } from "react-router-dom";
 
 /**
  * Amanda Au-Yeung
- * Edits profile by making sure it pulls out default information 
+ * Edits profile by making sure it pulls out default information
  * from the DB before updating
  * @returns jsx of edit-profile rendering
  */
@@ -21,29 +21,49 @@ function EditProfile() {
   });
   const [schedule, setSchedule] = useState([]);
   const [pic, setPic] = useState(null);
+  // const [fileInputState, setFileInputState] = useState("");
+  // const [selectedFile, setSelectedFile] = useState();
+
+  // if there is no user, then we redirect to login,
+  // else we are fetching the existing data
+  useEffect(() => {
+    const getCurrentUser = async () => {
+      await fetch("/getUser")
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.user === null) {
+            navigate("/login");
+          } else {
+            fetchExistData();
+          }
+        });
+    };
+    getCurrentUser();
+  }, []);
 
   // setting default values
-  useEffect(() => {
-    const fetchExistData = async () => {
-      await fetch("/profile/editProfile")
-      .then(res => res.json())
-      .then(data => {
+  // useEffect(() => {
+  const fetchExistData = async () => {
+    // let profilePicture;
+    await fetch("/profile/editProfile")
+      .then((res) => res.json())
+      .then((data) => {
         let profileInDB = data.profile;
         let profileData = new Map();
-        profileData['username'] = profileInDB.displayName;
-        profileData['fName'] = profileInDB.fName;
-        profileData['lName'] = profileInDB.lName;
-        profileData['email'] = profileInDB.email;
-        profileData['subjects'] = profileInDB.subjects;
-        profileData['location'] = profileInDB.location;
+        profileData["username"] = profileInDB.displayName;
+        profileData["fName"] = profileInDB.fName;
+        profileData["lName"] = profileInDB.lName;
+        profileData["email"] = profileInDB.email;
+        profileData["subjects"] = profileInDB.subjects;
+        profileData["location"] = profileInDB.location;
         setProfile(profileData);
         setSchedule(data.profile.schedule);
-        setPic(data.profile.pic);
+        setPic(data.pic);
       })
-    } 
-    fetchExistData();
-  }, []);
-  
+  };
+
   // updates the value
   const handleSaveProfile = async (e) => {
     e.preventDefault();
@@ -60,11 +80,9 @@ function EditProfile() {
         subjects: profile.subjects,
         location: profile.location,
         schedule: schedule,
-        pic: pic,
       }),
     });
     const resProfile = await profileInfo.json();
-    console.log("resProfile in edit profile", resProfile);
     alert(resProfile.message);
     navigate("/Profile");
   };
@@ -90,6 +108,7 @@ function EditProfile() {
     setPic(window.URL.createObjectURL(file));
   };
 
+
   return (
     <div className="EditProfile">
       <div className="container-xl px-4 mt-4">
@@ -110,18 +129,34 @@ function EditProfile() {
                   JPG or PNG no larger than 5 MB
                 </div>
                 {/* <!-- Profile picture upload button--> */}
-                <div>
-                  <label htmlFor="files" className="btn btn-primary">
-                    Upload new image
-                  </label>
-                  <input
-                    id="files"
-                    type="file"
-                    onChange={(e) => {
-                      uploadImage(e.target.files[0]);
-                    }}
-                  />
-                </div>
+                <form
+                  id="picForm"
+                  action="/upload"
+                  method="POST"
+                  encType="multipart/form-data"
+                >
+                  {/* <form id="picForm"> */}
+                  <div>
+                    <label htmlFor="files" className="btn btn-primary">
+                      Upload new image
+                    </label>
+                    <input
+                      id="files"
+                      name="img"
+                      type="file"
+                      onChange={
+                        (e) => {
+                        uploadImage(e.target.files[0]);
+                        // { handleFileInputChange }
+                        }
+                      }
+                    />
+                    <button className="btn btn-primary" type="submit">
+                      Save Profile Picture
+                    </button>
+                    {/* <input className="btn btn-primary" type="submit"/> */}
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -130,7 +165,8 @@ function EditProfile() {
             <div className="mb-4 pl-3">
               <div className="card-header">Account Details</div>
               <div className="card-body">
-                <form onSubmit={handleSaveProfile}>
+                <form id="mainForm" onSubmit={handleSaveProfile}>
+                  {/* <form id="mainForm"> */}
                   {/* <!-- Form Group (username)--> */}
                   <div className="mb-3">
                     <label className="small mb-1" htmlFor="inputUsername">
@@ -142,7 +178,7 @@ function EditProfile() {
                       type="text"
                       placeholder="Enter your username"
                       name="username"
-                      value={profile.username}
+                      value={profile.username || ""}
                       onChange={onInputChange}
                     />
                   </div>
@@ -159,7 +195,7 @@ function EditProfile() {
                         type="text"
                         placeholder="Enter your first name"
                         name="fName"
-                        value={profile.fName}
+                        value={profile.fName || ""}
                         onChange={onInputChange}
                       />
                     </div>
@@ -174,7 +210,7 @@ function EditProfile() {
                         type="text"
                         placeholder="Enter your last name"
                         name="lName"
-                        value={profile.lName}
+                        value={profile.lName || ""}
                         onChange={onInputChange}
                       />
                     </div>
@@ -189,7 +225,7 @@ function EditProfile() {
                       type="email"
                       placeholder="Enter your email address"
                       name="email"
-                      value={profile.email}
+                      value={profile.email || ""}
                       onChange={onInputChange}
                     />
                   </div>
@@ -207,7 +243,7 @@ function EditProfile() {
                         type="text"
                         placeholder="Subject"
                         name="subjects"
-                        value={profile.subjects}
+                        value={profile.subjects || ""}
                         onChange={onInputChange}
                       />
                     </div>
@@ -222,7 +258,7 @@ function EditProfile() {
                         type="text"
                         placeholder="Enter your location"
                         name="location"
-                        value={profile.location}
+                        value={profile.location || ""}
                         onChange={onInputChange}
                       />
                     </div>
@@ -240,7 +276,7 @@ function EditProfile() {
                       multiple={true}
                       className="form-control"
                       name="schedule"
-                      value={schedule}
+                      value={schedule || ""}
                       onChange={(e) => {
                         handleMultiSelect(e.target.selectedOptions);
                       }}

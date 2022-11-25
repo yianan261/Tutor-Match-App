@@ -14,11 +14,13 @@ import login from "./routers/login.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 5001;
+
 
 app.use(express.static(path.join(__dirname, "client/build")));
 app.use(logger("dev"));
@@ -49,6 +51,7 @@ app.use("/", login);
 app.use("/", register);
 app.use("/", profile);
 app.use("/", editProfile);
+
 
 app.listen(
   PORT,

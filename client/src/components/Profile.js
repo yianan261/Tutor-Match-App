@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 // import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/styles/Profile.css";
@@ -12,22 +12,6 @@ import { AiOutlineMail } from "react-icons/ai";
  */
 function Profile() {
   const navigate = useNavigate();
-  useEffect(() => {
-    const getCurrentUser = async () => {
-      await fetch("/getUser")
-      .then(res=>{ console.log(res);
-        return res.json()})
-      .then(data=>{
-        console.log("get current user", data);
-       if (data.user === null){
-         navigate("/login")
-       }
-      })
-   }
-   
-   getCurrentUser();
-  }, []);
-
   const [profile, setProfile] = useState({
     username: "",
     fName: "",
@@ -38,12 +22,27 @@ function Profile() {
   });
   const [schedule, setSchedule] = useState([]);
   // const [pic, setPic] = useState(null);
-  
-   // if there is no user, then we redirect to login
-   
+
+  // if there is no user, then we redirect to login,
+  // else we are fetching the existing data
+  useEffect(() => {
+    const getCurrentUser = async () => {
+      await fetch("/getUser")
+      .then(res=>{ console.log(res);
+        return res.json()})
+      .then(data=>{
+        console.log("get current user", data);
+       if (data.user === null){
+         navigate("/login")
+       } else {
+        fetchExistData();
+       }
+      })
+   }
+   getCurrentUser();
+  }, []);
 
   // setting default values
-  useEffect(() => {
     const fetchExistData = async () => {
       await fetch("/profile/editProfile")
       .then(res => res.json())
@@ -59,10 +58,8 @@ function Profile() {
         setProfile(profileData);
         setSchedule(data.profile.schedule);
         // setPic(data.profile.pic);
-      })
-    } 
-    fetchExistData();
-  }, [])
+      })};
+ 
 
   return (
     <div className="container-profile">
@@ -71,7 +68,7 @@ function Profile() {
       {profile.username ? "Hi, " + profile.username : "Welcome! Please proceed to edit your profile."}
       </div>
       <div>
-      <AiOutlineMail/> {profile.email?  + profile.email: "Add your email in your edit profile settings."}
+      <AiOutlineMail/> {profile.email?  profile.email: "Add your email in your edit profile settings."}
       {/* image */}
       </div>
       <div>

@@ -9,7 +9,7 @@ dotenv.config({ path: ".env" });
  */
 function MyMongoDB() {
   const myDB = {};
-  const url = process.env.MONGO_URI || "mongodb://localhost:27017";
+  const url = "mongodb://localhost:27017" || process.env.MONGO_URI;
   const DB_NAME = "TutorsApp";
   const USER_COLLECTION = "users";
   const TUTORS_COLLECTION = "tutors";
@@ -36,6 +36,7 @@ function MyMongoDB() {
         salt: _salt,
         hash: _hash,
         profile: displayName,
+        pic: null,
         schedule: [],
       });
       console.log("user created");
@@ -61,7 +62,7 @@ function MyMongoDB() {
         projection: { salt: 1, hash: 1, profile: 1 },
       };
       const res = await usersCol.findOne({ user: _email }, options);
-      console.log("res in getUser by email", res);
+      // console.log("res in getUser by email", res);
       return res;
     } finally {
       client.close();
@@ -91,8 +92,7 @@ function MyMongoDB() {
    * Amanda
    * updates profile after the user edits the profile
    * @param {String} id
-   * @param {*} displayName
-   * @param {*} updatedProfile
+   * @param {Object} updatedProfile
    * @returns
    */
   myDB.updatesProfile = async (id, updatedProfile) => {
@@ -111,6 +111,36 @@ function MyMongoDB() {
           },
         }
       );
+      return res;
+    } finally {
+      client.close();
+    }
+  };
+
+    /**
+   * Amanda
+   * updates profile pic
+   * @param {String} id
+   * @param {String} picPath
+   * @returns
+   */
+  myDB.updatesPic = async (id, picPath) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const usersCol = db.collection(USER_COLLECTION);
+      const res = await usersCol.updateOne(
+        {
+          _id: ObjectId(id),
+        },
+        {
+          $set: {
+            pic: picPath,
+          },
+        }
+      );
+      console.log("res in updatesPic", res);
       return res;
     } finally {
       client.close();
