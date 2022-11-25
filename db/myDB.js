@@ -253,6 +253,19 @@ function MyMongoDB() {
       client.close();
     }
   };
+
+  myDB.deleteBooking= async(_booking) =>{
+    let client;
+    try{
+      console.log("BOOKING DB",_booking)
+      client = new MongoClient(url);
+      const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
+      return await userCol.updateOne({_id: ObjectId(_booking.user)},{$pull: { schedule: { date: _booking.date,time:_booking.time}} })
+    }finally {
+      client.close();
+    }
+
+  }
   return myDB;
 }
 
