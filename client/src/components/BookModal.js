@@ -32,7 +32,11 @@ function BookModal({
     return (
       <button
         className={
-          bookClassMap.get(`${_date} ${_time}`) ? "hourBtnSelect" : "hourBtn"
+          bookClassMap.get(`${_date} ${_time}`) &&
+          bookClassMap.get(`${_date} ${_time}`).tutor ===
+            tutorProfile.first_name
+            ? "hourBtnSelect"
+            : "hourBtn"
         }
         onClick={() =>
           bookClassMap.get(`${_date} ${_time}`)

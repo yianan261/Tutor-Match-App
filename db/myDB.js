@@ -170,11 +170,12 @@ function MyMongoDB() {
    * function that gets user current schedule, also sorts history,
    * if the schedule date is a past date it will create a history property
    * @param {String} user ID
-   * @returns user's schedule and doesn't return salt and hash information to client
+   * @returns updated user's schedule and doesn't return salt and hash information to client
    */
   myDB.getUserSchedule = async (_user) => {
     let client;
     let historyDate = [];
+    let updateRes;
     try {
       client = new MongoClient(url);
       const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
@@ -182,6 +183,7 @@ function MyMongoDB() {
         projection: { salt: 0, hash: 0 },
       };
       const res = await userCol.findOne({ _id: ObjectId(_user) }, options);
+      console.log("Res in DB", res);
       if (res.schedule !== []) {
         const todayDate = new Date();
         //move old bookings to history
@@ -222,13 +224,16 @@ function MyMongoDB() {
           { _id: ObjectId(_user) },
           { $set: { schedule: newSchedule } }
         );
+
+        updateRes = await userCol.findOne({ _id: ObjectId(_user) });
       }
       //updates history
       await userCol.updateOne(
         { _id: ObjectId(_user) },
         { $set: { history: historyDate } }
       );
-      return res;
+      //return updated schedule
+      return updateRes;
     } finally {
       client.close();
     }
@@ -254,18 +259,20 @@ function MyMongoDB() {
     }
   };
 
-  myDB.deleteBooking= async(_booking) =>{
+  myDB.deleteBooking = async (_booking) => {
     let client;
-    try{
-      console.log("BOOKING DB",_booking)
+    try {
+      console.log("BOOKING DB", _booking);
       client = new MongoClient(url);
       const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
-      return await userCol.updateOne({_id: ObjectId(_booking.user)},{$pull: { schedule: { date: _booking.date,time:_booking.time}} })
-    }finally {
+      return await userCol.updateOne(
+        { _id: ObjectId(_booking.user) },
+        { $pull: { schedule: { date: _booking.date, time: _booking.time } } }
+      );
+    } finally {
       client.close();
     }
-
-  }
+  };
   return myDB;
 }
 

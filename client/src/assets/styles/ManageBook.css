@@ -1,20 +1,24 @@
-.mainDiv {
+.mainDivBook {
   margin-top: 3%;
   width: 90%;
   padding: 3% 3% 3% 3%;
+  margin: auto;
 }
 
-.title {
+.titleBook {
   text-align: center;
   color: rgb(247, 102, 18);
   padding-bottom: 2%;
+  
 }
 
-.innerDiv {
+.innerDivBook {
   transform: translateX(2%);
   margin: auto;
   width: 95%;
-  height: 80vh;
+  min-height: 80vh;
+  height: auto !important;
+  height:100%;
   background-color: rgb(242, 248, 239);
   text-align: center;
   padding: 3% 3% 3% 3%;
@@ -22,8 +26,12 @@
   display: inline-block;
   position: relative;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  /* min-height: 100%;
+        height: auto !important;
+        height: 100%; */
+  
 }
-.scheduleDiv {
+.scheduleDivBook {
   display: flex;
   width: 90%;
   background-color: rgb(255, 254, 250);
@@ -52,4 +60,30 @@
   padding-top: 2%;
   color:rgb(86, 90, 77);
   font-weight:500;
+}
+
+.deleteBtnBook{
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  border-radius: 0.20em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 400;
+  color: #ffffff;
+  background-color: #879ff6;
+  outline: none;
+  border: none;
+  box-shadow: inset 0 -0.6em 0 -0.35em rgba(90, 57, 57, 0.17);
+  text-align: center;
+  position: relative;
+}
+
+.deleteBtnBook:hover{
+  background-color: #b5c3f5;
+}
+.deleteBtnSpanBook{
+  margin-left:40%;
+  margin-top:auto;
+  margin-bottom: auto;
+ 
 }

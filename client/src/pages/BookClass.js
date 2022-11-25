@@ -207,7 +207,7 @@ function BookClass() {
   };
   //todo: update add class/delete class to backend
   console.log("bookClassMap HERE INITIAL FETCH", bookClassMap);
-  
+
   /**Yian
    * this function gets the schedule of the user and maps to bookClassMap
    */
@@ -239,7 +239,7 @@ function BookClass() {
 
   /**
    * Yian Chen
-   * @param {Map Iterator Object} schedule 
+   * @param {Map Iterator Object} schedule
    */
   const addClassBackend = async (schedule) => {
     try {
@@ -286,14 +286,14 @@ function BookClass() {
   /**Yian Chen
    * function that removes class from bookClassMap
    * this function is passed to BookModal as prop
-   * @param {string} date 
-   * @param {string} time 
+   * @param {string} date
+   * @param {string} time
    */
   const removeClass = (date, time) => {
     try {
-      const tempMap = new Map(bookClassMap)
-      tempMap.delete(`${date} ${time}`)
-      setBookClassMap(tempMap)
+      const tempMap = new Map(bookClassMap);
+      tempMap.delete(`${date} ${time}`);
+      setBookClassMap(tempMap);
     } catch (err) {
       console.error(err);
     }
@@ -302,7 +302,8 @@ function BookClass() {
   //when confirm button is clicked, classes are added to DB
   const confirmClasses = () => {
     addClassBackend(bookClassMap.values());
-    setModalIsOpen(!modalIsOpen)
+    alert("Class Booked");
+    setModalIsOpen(!modalIsOpen);
   };
 
   //Yian
