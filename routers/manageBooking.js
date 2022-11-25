@@ -7,7 +7,7 @@ router.post("/deleteClass", async (req, res) => {
     // const user = req.session.passport.user;
     // console.log("backend user", user);
     const scheduleObj = req.body;
-    console.log("ScheduleOBJ backend",scheduleObj)
+    console.log("ScheduleOBJ backend", scheduleObj);
     await myDB.deleteBooking(scheduleObj);
     res.status(200).json({ msg: "Class removed" });
   } catch (err) {

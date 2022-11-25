@@ -15,17 +15,19 @@ function ManageBook() {
   useEffect(() => {
     const getCurrentUser = async () => {
       await fetch("/getUser")
-      .then(res=>{ console.log(res);
-        return res.json()})
-      .then(data=>{
-        console.log("get current user", data);
-       if (data.user === null){
-         console.log("no user")
-       }
-      })
-   }
-   
-   getCurrentUser();
+        .then((res) => {
+          console.log(res);
+          return res.json();
+        })
+        .then((data) => {
+          console.log("get current user", data);
+          if (data.user === null) {
+            console.log("no user");
+          }
+        });
+    };
+
+    getCurrentUser();
   }, []);
   /**Yian
    * this function gets the schedule of the user and maps to bookClassMap
@@ -47,7 +49,7 @@ function ManageBook() {
     } catch (err) {
       console.error(err);
     }
-  }, [remove,auth]);
+  }, [remove, auth]);
 
   const removeClass = async (date, time, tutor) => {
     try {
@@ -75,7 +77,6 @@ function ManageBook() {
     }
   };
 
-
   const renderDeleteBtn = (date, time, tutor) => {
     return (
       <button
@@ -89,31 +90,31 @@ function ManageBook() {
   return (
     <div className="mainDivBook">
       <div className="innerDivBook">
-    <h2 className="titleBook">My Schedule</h2>
-   {schedule.map((i, idx) => {
-      return (
-        <div className="line1" key={`${i.date}_${idx}`}>
-          <div className="scheduleDivBook">
-            <p className="datep">
-              <strong>Date :</strong> {i.date}
-            </p>
-            <p className="timep">
-              <strong>Time :</strong> {i.time}
-            </p>
-            <p className="tutorp">
-              <strong>Tutor :</strong> {i.tutor}
-            </p>
-            <p className="subjectp">
-              <strong>Subject :</strong> {i.subject}
-            </p>
-            <span className="deleteBtnSpanBook">
-              {renderDeleteBtn(i.date, i.time, i.tutor)}
-            </span>
-          </div>
-        </div>
-      );
-    })}
-    </div>
+        <h2 className="titleBook">My Schedule</h2>
+        {schedule.map((i, idx) => {
+          return (
+            <div className="line1" key={`${i.date}_${idx}`}>
+              <div className="scheduleDivBook">
+                <p className="datep">
+                  <strong>Date :</strong> {i.date}
+                </p>
+                <p className="timep">
+                  <strong>Time :</strong> {i.time}
+                </p>
+                <p className="tutorp">
+                  <strong>Tutor :</strong> {i.tutor}
+                </p>
+                <p className="subjectp">
+                  <strong>Subject :</strong> {i.subject}
+                </p>
+                <span className="deleteBtnSpanBook">
+                  {renderDeleteBtn(i.date, i.time, i.tutor)}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

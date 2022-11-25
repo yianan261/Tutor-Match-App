@@ -38,8 +38,8 @@ router.get("/book/tutors/:tutorId", async (req, res) => {
  */
 router.post("/api/addClass", async (req, res) => {
   try {
-    const user = req.session.passport.user 
-    console.log("backend user",user)
+    const user = req.session.passport.user;
+    console.log("backend user", user);
     const booking = req.body;
     console.log("booking", req.body);
     await myDB.makeBooking(user, booking);
@@ -52,10 +52,10 @@ router.post("/api/addClass", async (req, res) => {
 
 router.get("/api/getSchedule", async (req, res) => {
   try {
-    const user = req.session.passport.user
-    console.log("LOG USER,",user)
+    const user = req.session.passport.user;
+    console.log("LOG USER,", user);
     const getSchedule = await myDB.getUserSchedule(user);
-    console.log("getSchedule",getSchedule)
+    console.log("getSchedule", getSchedule);
     if (getSchedule) {
       res.status(200).json({ data: getSchedule });
     }
