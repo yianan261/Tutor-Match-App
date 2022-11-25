@@ -1,5 +1,5 @@
 .sidenav {
-  width: 250px;
+  width: 15rem;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -12,16 +12,18 @@
   padding: 0;
   padding-bottom: 5%;
   padding-top: 40%;
-  margin-top: 85px;
+  margin-top: 50px;
   list-style-type: none;
+  margin-right: 5%;
 }
 
 .sidenav__list-item {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 15% 10% 15% 20%;
-  font-size: 1.05rem;
+  white-space:nowrap;
+  padding: 20% 12% 20% 6%;
+  /* font-size: 2rem; */
   box-shadow: rgba(70, 99, 70, 0.1) 0px 1px 1px 0px;
 }
 
@@ -29,13 +31,14 @@
   text-decoration: none;
   color: rgb(53, 68, 66);
   font-size: 18px;
-  width: 95%;
+  width: 100%;
   height: 100%;
   display: flex;
 }
 
 .sidenav__list-item:hover {
   background-color: #cccab3;
+  width: 120%;
   cursor: pointer;
 }
 
@@ -45,4 +48,13 @@
 
 .sideNavIcon {
   padding-right: 5%;
+}
+
+.sideNavText{
+  font-size: 1rem;
+  transform: translateY(5%);
+}
+
+.sideNavIcon{
+  padding-right: 10%;
 }

@@ -237,8 +237,13 @@ function BookClass() {
     }
   }, []);
 
-  const addClassBackend = async (user, schedule) => {
+  /**
+   * Yian Chen
+   * @param {Map Iterator Object} schedule 
+   */
+  const addClassBackend = async (schedule) => {
     try {
+      //convert to array of objects
       const scheduleArray = Array.from(schedule);
       console.log("scheduleArr", scheduleArray);
 
@@ -296,7 +301,8 @@ function BookClass() {
 
   //when confirm button is clicked, classes are added to DB
   const confirmClasses = () => {
-    addClassBackend("test_user", bookClassMap.values());
+    addClassBackend(bookClassMap.values());
+    setModalIsOpen(!modalIsOpen)
   };
 
   //Yian

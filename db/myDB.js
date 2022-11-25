@@ -184,6 +184,7 @@ function MyMongoDB() {
       const res = await userCol.findOne({ _id: ObjectId(_user) }, options);
       if (res.schedule !== []) {
         const todayDate = new Date();
+        //move old bookings to history
         res.schedule.forEach((d) => {
           const newTemp = d.date.split("/").join("-");
           const currDate = new Date(newTemp);
@@ -202,7 +203,27 @@ function MyMongoDB() {
             historyDate.push(newHistoryObj);
           }
         });
+        //update schedule, old dates filtered out of schedule array
+        //also deduplicates repeated objects in the schedule array
+        const newSchedule = res.schedule.filter((item, idx) => {
+          const _value = JSON.stringify(item);
+          const newTemp = item.date.split("/").join("-");
+          const currDate = new Date(newTemp);
+          return (
+            currDate >= todayDate &&
+            idx ===
+              res.schedule.findIndex((obj) => {
+                return JSON.stringify(obj) === _value;
+              })
+          );
+        });
+        //updates new schedule
+        await userCol.updateOne(
+          { _id: ObjectId(_user) },
+          { $set: { schedule: newSchedule } }
+        );
       }
+      //updates history
       await userCol.updateOne(
         { _id: ObjectId(_user) },
         { $set: { history: historyDate } }
@@ -214,19 +235,18 @@ function MyMongoDB() {
   };
 
   /**Yian
-   * Updates new bookings to "schedule" for user, if "schedule" doesn't exist one will be created
+   * Updates new bookings to "schedule" for user
    * @param {string} _user (ID)
    * @param {array} _booking
    */
-  myDB.createBooking = async (_user, _booking) => {
+  myDB.makeBooking = async (_user, _booking) => {
     let client;
     try {
       console.log("show Booking DB", _booking);
-
       client = new MongoClient(url);
       const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
       return await userCol.updateOne(
-        { user: _user },
+        { _id: ObjectId(_user) },
         { $push: { schedule: { $each: _booking } } }
       );
     } finally {
