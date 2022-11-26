@@ -31,6 +31,11 @@
     padding: 1em 1em 1em 1em;
 }
 
+.policy {
+    position: absolute;
+    bottom: 0;
+}
+
 .img-account-profile {
     border-radius: 50%;
     justify-content: right;

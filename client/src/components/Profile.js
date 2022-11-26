@@ -106,18 +106,20 @@ function Profile() {
           <br></br>
           <h3>Dashboard</h3>
           Welcome!
-          <div>
-            Total Classes:
-          </div>
+          <div>Total Classes:</div>
         </div>
       </div>
 
       <div className="schedule">
         <h3>Schedule</h3>
-        Policy:
-        <li>Lesson cancellation: 1 hour notice required</li>
-        <AiOutlineMessage /> Send tutor a message<br></br>
-        <AiOutlineSchedule /> Book a Trial
+        <div className="policy">
+          Policy:
+          <li>Lesson cancellation: 1 hour notice required</li>
+          <div>
+            <AiOutlineMessage /> Send tutor a message<br></br>
+            <AiOutlineSchedule /> Book a Trial
+          </div>
+        </div>
       </div>
     </div>
   );
