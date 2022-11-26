@@ -28,6 +28,7 @@
     height: 500px;
     border-radius: 3%;
     box-shadow: 8px 3px 3px rgb(129, 172, 129);
+    padding: 1em 1em 1em 1em;
 }
 
 .img-account-profile {
