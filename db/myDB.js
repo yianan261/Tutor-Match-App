@@ -227,11 +227,12 @@ function MyMongoDB() {
    * function that gets user current schedule, also sorts history,
    * if the schedule date is a past date it will create a history property
    * @param {String} user ID
-   * @returns user's schedule and doesn't return salt and hash information to client
+   * @returns updated user's schedule and doesn't return salt and hash information to client
    */
   myDB.getUserSchedule = async (_user) => {
     let client;
-    let historyDate = [];
+
+    let updateRes;
     try {
       client = new MongoClient(url);
       const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
@@ -239,52 +240,119 @@ function MyMongoDB() {
         projection: { salt: 0, hash: 0 },
       };
       const res = await userCol.findOne({ _id: ObjectId(_user) }, options);
-      if (res.schedule !== []) {
-        const todayDate = new Date();
-        res.schedule.forEach((d) => {
-          const newTemp = d.date.split("/").join("-");
-          const currDate = new Date(newTemp);
-          if (todayDate > currDate) {
-            const newHistoryObj = {};
-            //convert date object back to string
-            const currTemp =
-              ("0" + (currDate.getMonth() + 1)).slice(-2) +
-              "/" +
-              ("0" + currDate.getDate()).slice(-2) +
-              "/" +
-              currDate.getFullYear();
-            newHistoryObj.date = currTemp;
-            newHistoryObj.time = d.time;
-            newHistoryObj.tutor = d.tutor;
-            historyDate.push(newHistoryObj);
-          }
-        });
-      }
+      console.log("Res in DB", res);
+      let historyDate = res.history;
+
+      const todayDate = new Date();
+
+      //move old bookings to history
+      res.schedule.forEach((d) => {
+        const newTemp = d.date.split("/").join("-");
+        const currDate = new Date(newTemp);
+        if (todayDate > currDate) {
+          const newHistoryObj = {};
+          //convert date object back to string
+          const currTemp =
+            ("0" + (currDate.getMonth() + 1)).slice(-2) +
+            "/" +
+            ("0" + currDate.getDate()).slice(-2) +
+            "/" +
+            currDate.getFullYear();
+          newHistoryObj.date = currTemp;
+          newHistoryObj.time = d.time;
+          newHistoryObj.tutor = d.tutor;
+          newHistoryObj.last_name = d.tutor_lastname;
+          newHistoryObj.subject = d.subject;
+          historyDate.push(newHistoryObj);
+        }
+      });
+      //update schedule, old dates filtered out of schedule array
+      //also deduplicates repeated objects in the schedule array
+      const newSchedule = res.schedule.filter((item, idx) => {
+        const _value = JSON.stringify(item);
+        const newTemp = item.date.split("/").join("-");
+        const currDate = new Date(newTemp);
+        return (
+          currDate >= todayDate &&
+          idx ===
+            res.schedule.findIndex((obj) => {
+              return JSON.stringify(obj) === _value;
+            })
+        );
+      });
+      //updates new schedule
+      await userCol.updateOne(
+        { _id: ObjectId(_user) },
+        { $set: { schedule: newSchedule } }
+      );
+
+      //updates history
       await userCol.updateOne(
         { _id: ObjectId(_user) },
         { $set: { history: historyDate } }
       );
-      return res;
+
+      updateRes = await userCol.findOne({ _id: ObjectId(_user) }, options);
+      //return updated schedule
+      return updateRes;
     } finally {
       client.close();
     }
   };
 
   /**Yian
-   * Updates new bookings to "schedule" for user, if "schedule" doesn't exist one will be created
+   * Updates new bookings to "schedule" for user
    * @param {string} _user (ID)
    * @param {array} _booking
    */
-  myDB.createBooking = async (_user, _booking) => {
+  myDB.makeBooking = async (_user, _booking) => {
     let client;
     try {
-      console.log("show Booking DB", _booking);
-
       client = new MongoClient(url);
       const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
       return await userCol.updateOne(
-        { user: _user },
+        { _id: ObjectId(_user) },
         { $push: { schedule: { $each: _booking } } }
+      );
+    } finally {
+      client.close();
+    }
+  };
+
+  /**Yian Chen
+   * function that deletes user class booking
+   * @param {object} _booking object
+   * @returns
+   */
+  myDB.deleteBooking = async (_booking) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
+      return await userCol.updateOne(
+        { _id: ObjectId(_booking.user) },
+        { $pull: { schedule: { date: _booking.date, time: _booking.time } } }
+      );
+    } finally {
+      client.close();
+    }
+  };
+
+  /**Yian Chen
+   * function that lets users add reviews for tutors and updates tutor DB
+   * @param {String} tutor first name
+   * @param {String} tutor last name
+   * @param {String} review
+   * @returns
+   */
+  myDB.addReview = async (_tutor, _lastname, _review) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const tutorCol = client.db(DB_NAME).collection(TUTORS_COLLECTION);
+      return await tutorCol.updateOne(
+        { first_name: _tutor, last_name: _lastname },
+        { $push: { reviews: _review } }
       );
     } finally {
       client.close();

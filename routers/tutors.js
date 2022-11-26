@@ -38,10 +38,11 @@ router.get("/book/tutors/:tutorId", async (req, res) => {
  */
 router.post("/api/addClass", async (req, res) => {
   try {
-    const user = req.session.passport.user 
+    const user = req.session.passport.user;
+    console.log("backend user", user);
     const booking = req.body;
     console.log("booking", req.body);
-    await myDB.createBooking(user, booking);
+    await myDB.makeBooking(user, booking);
     res.status(200).json({ msg: "successfully created booking" });
   } catch (err) {
     console.error(err);
@@ -49,14 +50,15 @@ router.post("/api/addClass", async (req, res) => {
   }
 });
 
+/**Yian Chen
+ * function that gets user schedule for user to make booking
+ */
 router.get("/api/getSchedule", async (req, res) => {
   try {
-    //todo: get user in session
-    const user = req.session.passport.user
-    console.log("LOG USER,",user)
-    // const user = "test@123" //temporary, change later
+    const user = req.session.passport.user;
+    console.log("LOG USER,", user);
     const getSchedule = await myDB.getUserSchedule(user);
-    console.log("getSchedule",getSchedule)
+    console.log("getSchedule", getSchedule);
     if (getSchedule) {
       res.status(200).json({ data: getSchedule });
     }

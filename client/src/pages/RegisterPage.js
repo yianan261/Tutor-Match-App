@@ -11,7 +11,7 @@ function RegisterPage() {
         <Navbar />
         <div className="row">
           <div className="col">
-            <p className="quote">Sign Up to Find the Perfect Match!</p>
+            <p className="quote">Sign Up to Find the Perfect Tutor!</p>
             <img className="blackboard" src={blackboard} alt="A+" />
           </div>
           <div className="col">

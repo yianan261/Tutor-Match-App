@@ -11,7 +11,7 @@ function LoginPage() {
       <div className="row">
         <div className="col">
           <p className="quote">
-            Sign In to Find the Perfect Match!
+            Sign In to Find the Perfect Tutor!
           </p>
           <img className="blackboard" src={blackboard} alt="A+" />
         </div>

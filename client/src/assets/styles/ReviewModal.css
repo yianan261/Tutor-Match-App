@@ -1,0 +1,79 @@
+.modalContainerReview {
+  top: 0;
+  width: 50rem;
+  height: 60%;
+  transform: translateY(5%);
+  background-color: rgb(230, 239, 229);
+  border-radius: 2rem;
+  padding: 3%;
+  display: inline-block;
+  position: relative;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  justify-self: center;
+}
+
+.closeBtnReview {
+  float: right;
+  font-size: 20px;
+}
+
+.closeBtnReview:hover {
+  cursor: pointer;
+}
+.contentReview {
+  padding: 5%;
+  height: 55vh;
+}
+
+#exampleFormControlTextarea1 {
+  width: 80%;
+}
+
+.textTitle {
+  padding-bottom: 2%;
+  color: rgb(58, 74, 58);
+}
+
+.titleReview {
+  color: rgb(58, 74, 58);
+  font-size: 20px;
+}
+
+.StarDiv {
+  padding-bottom: 2%;
+}
+
+.form-group {
+  padding-bottom: 3%;
+}
+
+.reviewBtn {
+  display: inline-block;
+  padding: 0.7em 1.4em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.15em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 400;
+  color: #ffffff;
+  background-color: #f48f61;
+  outline: none;
+  border: none;
+  box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
+  text-align: center;
+  position: relative;
+}
+
+.reviewBtn:hover {
+  color: #ff8248;
+  background-color: rgb(255, 197, 162);
+  box-shadow: inset 0 -0.6em 0 -0.35em rgba(136, 75, 0, 0.17);
+}
+
+.form-control {
+  font-size: 18px;
+}
+
+textarea{
+ margin-bottom: 3%;
+}

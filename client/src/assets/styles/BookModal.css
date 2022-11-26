@@ -30,26 +30,26 @@
   justify-content: center;
 }
 .confirmBtn {
-display:inline-block;
-padding:0.7em 1.4em;
-margin:0 0.3em 0.3em 0;
-border-radius:0.15em;
-box-sizing: border-box;
-text-decoration:none;
-font-weight:400;
-color:#FFFFFF;
-background-color:#f48f61;
-outline:none;
-border:none;
-box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
-text-align:center;
-position:relative;
+  display: inline-block;
+  padding: 0.7em 1.4em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.15em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 400;
+  color: #ffffff;
+  background-color: #f48f61;
+  outline: none;
+  border: none;
+  box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
+  text-align: center;
+  position: relative;
 }
 
 .confirmBtn:hover {
   color: #ff8248;
   background-color: rgb(255, 197, 162);
-  box-shadow:inset 0 -0.6em 0 -0.35em rgba(136, 75, 0, 0.17);
+  box-shadow: inset 0 -0.6em 0 -0.35em rgba(136, 75, 0, 0.17);
 }
 
 .time {
@@ -79,7 +79,31 @@ position:relative;
   border-color: #67490926;
 }
 
-.added{
-    background-color: #ffd17d;
-    border-color: #67490926; 
+.hourBtnSelect {
+  display: inline-block;
+  padding: 5px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  vertical-align: middle;
+  border: 1px solid;
+  border-radius: 6px;
+  color: #24292e;
+  background-color: #b7d2fa;
+  border-color: #55819526;
+  background: #b7d2fa;
+  outline: none;
+  -webkit-box-shadow: inset 0px 0px 2px #0285b4;
+     -moz-box-shadow: inset 0px 0px 2px #0285b4;
+          box-shadow: inset 0px 0px 2px #0285b4;
+}
+
+.hourBtnSelect:hover {
+  background-color: #d9effd;
+  border-color: #3247a226;
+}
+
+.added {
+  background-color: #ffd17d;
+  border-color: #67490926;
 }
