@@ -5,6 +5,7 @@ import RegisterPage from "./pages/RegisterPage";
 import Landing from "./pages/Landing";
 import Profile from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
+import AccountSettingPage from "./pages/AccountSettingPage";
 import NotFound from "./pages/NotFound";
 import BookClass from "./pages/BookClass";
 import { AuthProvider } from "./utils/auth";
@@ -63,6 +64,7 @@ function App() {
             </React.Suspense>
           }
         ></Route>
+        <Route path="/profile/accountSettings" element={<AccountSettingPage/>}></Route>
         <Route path="/" element={<Landing />}></Route>
 
         <Route path="*" element={<NotFound />}></Route>

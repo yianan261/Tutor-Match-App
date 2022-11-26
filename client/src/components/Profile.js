@@ -1,33 +1,23 @@
-import React, { useEffect, useState} from "react";
-// import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/styles/Profile.css";
-import { AiOutlineMail } from "react-icons/ai";
+import {
+  AiOutlineMail,
+  AiOutlineMessage,
+  AiOutlineSchedule,
+} from "react-icons/ai";
+import { FaRegCalendarCheck } from "react-icons/fa";
+import bulb2 from "../assets/images/bulb2.png";
 // import PropTypes from "prop-types";
 
 /**
  * Amanda Au-Yeung
- * 
- * @returns jsx of profile rendering 
+ * profile of student
+ * @params {props} from profile setting
+ * @returns jsx of profile rendering
  */
 function Profile() {
   const navigate = useNavigate();
-  useEffect(() => {
-    const getCurrentUser = async () => {
-      await fetch("/getUser")
-      .then(res=>{ console.log(res);
-        return res.json()})
-      .then(data=>{
-        console.log("get current user", data);
-       if (data.user === null){
-         navigate("/login")
-       }
-      })
-   }
-   
-   getCurrentUser();
-  }, []);
-
   const [profile, setProfile] = useState({
     username: "",
     fName: "",
@@ -36,61 +26,107 @@ function Profile() {
     subjects: "",
     location: "",
   });
-  const [schedule, setSchedule] = useState([]);
-  // const [pic, setPic] = useState(null);
-  
-   // if there is no user, then we redirect to login
-   
+  const [preferredSchedule, setPreferredSchedule] = useState([]);
+  const [pic, setPic] = useState(null);
+
+  // if there is no user, then we redirect to login,
+  // else we are fetching the existing data
+  useEffect(() => {
+    const getCurrentUser = async () => {
+      await fetch("/getUser")
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.user === null) {
+            navigate("/login");
+          } else {
+            fetchExistData();
+          }
+        });
+    };
+    getCurrentUser();
+  }, []);
 
   // setting default values
-  useEffect(() => {
-    const fetchExistData = async () => {
-      await fetch("/profile/editProfile")
-      .then(res => res.json())
-      .then(data => {
-        let profileInDB = data.profile;
-        let profileData = new Map();
-        profileData['username'] = profileInDB.displayName;
-        profileData['fName'] = profileInDB.fName;
-        profileData['lName'] = profileInDB.lName;
-        profileData['email'] = profileInDB.email;
-        profileData['subjects'] = profileInDB.subjects;
-        profileData['location'] = profileInDB.location;
-        setProfile(profileData);
-        setSchedule(data.profile.schedule);
-        // setPic(data.profile.pic);
-      })
-    } 
-    fetchExistData();
-  }, [])
+  const fetchExistData = async () => {
+    await fetch("/profile/editProfile")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.profile) {
+          let profileInDB = data.profile;
+          let profileData = new Map();
+          profileData["username"] = profileInDB.displayName;
+          profileData["fName"] = profileInDB.fName;
+          profileData["lName"] = profileInDB.lName;
+          profileData["email"] = profileInDB.email;
+          profileData["subjects"] = profileInDB.subjects;
+          profileData["location"] = profileInDB.location;
+          setProfile(profileData);
+          setPreferredSchedule(data.profile.preferredSchedule);
+        }
+        setPic(data.pic);
+      });
+  };
 
   return (
     <div className="container-profile">
       <div className="main-profile">
-      <div>
-      {profile.username ? "Hi, " + profile.username : "Welcome! Please proceed to edit your profile."}
+        <div className="welcome">
+          <div>
+            <h2>
+              {profile.username
+                ? "Hi, " + profile.username
+                : "Welcome! Please proceed to edit your profile."}
+            </h2>
+            <br></br>
+            <div>
+              <AiOutlineMail />{" "}
+              {profile.email
+                ? profile.email
+                : "Add your email in your edit profile settings."}
+            </div>
+            <br></br>
+            <div>
+              <FaRegCalendarCheck />{" "}
+              {profile.preferredSchedule
+                ? "My preferred schedule is " + preferredSchedule.join(", ")
+                : "Please select your preferred schedule in Edit Profile"}
+              .
+            </div>
+          </div>
+          <img
+            className="img-account-profile"
+            src={pic || bulb2}
+            alt="Not Found"
+          />
+        </div>
+
+        <div className="dashboard">
+          <br></br>
+          <h3>Dashboard</h3>
+          Welcome!
+          <div>Total Classes:</div>
+        </div>
       </div>
-      <div>
-      <AiOutlineMail/> {profile.email?  + profile.email: "Add your email in your edit profile settings."}
-      {/* image */}
-      </div>
-      <div>
-      {profile.schedule? "My preferred schedule is " + schedule.join(", ") : "Please select your preferred schedule in Edit Profile"}.
-      </div>
-      <div>
-      Welcome! Here is your overview of your schedule.
-      </div>
-      </div>
+
       <div className="schedule">
-      
+        <h3>Schedule</h3>
+        <div className="policy">
+          Policy:
+          <li>Lesson cancellation: 1 hour notice required</li>
+          <div>
+            <AiOutlineMessage /> Send tutor a message<br></br>
+            <AiOutlineSchedule /> Book a Trial
+          </div>
+        </div>
       </div>
-      
-      <div className="profile">
-    <div className=""></div>
-      </div>
-      
     </div>
   );
 }
+
+Profile.propTypes = {
+  // classCount: PropTypes.number
+};
 
 export default Profile;

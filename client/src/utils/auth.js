@@ -15,10 +15,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const getCurrentUser = async () => {
       await fetch("/getUser")
-        .then((res) => {
-          console.log(res);
-          return res.json();
-        })
+        .then((res) => res.json())
         .then((data) => {
           if (data.user !== null) {
             setUser(data.user);
@@ -26,7 +23,6 @@ export const AuthProvider = ({ children }) => {
         });
     };
     getCurrentUser();
-    console.log("user in get user", user);
   }, [user]);
 
   const login = (user) => {

@@ -54,11 +54,9 @@ function Login() {
           Sign Up!
         </Link>
       </div>
-      {/* <div className="signin-title"> */}
         <h2 className="card-title" id="signIn">
           Sign In
         </h2>
-      {/* </div> */}
       <div className="log-reg-body">
         <form className="form-body" onSubmit={findUser}>
           <div className="mb-3">
