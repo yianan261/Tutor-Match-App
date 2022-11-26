@@ -227,11 +227,12 @@ function MyMongoDB() {
    * function that gets user current schedule, also sorts history,
    * if the schedule date is a past date it will create a history property
    * @param {String} user ID
-   * @returns user's schedule and doesn't return salt and hash information to client
+   * @returns updated user's schedule and doesn't return salt and hash information to client
    */
   myDB.getUserSchedule = async (_user) => {
     let client;
     let historyDate = [];
+    let updateRes;
     try {
       client = new MongoClient(url);
       const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
@@ -239,8 +240,10 @@ function MyMongoDB() {
         projection: { salt: 0, hash: 0 },
       };
       const res = await userCol.findOne({ _id: ObjectId(_user) }, options);
+      console.log("Res in DB", res);
       if (res.schedule !== []) {
         const todayDate = new Date();
+        //move old bookings to history
         res.schedule.forEach((d) => {
           const newTemp = d.date.split("/").join("-");
           const currDate = new Date(newTemp);
@@ -259,32 +262,72 @@ function MyMongoDB() {
             historyDate.push(newHistoryObj);
           }
         });
+        //update schedule, old dates filtered out of schedule array
+        //also deduplicates repeated objects in the schedule array
+        const newSchedule = res.schedule.filter((item, idx) => {
+          const _value = JSON.stringify(item);
+          const newTemp = item.date.split("/").join("-");
+          const currDate = new Date(newTemp);
+          return (
+            currDate >= todayDate &&
+            idx ===
+              res.schedule.findIndex((obj) => {
+                return JSON.stringify(obj) === _value;
+              })
+          );
+        });
+        //updates new schedule
+        await userCol.updateOne(
+          { _id: ObjectId(_user) },
+          { $set: { schedule: newSchedule } }
+        );
+
+        updateRes = await userCol.findOne({ _id: ObjectId(_user) });
       }
+      //updates history
       await userCol.updateOne(
         { _id: ObjectId(_user) },
         { $set: { history: historyDate } }
       );
-      return res;
+      //return updated schedule
+      return updateRes;
     } finally {
       client.close();
     }
   };
 
   /**Yian
-   * Updates new bookings to "schedule" for user, if "schedule" doesn't exist one will be created
+   * Updates new bookings to "schedule" for user
    * @param {string} _user (ID)
    * @param {array} _booking
    */
-  myDB.createBooking = async (_user, _booking) => {
+  myDB.makeBooking = async (_user, _booking) => {
     let client;
     try {
-      console.log("show Booking DB", _booking);
-
       client = new MongoClient(url);
       const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
       return await userCol.updateOne(
-        { user: _user },
+        { _id: ObjectId(_user) },
         { $push: { schedule: { $each: _booking } } }
+      );
+    } finally {
+      client.close();
+    }
+  };
+
+  /**Yian Chen
+   * function that deletes user class booking 
+   * @param {object} _booking object 
+   * @returns 
+   */
+  myDB.deleteBooking = async (_booking) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const userCol = client.db(DB_NAME).collection(USER_COLLECTION);
+      return await userCol.updateOne(
+        { _id: ObjectId(_booking.user) },
+        { $pull: { schedule: { date: _booking.date, time: _booking.time } } }
       );
     } finally {
       client.close();

@@ -1,5 +1,5 @@
 .container-profile{
-    width: 100%;
+    width: 90%;
     display: grid;
     grid-template-columns: 2fr 1fr;
     padding: 10em 4em 0 4em;
