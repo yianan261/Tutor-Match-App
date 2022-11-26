@@ -1,0 +1,80 @@
+
+  .box-paginacao ul {
+    width: 100%;
+    height: auto;
+    float: left;
+  }
+
+
+  .box-paginacao ul li {
+    width: 250px;
+    height: 250px;
+    float: left;
+    margin: 0 0 10px 60px;
+    border: 1px solid #c0c8c9;
+    border-radius: 10px;
+    line-height: 250px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.3em;
+    color: #2e2929;
+  }
+  .box-paginacao,
+  .box-paginacao,
+  .box-paginacao,
+  .box-paginacao {
+    width: 100%;
+    height: 336px;
+    float: left;
+    margin-bottom: 33px;
+  }
+  
+  .btn-paginacao {
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* z-index: 10; */
+    left: 0;
+    bottom: 0;
+    background-color: #fff;
+  }
+  .btn-paginacao ul {
+    width: auto;
+    height: auto;
+  }
+  
+  .btn-paginacao ul li {
+    list-style-type: none;
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin: 0 5px 0 0;
+    border: 0;
+  }
+  .btn-paginacao ul li:last-child {
+    margin: 0;
+  }
+  .btn-paginacao ul li label {
+    width: 100%;
+    height: 30px;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    font-weight: 400;
+    font-size: 1em;
+    color: #2e2929;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.25s ease-in-out;
+  }
+  .btn-paginacao ul li label:hover {
+    background-color: #f6993b;
+    color: #fff;
+  }
+  
+ 
+  

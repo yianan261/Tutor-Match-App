@@ -10,6 +10,7 @@ import { useSearchParams } from "react-router-dom";
 import BookModal from "../components/BookModal";
 import { dateHelper } from "../utils/bookDates";
 import { useAuth } from "../utils/auth";
+import TutorPagination from "../components/TutorPagination";
 
 /**Yian
  * BookClass module handles Book class page rendering
@@ -27,6 +28,7 @@ function BookClass() {
   const [bookDates, setBookDates] = useState(dateHelper(4));
   const [bookClassMap, setBookClassMap] = useState(new Map());
   const auth = useAuth();
+
 
   /**Yian
    * function that sets state in BookClass when search is triggered in SearchTutor.js
@@ -314,7 +316,7 @@ function BookClass() {
       <Navbar />
       <div className="container BookContainer">
         <div className="searchDiv">{renderFunc()}</div>
-
+        {render === 2 ? <TutorPagination searchData={searchData} /> : null}
         {render === 3 ? (
           <BookModal
             open={modalIsOpen}
