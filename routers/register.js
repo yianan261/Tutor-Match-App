@@ -1,7 +1,7 @@
 import express from "express";
 import myDB from "../db/myDB.js";
 const router = express.Router();
-import {genPassword} from "./passwordUtilites.js";
+import {genPassword} from "./utils/passwordUtilites.js";
 
 // Amanda Au-Yeung
 router.get("/register", (req, res) => {

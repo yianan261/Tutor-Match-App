@@ -2,7 +2,7 @@ import express from "express";
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import myDB from "../db/myDB.js";
-import {validatePassword} from "./passwordUtilites.js";
+import {validatePassword} from "./utils/passwordUtilites.js";
 
 const router = express.Router();
 

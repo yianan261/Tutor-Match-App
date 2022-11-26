@@ -106,7 +106,7 @@ function Profile() {
           <br></br>
           <h3>Dashboard</h3>
           Welcome!
-          <div>Total Classes:</div>
+          <div>Total Classes: </div>
         </div>
       </div>
 

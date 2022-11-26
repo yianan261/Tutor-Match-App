@@ -33,7 +33,6 @@ export const AuthProvider = ({ children }) => {
     await fetch("/logout", {
       method: "POST",
     });
-
     setUser(null);
   };
 
