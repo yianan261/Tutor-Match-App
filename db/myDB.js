@@ -174,7 +174,7 @@ function MyMongoDB() {
    */
   myDB.getUserSchedule = async (_user) => {
     let client;
-    let historyDate = [];
+
     let updateRes;
     try {
       client = new MongoClient(url);
@@ -184,54 +184,58 @@ function MyMongoDB() {
       };
       const res = await userCol.findOne({ _id: ObjectId(_user) }, options);
       console.log("Res in DB", res);
-      if (res.schedule !== []) {
-        const todayDate = new Date();
-        //move old bookings to history
-        res.schedule.forEach((d) => {
-          const newTemp = d.date.split("/").join("-");
-          const currDate = new Date(newTemp);
-          if (todayDate > currDate) {
-            const newHistoryObj = {};
-            //convert date object back to string
-            const currTemp =
-              ("0" + (currDate.getMonth() + 1)).slice(-2) +
-              "/" +
-              ("0" + currDate.getDate()).slice(-2) +
-              "/" +
-              currDate.getFullYear();
-            newHistoryObj.date = currTemp;
-            newHistoryObj.time = d.time;
-            newHistoryObj.tutor = d.tutor;
-            historyDate.push(newHistoryObj);
-          }
-        });
-        //update schedule, old dates filtered out of schedule array
-        //also deduplicates repeated objects in the schedule array
-        const newSchedule = res.schedule.filter((item, idx) => {
-          const _value = JSON.stringify(item);
-          const newTemp = item.date.split("/").join("-");
-          const currDate = new Date(newTemp);
-          return (
-            currDate >= todayDate &&
-            idx ===
-              res.schedule.findIndex((obj) => {
-                return JSON.stringify(obj) === _value;
-              })
-          );
-        });
-        //updates new schedule
-        await userCol.updateOne(
-          { _id: ObjectId(_user) },
-          { $set: { schedule: newSchedule } }
-        );
+      let historyDate = res.history;
 
-        updateRes = await userCol.findOne({ _id: ObjectId(_user) });
-      }
+      const todayDate = new Date();
+
+      //move old bookings to history
+      res.schedule.forEach((d) => {
+        const newTemp = d.date.split("/").join("-");
+        const currDate = new Date(newTemp);
+        if (todayDate > currDate) {
+          const newHistoryObj = {};
+          //convert date object back to string
+          const currTemp =
+            ("0" + (currDate.getMonth() + 1)).slice(-2) +
+            "/" +
+            ("0" + currDate.getDate()).slice(-2) +
+            "/" +
+            currDate.getFullYear();
+          newHistoryObj.date = currTemp;
+          newHistoryObj.time = d.time;
+          newHistoryObj.tutor = d.tutor;
+          newHistoryObj.last_name = d.tutor_lastname;
+          newHistoryObj.subject = d.subject;
+          historyDate.push(newHistoryObj);
+        }
+      });
+      //update schedule, old dates filtered out of schedule array
+      //also deduplicates repeated objects in the schedule array
+      const newSchedule = res.schedule.filter((item, idx) => {
+        const _value = JSON.stringify(item);
+        const newTemp = item.date.split("/").join("-");
+        const currDate = new Date(newTemp);
+        return (
+          currDate >= todayDate &&
+          idx ===
+            res.schedule.findIndex((obj) => {
+              return JSON.stringify(obj) === _value;
+            })
+        );
+      });
+      //updates new schedule
+      await userCol.updateOne(
+        { _id: ObjectId(_user) },
+        { $set: { schedule: newSchedule } }
+      );
+
       //updates history
       await userCol.updateOne(
         { _id: ObjectId(_user) },
         { $set: { history: historyDate } }
       );
+
+      updateRes = await userCol.findOne({ _id: ObjectId(_user) }, options);
       //return updated schedule
       return updateRes;
     } finally {
@@ -259,9 +263,9 @@ function MyMongoDB() {
   };
 
   /**Yian Chen
-   * function that deletes user class booking 
-   * @param {object} _booking object 
-   * @returns 
+   * function that deletes user class booking
+   * @param {object} _booking object
+   * @returns
    */
   myDB.deleteBooking = async (_booking) => {
     let client;
@@ -271,6 +275,27 @@ function MyMongoDB() {
       return await userCol.updateOne(
         { _id: ObjectId(_booking.user) },
         { $pull: { schedule: { date: _booking.date, time: _booking.time } } }
+      );
+    } finally {
+      client.close();
+    }
+  };
+
+  /**Yian Chen
+   * function that lets users add reviews for tutors and updates tutor DB
+   * @param {String} tutor first name
+   * @param {String} tutor last name
+   * @param {String} review
+   * @returns
+   */
+  myDB.addReview = async (_tutor, _lastname, _review) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const tutorCol = client.db(DB_NAME).collection(TUTORS_COLLECTION);
+      return await tutorCol.updateOne(
+        { first_name: _tutor, last_name: _lastname },
+        { $push: { reviews: _review } }
       );
     } finally {
       client.close();
