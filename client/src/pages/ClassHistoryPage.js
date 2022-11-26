@@ -4,6 +4,7 @@ import SideNav from '../components/SideNav'
 import ClassHistory from '../components/ClassHistory'
 
 function ClassHistoryPage() {
+  
     return (
         <div>
         <Navbar />
