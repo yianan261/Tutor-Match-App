@@ -274,6 +274,7 @@ function BookClass() {
           date: date,
           time: time,
           tutor: tutorProfile.first_name,
+          tutor_lastname: tutorProfile.last_name,
           subject: tutorProfile.subjects,
         });
         setBookClassMap(tempMap);

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../assets/styles/ManageBook.css";
 import { useAuth } from "../utils/auth";
 
-/**
+/**Yian Chen
  * component that renders booking schedule of student
- * @returns
+ * @returns JSX manage book UI
  */
 function ManageBook() {
   const auth = useAuth();
@@ -29,8 +29,9 @@ function ManageBook() {
 
     getCurrentUser();
   }, []);
+
   /**Yian
-   * this function gets the schedule of the user and maps to bookClassMap
+   * this function gets the schedule of the user and makes a copy to schedule 
    */
   useEffect(() => {
     try {

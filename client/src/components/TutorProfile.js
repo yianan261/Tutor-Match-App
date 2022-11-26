@@ -69,7 +69,7 @@ function TutorProfile({ searchData, query, handleReturn, searchProfile }) {
                 id="cardimage"
                 key={tutorProfile._id}
                 onClick={(evt) => {
-                  evt.preventDefault;
+                  evt.preventDefault();
                   searchProfile(tutorProfile);
                 }}
               >
