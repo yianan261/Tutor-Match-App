@@ -6,13 +6,12 @@
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
   text-transform: uppercase;
-  
 }
 
 .price-img {
-  width:80%;
-    margin-bottom: 20px;
-    max-width: 100%;
+  width: 80%;
+  margin-bottom: 20px;
+  max-width: 100%;
 }
 
 .pricing-features {
@@ -28,8 +27,8 @@
   font-size: 15px;
   line-height: 1.5;
   padding: 15px 0;
-  border-top: 1px solid #e1f1ff;
-  color:#5a615a
+  border-top: 1px solid rgb(225, 233, 225);
+  color: #5a615a;
 }
 
 .pricing-features-item:last-child {
@@ -37,23 +36,24 @@
 }
 
 ol,
-ul,li {
+ul,
+li {
   list-style: none;
 }
 
 html {
   box-sizing: border-box;
-  
 }
 
-.price-panelDiv:first-child{
+.price-panelDiv:first-child {
   border-right: 1px solid rgb(214, 223, 214);
-  
 }
 
-.price-panelDiv:last-child{
+.price-panelDiv:last-child {
   border-left: 1px solid rgb(214, 223, 214);
-  
 }
 
+.pricing-features{
+  padding-left: 0;
 
+}
