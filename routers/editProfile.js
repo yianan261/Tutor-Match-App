@@ -43,6 +43,25 @@ router.post("/upload", upload.single("img"), async (req, res) => {
 });
 
 /**
+ * del profile pic in cloudinary
+ */
+router.post("/delPic", async (req, res) => {
+  let id = req.query.id;
+  let user;
+  let public_id; // in cloudinary
+  try {
+    if (id) {
+      user = await myDB.getUsersById(id);
+      public_id = user.pic.split("/").pop().split(".")[0];
+      await cloudinary.uploader.destroy(public_id);
+      res.status(200).json({ message: "Your profile pic is deleted!" });
+    }
+  } catch (err) {
+    res.status(400).send({ err: `There is an ${err} removing your profile pic.` });
+  }
+});
+
+/**
  * gets the profile info
  */
 router.get("/profile/editProfile", async (req, res) => {
@@ -52,7 +71,7 @@ router.get("/profile/editProfile", async (req, res) => {
       const profileInfo = await myDB.getUsersById(userIdInSession);
       res.status(200).json({
         profile: profileInfo.profile,
-        schedule: profileInfo.profile.schedule,
+        preferredSchedule: profileInfo.preferredSchedule,
         pic: profileInfo.pic,
       });
     } else {

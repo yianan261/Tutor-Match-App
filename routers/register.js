@@ -5,16 +5,13 @@ import {genPassword} from "./passwordUtilites.js";
 
 // Amanda Au-Yeung
 router.get("/register", (req, res) => {
-  console.log("Register page");
   res.status(200).redirect("/register");
 });
 
 router.post("/register", async (req, res) => {
-  console.log("register", req.body);
   let checkExistUser;
   try {
     checkExistUser = await myDB.getUsers(req.body.email);
-    console.log(checkExistUser);
     if (checkExistUser === null) {
       console.log("CREATING USER");
       const {salt, hash} = genPassword(req.body.password);

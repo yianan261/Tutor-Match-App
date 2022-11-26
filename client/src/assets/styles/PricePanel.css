@@ -1,12 +1,8 @@
 
 .PricePanel {
-    background-color: #f1f6eb;
+  background-color: #f1f6eb;
   border-radius: 10px;
   padding: 1em 1em 1em 1em;
-  /* width: 80vw; */
-  /* margin-top: 1em;
-  margin-left: auto;
-  margin-right: auto; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;

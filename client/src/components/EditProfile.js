@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
  */
 function EditProfile() {
   const navigate = useNavigate();
+  const [user, setUser] = useState("");
   const [profile, setProfile] = useState({
     username: "",
     fName: "",
@@ -19,10 +20,8 @@ function EditProfile() {
     subjects: "",
     location: "",
   });
-  const [schedule, setSchedule] = useState([]);
+  const [preferredSchedule, setPreferredSchedule] = useState([]);
   const [pic, setPic] = useState(null);
-  // const [fileInputState, setFileInputState] = useState("");
-  // const [selectedFile, setSelectedFile] = useState();
 
   // if there is no user, then we redirect to login,
   // else we are fetching the existing data
@@ -36,6 +35,7 @@ function EditProfile() {
           if (data.user === null) {
             navigate("/login");
           } else {
+            setUser(data.user);
             fetchExistData();
           }
         });
@@ -44,12 +44,11 @@ function EditProfile() {
   }, []);
 
   // setting default values
-  // useEffect(() => {
   const fetchExistData = async () => {
-    // let profilePicture;
     await fetch("/profile/editProfile")
       .then((res) => res.json())
       .then((data) => {
+        if (data.profile){
         let profileInDB = data.profile;
         let profileData = new Map();
         profileData["username"] = profileInDB.displayName;
@@ -59,9 +58,10 @@ function EditProfile() {
         profileData["subjects"] = profileInDB.subjects;
         profileData["location"] = profileInDB.location;
         setProfile(profileData);
-        setSchedule(data.profile.schedule);
+        setPreferredSchedule(data.profile.preferredSchedule);
+        }
         setPic(data.pic);
-      })
+      });
   };
 
   // updates the value
@@ -79,7 +79,7 @@ function EditProfile() {
         email: profile.email,
         subjects: profile.subjects,
         location: profile.location,
-        schedule: schedule,
+        schedule: preferredSchedule,
       }),
     });
     const resProfile = await profileInfo.json();
@@ -100,7 +100,7 @@ function EditProfile() {
     for (const element of schedule) {
       preferredSchedule.push(element.value);
     }
-    setSchedule(preferredSchedule);
+    setPreferredSchedule(preferredSchedule);
   };
 
   const uploadImage = (file) => {
@@ -108,6 +108,13 @@ function EditProfile() {
     setPic(window.URL.createObjectURL(file));
   };
 
+  const delPic = async (e) => {
+    e.preventDefault();
+    await fetch(`/delPic?id=${user}`, {
+      method: "POST"
+    })
+    setPic(bulb2);
+  }
 
   return (
     <div className="EditProfile">
@@ -135,7 +142,6 @@ function EditProfile() {
                   method="POST"
                   encType="multipart/form-data"
                 >
-                  {/* <form id="picForm"> */}
                   <div>
                     <label htmlFor="files" className="btn btn-primary">
                       Upload new image
@@ -144,17 +150,16 @@ function EditProfile() {
                       id="files"
                       name="img"
                       type="file"
-                      onChange={
-                        (e) => {
+                      onChange={(e) => {
                         uploadImage(e.target.files[0]);
-                        // { handleFileInputChange }
-                        }
-                      }
+                      }}
                     />
                     <button className="btn btn-primary" type="submit">
                       Save Profile Picture
                     </button>
-                    {/* <input className="btn btn-primary" type="submit"/> */}
+                    <button className="btn btn-primary" onClick={delPic}>
+                      Delete Profile Picture
+                    </button>
                   </div>
                 </form>
               </div>
@@ -166,7 +171,6 @@ function EditProfile() {
               <div className="card-header">Account Details</div>
               <div className="card-body">
                 <form id="mainForm" onSubmit={handleSaveProfile}>
-                  {/* <form id="mainForm"> */}
                   {/* <!-- Form Group (username)--> */}
                   <div className="mb-3">
                     <label className="small mb-1" htmlFor="inputUsername">
@@ -276,7 +280,7 @@ function EditProfile() {
                       multiple={true}
                       className="form-control"
                       name="schedule"
-                      value={schedule || ""}
+                      value={preferredSchedule || ""}
                       onChange={(e) => {
                         handleMultiSelect(e.target.selectedOptions);
                       }}
@@ -302,8 +306,6 @@ function EditProfile() {
   );
 }
 
-// EditProfile.propTypes = {
-//   name: PropTypes.string,
-// };
+EditProfile.propTypes = {};
 
 export default EditProfile;

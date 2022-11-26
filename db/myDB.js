@@ -39,8 +39,9 @@ function MyMongoDB() {
         pic: null,
         schedule: [],
       });
-      console.log("user created");
       return res;
+    } catch (err) {
+      alert(`This is an error ${err}`);
     } finally {
       client.close();
     }
@@ -59,11 +60,12 @@ function MyMongoDB() {
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
       const options = {
-        projection: { salt: 1, hash: 1, profile: 1 },
+        projection: { user: 1, salt: 1, hash: 1, profile: 1 },
       };
       const res = await usersCol.findOne({ user: _email }, options);
-      // console.log("res in getUser by email", res);
       return res;
+    } catch (err) {
+      alert(`This is an error ${err}`);
     } finally {
       client.close();
     }
@@ -81,8 +83,9 @@ function MyMongoDB() {
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
       const res = await usersCol.findOne({ _id: ObjectId(id) });
-      console.log("res in get user by ID ", res);
       return res;
+    } catch (err) {
+      alert(`This is an error ${err}`);
     } finally {
       client.close();
     }
@@ -112,12 +115,14 @@ function MyMongoDB() {
         }
       );
       return res;
+    } catch (err) {
+      alert(`This is an error ${err}`);
     } finally {
       client.close();
     }
   };
 
-    /**
+  /**
    * Amanda
    * updates profile pic
    * @param {String} id
@@ -140,8 +145,30 @@ function MyMongoDB() {
           },
         }
       );
-      console.log("res in updatesPic", res);
       return res;
+    } catch (err) {
+      alert(`This is an error ${err}`);
+    } finally {
+      client.close();
+    }
+  };
+
+  /**
+   * Amanda Au-Yeung
+   * delete user
+   * @param {String} user_id
+   * @returns
+   */
+  myDB.deleteUser = async (id) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const usersCol = db.collection(USER_COLLECTION);
+      const res = await usersCol.deleteOne({ _id: ObjectId(id) });
+      return res;
+    } catch (err) {
+      alert(`This is an error ${err}`);
     } finally {
       client.close();
     }

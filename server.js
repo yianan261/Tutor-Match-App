@@ -7,6 +7,7 @@ import tutor from "./routers/tutors.js";
 // import test from "./routers/test.js";
 import editProfile from "./routers/editProfile.js";
 import profile from "./routers/profile.js";
+import accountSetting from "./routers/accountSetting.js";
 import session from "express-session";
 import passport from "passport";
 import register from "./routers/register.js";
@@ -51,6 +52,7 @@ app.use("/", login);
 app.use("/", register);
 app.use("/", profile);
 app.use("/", editProfile);
+app.use("/", accountSetting);
 
 
 app.listen(

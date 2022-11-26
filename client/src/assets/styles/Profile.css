@@ -10,10 +10,27 @@
     background-color: #f1f6eb;
     height: 500px;
     margin-right: 1em;
+    border-radius: 3%;
+    box-shadow: 8px 3px 3px rgb(129, 172, 129);
+}
+
+.welcome {
+    margin: 1em 1em 1em 1em;
+    display: flex;
+}
+
+.dashboard {
+    margin: 1em 1em 1em 1em;
 }
 
 .schedule {
     background-color: #f1f6eb;
-    height: 500px
+    height: 500px;
+    border-radius: 3%;
+    box-shadow: 8px 3px 3px rgb(129, 172, 129);
 }
 
+.img-account-profile {
+    border-radius: 50%;
+    justify-content: right;
+}
