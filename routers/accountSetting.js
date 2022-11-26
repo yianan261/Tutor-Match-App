@@ -8,7 +8,7 @@ const router = express.Router();
 
 // delete account from db
 // delete profile pic from cloudinary
-router.post("/profile/deleteAccount", async (req, res) => {
+router.post("/api/profile/deleteAccount", async (req, res) => {
   let id = req.query.id;
   let user;
   let public_id; // in cloudinary

@@ -23,4 +23,6 @@ function PricePanel() {
   );
 }
 
+PricePanel.propTypes = {};
+
 export default PricePanel;

@@ -4,16 +4,15 @@ const router = express.Router();
 import {genPassword} from "./utils/passwordUtilites.js";
 
 // Amanda Au-Yeung
-router.get("/register", (req, res) => {
-  res.status(200).redirect("/register");
+router.get("/api/register", (req, res) => {
+  res.status(200).redirect("/api/register");
 });
 
-router.post("/register", async (req, res) => {
+router.post("/api/register", async (req, res) => {
   let checkExistUser;
   try {
     checkExistUser = await myDB.getUsers(req.body.email);
     if (checkExistUser === null) {
-      console.log("CREATING USER");
       const {salt, hash} = genPassword(req.body.password);
       await myDB.createUser(req.body.email, salt, hash);
       res

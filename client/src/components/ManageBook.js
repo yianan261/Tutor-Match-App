@@ -14,7 +14,7 @@ function ManageBook() {
   console.log("currUser", auth.user);
   useEffect(() => {
     const getCurrentUser = async () => {
-      await fetch("/getUser")
+      await fetch("/api/getUser")
         .then((res) => {
           console.log(res);
           return res.json();

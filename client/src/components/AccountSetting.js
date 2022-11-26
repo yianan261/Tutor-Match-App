@@ -21,7 +21,7 @@ function AccountSetting() {
   // set the user as the current user
   useEffect(() => {
     const getCurrentUser = async () => {
-      await fetch("/getUser")
+      await fetch("/api/getUser")
         .then((res) => {
           return res.json();
         })
@@ -44,7 +44,7 @@ function AccountSetting() {
   };
 
   const delAC = async () => {
-    const del = await fetch(`/profile/deleteAccount/?id=${user}`, {
+    const del = await fetch(`/api/profile/deleteAccount/?id=${user}`, {
       method: "POST",
     });
     const delRes = await del.json();
@@ -96,7 +96,6 @@ function AccountSetting() {
 }
 
 AccountSetting.propTypes = { 
-  // classCount: PropTypes.number 
 };
 
 export default AccountSetting;
