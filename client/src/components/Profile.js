@@ -8,7 +8,6 @@ import {
 } from "react-icons/ai";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import bulb2 from "../assets/images/bulb2.png";
-// import PropTypes from "prop-types";
 
 /**
  * Amanda Au-Yeung
