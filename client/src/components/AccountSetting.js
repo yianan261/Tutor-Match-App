@@ -60,7 +60,7 @@ function AccountSetting() {
         <PricePanel />
         <div className="select-plan">
           <button
-            className="btn btn-primary"
+            className="btnAccount"
             onClick={() => {
               setClassCount(1 + classCount);
             }}
@@ -68,7 +68,7 @@ function AccountSetting() {
             ONE TIMER
           </button>
           <button
-            className="btn btn-primary"
+            className="btnAccount"
             onClick={() => {
               setClassCount(3 + classCount);
             }}
@@ -76,7 +76,7 @@ function AccountSetting() {
             BRUSH UP PLAN
           </button>
           <button
-            className="btn btn-primary"
+            className="btnAccount"
             onClick={() => {
               setClassCount(5 + classCount);
             }}

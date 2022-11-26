@@ -1,5 +1,5 @@
 .AccountSetting{
-    width: 100%;
+    width: 90%;
     display: grid;
     background-color: #f1f6eb;
     height: 800px;
@@ -10,12 +10,13 @@
 
 .plan-selection {
     margin-top: 0.5em;
-    margin-bottom: 0;
+    margin-bottom: 2%;
     text-align: center;
+    color:rgb(247, 102, 18)
 }
 
 .price-container {
-    padding: 0em 5em 1em 5em;
+    padding: 0em 1em 1em 1em;
 }
 
 .select-plan {
@@ -25,6 +26,7 @@
   text-align: center;
   text-transform: uppercase;
   margin-bottom: 0;
+ 
 }
 
 .delete-account {
@@ -36,3 +38,28 @@
     text-decoration: underline;
     color: rgb(245, 127, 127);
 }
+
+.btnAccount{
+    transform: translateX(10%);
+    width: 80%;
+    display: inline-block;
+    padding: 0.8em 2em;
+    border: 0.2rem solid #ffc981;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.1em;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #25352d;
+    font-weight: 300;
+    background-color: inherit;
+    /* opacity: 0.7; */
+    text-align: center;
+    transition: all 0.2s;
+}
+.btnAccount:hover{
+    color: #94b4a0;
+  border: 0.16rem solid#fcd29c;
+}
+.pricing-plan {
+    border-bottom: 1px solid #2d3135;
+  }
