@@ -31,5 +31,5 @@ Mockup docs [here](https://www.figma.com/file/xn2avkmMPsgbc284Jr5bZn/Tutor-Web-A
 https://johnguerra.co/classes/webDevelopment_fall_2022/
 
 # Author
-@yianan261
-@amandaay
+Yian Chen
+So Man Amanda Au-Yeung
