@@ -26,3 +26,9 @@ Mockup docs [here](https://www.figma.com/file/xn2avkmMPsgbc284Jr5bZn/Tutor-Web-A
 # Component Diagram
 
 ![Tutor App component diagram](https://i.postimg.cc/ZnsTZHNV/Tutor-Match-App.png)
+
+# Class Link
+https://johnguerra.co/classes/webDevelopment_fall_2022/
+
+# Author
+Yian Chen & So Man Amanda Au-Yeung
