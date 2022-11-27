@@ -249,7 +249,7 @@ function MyMongoDB() {
       res.schedule.forEach((d) => {
         const newTemp = d.date.split("/").join("-");
         const currDate = new Date(newTemp);
-        if (todayDate > currDate) {
+        if (todayDate >= currDate) {
           const newHistoryObj = {};
           //convert date object back to string
           const currTemp =
