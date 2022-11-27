@@ -10,7 +10,7 @@ const router = express.Router();
 /**
  * updates profile
  */
-router.post("/profile/editProfile", async (req, res) => {
+router.post("/api/profile/editProfile", async (req, res) => {
   try {
     let userIdInSession = req.session.passport.user;
     let profileInfo = req.body;
@@ -28,7 +28,7 @@ router.post("/profile/editProfile", async (req, res) => {
 /**
  * profile pics posting to DB
  */
-router.post("/upload", upload.single("img"), async (req, res) => {
+router.post("/api/upload", upload.single("img"), async (req, res) => {
   try {
     if (req.file){
       const cloudRes = await cloudinary.uploader.upload(req.file.path);
@@ -45,7 +45,7 @@ router.post("/upload", upload.single("img"), async (req, res) => {
 /**
  * del profile pic in cloudinary
  */
-router.post("/delPic", async (req, res) => {
+router.post("/api/delPic", async (req, res) => {
   let id = req.query.id;
   let user;
   let public_id; // in cloudinary
@@ -64,7 +64,7 @@ router.post("/delPic", async (req, res) => {
 /**
  * gets the profile info
  */
-router.get("/profile/editProfile", async (req, res) => {
+router.get("/api/profile/editProfile", async (req, res) => {
   try {
     let userIdInSession = req.session.passport.user;
     if (userIdInSession) {
@@ -82,8 +82,8 @@ router.get("/profile/editProfile", async (req, res) => {
   }
 });
 
-router.get("/profile/editProfile", (req, res) => {
-  res.status(200).redirect("/profile/editProfile");
+router.get("/api/profile/editProfile", (req, res) => {
+  res.status(200).redirect("/api/profile/editProfile");
 });
 
 export default router;

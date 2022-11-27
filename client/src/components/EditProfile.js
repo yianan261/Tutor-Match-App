@@ -27,7 +27,7 @@ function EditProfile() {
   // else we are fetching the existing data
   useEffect(() => {
     const getCurrentUser = async () => {
-      await fetch("/getUser")
+      await fetch("/api/getUser")
         .then((res) => {
           return res.json();
         })
@@ -45,7 +45,7 @@ function EditProfile() {
 
   // setting default values
   const fetchExistData = async () => {
-    await fetch("/profile/editProfile")
+    await fetch("/api/profile/editProfile")
       .then((res) => res.json())
       .then((data) => {
         if (data.profile){
@@ -67,7 +67,7 @@ function EditProfile() {
   // updates the value
   const handleSaveProfile = async (e) => {
     e.preventDefault();
-    const profileInfo = await fetch("/profile/editProfile", {
+    const profileInfo = await fetch("/api/profile/editProfile", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -110,7 +110,7 @@ function EditProfile() {
 
   const delPic = async (e) => {
     e.preventDefault();
-    await fetch(`/delPic?id=${user}`, {
+    await fetch(`/api/delPic?id=${user}`, {
       method: "POST"
     })
     setPic(bulb2);
@@ -138,7 +138,7 @@ function EditProfile() {
                 {/* <!-- Profile picture upload button--> */}
                 <form
                   id="picForm"
-                  action="/upload"
+                  action="/api/upload"
                   method="POST"
                   encType="multipart/form-data"
                 >

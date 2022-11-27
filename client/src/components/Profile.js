@@ -8,7 +8,6 @@ import {
 } from "react-icons/ai";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import bulb2 from "../assets/images/bulb2.png";
-// import PropTypes from "prop-types";
 
 /**
  * Amanda Au-Yeung
@@ -33,7 +32,7 @@ function Profile() {
   // else we are fetching the existing data
   useEffect(() => {
     const getCurrentUser = async () => {
-      await fetch("/getUser")
+      await fetch("/api/getUser")
         .then((res) => {
           return res.json();
         })
@@ -50,7 +49,7 @@ function Profile() {
 
   // setting default values
   const fetchExistData = async () => {
-    await fetch("/profile/editProfile")
+    await fetch("/api/profile/editProfile")
       .then((res) => res.json())
       .then((data) => {
         if (data.profile) {
@@ -95,29 +94,20 @@ function Profile() {
               .
             </div>
           </div>
-          <img
-            className="img-account-profile"
-            src={pic || bulb2}
-            alt="Not Found"
-          />
-        </div>
-
-        <div className="dashboard">
-          <br></br>
-          <h3>Dashboard</h3>
-          Welcome!
-          <div>Total Classes:</div>
-        </div>
-      </div>
-
-      <div className="schedule">
-        <h3>Schedule</h3>
-        <div className="policy">
-          Policy:
-          <li>Lesson cancellation: 1 hour notice required</li>
           <div>
-            <AiOutlineMessage /> Send tutor a message<br></br>
-            <AiOutlineSchedule /> Book a Trial
+            <img
+              className="img-account-profile"
+              src={pic || bulb2}
+              alt="Not Found"
+            />
+            <div className="policy">
+              <h5>Policy:</h5>
+              <li>Lesson cancellation: 1 hour notice required</li>
+              <div>
+                <AiOutlineMessage /> Send tutor a message<br></br>
+                <AiOutlineSchedule /> Book a Trial
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -125,8 +115,6 @@ function Profile() {
   );
 }
 
-Profile.propTypes = {
-  // classCount: PropTypes.number
-};
+Profile.propTypes = {};
 
 export default Profile;

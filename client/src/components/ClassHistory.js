@@ -16,7 +16,7 @@ function ClassHistory() {
   //This function gets the user in session
   useEffect(() => {
     const getCurrentUser = async () => {
-      await fetch("/getUser")
+      await fetch("/api/getUser")
         .then((res) => {
           console.log(res);
           return res.json();

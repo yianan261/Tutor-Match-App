@@ -3,7 +3,7 @@ import multer from "multer";
 // Amanda
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, './client/src/assets/uploads');
+        cb(null, './client/src/assets/images');
     },
     filename: function(req, file, cb) {
         cb(null, new Date().toISOString() + '-' + file.originalname)

@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const getCurrentUser = async () => {
-      await fetch("/getUser")
+      await fetch("/api/getUser")
         .then((res) => res.json())
         .then((data) => {
           if (data.user !== null) {
@@ -30,10 +30,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await fetch("/logout", {
+    await fetch("/api/logout", {
       method: "POST",
     });
-
     setUser(null);
   };
 

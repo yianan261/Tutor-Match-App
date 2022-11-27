@@ -25,4 +25,6 @@ function SideNav() {
   );
 }
 
+SideNav.propTypes = {};
+
 export default SideNav;

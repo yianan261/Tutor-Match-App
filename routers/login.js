@@ -2,7 +2,7 @@ import express from "express";
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import myDB from "../db/myDB.js";
-import {validatePassword} from "./passwordUtilites.js";
+import {validatePassword} from "./utils/passwordUtilites.js";
 
 const router = express.Router();
 
@@ -43,7 +43,7 @@ passport.deserializeUser(async (user_id, cb) => {
   });
 });
 
-router.post("/login/password", (req, res, next) => {
+router.post("/api/login/password", (req, res, next) => {
   passport.authenticate("local", function (err, user) {
     if (err) {
       return next(err);
@@ -66,7 +66,7 @@ router.post("/login/password", (req, res, next) => {
 });
 
 
-router.get("/getUser", async (req, res) => {
+router.get("/api/getUser", async (req, res) => {
   if (req.isAuthenticated()) {
     res.status(200).json({ user: req.session.passport.user });
   } else {
@@ -74,7 +74,7 @@ router.get("/getUser", async (req, res) => {
   }
 });
 
-router.post("/logout", async (req, res, next) => {
+router.post("/api/logout", async (req, res, next) => {
   req.logout(function (err) {
     if (err) {
       return next(err);
