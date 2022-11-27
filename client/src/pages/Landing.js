@@ -2,7 +2,6 @@ import React from "react";
 import "../assets/styles/Landing.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import PricePanel from "../components/PricePanel";
 import { NavLink } from "react-router-dom";
 
 //Yian
@@ -20,13 +19,7 @@ function Landing() {
             </NavLink>
           </div>
           <Footer />
-          {/* <span className="footer">
-            <footer id="footer"> */}
-          
-          {/* </footer> */}
-          {/* </span> */}
         </div>
-        <PricePanel />
           
       </div>
     </>

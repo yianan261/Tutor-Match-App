@@ -1,7 +1,6 @@
 .container-profile{
     width: 90%;
     display: grid;
-    grid-template-columns: 2fr 1fr;
     padding: 10em 4em 0 4em;
     row-gap: 2em;
 }
@@ -17,6 +16,7 @@
 .welcome {
     margin: 1em 1em 1em 1em;
     display: flex;
+    justify-content: space-between;
 }
 
 .dashboard {
@@ -31,12 +31,6 @@
     padding: 1em 1em 1em 1em;
 }
 
-.policy {
-    position: absolute;
-    bottom: 0;
-}
-
 .img-account-profile {
     border-radius: 50%;
-    justify-content: right;
 }

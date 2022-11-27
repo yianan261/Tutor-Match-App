@@ -18,7 +18,7 @@ function Login() {
 
   const findUser = async (e) => {
     e.preventDefault();
-    const loginUser = await fetch("/login/password", {
+    const loginUser = await fetch("/api/login/password", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
