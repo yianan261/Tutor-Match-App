@@ -27,7 +27,7 @@ export function dateHelper(num_days) {
     let newDate = futureDateHelper.format(
       futureDateHelper.addDays(
         new Date(),
-        Math.floor(Math.random() * 4) + 1
+        Math.floor(Math.random() * 4) 
       )
     );
 
