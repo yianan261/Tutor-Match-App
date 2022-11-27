@@ -31,5 +31,4 @@ Mockup docs [here](https://www.figma.com/file/xn2avkmMPsgbc284Jr5bZn/Tutor-Web-A
 https://johnguerra.co/classes/webDevelopment_fall_2022/
 
 # Author
-Yian Chen\n
-So Man Amanda Au-Yeung
+Yian Chen and So Man Amanda Au-Yeung
