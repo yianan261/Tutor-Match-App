@@ -166,7 +166,7 @@ html {
 }
 
 .backBtn {
-  display: inline-block;
+  display: flex;
   padding: 0.6em 1em;
   border: 0.14rem solid #8f968f;
   border-radius: 0.1em;

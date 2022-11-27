@@ -143,7 +143,7 @@ function EditProfile() {
                   encType="multipart/form-data"
                 >
                   <div>
-                    <label htmlFor="files" className="btn btn-primary">
+                    <label htmlFor="files" className="btnEditProfile">
                       Upload new image
                     </label>
                     <input
@@ -154,10 +154,10 @@ function EditProfile() {
                         uploadImage(e.target.files[0]);
                       }}
                     />
-                    <button className="btn btn-primary" type="submit">
+                    <button className="btnEditProfile" type="submit">
                       Save Profile Picture
                     </button>
-                    <button className="btn btn-primary" onClick={delPic}>
+                    <button className="btnEditProfile" onClick={delPic}>
                       Delete Profile Picture
                     </button>
                   </div>
@@ -293,7 +293,7 @@ function EditProfile() {
                     </select>
                   </div>
                   {/* <!-- Save changes button--> */}
-                  <button className="btn btn-primary" type="submit">
+                  <button className="btnEditProfile" type="submit">
                     Save changes
                   </button>
                 </form>
