@@ -72,8 +72,8 @@ function Profile() {
     <div className="container-profile">
       <div className="main-profile">
         <div className="welcome">
-          <div>
-            <h2>
+          <div className="profileInnerDiv">
+            <h2 className="userName">
               {profile.username
                 ? "Hi, " + profile.username
                 : "Welcome! Please proceed to edit your profile."}
@@ -94,7 +94,7 @@ function Profile() {
               .
             </div>
           </div>
-          <div>
+          <div className="secondDiv">
             <img
               className="img-account-profile"
               src={pic || bulb2}
@@ -103,7 +103,7 @@ function Profile() {
             <div className="policy">
               <h5>Policy:</h5>
               <li>Lesson cancellation: 1 hour notice required</li>
-              <div>
+              <div className="innerTextPolicy">
                 <AiOutlineMessage /> Send tutor a message<br></br>
                 <AiOutlineSchedule /> Book a Trial
               </div>

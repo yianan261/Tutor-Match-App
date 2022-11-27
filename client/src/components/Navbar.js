@@ -7,13 +7,17 @@ import bulb2 from "../assets/images/bulb2.png";
 //Yian
 function Navbar() {
   const auth = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
   const [navColor, setNavColor] = useState(false);
   const [navClassName, setNavClassName] = useState(
     "navbar navbar-dark navbar-expand-md fixed-top navHome"
   );
 
+  /**
+   * Yian Chen
+   * This function changes navbar on scroll
+   */
   const changeNavBackground = () => {
     window.scrollY >= 66 ? setNavColor(true) : setNavColor(false);
   };
@@ -47,7 +51,7 @@ function Navbar() {
     console.log("after logout user", auth.user);
     navigate("/");
   };
-  
+
   //conditional rendering when authenticated
   const authenticated = (
     <button className="loginBtn" onClick={handleLogout}>
@@ -105,7 +109,7 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <span>{auth.user? authenticated : unauthenticated}</span>
+          <span>{auth.user ? authenticated : unauthenticated}</span>
         </div>
       </nav>
     </div>

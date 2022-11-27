@@ -24,11 +24,11 @@ function BookClass() {
   const [tutorProfile, setTutorProfile] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  // const bookClass = useRef(new Map());
   const [bookDates, setBookDates] = useState(dateHelper(4));
   const [bookClassMap, setBookClassMap] = useState(new Map());
+  const [page, setPage] = useState(0);
+  const [notFound, setNotFound] = useState(false);
   const auth = useAuth();
-
 
   /**Yian
    * function that sets state in BookClass when search is triggered in SearchTutor.js
@@ -39,16 +39,19 @@ function BookClass() {
     setQuery(val);
     setSearch(true);
     setSearchData(data);
+    // setSearchParams({ query: val, page: page });
   };
 
   const handleReturn = () => {
     setSearch(false);
+    setPage(0);
   };
 
   /**Yian
    * local storage to persist state when browser is refreshed
    */
   useEffect(() => {
+    
     try {
       const data = window.localStorage.getItem("Current_Query");
       const rend = window.localStorage.getItem("Current_Render");
@@ -184,7 +187,15 @@ function BookClass() {
    */
   const renderFunc = () => {
     if (render === 1) {
-      return <SearchTutor handleQuery={handleQuery} search={search} />;
+      return (
+        <SearchTutor
+          // handleQuery={handleQuery}
+          search={search}
+          page={page}
+          notFound={notFound}
+          handleSubmit={handleSubmit}
+        />
+      );
     } else if (render === 2) {
       console.log("RENDER2");
       return (
@@ -310,13 +321,82 @@ function BookClass() {
     setModalIsOpen(!modalIsOpen);
   };
 
+  /**Yian Chen
+   * function that goes to next page or previous page
+   * @param {String} command
+   */
+
+  const choosePage = (command) => {
+    console.log("command", command);
+    if (command === "prev" && page - 1 >= 0) {
+      setPage((prev) => prev - 1);
+      // setSearchParams({ page: searchParams.get("page")-1 });
+      // setSearchParams({ query:query, page: page });
+      setSearchParams({ query: query, page: page })
+      handleSubmit(query);
+    } else {
+      setPage((prev) => prev + 1);
+      console.log("next page", page, "command", command);
+      // setSearchParams({ page: searchParams.get("page")+1 })
+      // setSearchParams({  query:currQuery, page: page });
+      setSearchParams({ query: query, page: page })
+      handleSubmit(query);
+    }
+  };
+
+  /**Yian Chen
+   * function that handles submit when search is clicked or keypressed in SearchTutor component
+   * fetchs API endpoint to query search
+   * @param {String} searchword
+   */
+  const handleSubmit = async (searchword) => {
+    if (!searchword) {
+      console.log("no search result");
+      setNotFound(true);
+      return setTimeout(() => {
+        setNotFound(false);
+      }, 2000);
+    }
+    console.log("Curr page", page);
+    try {
+      const res = await fetch(
+        `/book/tutors/?query=${searchParams.get("query")}&page=${page}`,
+        {
+          method: "POST",
+          body: searchParams,
+        }
+      );
+      const resQuery = await res.json();
+      if (resQuery.data.length === 0) {
+        console.log("no search result");
+        setNotFound(true);
+        //reset notFound to false after 2 seconds
+        setTimeout(() => {
+          setNotFound(false);
+        }, 2000);
+      } else {
+        console.log("resQuery.data", resQuery.data);
+        //calls handleQuery function
+        handleQuery(searchword, resQuery.data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   //Yian
   return (
     <div className="BookClassMain">
       <Navbar />
       <div className="container BookContainer">
         <div className="searchDiv">{renderFunc()}</div>
-        {render === 2 ? <TutorPagination searchData={searchData} /> : null}
+        {render === 2 ? (
+          <TutorPagination
+            searchData={searchData}
+            page={page}
+            choosePage={choosePage}
+          />
+        ) : null}
         {render === 3 ? (
           <BookModal
             open={modalIsOpen}

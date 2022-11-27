@@ -38,7 +38,6 @@ function ReviewModal({ handleModal, currTutor }) {
   const handleChange = (evt) => {
     evt.preventDefault();
     const newData = { ...comment };
-    //   newData[evt.target.review] = evt.target.value
     newData.review = evt.target.value;
     setComment(newData);
     console.log("newData", newData);
