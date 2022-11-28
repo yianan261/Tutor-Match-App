@@ -38,6 +38,8 @@ Yian Chen & So Man Amanda Au-Yeung
 
 # Website images
 ![Landing page](https://i.postimg.cc/59DScCdT/Screen-Shot-2022-11-28-at-3-43-03-PM.png)
+<img width="1374" alt="Screen Shot 2022-11-28 at 3 03 59 PM" src="https://user-images.githubusercontent.com/58647320/204399797-5234684a-7d16-4dce-86d8-1282c50e0dca.png">
+<img width="1353" alt="Screen Shot 2022-11-28 at 3 03 48 PM" src="https://user-images.githubusercontent.com/58647320/204399806-8c0b61b5-9e43-422c-8097-c05bd8671973.png">
 ![Search bar](https://i.postimg.cc/R0bnckvy/Screen-Shot-2022-11-28-at-3-43-22-PM.png)
 ![Tutor profiles](https://i.postimg.cc/c138nk2k/Screen-Shot-2022-11-28-at-3-43-29-PM.png)
 ![User profile](https://i.postimg.cc/SRbRdq3T/Screen-Shot-2022-11-28-at-3-43-39-PM.png)
