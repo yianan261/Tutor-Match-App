@@ -48,7 +48,6 @@ function Navbar() {
   // Amanda
   const handleLogout = () => {
     auth.logout();
-    console.log("after logout user", auth.user);
     navigate("/");
   };
 
