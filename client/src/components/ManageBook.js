@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../assets/styles/ManageBook.css";
 import { useAuth } from "../utils/auth";
+import { useNavigate } from "react-router-dom";
 
 /**Yian Chen
  * component that renders booking schedule of student
@@ -10,7 +11,9 @@ function ManageBook() {
   const auth = useAuth();
   const [schedule, setSchedule] = useState([]);
   const [remove, setRemove] = useState(false);
+  const navigate = useNavigate();
 
+  //This function gets the user in session
   useEffect(() => {
     const getCurrentUser = async () => {
       await fetch("/api/getUser")
@@ -19,13 +22,14 @@ function ManageBook() {
         })
         .then((data) => {
           if (data.user === null) {
-            console.log("no user");
+            alert("please login");
+            navigate("/login");
           }
         });
     };
 
     getCurrentUser();
-  }, []);
+  }, [auth]);
 
   /**Yian
    * this function gets the schedule of the user and makes a copy to schedule
