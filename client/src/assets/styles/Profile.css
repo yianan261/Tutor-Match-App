@@ -1,36 +1,65 @@
-.container-profile{
-    width: 90%;
-    display: grid;
-    padding: 10em 4em 0 4em;
-    row-gap: 2em;
+.container-profile {
+  width: 90%;
+  display: grid;
+  padding: 10em 4em 0 4em;
+  row-gap: 2em;
 }
 
 .main-profile {
-    background-color: #f1f6eb;
-    height: 500px;
-    margin-right: 1em;
-    border-radius: 3%;
-    box-shadow: 8px 3px 3px rgb(129, 172, 129);
+  background-color: #f1f6eb;
+  height: 500px;
+  margin-right: 1em;
+  border-radius: 3%;
+  box-shadow: 8px 3px 3px rgb(129, 172, 129);
 }
 
 .welcome {
-    margin: 1em 1em 1em 1em;
-    display: flex;
-    justify-content: space-between;
+  margin: 2em 2em 2em 2em;
+  display: flex;
+  justify-content: space-between;
 }
 
+.userName {
+  color: rgb(247, 102, 18);
+  text-align: center;
+  text-shadow: 0.5px 0.5px 1px rgb(156, 178, 160)
+}
+.profileInnerDiv {
+  padding: 3%;
+  font-size: 18px;
+  background: rgb(255, 254, 250);
+  color: rgb(86, 90, 77);
+  border-radius: 0.5rem;
+  width: 60%;
+  height: 420px;
+}
+
+.secondDiv {
+  padding: 3%;
+  background: rgb(255, 254, 250);
+  color: rgb(86, 90, 77);
+  border-radius: 0.5rem;
+}
 .dashboard {
-    margin: 1em 1em 1em 1em;
+  margin: 1em 1em 1em 1em;
 }
 
 .schedule {
-    background-color: #f1f6eb;
-    height: 500px;
-    border-radius: 3%;
-    box-shadow: 8px 3px 3px rgb(129, 172, 129);
-    padding: 1em 1em 1em 1em;
+  background-color: #f1f6eb;
+  height: 500px;
+  border-radius: 3%;
+  box-shadow: 8px 3px 3px rgb(129, 172, 129);
+  padding: 1em 1em 1em 1em;
 }
 
 .img-account-profile {
-    border-radius: 50%;
+  border-radius: 50%;
+}
+
+.innerTextPolicy {
+  line-height: 2;
+}
+
+.img-account-profile {
+  margin-bottom: 5%;
 }

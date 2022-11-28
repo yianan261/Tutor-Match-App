@@ -9,7 +9,7 @@ dotenv.config({ path: ".env" });
  */
 function MyMongoDB() {
   const myDB = {};
-  const url = "mongodb://localhost:27017"|| process.env.MONGO_URI;
+  const url = process.env.MONGO_URI || "mongodb://localhost:27017";
   const DB_NAME = "TutorsApp";
   const USER_COLLECTION = "users";
   const TUTORS_COLLECTION = "tutors";
@@ -200,10 +200,8 @@ function MyMongoDB() {
   myDB.findTutors = async (word, page = 0) => {
     let client;
     try {
-      console.log("word", word);
       client = new MongoClient(url);
       const tutorsCol = client.db(DB_NAME).collection(TUTORS_COLLECTION);
-      // const options = { projection: { reviews: 0 } };
       const res = await tutorsCol
         .find({
           $or: [
@@ -231,7 +229,6 @@ function MyMongoDB() {
    */
   myDB.getUserSchedule = async (_user) => {
     let client;
-
     let updateRes;
     try {
       client = new MongoClient(url);
@@ -240,11 +237,8 @@ function MyMongoDB() {
         projection: { salt: 0, hash: 0 },
       };
       const res = await userCol.findOne({ _id: ObjectId(_user) }, options);
-      console.log("Res in DB", res);
       let historyDate = res.history;
-
       const todayDate = new Date();
-
       //move old bookings to history
       res.schedule.forEach((d) => {
         const newTemp = d.date.split("/").join("-");

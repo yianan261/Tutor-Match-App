@@ -24,11 +24,11 @@ function BookClass() {
   const [tutorProfile, setTutorProfile] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  // const bookClass = useRef(new Map());
   const [bookDates, setBookDates] = useState(dateHelper(4));
   const [bookClassMap, setBookClassMap] = useState(new Map());
+  const [page, setPage] = useState(0);
+  const [notFound, setNotFound] = useState(false);
   const auth = useAuth();
-
 
   /**Yian
    * function that sets state in BookClass when search is triggered in SearchTutor.js
@@ -43,12 +43,14 @@ function BookClass() {
 
   const handleReturn = () => {
     setSearch(false);
+    setPage(0);
   };
 
   /**Yian
    * local storage to persist state when browser is refreshed
    */
   useEffect(() => {
+    
     try {
       const data = window.localStorage.getItem("Current_Query");
       const rend = window.localStorage.getItem("Current_Render");
@@ -97,7 +99,6 @@ function BookClass() {
     try {
       const onBackButtonEvent = (evt) => {
         evt.preventDefault();
-        console.log("CLICKED");
         window.localStorage.removeItem("Current_Query");
         window.localStorage.removeItem("Current_Render");
         window.localStorage.removeItem("Current_Data");
@@ -134,8 +135,7 @@ function BookClass() {
       console.error(err);
     }
   }, [search]);
-  console.log("render", render);
-  console.log("search", search);
+ 
 
   //sets render to 3 when called
   const searchProfile = (profile) => {
@@ -155,7 +155,6 @@ function BookClass() {
    */
   const handleModal = () => {
     if (auth.user) {
-      console.log("open modal");
       setModalIsOpen(!modalIsOpen);
     } else {
       alert("Please sign in to book class");
@@ -171,7 +170,6 @@ function BookClass() {
       if (tutorProfile) {
         const newArr = new Set(dateHelper(4));
         setBookDates([...newArr]);
-        console.log("BOOKDATES", bookDates);
       }
     } catch (err) {
       console.error(err);
@@ -184,9 +182,16 @@ function BookClass() {
    */
   const renderFunc = () => {
     if (render === 1) {
-      return <SearchTutor handleQuery={handleQuery} search={search} />;
+      return (
+        <SearchTutor
+          // handleQuery={handleQuery}
+          search={search}
+          page={page}
+          notFound={notFound}
+          handleSubmit={handleSubmit}
+        />
+      );
     } else if (render === 2) {
-      console.log("RENDER2");
       return (
         <TutorProfile
           searchData={searchData}
@@ -196,7 +201,6 @@ function BookClass() {
         />
       );
     } else if (render === 3) {
-      console.log("RENDER3");
       return (
         <TutorInfo
           tutorProfile={tutorProfile}
@@ -207,8 +211,6 @@ function BookClass() {
       );
     }
   };
-  //todo: update add class/delete class to backend
-  console.log("bookClassMap HERE INITIAL FETCH", bookClassMap);
 
   /**Yian
    * this function gets the schedule of the user and maps to bookClassMap
@@ -218,15 +220,12 @@ function BookClass() {
       const fetchSchedule = async () => {
         const res = await fetch("/api/getSchedule");
         const resSchedule = await res.json();
-        console.log("resSchedule", resSchedule);
         const sched = resSchedule.data.schedule;
-        console.log("SCHED", sched);
         const tempMap = new Map(bookClassMap);
         if (sched !== null && sched !== []) {
           sched.forEach((item) =>
             tempMap.set(`${item.date} ${item.time}`, item)
           );
-          console.log("TEMP MAP", tempMap);
           setBookClassMap(tempMap);
         }
       };
@@ -247,7 +246,6 @@ function BookClass() {
     try {
       //convert to array of objects
       const scheduleArray = Array.from(schedule);
-      console.log("scheduleArr", scheduleArray);
 
       await fetch("/api/addClass", {
         method: "POST",
@@ -310,13 +308,73 @@ function BookClass() {
     setModalIsOpen(!modalIsOpen);
   };
 
+  /**Yian Chen
+   * function that goes to next page or previous page
+   * @param {String} command
+   */
+
+  const choosePage = (command) => {
+    if (command === "prev" && page - 1 >= 0) {
+      setPage((prev) => prev - 1);
+      setSearchParams({ query: query, page: page })
+      handleSubmit(query);
+    } else {
+      setPage((prev) => prev + 1);
+      setSearchParams({ query: query, page: page })
+      handleSubmit(query);
+    }
+  };
+
+  /**Yian Chen
+   * function that handles submit when search is clicked or keypressed in SearchTutor component
+   * fetchs API endpoint to query search
+   * @param {String} searchword
+   */
+  const handleSubmit = async (searchword) => {
+    if (!searchword) {
+      setNotFound(true);
+      return setTimeout(() => {
+        setNotFound(false);
+      }, 2000);
+    }
+
+    try {
+      const res = await fetch(
+        `/book/tutors/?query=${searchParams.get("query")}&page=${page}`,
+        {
+          method: "POST",
+          body: searchParams,
+        }
+      );
+      const resQuery = await res.json();
+      if (resQuery.data.length === 0) {
+        setNotFound(true);
+        //reset notFound to false after 2 seconds
+        setTimeout(() => {
+          setNotFound(false);
+        }, 2000);
+      } else {
+        //calls handleQuery function
+        handleQuery(searchword, resQuery.data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   //Yian
   return (
     <div className="BookClassMain">
       <Navbar />
       <div className="container BookContainer">
         <div className="searchDiv">{renderFunc()}</div>
-        {render === 2 ? <TutorPagination searchData={searchData} /> : null}
+        {render === 2 ? (
+          <TutorPagination
+            searchData={searchData}
+            page={page}
+            choosePage={choosePage}
+          />
+        ) : null}
         {render === 3 ? (
           <BookModal
             open={modalIsOpen}

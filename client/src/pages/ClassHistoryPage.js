@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import SideNav from '../components/SideNav'
 import ClassHistory from '../components/ClassHistory'
 
+//Yian Chen
 function ClassHistoryPage() {
   
     return (

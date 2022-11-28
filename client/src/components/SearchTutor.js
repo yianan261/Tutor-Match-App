@@ -10,15 +10,18 @@ import PropTypes from "prop-types";
  * @param {function} handleQuery prop passed in from parent component in SearchTutor.js
  * @returns JSX of rendering
  */
-function SearchTutor({ handleQuery, search }) {
+function SearchTutor({ notFound,search, handleSubmit,page}) {
   const [searchword, setSearchword] = useState("");
   const [searchParams, setSearchParams] = useSearchParams("");
-  const [notFound, setNotFound] = useState(false);
 
+  /**Yian Chen
+   * function that handles change on search input
+   * @param {*} evt 
+   */
   const handleChange = (evt) => {
     evt.preventDefault();
     setSearchword(evt.target.value);
-    setSearchParams({ query: evt.target.value });
+    setSearchParams({ query: evt.target.value, page:page });
   };
 
   /**
@@ -37,7 +40,7 @@ function SearchTutor({ handleQuery, search }) {
     const keyDownHandler = (evt) => {
       if (evt.key === "Enter") {
         evt.preventDefault();
-        handleSubmit();
+        handleSubmit(searchword);
       }
     };
     window.addEventListener("keydown", keyDownHandler);
@@ -50,36 +53,9 @@ function SearchTutor({ handleQuery, search }) {
   //function for when search button is clicked
   const handleClick = (evt) => {
     evt.preventDefault();
-    handleSubmit();
-    console.log("CLICKED,evt", evt);
+    handleSubmit(searchword);
   };
 
-  /**
-   * function that handles submission for search
-   */
-  const handleSubmit = async () => {
-    try {
-      const res = await fetch(`/book/tutors/?query=${searchword}`, {
-        method: "POST",
-        body: searchParams.get("query"),
-      });
-      const resQuery = await res.json();
-      if (resQuery.data.length === 0) {
-        console.log("no search result");
-        setNotFound(true);
-        //reset notFound to false after 2 seconds
-        setTimeout(() => {
-          setNotFound(false);
-        }, 2000);
-      } else {
-        console.log("resQuery.data", resQuery.data);
-        //calls handleQuery function in parent component
-        handleQuery(searchParams.get("query"), resQuery.data);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   //renders no result
   const noRes = () => {
@@ -124,7 +100,9 @@ function SearchTutor({ handleQuery, search }) {
 }
 
 SearchTutor.propTypes = {
-  handleQuery: PropTypes.func,
+  notFound: PropTypes.bool,
   search: PropTypes.bool,
+  page: PropTypes.number,
+  handleSubmit: PropTypes.func
 };
 export default SearchTutor;

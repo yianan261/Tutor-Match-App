@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import Rate from "./Rate";
 
 /**Yian Chen
- *
  * @param {props} props from parent component ClassHistory.js
  * @returns JSX of review modal
  */
@@ -15,11 +14,12 @@ function ReviewModal({ handleModal, currTutor }) {
     tutor_lastname: currTutor.last_name,
   });
 
-  console.log("Tutor name", currTutor.tutor, currTutor.last_name);
-
+  /**Yian Chen
+   * function that handles submit
+   * @param {*} evt
+   */
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    console.log("COMMENT", comment);
     try {
       const res = await fetch("/api/addReview", {
         method: "POST",
@@ -35,13 +35,15 @@ function ReviewModal({ handleModal, currTutor }) {
     }
   };
 
+  /**
+   * function that handles change when user starts typing
+   * @param {*} evt
+   */
   const handleChange = (evt) => {
     evt.preventDefault();
     const newData = { ...comment };
-    //   newData[evt.target.review] = evt.target.value
     newData.review = evt.target.value;
     setComment(newData);
-    console.log("newData", newData);
   };
 
   return ReactDOM.createPortal(
