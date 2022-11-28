@@ -5,6 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
+    "postinstall":"cd client && npm install && npm run build",
     "start": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=development nodemon server.js",
     "initDB": "mongoimport -d TutorsApp -c tutors --jsonArray --file ./db/data/tutors2.json"
