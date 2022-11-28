@@ -1,5 +1,6 @@
 import myDB from "../db/myDB.js";
 import cloudinary from "./utils/cloudinary.js";
+import fs from "fs";
 
 /**
  * Amanda Au-Yeung
@@ -19,6 +20,21 @@ export const updateProfile = async (req, res) => {
     }
   } catch (err) {
     res.status(400).send({ err: `There is an ${err}` });
+  }
+};
+
+// upload pic to DB
+export const uploadPic = async (req, res) => {
+  try {
+    if (req.file) {
+      const cloudRes = await cloudinary.uploader.upload(req.file.path);
+      await myDB.updatesPic(req.session.passport.user, cloudRes.url);
+      fs.unlinkSync(req.file.path);
+      res.redirect("/profile/EditProfile");
+    }
+  } catch (err) {
+    res.status(400).send({ err: `There is an ${err}` });
+    fs.unlinkSync(req.file.path);
   }
 };
 
