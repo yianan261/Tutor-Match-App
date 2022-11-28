@@ -115,4 +115,5 @@ function ClassHistory() {
   );
 }
 
+ClassHistory.propTypes = {};
 export default ClassHistory;

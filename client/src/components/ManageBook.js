@@ -4,7 +4,7 @@ import { useAuth } from "../utils/auth";
 
 /**Yian Chen
  * component that renders booking schedule of student
- * @returns JSX manage book UI
+ * @returns JSX of manage booking UI
  */
 function ManageBook() {
   const auth = useAuth();
@@ -127,4 +127,5 @@ function ManageBook() {
   );
 }
 
+ManageBook.propTypes = {};
 export default ManageBook;

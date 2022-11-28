@@ -50,7 +50,6 @@ function BookClass() {
    * local storage to persist state when browser is refreshed
    */
   useEffect(() => {
-    
     try {
       const data = window.localStorage.getItem("Current_Query");
       const rend = window.localStorage.getItem("Current_Render");
@@ -135,7 +134,6 @@ function BookClass() {
       console.error(err);
     }
   }, [search]);
- 
 
   //sets render to 3 when called
   const searchProfile = (profile) => {
@@ -316,11 +314,11 @@ function BookClass() {
   const choosePage = (command) => {
     if (command === "prev" && page - 1 >= 0) {
       setPage((prev) => prev - 1);
-      setSearchParams({ query: query, page: page })
+      setSearchParams({ query: query, page: page });
       handleSubmit(query);
     } else {
       setPage((prev) => prev + 1);
-      setSearchParams({ query: query, page: page })
+      setSearchParams({ query: query, page: page });
       handleSubmit(query);
     }
   };
@@ -393,4 +391,5 @@ function BookClass() {
   );
 }
 
+BookClass.propTypes = {};
 export default BookClass;

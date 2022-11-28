@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 /** Yian
  * This module handles the search query for tutors
  * @param {function} handleQuery prop passed in from parent component in SearchTutor.js
- * @returns JSX of rendering
+ * @returns JSX of search tutor rendering
  */
 function SearchTutor({ notFound,search, handleSubmit,page}) {
   const [searchword, setSearchword] = useState("");
