@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../utils/auth";
 import "../assets/styles/ClassHistory.css";
 import ReviewModal from "./ReviewModal";
+import { useNavigate } from "react-router-dom";
 
 /**Yian Chen
  * component that renders user class history
@@ -12,19 +13,19 @@ function ClassHistory() {
   const [history, setHistory] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [currTutor, setCurrTutor] = useState({ tutor: "", tutor_lastname: "" });
+  const navigate = useNavigate();
 
   //This function gets the user in session
   useEffect(() => {
     const getCurrentUser = async () => {
       await fetch("/api/getUser")
         .then((res) => {
-          console.log(res);
           return res.json();
         })
         .then((data) => {
-          console.log("get current user", data);
           if (data.user === null) {
-            console.log("no user");
+            alert("please login")
+            navigate("/login");
           }
         });
     };
@@ -40,9 +41,7 @@ function ClassHistory() {
       const fetchSchedule = async () => {
         const res = await fetch("/api/getSchedule");
         const resHistory = await res.json();
-        console.log("resHistory", resHistory);
         const userHistory = resHistory.data.history;
-        console.log("userHistory", userHistory);
         setHistory([...userHistory]);
       };
       //only fetch schedule if user is logged in
