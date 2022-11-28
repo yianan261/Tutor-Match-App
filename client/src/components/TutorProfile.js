@@ -35,9 +35,6 @@ function TutorProfile({ searchData, query, handleReturn, searchProfile }) {
     handleReturn();
   };
 
-  console.log("displaypairs", displayPairs);
-  console.log("tutor profile data", searchData);
-
   /**
    * function that generates number of stars in tutor profile
    * @param {int} num of stars
