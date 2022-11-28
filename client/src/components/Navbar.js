@@ -59,7 +59,7 @@ function Navbar() {
     </button>
   );
 
-  /**
+  /**Yian Chen
    * this function determines navbar design according to location path
    * if at Homepage activate navHome css selector (default),else use navAll
    * on scroll activate navActive

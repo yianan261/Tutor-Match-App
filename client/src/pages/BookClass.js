@@ -39,7 +39,6 @@ function BookClass() {
     setQuery(val);
     setSearch(true);
     setSearchData(data);
-    // setSearchParams({ query: val, page: page });
   };
 
   const handleReturn = () => {
@@ -100,7 +99,6 @@ function BookClass() {
     try {
       const onBackButtonEvent = (evt) => {
         evt.preventDefault();
-        console.log("CLICKED");
         window.localStorage.removeItem("Current_Query");
         window.localStorage.removeItem("Current_Render");
         window.localStorage.removeItem("Current_Data");
@@ -137,8 +135,7 @@ function BookClass() {
       console.error(err);
     }
   }, [search]);
-  console.log("render", render);
-  console.log("search", search);
+ 
 
   //sets render to 3 when called
   const searchProfile = (profile) => {
@@ -158,7 +155,6 @@ function BookClass() {
    */
   const handleModal = () => {
     if (auth.user) {
-      console.log("open modal");
       setModalIsOpen(!modalIsOpen);
     } else {
       alert("Please sign in to book class");
@@ -174,7 +170,6 @@ function BookClass() {
       if (tutorProfile) {
         const newArr = new Set(dateHelper(4));
         setBookDates([...newArr]);
-        console.log("BOOKDATES", bookDates);
       }
     } catch (err) {
       console.error(err);
@@ -197,7 +192,6 @@ function BookClass() {
         />
       );
     } else if (render === 2) {
-      console.log("RENDER2");
       return (
         <TutorProfile
           searchData={searchData}
@@ -207,7 +201,6 @@ function BookClass() {
         />
       );
     } else if (render === 3) {
-      console.log("RENDER3");
       return (
         <TutorInfo
           tutorProfile={tutorProfile}
@@ -218,8 +211,6 @@ function BookClass() {
       );
     }
   };
-  //todo: update add class/delete class to backend
-  console.log("bookClassMap HERE INITIAL FETCH", bookClassMap);
 
   /**Yian
    * this function gets the schedule of the user and maps to bookClassMap
@@ -229,15 +220,12 @@ function BookClass() {
       const fetchSchedule = async () => {
         const res = await fetch("/api/getSchedule");
         const resSchedule = await res.json();
-        console.log("resSchedule", resSchedule);
         const sched = resSchedule.data.schedule;
-        console.log("SCHED", sched);
         const tempMap = new Map(bookClassMap);
         if (sched !== null && sched !== []) {
           sched.forEach((item) =>
             tempMap.set(`${item.date} ${item.time}`, item)
           );
-          console.log("TEMP MAP", tempMap);
           setBookClassMap(tempMap);
         }
       };
@@ -258,7 +246,6 @@ function BookClass() {
     try {
       //convert to array of objects
       const scheduleArray = Array.from(schedule);
-      console.log("scheduleArr", scheduleArray);
 
       await fetch("/api/addClass", {
         method: "POST",
@@ -327,18 +314,12 @@ function BookClass() {
    */
 
   const choosePage = (command) => {
-    console.log("command", command);
     if (command === "prev" && page - 1 >= 0) {
       setPage((prev) => prev - 1);
-      // setSearchParams({ page: searchParams.get("page")-1 });
-      // setSearchParams({ query:query, page: page });
       setSearchParams({ query: query, page: page })
       handleSubmit(query);
     } else {
       setPage((prev) => prev + 1);
-      console.log("next page", page, "command", command);
-      // setSearchParams({ page: searchParams.get("page")+1 })
-      // setSearchParams({  query:currQuery, page: page });
       setSearchParams({ query: query, page: page })
       handleSubmit(query);
     }
@@ -351,13 +332,12 @@ function BookClass() {
    */
   const handleSubmit = async (searchword) => {
     if (!searchword) {
-      console.log("no search result");
       setNotFound(true);
       return setTimeout(() => {
         setNotFound(false);
       }, 2000);
     }
-    console.log("Curr page", page);
+
     try {
       const res = await fetch(
         `/book/tutors/?query=${searchParams.get("query")}&page=${page}`,
@@ -368,14 +348,12 @@ function BookClass() {
       );
       const resQuery = await res.json();
       if (resQuery.data.length === 0) {
-        console.log("no search result");
         setNotFound(true);
         //reset notFound to false after 2 seconds
         setTimeout(() => {
           setNotFound(false);
         }, 2000);
       } else {
-        console.log("resQuery.data", resQuery.data);
         //calls handleQuery function
         handleQuery(searchword, resQuery.data);
       }

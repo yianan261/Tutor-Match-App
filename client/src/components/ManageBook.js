@@ -11,16 +11,13 @@ function ManageBook() {
   const [schedule, setSchedule] = useState([]);
   const [remove, setRemove] = useState(false);
 
-  console.log("currUser", auth.user);
   useEffect(() => {
     const getCurrentUser = async () => {
       await fetch("/api/getUser")
         .then((res) => {
-          console.log(res);
           return res.json();
         })
         .then((data) => {
-          console.log("get current user", data);
           if (data.user === null) {
             console.log("no user");
           }
@@ -31,16 +28,14 @@ function ManageBook() {
   }, []);
 
   /**Yian
-   * this function gets the schedule of the user and makes a copy to schedule 
+   * this function gets the schedule of the user and makes a copy to schedule
    */
   useEffect(() => {
     try {
       const fetchSchedule = async () => {
         const res = await fetch("/api/getSchedule");
         const resSchedule = await res.json();
-        console.log("resSchedule", resSchedule);
         const sched = resSchedule.data.schedule;
-        console.log("SCHED", sched);
         setSchedule([...sched]);
       };
       //only fetch schedule if user is logged in
@@ -52,6 +47,13 @@ function ManageBook() {
     }
   }, [remove, auth]);
 
+  /**
+   * Yian Chen
+   * function that removes class from database
+   * @param {String} date
+   * @param {String} time
+   * @param {String} tutor
+   */
   const removeClass = async (date, time, tutor) => {
     try {
       let scheduleObj = {};
@@ -59,7 +61,6 @@ function ManageBook() {
       scheduleObj.date = date;
       scheduleObj.time = time;
       scheduleObj.tutor = tutor;
-      console.log("SCHEDULEOBJ", scheduleObj);
 
       const res = await fetch("/deleteClass", {
         method: "POST",
@@ -69,7 +70,6 @@ function ManageBook() {
         body: JSON.stringify(scheduleObj),
       });
       const resMsg = await res.json();
-      console.log("resMsg", resMsg.msg);
       setRemove(true);
       alert(resMsg.msg);
     } catch (err) {
@@ -78,6 +78,13 @@ function ManageBook() {
     }
   };
 
+  /**Yian Chen
+   * function that renders delete button
+   * @param {String} date
+   * @param {String} time
+   * @param {String} tutor
+   * @returns
+   */
   const renderDeleteBtn = (date, time, tutor) => {
     return (
       <button

@@ -21,7 +21,7 @@ function TutorInfo({ tutorProfile, returnToSearch, handleModal }) {
     }
     return s;
   };
-  console.log("Check type", typeof tutorProfile.reviews);
+  
 
   //function that handles click (returns to search)
   const handleClick = () => {

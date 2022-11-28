@@ -13,8 +13,11 @@ import PropTypes from "prop-types";
 function SearchTutor({ notFound,search, handleSubmit,page}) {
   const [searchword, setSearchword] = useState("");
   const [searchParams, setSearchParams] = useSearchParams("");
-  // const [notFound, setNotFound] = useState(false);
 
+  /**Yian Chen
+   * function that handles change on search input
+   * @param {*} evt 
+   */
   const handleChange = (evt) => {
     evt.preventDefault();
     setSearchword(evt.target.value);
@@ -51,7 +54,6 @@ function SearchTutor({ notFound,search, handleSubmit,page}) {
   const handleClick = (evt) => {
     evt.preventDefault();
     handleSubmit(searchword);
-    console.log("CLICKED,evt", evt);
   };
 
 
@@ -98,7 +100,6 @@ function SearchTutor({ notFound,search, handleSubmit,page}) {
 }
 
 SearchTutor.propTypes = {
-  // handleQuery: PropTypes.func,
   notFound: PropTypes.bool,
   search: PropTypes.bool,
   page: PropTypes.number,

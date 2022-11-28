@@ -59,7 +59,6 @@ function ClassHistory() {
    * @returns opens review modal when clicked
    */
   const renderCommentBtn = (i) => {
-    console.log("i", i);
     return (
       <button
         className="commentBtnHistory"
