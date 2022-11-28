@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "../assets/styles/TutorProfile.css";
 
-
 /**
  * Yian
  * @param {props} searchData object and query string
- * @returns JSX
+ * @returns JSX of tutor profiles
  */
 function TutorProfile({ searchData, query, handleReturn, searchProfile }) {
   const [displayPairs, setDisplayPairs] = useState([]);

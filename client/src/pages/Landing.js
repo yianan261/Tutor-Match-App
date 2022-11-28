@@ -20,10 +20,10 @@ function Landing() {
           </div>
           <Footer />
         </div>
-          
       </div>
     </>
   );
 }
 
+Landing.propTypes = {};
 export default Landing;
