@@ -1,7 +1,5 @@
 import myDB from "../db/myDB.js";
-import fs from "fs";
 import cloudinary from "./utils/cloudinary.js";
-import upload from "./utils/multer.js";
 
 /**
  * Amanda Au-Yeung
@@ -24,26 +22,7 @@ export const updateProfile = async (req, res) => {
   }
 };
 
-/**
- * profile pics posting to DB
- */
-export const uploadPic =
-  (upload.single("img"),
-  async (req, res) => {
-    try {
-      if (req.file) {
-        const cloudRes = await cloudinary.uploader.upload(req.file.path);
-        await myDB.updatesPic(req.session.passport.user, cloudRes.url);
-        fs.unlinkSync(req.file.path);
-        res.redirect("/profile/EditProfile");
-      }
-    } catch (err) {
-      res.status(400).send({ err: `There is an ${err}` });
-      fs.unlinkSync(req.file.path);
-    }
-  });
-
-// del pic in cloudinary
+// delPic
 export const delPic = async (req, res) => {
   let id = req.query.id;
   let user;
@@ -62,9 +41,7 @@ export const delPic = async (req, res) => {
   }
 };
 
-/**
- * retrieves profile info
- */
+// retrieves profile info
 export const retrieveProfileInfo = async (req, res) => {
   try {
     let userIdInSession = req.session.passport.user;
