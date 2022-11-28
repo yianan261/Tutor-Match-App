@@ -1,0 +1,38 @@
+.AccountSetting{
+    width: 100%;
+    display: grid;
+    background-color: #f1f6eb;
+    height: 800px;
+    margin: 10em 6em 6em 6em;
+    border-radius: 3%;
+    box-shadow: 8px 3px 3px rgb(129, 172, 129);
+}
+
+.plan-selection {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.price-container {
+    padding: 0em 5em 1em 5em;
+}
+
+.select-plan {
+    display: grid;
+  grid-template-columns: 0.5fr 0.5fr 0.5fr;
+  column-gap: 3em;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.delete-account {
+    text-align: center;
+}
+
+.delete-button {
+    all: unset;
+    text-decoration: underline;
+    color: rgb(245, 127, 127);
+}

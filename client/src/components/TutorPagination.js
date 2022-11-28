@@ -2,6 +2,12 @@ import React from "react";
 import "../assets/styles/TutorPagination.css";
 import PropTypes from "prop-types";
 
+/**
+ * Yian Chen
+ * Module that renders pagination for tutor search page
+ * @param {prop} prop passed from BookClass.js
+ * @returns JSX of pagination
+ */
 function TutorPagination({ choosePage }) {
   return (
     <div>
