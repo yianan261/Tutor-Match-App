@@ -23,7 +23,6 @@ export const getTutor = async (req, res) => {
     const tutorId = req.params.tutorId;
     const getTutor = await myDB.getTutor(tutorId);
     res.status(200).json({ data: getTutor });
-    console.log("GOT TUTOR DATA");
   } catch (err) {
     console.error(err);
     res.status(404).json({ msg: "There was an error" });
@@ -37,7 +36,6 @@ export const updateClass = async (req, res) => {
   try {
     const user = req.session.passport.user;
     const booking = req.body;
-    console.log("booking", req.body);
     await myDB.makeBooking(user, booking);
     res.status(200).json({ msg: "successfully created booking" });
   } catch (err) {
