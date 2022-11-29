@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../assets/styles/EditProfile.css";
 import bulb2 from "../assets/images/bulb2.png";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +22,7 @@ function EditProfile() {
   });
   const [preferredSchedule, setPreferredSchedule] = useState([]);
   const [pic, setPic] = useState(null);
+  const form = useRef(null);
 
   // if there is no user, then we redirect to login,
   // else we are fetching the existing data
@@ -108,6 +109,19 @@ function EditProfile() {
     setPic(window.URL.createObjectURL(file));
   };
 
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    let uploadImg = new FormData(form.current);
+    const res = await fetch("/api/upload", {
+      method: "POST",
+      body: uploadImg,
+    });
+    const uploadStatus = await res.json();
+    if (uploadStatus.status === "OK") {
+      navigate("/profile/editProfile");
+    }
+  }
+
   const delPic = async (e) => {
     e.preventDefault();
     await fetch(`/api/delPic?id=${user}`, {
@@ -138,9 +152,9 @@ function EditProfile() {
                 {/* <!-- Profile picture upload button--> */}
                 <form
                   id="picForm"
-                  action="/api/upload"
-                  method="POST"
-                  encType="multipart/form-data"
+                  name="picForm"
+                  ref={form}
+                  onSubmit={handleUpload}
                 >
                   <div>
                     <label htmlFor="files" className="btnEditProfile">

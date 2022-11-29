@@ -30,13 +30,18 @@ export const uploadPic = async (req, res) => {
       const cloudRes = await cloudinary.uploader.upload(req.file.path);
       await myDB.updatesPic(req.session.passport.user, cloudRes.url);
       fs.unlinkSync(req.file.path);
-      res.redirect("/profile/EditProfile");
+      res.status(200).json({ status: "OK"});
     }
   } catch (err) {
     res.status(400).send({ err: `There is an ${err}` });
     fs.unlinkSync(req.file.path);
   }
 };
+
+// redirect Upload
+// export const redirectUpload = async (req, res) => {
+//   res.status(200).redirect("/profile/editProfile");
+// }
 
 // delPic
 export const delPic = async (req, res) => {

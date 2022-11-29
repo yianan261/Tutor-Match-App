@@ -1,6 +1,8 @@
 import express from "express";
 import {
-  updateProfile, uploadPic,
+  updateProfile,
+  uploadPic,
+  // redirectUpload,
   delPic,
   retrieveProfileInfo,
   redirectEditProfile,
@@ -19,6 +21,11 @@ router.post("/api/profile/editProfile", updateProfile);
  * profile pics posting to DB
  */
 router.post("/api/upload", upload.single("img"), uploadPic);
+
+// /**
+//  * 
+//  */
+// router.get("/profile/editProfile", redirectUpload);
 
 /**
  * del profile pic in cloudinary
