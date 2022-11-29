@@ -1,6 +1,7 @@
 import express from "express";
 import {
-  updateProfile, uploadPic,
+  updateProfile,
+  uploadPic,
   delPic,
   retrieveProfileInfo,
   redirectEditProfile,

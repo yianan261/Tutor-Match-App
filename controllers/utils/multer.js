@@ -2,7 +2,7 @@ import multer from "multer";
 
 // Amanda
 /**
- * using multer as a middle ware to handle image storing
+ * using multer as a middleware to handle image storing
  */
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
