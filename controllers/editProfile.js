@@ -38,11 +38,6 @@ export const uploadPic = async (req, res) => {
   }
 };
 
-// redirect Upload
-// export const redirectUpload = async (req, res) => {
-//   res.status(200).redirect("/profile/editProfile");
-// }
-
 // delPic
 export const delPic = async (req, res) => {
   let id = req.query.id;
