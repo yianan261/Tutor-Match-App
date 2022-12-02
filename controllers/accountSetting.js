@@ -24,3 +24,4 @@ export const delProfile = async (req, res) => {
       res.status(400).send({ err: `There is an ${err} when you delete your account.` });
     }
   }
+  
