@@ -9,6 +9,8 @@ import {
 import { FaRegCalendarCheck } from "react-icons/fa";
 import bulb2 from "../assets/images/bulb2.png";
 
+<!-- See comment about gatekeeper -->
+
 /**
  * Amanda Au-Yeung
  * profile of student
