@@ -243,7 +243,7 @@ function MyMongoDB() {
       res.schedule.forEach((d) => {
         const newTemp = d.date.split("/").join("-");
         const currDate = new Date(newTemp);
-        if (todayDate >= currDate) {
+        if (todayDate > currDate) {
           const newHistoryObj = {};
           //convert date object back to string
           const currTemp =
@@ -267,7 +267,7 @@ function MyMongoDB() {
         const newTemp = item.date.split("/").join("-");
         const currDate = new Date(newTemp);
         return (
-          currDate >= todayDate &&
+          currDate > todayDate &&
           idx ===
             res.schedule.findIndex((obj) => {
               return JSON.stringify(obj) === _value;
