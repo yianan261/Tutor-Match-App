@@ -3,6 +3,20 @@
 This is a MERN stack web application that helps students get the academic help they need.
 The website is a tutor matching app for students and tutors. The app helps students (users) to match a tutor according to their academic needs. The main collections in the db would be user basic info and classes, the other collection would be the tutor profiles, such as tutor’s academia record and reviews. For more detailed information, please refer to the design documents attached
 
+# Technology used
+
+Node.js and Express.js for backend
+React for frontend
+MongoDB for database
+Passport.js for authentication
+Cloudinary API for image upload
+Multer middleware for handling multi-part data (for file uploading)
+Observable notebook for mock data manipulation to get tutor data
+
+# Design
+
+## Color Palette
+
 # Development usage
 
 1. Run `npm install`
@@ -14,13 +28,17 @@ The website is a tutor matching app for students and tutors. The app helps stude
 
 Design Docs in the DesignDoc file and also [here](https://docs.google.com/document/d/1TX83QjBXnOxksskJH8em_gzH6H0qPJJN0GKg5r-C-mE/edit)
 
-
 # 60% completion by Nov 15
+
 https://github.com/yianan261/Tutor-Match-App/tree/602a17dd0e83302ea39311b539f68717950999fb
 
 # 80% completion by Nov 22
+
 https://github.com/yianan261/Tutor-Match-App/tree/a0a0bdea6f071ef2d0fe2534192e95a47d190df8
 
+# 100% completion by Nov 28
+
+https://github.com/yianan261/Tutor-Match-App/tree/33143c3ea8d385bf73fc6430d9117fab58d2287f
 
 # Design Mockup
 
@@ -31,12 +49,15 @@ Mockup docs [here](https://www.figma.com/file/xn2avkmMPsgbc284Jr5bZn/Tutor-Web-A
 ![Tutor App component diagram](https://i.postimg.cc/nVYgwXZZ/Tutor-Match-App-1.png)
 
 # Class Link
+
 https://johnguerra.co/classes/webDevelopment_fall_2022/
 
 # Authors
+
 Yian Chen & So Man Amanda Au-Yeung
 
 # Website images
+
 ![Landing page](https://i.postimg.cc/59DScCdT/Screen-Shot-2022-11-28-at-3-43-03-PM.png)
 ![Search bar](https://i.postimg.cc/R0bnckvy/Screen-Shot-2022-11-28-at-3-43-22-PM.png)
 ![Tutor profiles](https://i.postimg.cc/c138nk2k/Screen-Shot-2022-11-28-at-3-43-29-PM.png)
@@ -50,13 +71,10 @@ Yian Chen & So Man Amanda Au-Yeung
 https://docs.google.com/presentation/d/1_Ht--i4RtaW4VXUX7TEaVxc8PrCrZrVgcXAEmqJYUpA/edit#slide=id.p
 
 # References
+
 Picture references:
 https://unsplash.com/
 https://fontawesome.com/icons
 https://www.freepik.com/free-photos-vectors/people
 
-* other referenes referred inside code 
-
-
-
-
+- other referenes referred inside code
