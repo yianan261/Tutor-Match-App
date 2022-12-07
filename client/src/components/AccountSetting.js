@@ -22,9 +22,7 @@ function AccountSetting() {
   useEffect(() => {
     const getCurrentUser = async () => {
       await fetch("/api/getUser")
-        .then((res) => {
-          return res.json();
-        })
+        .then((res) => res.json())
         .then((data) => {
           if (data.user === null) {
             navigate("/login");
@@ -44,7 +42,7 @@ function AccountSetting() {
   };
 
   const delAC = async () => {
-    const del = await fetch(`/api/profile/deleteAccount/?id=${user}`, {
+    const del = await fetch(`/api/profile/deleteAccount/${user}`, {
       method: "POST",
     });
     const delRes = await del.json();

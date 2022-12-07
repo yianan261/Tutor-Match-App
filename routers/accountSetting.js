@@ -5,6 +5,6 @@ const router = express.Router();
 
 // Amanda
 // delete account from db and delete profile pic from cloudinary
-router.post("/api/profile/deleteAccount", delProfile);
+router.post("/api/profile/deleteAccount/:id", delProfile);
 
 export default router;

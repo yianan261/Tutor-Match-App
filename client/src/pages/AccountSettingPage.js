@@ -12,7 +12,6 @@ function AccountSettingPage() {
         <SideNav />
         <AccountSetting />
       </div>
-      <Footer />
     </div>
   );
 }
