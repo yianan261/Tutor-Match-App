@@ -44,7 +44,6 @@ Our color palette is inspired by the blackboard, which is a dark green color. Th
 2. Contrast of landing page changed to have the background in a darker gradient to allow the text to pop more
    original:
    ![Landing page](https://i.postimg.cc/59DScCdT/Screen-Shot-2022-11-28-at-3-43-03-PM.png)
-   <img width="1374" alt="Screen Shot 2022-11-28 at 3 03 59 PM" src="https://user-images.githubusercontent.com/58647320/204399797-5234684a-7d16-4dce-86d8-1282c50e0dca.png">
 
 changed:
 [![Screen-Shot-2022-12-08-at-2-53-08-PM-min.png](https://i.postimg.cc/G2GzJHnz/Screen-Shot-2022-12-08-at-2-53-08-PM-min.png)](https://postimg.cc/N9G1QGMr)
