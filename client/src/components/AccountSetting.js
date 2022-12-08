@@ -95,7 +95,6 @@ function AccountSetting() {
   );
 }
 
-AccountSetting.propTypes = { 
-};
+AccountSetting.propTypes = {};
 
 export default AccountSetting;

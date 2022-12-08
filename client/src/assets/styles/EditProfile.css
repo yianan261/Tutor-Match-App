@@ -1,69 +1,69 @@
-.EditProfile{
-    padding-top: 5%;
-    margin-top:20px;
+.EditProfile {
+  padding-top: 5%;
+  margin-top: 20px;
 }
 
 .img-account-profile {
-    height: 10rem;
+  height: 10rem;
 }
 .rounded-circle {
-    border-radius: 50% !important;
+  border-radius: 50% !important;
 }
 .card {
-    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+  box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
 }
 
-.background-white{
-    background-color: white;
-    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+.background-white {
+  background-color: white;
+  box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
 }
 
-.no-padding{
-    padding: 0 !important;
+.no-padding {
+  padding: 0 !important;
 }
 
 .card {
-    width: 500px;
-    height: 600px;
-    box-shadow: 10px 10px 5px rgb(173, 230, 219);
+  width: 500px;
+  height: 600px;
+  box-shadow: 10px 10px 5px rgb(173, 230, 219);
 }
 
 .card .card-header {
-    font-weight: 500;
+  font-weight: 500;
 }
 .card-header:first-child {
-    border-radius: 0.35rem 0.35rem 0 0;
+  border-radius: 0.35rem 0.35rem 0 0;
 }
 .card-header {
-    padding: 1rem 1.35rem;
-    margin-bottom: 0;
-    background-color: rgba(33, 40, 50, 0.03);
-    border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+  padding: 1rem 1.35rem;
+  margin-bottom: 0;
+  background-color: rgba(33, 40, 50, 0.03);
+  border-bottom: 1px solid rgba(33, 40, 50, 0.125);
 }
 .form-control {
-    display: block;
-    width: 100%;
-    padding: 0.875rem 1.125rem;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1;
-    color: #69707a;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #c5ccd6;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 0.35rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  display: block;
+  width: 100%;
+  padding: 0.875rem 1.125rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1;
+  color: #69707a;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #c5ccd6;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.35rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 #files {
-    visibility: hidden;
+  visibility: hidden;
 }
 
-.btnEditProfile{
-    display: inline-block;
+.btnEditProfile {
+  display: inline-block;
   padding: 0.6em 1em;
   margin: 0 0.3em 0.3em 0;
   border-radius: 0.15em;
@@ -71,7 +71,7 @@
   text-decoration: none;
   font-weight: 400;
   color: #ffffff;
-  background-color: #879ff6;;
+  background-color: #879ff6;
   outline: none;
   border: none;
   box-shadow: inset 0 -0.6em 0 -0.35em rgba(97, 63, 42, 0.17);

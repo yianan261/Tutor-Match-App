@@ -10,18 +10,18 @@ import PropTypes from "prop-types";
  * @param {function} handleQuery prop passed in from parent component in SearchTutor.js
  * @returns JSX of search tutor rendering
  */
-function SearchTutor({ notFound,search, handleSubmit,page}) {
+function SearchTutor({ notFound, search, handleSubmit, page }) {
   const [searchword, setSearchword] = useState("");
   const [searchParams, setSearchParams] = useSearchParams("");
 
   /**Yian Chen
    * function that handles change on search input
-   * @param {*} evt 
+   * @param {*} evt
    */
   const handleChange = (evt) => {
     evt.preventDefault();
     setSearchword(evt.target.value);
-    setSearchParams({ query: evt.target.value, page:page });
+    setSearchParams({ query: evt.target.value, page: page });
   };
 
   /**
@@ -55,7 +55,6 @@ function SearchTutor({ notFound,search, handleSubmit,page}) {
     evt.preventDefault();
     handleSubmit(searchword);
   };
-
 
   //renders no result
   const noRes = () => {
@@ -103,6 +102,6 @@ SearchTutor.propTypes = {
   notFound: PropTypes.bool,
   search: PropTypes.bool,
   page: PropTypes.number,
-  handleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func,
 };
 export default SearchTutor;

@@ -49,17 +49,17 @@ function EditProfile() {
     await fetch("/api/profile/editProfile")
       .then((res) => res.json())
       .then((data) => {
-        if (data.profile){
-        let profileInDB = data.profile;
-        let profileData = new Map();
-        profileData["username"] = profileInDB.displayName;
-        profileData["fName"] = profileInDB.fName;
-        profileData["lName"] = profileInDB.lName;
-        profileData["email"] = profileInDB.email;
-        profileData["subjects"] = profileInDB.subjects;
-        profileData["location"] = profileInDB.location;
-        setProfile(profileData);
-        setPreferredSchedule(data.profile.preferredSchedule);
+        if (data.profile) {
+          let profileInDB = data.profile;
+          let profileData = new Map();
+          profileData["username"] = profileInDB.displayName;
+          profileData["fName"] = profileInDB.fName;
+          profileData["lName"] = profileInDB.lName;
+          profileData["email"] = profileInDB.email;
+          profileData["subjects"] = profileInDB.subjects;
+          profileData["location"] = profileInDB.location;
+          setProfile(profileData);
+          setPreferredSchedule(data.profile.preferredSchedule);
         }
         setPic(data.pic);
       });
@@ -120,15 +120,15 @@ function EditProfile() {
     if (uploadStatus.status === "OK") {
       navigate("/profile/editProfile");
     }
-  }
+  };
 
   const delPic = async (e) => {
     e.preventDefault();
     await fetch(`/api/delPic?id=${user}`, {
-      method: "POST"
-    })
+      method: "POST",
+    });
     setPic(bulb2);
-  }
+  };
 
   return (
     <div className="EditProfile">

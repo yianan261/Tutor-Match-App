@@ -24,7 +24,7 @@ function ClassHistory() {
         })
         .then((data) => {
           if (data.user === null) {
-            alert("please login")
+            alert("please login");
             navigate("/login");
           }
         });

@@ -26,13 +26,13 @@ function Register() {
     e.preventDefault();
     const res = await fetch("/api/register", {
       method: "POST",
-      headers:{ 
-        "Content-Type": "application/json"
+      headers: {
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email: user.email,
-        password: user.password
-      })
+        password: user.password,
+      }),
     });
     handleRegister();
     const resRegUser = await res.json();
@@ -65,16 +65,17 @@ function Register() {
 
   return (
     <div className="card" id="signupCard">
-    
-    <div className="alternate-text">
-    <p id="acc-holder">Already have an account?</p>
-      <Link id="sign-in" to="/login">
-        Sign In
-      </Link>
-    </div>
-    <div className="signUp-title">
-    <h2 className="card-title" id="signUp">Sign Up</h2>
-    </div>
+      <div className="alternate-text">
+        <p id="acc-holder">Already have an account?</p>
+        <Link id="sign-in" to="/login">
+          Sign In
+        </Link>
+      </div>
+      <div className="signUp-title">
+        <h2 className="card-title" id="signUp">
+          Sign Up
+        </h2>
+      </div>
       <div className="log-reg-body">
         <form className="form-body" onSubmit={createUser}>
           <div className="mb-3">
