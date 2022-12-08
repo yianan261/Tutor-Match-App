@@ -13,7 +13,6 @@ function ProfilePage() {
         <SideNav />
         <Profile />
       </div>
-      <Footer />
     </div>
   );
 }

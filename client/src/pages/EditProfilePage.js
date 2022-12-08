@@ -12,7 +12,6 @@ function EditProfilePage() {
         <SideNav />
         <EditProfile />
       </div>
-      <Footer />
     </div>
   );
 }
