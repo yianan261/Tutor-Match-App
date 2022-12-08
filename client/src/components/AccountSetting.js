@@ -52,7 +52,7 @@ function AccountSetting() {
   };
 
   return (
-    <div className="AccountSetting">
+    <main className="AccountSetting">
       <h1 className="plan-selection">Select your plan</h1>
       <div className="price-container">
         <PricePanel />
@@ -89,7 +89,7 @@ function AccountSetting() {
           I would like to delete my account...
         </button>
       </div>
-    </div>
+    </main>
   );
 }
 

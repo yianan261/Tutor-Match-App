@@ -11,11 +11,13 @@ function PricePanel() {
       {pricePanelData.map((each, index) => {
         return (
           <div key={index} className="price-panelDiv">
-            <ul>{each.icon}</ul>
-            <ul className="pricing-features">{each.plan}</ul>
-            <li className="pricing-features-items">{each.description}</li>
-            <li className="pricing-features-items">{each.specifics}</li>
-            <li className="pricing-features-items">{each.price}</li>
+            <ol>
+              <li>{each.icon}</li>
+              <li className="pricing-features">{each.plan}</li>
+              <li className="pricing-features-items">{each.description}</li>
+              <li className="pricing-features-items">{each.specifics}</li>
+              <li className="pricing-features-items">{each.price}</li>
+            </ol>
           </div>
         );
       })}

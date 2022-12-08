@@ -131,13 +131,13 @@ function EditProfile() {
   }
 
   return (
-    <div className="EditProfile">
+    <main className="EditProfile">
       <div className="container-xl px-4 mt-4">
         <div className="row background-white">
           <div className="col-xl-4 no-padding">
             {/* <!-- Profile picture card--> */}
             <div className="mb-4 mb-xl-0" id="uploadProfileCard">
-              <div className="card-header">Profile Picture</div>
+              <h1 className="card-header">Profile</h1>
               <div className="card-body text-center">
                 {/* <!-- Profile picture image--> */}
                 <img
@@ -182,7 +182,7 @@ function EditProfile() {
           <div className="col-xl-8 pl-3">
             {/* <!-- Account details card--> */}
             <div className="mb-4 pl-3">
-              <div className="card-header">Account Details</div>
+              <h2 className="card-header">Account Details</h2>
               <div className="card-body">
                 <form id="mainForm" onSubmit={handleSaveProfile}>
                   {/* <!-- Form Group (username)--> */}
@@ -316,7 +316,7 @@ function EditProfile() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 

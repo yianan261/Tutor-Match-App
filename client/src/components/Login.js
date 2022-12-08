@@ -54,9 +54,9 @@ function Login() {
           Sign Up!
         </Link>
       </div>
-        <h2 className="card-title" id="signIn">
+        <h1 className="card-title" id="signIn">
           Sign In
-        </h2>
+        </h1>
       <div className="log-reg-body">
         <form className="form-body" onSubmit={findUser}>
           <div className="mb-3">
@@ -94,7 +94,7 @@ function Login() {
             />
           </div>
           <button type="submit" className="btn">
-            Submit
+            Login
           </button>
         </form>
       </div>
