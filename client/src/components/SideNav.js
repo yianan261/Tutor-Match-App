@@ -6,7 +6,7 @@ import { sidebarData } from "./sidebarData";
 // Amanda Au-Yeung
 function SideNav() {
   return (
-    <>
+    <div role="complementary">
       <div className="sidenav">
         <ul className="sidenav__list">
           {sidebarData.map((item, index) => {
@@ -21,7 +21,7 @@ function SideNav() {
           })}
         </ul>
       </div>
-    </>
+    </div>
   );
 }
 

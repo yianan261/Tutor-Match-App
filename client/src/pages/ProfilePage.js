@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import SideNav from "../components/SideNav";
-import Footer from "../components/Footer";
 import Profile from "../components/Profile";
 
 // Amanda
@@ -13,7 +12,6 @@ function ProfilePage() {
         <SideNav />
         <Profile />
       </div>
-      <Footer />
     </div>
   );
 }

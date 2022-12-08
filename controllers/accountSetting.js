@@ -10,7 +10,6 @@ import cloudinary from "./utils/cloudinary.js";
  */
 export const delProfile = async (req, res) => {
   let id = req.params.id;
-  console.log("req.params.id", req.params.id);
   let user;
   let public_id; // in cloudinary
   try {

@@ -47,6 +47,7 @@ function Profile() {
   //   getCurrentUser();
   // }, []);
 
+  // setting default values
   useEffect(() => {
     const fetchExistData = async () => {
       await fetch("/api/profile/editProfile")
@@ -70,19 +71,17 @@ function Profile() {
     fetchExistData()
   }, []);
 
-  // setting default values
-  
 
   return (
-    <div className="container-profile">
+    <main className="container-profile">
       <div className="main-profile">
         <div className="welcome">
           <div className="profileInnerDiv">
-            <h2 className="userName">
+            <h1 className="userName">
               {profile.username
                 ? "Hi, " + profile.username
                 : "Welcome! Please proceed to edit your profile."}
-            </h2>
+            </h1>
             <br></br>
             <div>
               <AiOutlineMail />{" "}
@@ -106,8 +105,10 @@ function Profile() {
               alt="Not Found"
             />
             <div className="policy">
-              <h5>Policy:</h5>
-              <li>Lesson cancellation: 1 hour notice required</li>
+              <h2>Policy:</h2>
+              <ol>
+                <li>Lesson cancellation: 1 hour notice required</li>
+              </ol>
               <div className="innerTextPolicy">
                 <AiOutlineMessage /> Send tutor a message<br></br>
                 <AiOutlineSchedule /> Book a Trial
@@ -116,7 +117,7 @@ function Profile() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 

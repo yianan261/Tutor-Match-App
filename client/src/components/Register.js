@@ -64,7 +64,7 @@ function Register() {
   };
 
   return (
-    <div className="card" id="signupCard">
+    <main className="card" id="signupCard">
       <div className="alternate-text">
         <p id="acc-holder">Already have an account?</p>
         <Link id="sign-in" to="/login">
@@ -72,9 +72,9 @@ function Register() {
         </Link>
       </div>
       <div className="signUp-title">
-        <h2 className="card-title" id="signUp">
+        <h1 className="card-title" id="signUp">
           Sign Up
-        </h2>
+        </h1>
       </div>
       <div className="log-reg-body">
         <form className="form-body" onSubmit={createUser}>
@@ -112,7 +112,7 @@ function Register() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="inputPassword5">Confirm Password</label>
+            <div htmlFor="inputPassword5">Confirm Password</div>
             <input
               type="password"
               id="inputConfirmedPassword5"
@@ -130,11 +130,11 @@ function Register() {
             )}
           </div>
           <button type="submit" className="btn">
-            Submit
+            Sign Up
           </button>
         </form>
       </div>
-    </div>
+    </main>
   );
 }
 

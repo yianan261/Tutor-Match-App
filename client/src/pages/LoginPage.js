@@ -6,7 +6,7 @@ import "../assets/styles/LoginRegister.css";
 
 function LoginPage() {
   return (
-    <div className="main-container">
+    <main className="main-container">
       <Navbar />
       <div className="row">
         <div className="col">
@@ -17,7 +17,7 @@ function LoginPage() {
           <Login />
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
