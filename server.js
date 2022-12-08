@@ -16,7 +16,7 @@ import login from "./routers/login.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
-import cors from 'cors'
+import cors from "cors";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use(cors())
+app.use(cors());
 
 app.use(
   session({

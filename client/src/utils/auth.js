@@ -20,8 +20,6 @@ export const AuthProvider = ({ children }) => {
           if (data.user !== null) {
             console.log("Data");
             setUser(data.user);
-          } else {
-            alert("Something went wrong, no user in session");
           }
         });
     };

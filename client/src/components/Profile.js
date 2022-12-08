@@ -68,7 +68,7 @@ function Profile() {
           setPic(data.pic);
         });
     };
-    fetchExistData()
+    fetchExistData();
   }, []);
 
 

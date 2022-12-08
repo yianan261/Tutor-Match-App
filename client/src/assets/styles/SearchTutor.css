@@ -6,12 +6,12 @@
 
 .searchTerm {
   width: 100%;
-  border: 3px solid #81948a;
+  border: 3px solid #667a6f;
   border-right: none;
   padding: 5px;
   height: 70px;
   outline: none;
-  color: #81948a;
+  color: #667a6f;
   font-size: 1.2rem;
   font-weight: 400;
 }
@@ -23,8 +23,8 @@
 .searchButton {
   width: 60px;
   height: 70px;
-  border: 1px solid #81948a;
-  background: #81948a;
+  border: 1px solid #667a6f;
+  background: #667a6f;
   text-align: center;
   color: #fff;
   cursor: pointer;
