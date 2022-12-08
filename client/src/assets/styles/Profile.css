@@ -22,7 +22,7 @@
 .userName {
   color: rgb(247, 102, 18);
   text-align: center;
-  text-shadow: 0.5px 0.5px 1px rgb(156, 178, 160)
+  text-shadow: 0.5px 0.5px 1px rgb(156, 178, 160);
 }
 .profileInnerDiv {
   padding: 3%;

@@ -7,7 +7,7 @@
   "scripts": {
     "postinstall": "cd client && npm install && npm run build",
     "start": "node server.js",
-    "dev": "NODE_ENV=development nodemon server.js",
+    "dev": "prettier --write . && NODE_ENV=development nodemon server.js",
     "initDB": "mongoimport -d TutorsApp -c tutors --jsonArray --file ./db/data/tutors2.json"
   },
   "repository": {
@@ -29,6 +29,7 @@
   "dependencies": {
     "cloudinary": "^1.32.0",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",

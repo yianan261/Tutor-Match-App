@@ -23,7 +23,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  white-space:nowrap;
+  white-space: nowrap;
   padding: 20% 12% 20% 6%;
   /* font-size: 2rem; */
   box-shadow: rgba(70, 99, 70, 0.1) 0px 1px 1px 0px;
@@ -52,13 +52,12 @@
   padding-right: 5%;
 }
 
-.sideNavText{
+.sideNavText {
   font-size: 1rem;
   transform: translateY(10%);
-
 }
 
-.sideNavIcon{
+.sideNavIcon {
   padding-right: 10%;
   color: rgb(252, 128, 56);
 }

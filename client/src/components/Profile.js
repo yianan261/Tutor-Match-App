@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "../assets/styles/Profile.css";
 import {
   AiOutlineMail,
@@ -16,7 +16,7 @@ import bulb2 from "../assets/images/bulb2.png";
  * @returns jsx of profile rendering
  */
 function Profile() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [profile, setProfile] = useState({
     username: "",
     fName: "",
@@ -30,43 +30,48 @@ function Profile() {
 
   // if there is no user, then we redirect to login,
   // else we are fetching the existing data
+  // useEffect(() => {
+  //   const getCurrentUser = async () => {
+  //     await fetch("/api/getUser")
+  //       .then((res) => {
+  //         return res.json();
+  //       })
+  //       .then((data) => {
+  //         if (data.user === null) {
+  //           navigate("/login");
+  //         } else {
+  //           fetchExistData();
+  //         }
+  //       });
+  //   };
+  //   getCurrentUser();
+  // }, []);
+
   useEffect(() => {
-    const getCurrentUser = async () => {
-      await fetch("/api/getUser")
-        .then((res) => {
-          return res.json();
-        })
+    const fetchExistData = async () => {
+      await fetch("/api/profile/editProfile")
+        .then((res) => res.json())
         .then((data) => {
-          if (data.user === null) {
-            navigate("/login");
-          } else {
-            fetchExistData();
+          if (data.profile) {
+            let profileInDB = data.profile;
+            let profileData = new Map();
+            profileData["username"] = profileInDB.displayName;
+            profileData["fName"] = profileInDB.fName;
+            profileData["lName"] = profileInDB.lName;
+            profileData["email"] = profileInDB.email;
+            profileData["subjects"] = profileInDB.subjects;
+            profileData["location"] = profileInDB.location;
+            setProfile(profileData);
+            setPreferredSchedule(data.profile.preferredSchedule);
           }
+          setPic(data.pic);
         });
     };
-    getCurrentUser();
+    fetchExistData()
   }, []);
 
   // setting default values
-  const fetchExistData = async () => {
-    await fetch("/api/profile/editProfile")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.profile) {
-          let profileInDB = data.profile;
-          let profileData = new Map();
-          profileData["username"] = profileInDB.displayName;
-          profileData["fName"] = profileInDB.fName;
-          profileData["lName"] = profileInDB.lName;
-          profileData["email"] = profileInDB.email;
-          profileData["subjects"] = profileInDB.subjects;
-          profileData["location"] = profileInDB.location;
-          setProfile(profileData);
-          setPreferredSchedule(data.profile.preferredSchedule);
-        }
-        setPic(data.pic);
-      });
-  };
+  
 
   return (
     <div className="container-profile">

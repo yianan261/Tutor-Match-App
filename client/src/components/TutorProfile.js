@@ -49,8 +49,8 @@ function TutorProfile({ searchData, query, handleReturn, searchProfile }) {
   };
 
   return (
-    <div>
-      <h3 className="searchRes">Search Results for &quot;{query}&quot;</h3>
+    <div role="main">
+      <h1 className="searchRes">Search Results for &quot;{query}&quot;</h1>
       <div className="backDiv">
         <span className="back" onClick={handleClick}>
           <i className="fa-solid fa-arrow-left-long" /> Back to Search
@@ -58,11 +58,10 @@ function TutorProfile({ searchData, query, handleReturn, searchProfile }) {
       </div>
       <div className="imgRender">
         {displayPairs.map((tutorData, idx) => (
-          <div className="card-group " id="cardGroup" key={idx}>
+          <div className="card-group " key={idx}>
             {tutorData.map((tutorProfile) => (
               <div
-                className="card container"
-                id="cardimage"
+                className="card container cardimage"
                 key={tutorProfile._id}
                 onClick={(evt) => {
                   evt.preventDefault();
@@ -70,10 +69,10 @@ function TutorProfile({ searchData, query, handleReturn, searchProfile }) {
                 }}
               >
                 <div className="card-body">
-                  <h5 className="card-title">
+                  <h2 className="card-title">
                     {" "}
                     Tutor : {tutorProfile.first_name} {tutorProfile.last_name}
-                  </h5>
+                  </h2>
                   <img
                     className="imgs"
                     src={tutorProfile.image}

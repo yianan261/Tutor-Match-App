@@ -81,7 +81,7 @@ function Navbar() {
 
   return (
     <div>
-      <nav id="mainNavbar" className={navClassName}>
+      <nav id="mainNavbar" className={navClassName} role="navigation">
         <div className="container-xl navContainer">
           <span className="logoSpan">
             <img src={bulb2} className="logo" alt="tutor app logo" />

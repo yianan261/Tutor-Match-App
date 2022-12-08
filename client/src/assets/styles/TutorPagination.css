@@ -4,7 +4,6 @@
   float: left;
 }
 
-
 .btn-paginacao {
   width: 100%;
   height: auto;
@@ -61,22 +60,21 @@
   justify-content: center;
 }
 
-.leftButton:hover{
-    background-color: #efa760;
+.leftButton:hover {
+  background-color: #efa760;
   color: #fff;
 }
 
-.rightButton:hover{
-    background-color: #efa760;
+.rightButton:hover {
+  background-color: #efa760;
   color: #fff;
 }
 
 .prev {
   transform: translateX(-100%);
-  
 }
 .fa-solid {
-  margin:auto;
+  margin: auto;
   padding-left: 1%;
-  padding-right: 1%
+  padding-right: 1%;
 }

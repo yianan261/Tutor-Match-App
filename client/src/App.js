@@ -12,6 +12,7 @@ import { AuthProvider } from "./utils/auth";
 import TutorProfile from "./components/TutorProfile";
 import ManageBookingPage from "./pages/ManageBookingPage";
 import ClassHistoryPage from "./pages/ClassHistoryPage";
+import RequireAuth from "./components/RequireAuth";
 const LazySearch = React.lazy(() => import("./components/SearchTutor"));
 const LazySearch2 = React.lazy(() => import("./components/TutorInfo"));
 
@@ -33,18 +34,37 @@ function App() {
             }
           />
         </Route>
-        <Route path="/profile" element={<Profile />}></Route>
+        <Route
+          path="/profile"
+          element={
+            <RequireAuth>
+              <Profile />
+            </RequireAuth>
+          }
+        ></Route>
         <Route
           path="/profile/editProfile"
-          element={<EditProfilePage />}
+          element={
+            <RequireAuth>
+              <EditProfilePage />
+            </RequireAuth>
+          }
         ></Route>
         <Route
           path="/profile/manageBooking"
-          element={<ManageBookingPage />}
+          element={
+            <RequireAuth>
+              <ManageBookingPage />
+            </RequireAuth>
+          }
         ></Route>
         <Route
           path="/profile/classHistory"
-          element={<ClassHistoryPage />}
+          element={
+            <RequireAuth>
+              <ClassHistoryPage />
+            </RequireAuth>
+          }
         ></Route>
         <Route path="/bookclass" element={<BookClass />}></Route>
         {/* lazy loading source: https://www.youtube.com/watch?v=MJn4W7pR6RU&list=PLC3y8-rFHvwjkxt8TOteFdT_YmzwpBlrG&index=14 */}
@@ -58,7 +78,11 @@ function App() {
         ></Route>
         <Route
           path="/profile/accountSettings"
-          element={<AccountSettingPage />}
+          element={
+            <RequireAuth>
+              <AccountSettingPage />
+            </RequireAuth>
+          }
         ></Route>
         <Route path="/" element={<Landing />}></Route>
 
