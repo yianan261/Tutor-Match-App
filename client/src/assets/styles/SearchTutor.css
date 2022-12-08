@@ -45,7 +45,6 @@
   z-index: 9;
 }
 
-
 .study2pic {
   width: 100%;
   /* transform: translateY(42%);
@@ -69,20 +68,20 @@
   justify-content: space-between;
   align-items: center;
   background: white;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   margin: 8px;
   z-index: 8;
 }
 
 .flash-success {
-  border: 2px solid #1EDD88;
+  border: 2px solid #1edd88;
 }
 
 .flash-warning {
-  border: 2px solid #FFC65A;
+  border: 2px solid #ffc65a;
 }
 
 .flash-danger {
-  border: 2px solid #FD1015;
+  border: 2px solid #fd1015;
 }

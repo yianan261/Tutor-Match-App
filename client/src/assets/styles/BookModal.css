@@ -94,8 +94,8 @@
   background: #b7d2fa;
   outline: none;
   -webkit-box-shadow: inset 0px 0px 2px #0285b4;
-     -moz-box-shadow: inset 0px 0px 2px #0285b4;
-          box-shadow: inset 0px 0px 2px #0285b4;
+  -moz-box-shadow: inset 0px 0px 2px #0285b4;
+  box-shadow: inset 0px 0px 2px #0285b4;
 }
 
 .hourBtnSelect:hover {

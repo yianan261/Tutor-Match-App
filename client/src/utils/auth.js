@@ -18,7 +18,10 @@ export const AuthProvider = ({ children }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.user !== null) {
+            console.log("Data");
             setUser(data.user);
+          } else {
+            alert("Something went wrong, no user in session");
           }
         });
     };

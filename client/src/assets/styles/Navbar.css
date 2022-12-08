@@ -13,10 +13,10 @@ nav {
   padding-bottom: 12%;
 }
 
-.navAll{
-  background-color: #9ab2a5;
+.navAll {
+  background-color: #64786f;
 }
-.navHome{
+.navHome {
   background-color: transparent;
 }
 
@@ -40,6 +40,7 @@ nav {
 
 .nav-link {
   font-size: 1.1rem;
+  /* color: #ffffff; */
 }
 .nav-link:hover {
   text-decoration: underline;
@@ -52,7 +53,6 @@ nav {
   transition: background 0.5s;
 }
 
-
 .loginBtn {
   display: inline-block;
   padding: 0.35em 1.2em;
@@ -61,9 +61,9 @@ nav {
   border-radius: 0.1em;
   box-sizing: border-box;
   text-decoration: none;
-  color: #25352d;
+  color: #ffffff;
   font-weight: 300;
-  background-color:inherit;
+  background-color: inherit;
   /* opacity: 0.7; */
   text-align: center;
   transition: all 0.2s;

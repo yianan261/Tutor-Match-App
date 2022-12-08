@@ -21,14 +21,11 @@ function TutorInfo({ tutorProfile, returnToSearch, handleModal }) {
     }
     return s;
   };
-  
 
   //function that handles click (returns to search)
   const handleClick = () => {
     returnToSearch();
   };
-
-  
 
   return (
     <>
