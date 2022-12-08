@@ -54,9 +54,9 @@ function Login() {
           Sign Up!
         </Link>
       </div>
-        <h1 className="card-title" id="signIn">
-          Sign In
-        </h1>
+      <h1 className="card-title" id="signIn">
+        Sign In
+      </h1>
       <div className="log-reg-body">
         <form className="form-body" onSubmit={findUser}>
           <div className="mb-3">

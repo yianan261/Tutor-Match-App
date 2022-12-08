@@ -15,7 +15,9 @@ function Landing() {
             <h1>Tutor Match helps you get the help you need</h1>
             <p>Change your life and learn efficiently</p>
             <NavLink to="/book">
-              <button className="bookBtn" style={{color:"white"}}>Book class Now</button>
+              <button className="bookBtn" style={{ color: "white" }}>
+                Book class Now
+              </button>
             </NavLink>
           </div>
           <Footer />

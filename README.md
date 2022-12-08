@@ -13,10 +13,6 @@ Cloudinary API for image upload
 Multer middleware for handling multi-part data (for file uploading)
 Observable notebook for mock data manipulation to get tutor data
 
-# Design
-
-## Color Palette
-
 # Development usage
 
 1. Run `npm install`
@@ -31,6 +27,35 @@ https://tutorapp-zwr3.onrender.com/
 # Design Document
 
 Design Docs in the DesignDoc file and also [here](https://docs.google.com/document/d/1TX83QjBXnOxksskJH8em_gzH6H0qPJJN0GKg5r-C-mE/edit)
+
+# Design
+
+## Color Palette
+
+Our color palette is inspired by the blackboard, which is a dark green color. The profile page designs has lighter green hue for background. We also have orange and blue tones throughout the website, which are reflected in colors of some buttons and text.
+
+[![Screen-Shot-2022-12-08-at-3-49-23-PM.png](https://i.postimg.cc/jSvj2XW4/Screen-Shot-2022-12-08-at-3-49-23-PM.png)](https://postimg.cc/TKLxHnJK)
+
+## Usability study report
+
+## Changes made to improve accessibility
+
+1. The color contrast for the navbar was increased to ratio of 4.5:1. Originally the tabs that were not active would appear darker, however that did not pass the accessibility validator.
+2. Contrast of landing page changed to have the background in a darker gradient to allow the text to pop more
+   original:
+   ![Landing page](https://i.postimg.cc/59DScCdT/Screen-Shot-2022-11-28-at-3-43-03-PM.png)
+   <img width="1374" alt="Screen Shot 2022-11-28 at 3 03 59 PM" src="https://user-images.githubusercontent.com/58647320/204399797-5234684a-7d16-4dce-86d8-1282c50e0dca.png">
+
+changed:
+[![Screen-Shot-2022-12-08-at-2-53-08-PM-min.png](https://i.postimg.cc/G2GzJHnz/Screen-Shot-2022-12-08-at-2-53-08-PM-min.png)](https://postimg.cc/N9G1QGMr)
+
+original navbar contrast:
+![Search bar](https://i.postimg.cc/R0bnckvy/Screen-Shot-2022-11-28-at-3-43-22-PM.png)
+
+changed navbar contrast:
+[![Screen-Shot-2022-12-08-at-3-44-20-PM.png](https://i.postimg.cc/mgKQXBwn/Screen-Shot-2022-12-08-at-3-44-20-PM.png)](https://postimg.cc/zySb3m4w)
+
+3. The buttons on the main page will appear bigger in size when hovered to let users know they these are focused/hovered, in case color changes are not obvious.
 
 # 60% completion by Nov 15
 
