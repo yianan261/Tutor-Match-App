@@ -9,7 +9,24 @@
 
 #cardimage2 {
   width: 90vw;
+  height: 100vh;
   background-color: #cdd3c7;
+}
+
+@media all and (max-height: 800px) {
+  #cardimage2 {
+    width: 90vw;
+    height: 110vh;
+    background-color: #cdd3c7;
+  }
+}
+
+@media all and (min-height: 900px) {
+  #cardimage2 {
+    width: 90vw;
+    height: 90vh;
+    background-color: #cdd3c7;
+  }
 }
 
 .card-body2 {
@@ -116,7 +133,7 @@
   padding-right: 2%;
 }
 
-.bookBtn {
+.bookBtnTutor {
   display: inline-block;
   padding: 0.8em 2em;
   border: 0.16rem solid #fefffe;
@@ -132,7 +149,7 @@
   transition: all 0.2s;
 }
 
-.bookBtn:hover {
+.bookBtnTutor:hover {
   color: #f4f4f4;
   border: 0.16rem solid#f4f4f4;
 }
@@ -140,7 +157,7 @@
 .btnSpan {
   display: flex;
   justify-content: center;
-  transform: translateY(5rem);
+  transform: translateY(8vh);
 }
 
 html {
@@ -162,6 +179,7 @@ html {
 }
 .student {
   text-align: center;
+  font-size: x-large;
 }
 
 .backBtn {

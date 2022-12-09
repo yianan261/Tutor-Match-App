@@ -79,8 +79,7 @@
   color: rgb(51, 59, 57);
 }
 .card-text-div {
-  display: flex;
-  justify-content: start;
+  display: flex-start;
   padding-top: 1%;
 }
 

@@ -1,0 +1,24 @@
+.tutorli{
+    padding-bottom: 2%;
+    color:rgb(18, 39, 30);
+    font-size:18px;
+    font-weight:200
+}
+
+.tutorUL{
+    padding-top: 2%;
+}
+
+.modalContainerTutor {
+    top: 0;
+    width: 50rem;
+    height: 50vh;
+    transform: translateY(5%);
+    background-color: rgb(230, 239, 229);
+    border-radius: 2rem;
+    padding: 3%;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    justify-self: center;
+  }

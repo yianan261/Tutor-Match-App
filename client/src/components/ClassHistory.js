@@ -78,9 +78,9 @@ function ClassHistory() {
   };
 
   return (
-    <div className="mainDivHistory">
+    <div className="mainDivHistory" role="main">
       <div className="innerDivHistory">
-        <h2 className="titleHistory">My Class History</h2>
+        <h1 className="titleHistory">My Class History</h1>
         {history.map((i, idx) => {
           return (
             <div className="line1" key={`${i.date}_${idx}`}>

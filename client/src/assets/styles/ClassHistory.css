@@ -7,7 +7,8 @@
 
 .titleHistory {
   text-align: center;
-  color: rgb(247, 102, 18);
+  font-size: 35px;
+  color: #c3591c;
   padding-bottom: 2%;
 }
 
@@ -73,7 +74,7 @@
   box-sizing: border-box;
   text-decoration: none;
   font-weight: 400;
-  color: #ffffff;
+  color: #000000;
   background-color: #879ff6;
   outline: none;
   border: none;

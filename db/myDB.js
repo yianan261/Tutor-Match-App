@@ -259,6 +259,7 @@ function MyMongoDB() {
           newHistoryObj.tutor = d.tutor;
           newHistoryObj.last_name = d.tutor_lastname;
           newHistoryObj.subject = d.subject;
+          newHistoryObj.tutor_ID = d.tutor_ID;
           historyDate.push(newHistoryObj);
         }
       });

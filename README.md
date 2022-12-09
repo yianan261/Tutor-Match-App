@@ -68,11 +68,24 @@ report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG15W0I
    [![Screen-Shot-2022-12-08-at-8-56-23-PM.png](https://i.postimg.cc/h4LgLyYn/Screen-Shot-2022-12-08-at-8-56-23-PM.png)](https://postimg.cc/Sjxwqrq1)
 
 5. Card content alignment changed
-   before: alignment was off and not centered
+   before: alignment was off and main text was centered
    ![Tutor profiles](https://i.postimg.cc/c138nk2k/Screen-Shot-2022-11-28-at-3-43-29-PM.png)
 
    after: strong alignment to the left of card
-   [![Screen-Shot-2022-12-08-at-9-24-55-PM.png](https://i.postimg.cc/P5g2MjNr/Screen-Shot-2022-12-08-at-9-24-55-PM.png)](https://postimg.cc/4Y16Jjzr)
+   [![Screen-Shot-2022-12-08-at-9-29-34-PM.png](https://i.postimg.cc/KvyTQ8DW/Screen-Shot-2022-12-08-at-9-29-34-PM.png)](https://postimg.cc/BtMtnsy5)
+
+6. User can view details in "My Schedule"
+   Per usability study, some users requested to be able to view details of their booked class. The button colors have also been adjusted to be WCAG compliant
+   before:
+   ![Class schedule](https://i.postimg.cc/L6T5tcTD/Screen-Shot-2022-11-28-at-3-43-46-PM.png)
+
+   after: Modal of class/tutor details added for users
+   [![Screen-Shot-2022-12-09-at-12-08-08-AM.png](https://i.postimg.cc/2jKz7BHC/Screen-Shot-2022-12-09-at-12-08-08-AM.png)](https://postimg.cc/gr3FYrF7)
+
+7. User will be asked to double confirm cancellation
+   Per usability study, users pointed out users should be given the option to confirm their cancellation of classes when "cancel class" was clicked in "My Schedule"
+   after: A pop up window will ask users to confirm
+   [![Screen-Shot-2022-12-09-at-12-08-45-AM.png](https://i.postimg.cc/7L94GCG8/Screen-Shot-2022-12-09-at-12-08-45-AM.png)](https://postimg.cc/zLy64GF0)
 
 # 60% completion by Nov 15
 

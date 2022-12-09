@@ -29,15 +29,15 @@ function TutorInfo({ tutorProfile, returnToSearch, handleModal }) {
 
   return (
     <>
-      <div className="card-group2" id="cardGroup2">
+      <div className="card-group2" id="cardGroup2" role="main">
         <div className="card2 container-xl" id="cardimage2">
           <div className="card-body2">
             <div className="row rowDiv">
               <div className="col div1">
-                <h5 className="card-title2">
+                <h1 className="card-title2">
                   {" "}
                   Tutor : {tutorProfile.first_name} {tutorProfile.last_name}
-                </h5>
+                </h1>
                 <img
                   className="imgs2"
                   src={tutorProfile.image}
@@ -55,8 +55,8 @@ function TutorInfo({ tutorProfile, returnToSearch, handleModal }) {
                 </div>
                 <div className="cardlink2"></div>
               </div>
-              <div className="col div2">
-                <h4 className="student">Student Reviews</h4>
+              <div className="col div2" tabIndex="0">
+                <h2 className="student">Student Reviews</h2>
                 {tutorProfile.reviews.map((review, idx) => {
                   const regex = /Tutor/i;
                   const r = review.replace(regex, `${tutorProfile.first_name}`);
@@ -85,7 +85,7 @@ function TutorInfo({ tutorProfile, returnToSearch, handleModal }) {
           </div>
           <span className="btnSpan">
             <button
-              className="bookBtn"
+              className="bookBtnTutor"
               onClick={() => {
                 handleModal();
               }}

@@ -157,14 +157,10 @@ function BookClass() {
 
   /**
    * toggle function for modal
-   * book modal can only be opened when signed-in
+   *
    */
   const handleModal = () => {
-    if (auth.user) {
-      setModalIsOpen(!modalIsOpen);
-    } else {
-      alert("Please sign in to book class");
-    }
+    return setModalIsOpen(!modalIsOpen);
   };
 
   /**Yian
@@ -283,6 +279,7 @@ function BookClass() {
           tutor: tutorProfile.first_name,
           tutor_lastname: tutorProfile.last_name,
           subject: tutorProfile.subjects,
+          tutor_ID: tutorProfile._id,
         });
         setBookClassMap(tempMap);
       }
@@ -310,9 +307,13 @@ function BookClass() {
 
   //when confirm button is clicked, classes are added to DB
   const confirmClasses = () => {
-    addClassBackend(bookClassMap.values());
-    alert("Class Booked");
-    setModalIsOpen(!modalIsOpen);
+    if (auth.user) {
+      addClassBackend(bookClassMap.values());
+      alert("Class Booked");
+      setModalIsOpen(!modalIsOpen);
+    } else {
+      alert("Please login to book this class");
+    }
   };
 
   /**Yian Chen
