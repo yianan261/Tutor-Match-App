@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../assets/styles/ManageBook.css";
 import { useAuth } from "../utils/auth";
-// import { useNavigate } from "react-router-dom";
+import TutorModal from "./TutorModal";
 
 /**Yian Chen
  * component that renders booking schedule of student
@@ -11,25 +11,14 @@ function ManageBook() {
   const auth = useAuth();
   const [schedule, setSchedule] = useState([]);
   const [remove, setRemove] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [tutorInfo, setTutorInfo] = useState(null);
   // const navigate = useNavigate();
 
-  //This function gets the user in session
-  // useEffect(() => {
-  //   const getCurrentUser = async () => {
-  //     await fetch("/api/getUser")
-  //       .then((res) => {
-  //         return res.json();
-  //       })
-  //       .then((data) => {
-  //         if (data.user === null) {
-  //           alert("please login");
-  //           navigate("/login");
-  //         }
-  //       });
-  //   };
-
-  //   getCurrentUser();
-  // }, [auth]);
+  //function that closes modal when triggered
+  const handleModal = () => {
+    setModalOpen(false);
+  };
 
   /**Yian
    * this function gets the schedule of the user and makes a copy to schedule
@@ -93,16 +82,57 @@ function ManageBook() {
     return (
       <button
         className="deleteBtnBook"
-        onClick={() => removeClass(date, time, tutor)}
+        onClick={() => {
+          const confirmBox = window.confirm("Are you sure you want to cancel?");
+          if (confirmBox === true) {
+            removeClass(date, time, tutor);
+          }
+        }}
       >
         cancel class
       </button>
     );
   };
+
+  /**
+   * Yian Chen
+   * function that gets TutorInfo when clicked
+   * @param {int} tutor_id
+   */
+  const getTutorInfo = async (tutor_id) => {
+    try {
+      const res = await fetch(`/book/tutors/${tutor_id}`);
+      const tutor = await res.json();
+      setTutorInfo(tutor.data);
+      setModalOpen(true);
+    } catch (err) {
+      console.error(`there was an error ${err}`);
+    }
+  };
+
+  /**
+   * function that renders class button
+   * @param {int} tutor_id
+   * @returns button UI
+   */
+  const renderClassInfoBtn = (tutor_id) => {
+    return (
+      <button
+        className="checkClassBtn"
+        onClick={(evt) => {
+          evt.preventDefault();
+          getTutorInfo(tutor_id);
+        }}
+      >
+        details
+      </button>
+    );
+  };
+
   return (
-    <div className="mainDivBook">
+    <div className="mainDivBook" role="main">
       <div className="innerDivBook">
-        <h2 className="titleBook">My Schedule</h2>
+        <h1 className="titleBook">My Schedule</h1>
         {schedule.map((i, idx) => {
           return (
             <div className="line1" key={`${i.date}_${idx}`}>
@@ -119,6 +149,9 @@ function ManageBook() {
                 <p className="subjectp">
                   <strong>Subject :</strong> {i.subject}
                 </p>
+                <span className="detailBtnSpanBook">
+                  {renderClassInfoBtn(i.tutor_ID)}
+                </span>
                 <span className="deleteBtnSpanBook">
                   {renderDeleteBtn(i.date, i.time, i.tutor)}
                 </span>
@@ -126,6 +159,11 @@ function ManageBook() {
             </div>
           );
         })}
+        <div className="tutorModal">
+          {modalOpen ? (
+            <TutorModal handleModal={handleModal} tutorInfo={tutorInfo} />
+          ) : null}
+        </div>
       </div>
     </div>
   );

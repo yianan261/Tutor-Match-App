@@ -11,7 +11,7 @@ function Navbar() {
   const location = useLocation();
   const [navColor, setNavColor] = useState(false);
   const [navClassName, setNavClassName] = useState(
-    "navbar navbar-dark navbar-expand-md fixed-top navHome"
+    "navbar navbar-expand-md fixed-top navHome"
   );
 
   /**
@@ -67,12 +67,8 @@ function Navbar() {
     try {
       if (location.pathname !== "/") {
         navColor
-          ? setNavClassName(
-              "navbar navbar-dark navbar-expand-md fixed-top navbarActive"
-            )
-          : setNavClassName(
-              "navbar navbar-dark navbar-expand-md fixed-top navAll"
-            );
+          ? setNavClassName("navbar navbar-expand-md fixed-top navbarActive")
+          : setNavClassName("navbar navbar-expand-md fixed-top navAll");
       }
     } catch (err) {
       console.error(err);
@@ -87,7 +83,11 @@ function Navbar() {
             <img src={bulb2} className="logo" alt="tutor app logo" />
           </span>
 
-          <div className="navbar-brand">Tutor Match</div>
+          <div className="navbar-brand">
+            <NavLink className="navbrand-link" to="/">
+              Tutor Match
+            </NavLink>
+          </div>
 
           <div className="collapse navbar-collapse" id="navLinks">
             <ul className="navbar-nav">

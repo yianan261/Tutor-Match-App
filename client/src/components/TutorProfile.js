@@ -7,7 +7,13 @@ import "../assets/styles/TutorProfile.css";
  * @param {props} searchData object and query string
  * @returns JSX of tutor profiles
  */
-function TutorProfile({ searchData, query, handleReturn, searchProfile }) {
+function TutorProfile({
+  searchData,
+  query,
+  handleReturn,
+  searchProfile,
+  searchSize,
+}) {
   const [displayPairs, setDisplayPairs] = useState([]);
 
   /**
@@ -50,7 +56,10 @@ function TutorProfile({ searchData, query, handleReturn, searchProfile }) {
 
   return (
     <div role="main">
-      <h1 className="searchRes">Search Results for &quot;{query}&quot;</h1>
+      <h1 className="searchRes">
+        {searchSize} Search Results for &quot;{query}&quot;
+      </h1>
+
       <div className="backDiv">
         <span className="back" onClick={handleClick}>
           <i className="fa-solid fa-arrow-left-long" /> Back to Search
@@ -69,7 +78,7 @@ function TutorProfile({ searchData, query, handleReturn, searchProfile }) {
                 }}
               >
                 <div className="card-body">
-                  <h2 className="card-title">
+                  <h2 className="card-title-tutor">
                     {" "}
                     Tutor : {tutorProfile.first_name} {tutorProfile.last_name}
                   </h2>
@@ -103,5 +112,6 @@ TutorProfile.propTypes = {
   query: PropTypes.string,
   handleReturn: PropTypes.func,
   searchProfile: PropTypes.func,
+  searchSize: PropTypes.number,
 };
 export default TutorProfile;

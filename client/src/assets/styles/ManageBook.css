@@ -7,13 +7,13 @@
 
 .titleBook {
   text-align: center;
-  color: rgb(247, 102, 18);
+  font-size: 35px;
+  color: #c3591c;
   padding-bottom: 2%;
 }
 
 .innerDivBook {
   transform: translateX(2%);
-
   margin: auto;
   width: 95%;
   min-height: 80vh;
@@ -74,7 +74,7 @@
   box-sizing: border-box;
   text-decoration: none;
   font-weight: 400;
-  color: #ffffff;
+  color: #000000;
   background-color: #879ff6;
   outline: none;
   border: none;
@@ -86,8 +86,35 @@
 .deleteBtnBook:hover {
   background-color: #b5c3f5;
 }
+
+.checkClassBtn{
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  border-radius: 0.2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 400;
+  color: #000000;
+  background-color: #879ff6;
+  outline: none;
+  border: none;
+  box-shadow: inset 0 -0.6em 0 -0.35em rgba(90, 57, 57, 0.17);
+  text-align: center;
+  position: relative;
+}
+
+.checkClassBtn:hover{
+  background-color: #b5c3f5;
+}
+
 .deleteBtnSpanBook {
   position: fixed;
   right: 10%;
+  margin-top: 1.2%;
+}
+
+.detailBtnSpanBook{
+  position: fixed;
+  right: 16vw;
   margin-top: 1.2%;
 }

@@ -28,6 +28,7 @@ function BookClass() {
   const [bookClassMap, setBookClassMap] = useState(new Map());
   const [page, setPage] = useState(0);
   const [notFound, setNotFound] = useState(false);
+  const [searchSize, setSearchSize] = useState(0);
   const auth = useAuth();
 
   /**Yian
@@ -35,10 +36,11 @@ function BookClass() {
    * @param {string} the query string
    * @param {object} data from search result in SearchTutor.js
    */
-  const handleQuery = (val, data) => {
+  const handleQuery = (val, data, size) => {
     setQuery(val);
     setSearch(true);
     setSearchData(data);
+    setSearchSize(size);
   };
 
   const handleReturn = () => {
@@ -84,6 +86,10 @@ function BookClass() {
             "Current_Data",
             JSON.stringify(searchData)
           );
+          window.localStorage.setItem(
+            "Current_Data_Size",
+            JSON.stringify(searchSize)
+          );
         }
       }
     } catch (err) {
@@ -101,9 +107,11 @@ function BookClass() {
         window.localStorage.removeItem("Current_Query");
         window.localStorage.removeItem("Current_Render");
         window.localStorage.removeItem("Current_Data");
+        window.localStorage.removeItem("Current_Data_Size");
         setSearch(false);
         setQuery(null);
         setSearchData([]);
+        setSearchSize(0);
       };
 
       window.addEventListener("popstate", onBackButtonEvent);
@@ -149,14 +157,10 @@ function BookClass() {
 
   /**
    * toggle function for modal
-   * book modal can only be opened when signed-in
+   *
    */
   const handleModal = () => {
-    if (auth.user) {
-      setModalIsOpen(!modalIsOpen);
-    } else {
-      alert("Please sign in to book class");
-    }
+    return setModalIsOpen(!modalIsOpen);
   };
 
   /**Yian
@@ -193,6 +197,7 @@ function BookClass() {
       return (
         <TutorProfile
           searchData={searchData}
+          searchSize={searchSize}
           query={query}
           handleReturn={handleReturn}
           searchProfile={searchProfile}
@@ -274,6 +279,7 @@ function BookClass() {
           tutor: tutorProfile.first_name,
           tutor_lastname: tutorProfile.last_name,
           subject: tutorProfile.subjects,
+          tutor_ID: tutorProfile._id,
         });
         setBookClassMap(tempMap);
       }
@@ -301,9 +307,13 @@ function BookClass() {
 
   //when confirm button is clicked, classes are added to DB
   const confirmClasses = () => {
-    addClassBackend(bookClassMap.values());
-    alert("Class Booked");
-    setModalIsOpen(!modalIsOpen);
+    if (auth.user) {
+      addClassBackend(bookClassMap.values());
+      alert("Class Booked");
+      setModalIsOpen(!modalIsOpen);
+    } else {
+      alert("Please login to book this class");
+    }
   };
 
   /**Yian Chen
@@ -314,11 +324,11 @@ function BookClass() {
   const choosePage = (command) => {
     if (command === "prev" && page - 1 >= 0) {
       setPage((prev) => prev - 1);
-      setSearchParams({ query: query, page: page });
+      setSearchParams({ query: query, page: page - 1 });
       handleSubmit(query);
-    } else {
+    } else if (command === "next") {
       setPage((prev) => prev + 1);
-      setSearchParams({ query: query, page: page });
+      setSearchParams({ query: query, page: page + 1 });
       handleSubmit(query);
     }
   };
@@ -333,12 +343,14 @@ function BookClass() {
       setNotFound(true);
       return setTimeout(() => {
         setNotFound(false);
-      }, 2000);
+      }, 3000);
     }
 
     try {
       const res = await fetch(
-        `/book/tutors/?query=${searchParams.get("query")}&page=${page}`,
+        `/book/tutors/?query=${searchParams.get(
+          "query"
+        )}&page=${searchParams.get("page")}`,
         {
           method: "POST",
           body: searchParams,
@@ -347,13 +359,13 @@ function BookClass() {
       const resQuery = await res.json();
       if (resQuery.data.length === 0) {
         setNotFound(true);
-        //reset notFound to false after 2 seconds
+        //reset notFound to false after 4 seconds
         setTimeout(() => {
           setNotFound(false);
-        }, 2000);
+        }, 4000);
       } else {
         //calls handleQuery function
-        handleQuery(searchword, resQuery.data);
+        handleQuery(searchword, resQuery.data, resQuery.numbers);
       }
     } catch (err) {
       console.error(err);

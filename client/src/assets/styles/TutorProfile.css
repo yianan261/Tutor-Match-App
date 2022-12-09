@@ -22,7 +22,12 @@
   font-size: 25px;
 }
 
-.card-title {
+.filterResDiv {
+  color: rgb(58, 68, 65);
+}
+
+.card-title-tutor {
+  padding-top: 3%;
   font-size: x-large;
 }
 
@@ -74,8 +79,7 @@
   color: rgb(51, 59, 57);
 }
 .card-text-div {
-  display: flex;
-  justify-content: center;
+  display: flex-start;
   padding-top: 1%;
 }
 

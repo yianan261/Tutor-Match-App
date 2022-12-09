@@ -18,9 +18,14 @@ body {
 }
 
 .banner {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+  background-image: linear-gradient(rgba(0, 0, 0.5, 0.35), rgba(0, 0, 0, 0.5)),
     url(https://i.postimg.cc/TYG3jB4P/linkedin-sales-solutions-6ie6-Ojshv-Wg-unsplash-min.jpg);
 }
+
+/* .banner {
+  background-color: #111111;
+  background-image: url(https://i.postimg.cc/TYG3jB4P/linkedin-sales-solutions-6ie6-Ojshv-Wg-unsplash-min.jpg);
+} */
 
 .banner {
   background-size: cover;
@@ -34,7 +39,7 @@ body {
 .banner h1 {
   margin: 0;
   color: white;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-size: 32px;
   font-weight: bold;
 }
@@ -42,12 +47,14 @@ body {
 .banner p {
   font-size: 20px;
   color: white;
-  opacity: 0.7;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
 .bookBtn {
   display: inline-block;
+  color: white;
+  text-shadow: 1px 1px 2px black;
   padding: 0.5em 3em;
   border: 0.16em solid #ffffff;
   margin: 0 0.3em 0.3em 0;
@@ -56,16 +63,17 @@ body {
   text-transform: uppercase;
   font-weight: 400;
   background-color: inherit;
-  color: #23382a;
   text-align: center;
   transition: all 0.15s;
 }
 .bookBtn:hover {
-  color: #dddddd;
-  border-color: #dddddd;
+  border-color: #fcfbfb;
+  transform: scale(1.05, 1.05);
+  box-shadow: rgba(255, 252, 252, 0.5) 2px 4px 5px,
+    rgba(255, 255, 255, 0.5) 2px 3px 4px;
 }
 .bookBtn:active {
-  color: #bbbbbb;
+  color: white;
   border-color: #bbbbbb;
 }
 

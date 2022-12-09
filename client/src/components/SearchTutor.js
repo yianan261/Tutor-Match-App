@@ -63,7 +63,7 @@ function SearchTutor({ notFound, search, handleSubmit, page }) {
         className="flash flash-warning alert alert-dismissible fade show"
         role="alert"
       >
-        <span>No search results </span>
+        <span>No results. Please try another keyword. </span>
         <a data-bs-dismiss="alert" aria-label="Close">
           <i className="fas fa-times"></i>
         </a>
@@ -74,7 +74,8 @@ function SearchTutor({ notFound, search, handleSubmit, page }) {
 
   return (
     <>
-      <div className="wrap">
+      <div className="wrap" role="main">
+        <h1 className="searchHeader">Find a tutor</h1>
         <div className="search">
           <input
             type="text"
@@ -83,12 +84,17 @@ function SearchTutor({ notFound, search, handleSubmit, page }) {
             onChange={handleChange}
             placeholder="What would you like to work on?"
           />
-          <button type="button" className="searchButton" onClick={handleClick}>
+          <button
+            type="button"
+            aria-label="search"
+            className="searchButton"
+            onClick={handleClick}
+          >
             <i className="fa fa-search"></i>
           </button>
         </div>
       </div>
-      <div className="imgContainer">
+      <div className="imgContainer" role="complementary">
         {notFound ? noRes() : null}
         <div className="imageDiv">
           <img src={study2} className="study2pic" alt="study picture" />
