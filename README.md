@@ -70,11 +70,12 @@ Full report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG
    [![Screen-Shot-2022-12-08-at-8-52-45-PM.png](https://i.postimg.cc/Qd5F1kcW/Screen-Shot-2022-12-08-at-8-52-45-PM.png)](https://postimg.cc/mPLZG9Xb)
 
 4. Search results now show how many there are
+   <br>
    before:
    ![Tutor profiles](https://i.postimg.cc/c138nk2k/Screen-Shot-2022-11-28-at-3-43-29-PM.png)
 
    after: title shows how many search results there are
-   [![Screen-Shot-2022-12-08-at-8-56-23-PM.png](https://i.postimg.cc/h4LgLyYn/Screen-Shot-2022-12-08-at-8-56-23-PM.png)](https://postimg.cc/Sjxwqrq1)
+   [![Screen-Shot-2022-12-09-at-11-18-59-AM.png](https://i.postimg.cc/Sj01wCrH/Screen-Shot-2022-12-09-at-11-18-59-AM.png)](https://postimg.cc/5Q3mzHDm)
 
 5. Card content alignment changed
    <br>
