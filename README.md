@@ -38,11 +38,11 @@ Our color palette is inspired by the blackboard, which is a dark green color. Th
 
 ## Usability study report
 
-Usability report conducted on 6 participants
+Usability report conducted on 6 participants by Amanda and Yian collectively
 
-report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG15W0IR8cTAHbie6vwo/edit#)
+Full report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG15W0IR8cTAHbie6vwo/edit#)
 
-## Changes made to improve accessibility
+## Changes made to improve accessibility and usability
 
 1. The color contrast for the navbar was increased to ratio of 4.5:1. Originally the tabs that were not active would appear darker, however that did not pass the accessibility validator.
 
