@@ -9,8 +9,6 @@ import "../assets/styles/TutorModal.css";
  * @returns UI of tutor detail Modal
  */
 function TutorModal({ handleModal, tutorInfo }) {
-  console.log("tutorInfo", tutorInfo);
-
   return ReactDOM.createPortal(
     <div
       className="overlay"

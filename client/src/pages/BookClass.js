@@ -357,7 +357,6 @@ function BookClass() {
         }
       );
       const resQuery = await res.json();
-      console.log("resQuery", resQuery);
       if (resQuery.data.length === 0) {
         setNotFound(true);
         //reset notFound to false after 4 seconds

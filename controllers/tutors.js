@@ -11,7 +11,6 @@ export const searchAllTutors = async (req, res) => {
       keyword,
       page
     );
-    console.log("search res number", searchResultNumbers);
     res.status(200).json({ data: getTutors, numbers: searchResultNumbers });
   } catch (err) {
     console.error(err);

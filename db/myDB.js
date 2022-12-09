@@ -215,7 +215,6 @@ function MyMongoDB() {
         .limit(PAGE_SIZE)
         .toArray();
       const resSize = await tutorsCol.countDocuments(query);
-      console.log("resSize in DB", resSize);
       return [res, resSize];
     } finally {
       client.close();
