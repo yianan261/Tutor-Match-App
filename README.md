@@ -45,8 +45,8 @@ Our color palette is inspired by the blackboard, which is a dark green color. Th
    original:
    ![Landing page](https://i.postimg.cc/59DScCdT/Screen-Shot-2022-11-28-at-3-43-03-PM.png)
 
-   changed: The text is more visible
-   [![Screen-Shot-2022-12-08-at-2-53-08-PM-min.png](https://i.postimg.cc/G2GzJHnz/Screen-Shot-2022-12-08-at-2-53-08-PM-min.png)](https://postimg.cc/N9G1QGMr)
+   changed: darkend background and improved text visbility
+   [![Screen-Shot-2022-12-08-at-4-47-17-PM.png](https://i.postimg.cc/VkLFJzsr/Screen-Shot-2022-12-08-at-4-47-17-PM.png)](https://postimg.cc/WhCZKLkT)
 
    original navbar contrast:
    ![Search bar](https://i.postimg.cc/R0bnckvy/Screen-Shot-2022-11-28-at-3-43-22-PM.png)
