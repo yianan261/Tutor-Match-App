@@ -6,12 +6,20 @@ The website is a tutor matching app for students and tutors. The app helps stude
 # Technology used
 
 Node.js and Express.js for backend
+<br>
 React for frontend
+<br>
 MongoDB for database
+<br>
 Passport.js for authentication
+<br>
 Cloudinary API for image upload
-Multer middleware for handling multi-part data (for file uploading)
-Observable notebook for mock data manipulation to get tutor data
+<br>
+Multer middleware for handling multi-part
+data (for file uploading)
+<br>
+Observable notebook for mock data
+manipulation to get tutor data
 
 # Development usage
 
