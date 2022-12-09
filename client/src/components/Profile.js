@@ -68,9 +68,8 @@ function Profile() {
           setPic(data.pic);
         });
     };
-    fetchExistData()
+    fetchExistData();
   }, []);
-
 
   return (
     <main className="container-profile">
