@@ -75,7 +75,7 @@ function SearchTutor({ notFound, search, handleSubmit, page }) {
   return (
     <>
       <div className="wrap" role="main">
-      <h1 className="searchHeader">Find a tutor</h1>
+        <h1 className="searchHeader">Find a tutor</h1>
         <div className="search">
           <input
             type="text"

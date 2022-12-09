@@ -65,7 +65,7 @@ report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG15W0I
    ![Tutor profiles](https://i.postimg.cc/c138nk2k/Screen-Shot-2022-11-28-at-3-43-29-PM.png)
 
    after: title shows how many search results there are
-   [![Screen-Shot-2022-12-08-at-8-34-36-PM.png](https://i.postimg.cc/qvmRHbcn/Screen-Shot-2022-12-08-at-8-34-36-PM.png)](https://postimg.cc/bZt8QRBN)
+   [![Screen-Shot-2022-12-08-at-8-56-23-PM.png](https://i.postimg.cc/h4LgLyYn/Screen-Shot-2022-12-08-at-8-56-23-PM.png)](https://postimg.cc/Sjxwqrq1)
 
 # 60% completion by Nov 15
 
