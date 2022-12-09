@@ -9,7 +9,7 @@ function Landing() {
   return (
     <>
       <Navbar />
-      <div className="mainContainer">
+      <div className="mainContainer" role="main">
         <div className="banner">
           <div className="subContainer">
             <h1>Tutor Match helps you get the help you need</h1>
@@ -20,9 +20,9 @@ function Landing() {
               </button>
             </NavLink>
           </div>
-          <Footer />
         </div>
       </div>
+      <Footer />
     </>
   );
 }

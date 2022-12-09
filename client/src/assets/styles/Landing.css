@@ -18,9 +18,14 @@ body {
 }
 
 .banner {
-  background-image: linear-gradient(rgba(0, 0, 0.5, 0.6), rgba(0, 0, 0, 0.5)),
+  background-image: linear-gradient(rgba(0, 0, 0.5, 0.4), rgba(0, 0, 0, 0.6)),
     url(https://i.postimg.cc/TYG3jB4P/linkedin-sales-solutions-6ie6-Ojshv-Wg-unsplash-min.jpg);
 }
+
+/* .banner {
+  background-color: #111111;
+  background-image: url(https://i.postimg.cc/TYG3jB4P/linkedin-sales-solutions-6ie6-Ojshv-Wg-unsplash-min.jpg);
+} */
 
 .banner {
   background-size: cover;
