@@ -39,7 +39,7 @@
 .wrap {
   width: 30%;
   position: absolute;
-  top: 30%;
+  top: 26vh;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9;
@@ -54,7 +54,7 @@
 }
 
 .imageDiv {
-  transform: translateY(-5%);
+  transform: translateY(-5vh);
 }
 
 /* .imgContainer {
@@ -84,4 +84,11 @@
 
 .flash-danger {
   border: 2px solid #fd1015;
+}
+
+.searchHeader {
+  font-size: 22px;
+  color: rgb(58, 68, 65);
+  text-align: center;
+  padding-bottom: 2%;
 }

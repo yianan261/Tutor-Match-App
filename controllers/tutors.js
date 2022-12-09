@@ -7,8 +7,12 @@ export const searchAllTutors = async (req, res) => {
   try {
     const page = req.query.page || 0;
     const keyword = req.query.query;
-    const getTutors = await myDB.findTutors(keyword, page);
-    res.status(200).json({ data: getTutors });
+    const [getTutors, searchResultNumbers] = await myDB.findTutors(
+      keyword,
+      page
+    );
+    console.log("search res number", searchResultNumbers);
+    res.status(200).json({ data: getTutors, numbers: searchResultNumbers });
   } catch (err) {
     console.error(err);
     res.status(404).json({ msg: "There was an error" });

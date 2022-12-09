@@ -38,6 +38,10 @@ Our color palette is inspired by the blackboard, which is a dark green color. Th
 
 ## Usability study report
 
+Usability report conducted on 6 participants
+
+report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG15W0IR8cTAHbie6vwo/edit#)
+
 ## Changes made to improve accessibility
 
 1. The color contrast for the navbar was increased to ratio of 4.5:1. Originally the tabs that were not active would appear darker, however that did not pass the accessibility validator.
@@ -51,10 +55,17 @@ Our color palette is inspired by the blackboard, which is a dark green color. Th
    original navbar contrast:
    ![Search bar](https://i.postimg.cc/R0bnckvy/Screen-Shot-2022-11-28-at-3-43-22-PM.png)
 
-   changed navbar contrast: Improved contrast with navbar
-   [![Screen-Shot-2022-12-08-at-3-44-20-PM.png](https://i.postimg.cc/mgKQXBwn/Screen-Shot-2022-12-08-at-3-44-20-PM.png)](https://postimg.cc/zySb3m4w)
+   changed navbar contrast and header to be WCAG compliant: Improved contrast with navbar, and added header
+   [![Screen-Shot-2022-12-08-at-8-52-45-PM.png](https://i.postimg.cc/Qd5F1kcW/Screen-Shot-2022-12-08-at-8-52-45-PM.png)](https://postimg.cc/mPLZG9Xb)
 
 3. The buttons on the main page will appear bigger in size when hovered to let users know they these are focused/hovered, in case color changes are not obvious.
+
+4. Search results now show how many there are
+   before:
+   ![Tutor profiles](https://i.postimg.cc/c138nk2k/Screen-Shot-2022-11-28-at-3-43-29-PM.png)
+
+   after: title shows how many search results there are
+   [![Screen-Shot-2022-12-08-at-8-34-36-PM.png](https://i.postimg.cc/qvmRHbcn/Screen-Shot-2022-12-08-at-8-34-36-PM.png)](https://postimg.cc/bZt8QRBN)
 
 # 60% completion by Nov 15
 

@@ -18,7 +18,7 @@ body {
 }
 
 .banner {
-  background-image: linear-gradient(rgba(0, 0, 0.5, 0.4), rgba(0, 0, 0, 0.6)),
+  background-image: linear-gradient(rgba(0, 0, 0.5, 0.35), rgba(0, 0, 0, 0.5)),
     url(https://i.postimg.cc/TYG3jB4P/linkedin-sales-solutions-6ie6-Ojshv-Wg-unsplash-min.jpg);
 }
 

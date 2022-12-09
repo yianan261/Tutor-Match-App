@@ -192,7 +192,7 @@ function MyMongoDB() {
   };
 
   /** Yian
-   * function that queries tutors when users type key word
+   * function that queries tutors when users type key word and also returns how many searches there are
    * @param {string} key search word
    * @param {int} page number (for pagination)
    * @returns array of objects of related searches
@@ -202,19 +202,21 @@ function MyMongoDB() {
     try {
       client = new MongoClient(url);
       const tutorsCol = client.db(DB_NAME).collection(TUTORS_COLLECTION);
+      const query = {
+        $or: [
+          { first_name: { $regex: word, $options: "i" } },
+          { subjects: { $regex: word, $options: "i" } },
+          { last_name: { $regex: word, $options: "i" } },
+        ],
+      };
       const res = await tutorsCol
-        .find({
-          $or: [
-            { first_name: { $regex: word, $options: "i" } },
-            { subjects: { $regex: word, $options: "i" } },
-            { last_name: { $regex: word, $options: "i" } },
-          ],
-        })
+        .find(query)
         .skip(PAGE_SIZE * page)
         .limit(PAGE_SIZE)
         .toArray();
-
-      return res;
+      const resSize = await tutorsCol.countDocuments(query);
+      console.log("resSize in DB", resSize);
+      return [res, resSize];
     } finally {
       client.close();
     }

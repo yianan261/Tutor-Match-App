@@ -28,6 +28,7 @@ function BookClass() {
   const [bookClassMap, setBookClassMap] = useState(new Map());
   const [page, setPage] = useState(0);
   const [notFound, setNotFound] = useState(false);
+  const [searchSize, setSearchSize] = useState(0);
   const auth = useAuth();
 
   /**Yian
@@ -35,10 +36,11 @@ function BookClass() {
    * @param {string} the query string
    * @param {object} data from search result in SearchTutor.js
    */
-  const handleQuery = (val, data) => {
+  const handleQuery = (val, data, size) => {
     setQuery(val);
     setSearch(true);
     setSearchData(data);
+    setSearchSize(size);
   };
 
   const handleReturn = () => {
@@ -84,6 +86,10 @@ function BookClass() {
             "Current_Data",
             JSON.stringify(searchData)
           );
+          window.localStorage.setItem(
+            "Current_Data_Size",
+            JSON.stringify(searchSize)
+          );
         }
       }
     } catch (err) {
@@ -101,9 +107,11 @@ function BookClass() {
         window.localStorage.removeItem("Current_Query");
         window.localStorage.removeItem("Current_Render");
         window.localStorage.removeItem("Current_Data");
+        window.localStorage.removeItem("Current_Data_Size");
         setSearch(false);
         setQuery(null);
         setSearchData([]);
+        setSearchSize(0);
       };
 
       window.addEventListener("popstate", onBackButtonEvent);
@@ -193,6 +201,7 @@ function BookClass() {
       return (
         <TutorProfile
           searchData={searchData}
+          searchSize={searchSize}
           query={query}
           handleReturn={handleReturn}
           searchProfile={searchProfile}
@@ -333,7 +342,7 @@ function BookClass() {
       setNotFound(true);
       return setTimeout(() => {
         setNotFound(false);
-      }, 2000);
+      }, 3000);
     }
 
     try {
@@ -345,15 +354,16 @@ function BookClass() {
         }
       );
       const resQuery = await res.json();
+      console.log("resQuery", resQuery);
       if (resQuery.data.length === 0) {
         setNotFound(true);
-        //reset notFound to false after 2 seconds
+        //reset notFound to false after 4 seconds
         setTimeout(() => {
           setNotFound(false);
-        }, 2000);
+        }, 4000);
       } else {
         //calls handleQuery function
-        handleQuery(searchword, resQuery.data);
+        handleQuery(searchword, resQuery.data, resQuery.numbers);
       }
     } catch (err) {
       console.error(err);
