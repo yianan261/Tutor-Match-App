@@ -67,6 +67,13 @@ report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG15W0I
    after: title shows how many search results there are
    [![Screen-Shot-2022-12-08-at-8-56-23-PM.png](https://i.postimg.cc/h4LgLyYn/Screen-Shot-2022-12-08-at-8-56-23-PM.png)](https://postimg.cc/Sjxwqrq1)
 
+5. Card content alignment changed
+   before: alignment was off and not centered
+   ![Tutor profiles](https://i.postimg.cc/c138nk2k/Screen-Shot-2022-11-28-at-3-43-29-PM.png)
+
+   after: strong alignment to the left of card
+   [![Screen-Shot-2022-12-08-at-9-24-55-PM.png](https://i.postimg.cc/P5g2MjNr/Screen-Shot-2022-12-08-at-9-24-55-PM.png)](https://postimg.cc/4Y16Jjzr)
+
 # 60% completion by Nov 15
 
 https://github.com/yianan261/Tutor-Match-App/tree/602a17dd0e83302ea39311b539f68717950999fb

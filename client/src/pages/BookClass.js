@@ -323,11 +323,11 @@ function BookClass() {
   const choosePage = (command) => {
     if (command === "prev" && page - 1 >= 0) {
       setPage((prev) => prev - 1);
-      setSearchParams({ query: query, page: page });
+      setSearchParams({ query: query, page: page - 1 });
       handleSubmit(query);
-    } else {
+    } else if (command === "next") {
       setPage((prev) => prev + 1);
-      setSearchParams({ query: query, page: page });
+      setSearchParams({ query: query, page: page + 1 });
       handleSubmit(query);
     }
   };
@@ -347,7 +347,9 @@ function BookClass() {
 
     try {
       const res = await fetch(
-        `/book/tutors/?query=${searchParams.get("query")}&page=${page}`,
+        `/book/tutors/?query=${searchParams.get(
+          "query"
+        )}&page=${searchParams.get("page")}`,
         {
           method: "POST",
           body: searchParams,

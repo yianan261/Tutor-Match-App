@@ -26,7 +26,8 @@
   color: rgb(58, 68, 65);
 }
 
-.card-title {
+.card-title-tutor {
+  padding-top: 3%;
   font-size: x-large;
 }
 
@@ -79,7 +80,7 @@
 }
 .card-text-div {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   padding-top: 1%;
 }
 

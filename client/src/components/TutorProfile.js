@@ -78,7 +78,7 @@ function TutorProfile({
                 }}
               >
                 <div className="card-body">
-                  <h2 className="card-title">
+                  <h2 className="card-title-tutor">
                     {" "}
                     Tutor : {tutorProfile.first_name} {tutorProfile.last_name}
                   </h2>
