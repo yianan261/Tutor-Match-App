@@ -45,14 +45,14 @@ Our color palette is inspired by the blackboard, which is a dark green color. Th
    original:
    ![Landing page](https://i.postimg.cc/59DScCdT/Screen-Shot-2022-11-28-at-3-43-03-PM.png)
 
-changed:
-[![Screen-Shot-2022-12-08-at-2-53-08-PM-min.png](https://i.postimg.cc/G2GzJHnz/Screen-Shot-2022-12-08-at-2-53-08-PM-min.png)](https://postimg.cc/N9G1QGMr)
+   changed: The text is more visible
+   [![Screen-Shot-2022-12-08-at-2-53-08-PM-min.png](https://i.postimg.cc/G2GzJHnz/Screen-Shot-2022-12-08-at-2-53-08-PM-min.png)](https://postimg.cc/N9G1QGMr)
 
-original navbar contrast:
-![Search bar](https://i.postimg.cc/R0bnckvy/Screen-Shot-2022-11-28-at-3-43-22-PM.png)
+   original navbar contrast:
+   ![Search bar](https://i.postimg.cc/R0bnckvy/Screen-Shot-2022-11-28-at-3-43-22-PM.png)
 
-changed navbar contrast:
-[![Screen-Shot-2022-12-08-at-3-44-20-PM.png](https://i.postimg.cc/mgKQXBwn/Screen-Shot-2022-12-08-at-3-44-20-PM.png)](https://postimg.cc/zySb3m4w)
+   changed navbar contrast: Improved contrast with navbar
+   [![Screen-Shot-2022-12-08-at-3-44-20-PM.png](https://i.postimg.cc/mgKQXBwn/Screen-Shot-2022-12-08-at-3-44-20-PM.png)](https://postimg.cc/zySb3m4w)
 
 3. The buttons on the main page will appear bigger in size when hovered to let users know they these are focused/hovered, in case color changes are not obvious.
 
