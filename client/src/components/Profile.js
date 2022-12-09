@@ -71,7 +71,6 @@ function Profile() {
     fetchExistData();
   }, []);
 
-
   return (
     <main className="container-profile">
       <div className="main-profile">

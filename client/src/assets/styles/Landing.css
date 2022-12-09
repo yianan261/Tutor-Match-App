@@ -18,7 +18,7 @@ body {
 }
 
 .banner {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.3)),
+  background-image: linear-gradient(rgba(0, 0, 0.5, 0.6), rgba(0, 0, 0, 0.5)),
     url(https://i.postimg.cc/TYG3jB4P/linkedin-sales-solutions-6ie6-Ojshv-Wg-unsplash-min.jpg);
 }
 
@@ -60,7 +60,6 @@ body {
   background-color: inherit;
   text-align: center;
   transition: all 0.15s;
-  
 }
 .bookBtn:hover {
   border-color: #fcfbfb;
