@@ -45,6 +45,7 @@ report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG15W0I
 ## Changes made to improve accessibility
 
 1. The color contrast for the navbar was increased to ratio of 4.5:1. Originally the tabs that were not active would appear darker, however that did not pass the accessibility validator.
+
 2. Contrast of landing page changed to have the background in a darker gradient to allow the text to pop more
    original:
    ![Landing page](https://i.postimg.cc/59DScCdT/Screen-Shot-2022-11-28-at-3-43-03-PM.png)
@@ -52,13 +53,13 @@ report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG15W0I
    changed: darkend background and improved text visbility
    [![Screen-Shot-2022-12-08-at-4-47-17-PM.png](https://i.postimg.cc/VkLFJzsr/Screen-Shot-2022-12-08-at-4-47-17-PM.png)](https://postimg.cc/WhCZKLkT)
 
+3. The buttons on the main page will appear bigger in size when hovered to let users know they these are focused/hovered, in case color changes are not obvious.
+
    original navbar contrast:
    ![Search bar](https://i.postimg.cc/R0bnckvy/Screen-Shot-2022-11-28-at-3-43-22-PM.png)
 
    changed navbar contrast and header to be WCAG compliant: Improved contrast with navbar, and added header
    [![Screen-Shot-2022-12-08-at-8-52-45-PM.png](https://i.postimg.cc/Qd5F1kcW/Screen-Shot-2022-12-08-at-8-52-45-PM.png)](https://postimg.cc/mPLZG9Xb)
-
-3. The buttons on the main page will appear bigger in size when hovered to let users know they these are focused/hovered, in case color changes are not obvious.
 
 4. Search results now show how many there are
    before:
