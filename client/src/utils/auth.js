@@ -27,12 +27,14 @@ export const AuthProvider = ({ children }) => {
 
   const login = (user) => {
     setUser(user);
+    localStorage.setItem("userID", user);
   };
 
   const logout = async () => {
     await fetch("/api/logout", {
       method: "POST",
     });
+    localStorage.removeItem("userID", user);
     setUser(null);
   };
 
