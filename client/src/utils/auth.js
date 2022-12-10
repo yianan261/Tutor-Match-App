@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
     await fetch("/api/logout", {
       method: "POST",
     });
-    localStorage.removeItem("userID", user);
+    localStorage.removeItem("userID");
     setUser(null);
   };
 
