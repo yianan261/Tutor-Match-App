@@ -12,7 +12,8 @@
   margin-top: 0.5em;
   margin-bottom: 2%;
   text-align: center;
-  color: rgb(247, 102, 18);
+  font-size: 35px;
+  color: #c3591c;
 }
 
 .price-container {
@@ -35,7 +36,7 @@
 .delete-button {
   all: unset;
   text-decoration: underline;
-  color: rgb(245, 127, 127);
+  color: #df1111;
 }
 
 .btnAccount {

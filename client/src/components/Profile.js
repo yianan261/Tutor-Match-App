@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../assets/styles/Profile.css";
-import {
-  AiOutlineMail,
-  AiOutlineMessage,
-  AiOutlineSchedule,
-} from "react-icons/ai";
+import { AiOutlineMail, AiOutlineSchedule } from "react-icons/ai";
 import { FaRegCalendarCheck } from "react-icons/fa";
+import { MdOutlineFreeCancellation } from "react-icons/md";
 import bulb2 from "../assets/images/bulb2.png";
 
 /**
@@ -16,7 +13,6 @@ import bulb2 from "../assets/images/bulb2.png";
  * @returns jsx of profile rendering
  */
 function Profile() {
-  // const navigate = useNavigate();
   const [profile, setProfile] = useState({
     username: "",
     fName: "",
@@ -27,25 +23,6 @@ function Profile() {
   });
   const [preferredSchedule, setPreferredSchedule] = useState([]);
   const [pic, setPic] = useState(null);
-
-  // if there is no user, then we redirect to login,
-  // else we are fetching the existing data
-  // useEffect(() => {
-  //   const getCurrentUser = async () => {
-  //     await fetch("/api/getUser")
-  //       .then((res) => {
-  //         return res.json();
-  //       })
-  //       .then((data) => {
-  //         if (data.user === null) {
-  //           navigate("/login");
-  //         } else {
-  //           fetchExistData();
-  //         }
-  //       });
-  //   };
-  //   getCurrentUser();
-  // }, []);
 
   // setting default values
   useEffect(() => {
@@ -63,7 +40,7 @@ function Profile() {
             profileData["subjects"] = profileInDB.subjects;
             profileData["location"] = profileInDB.location;
             setProfile(profileData);
-            setPreferredSchedule(data.profile.preferredSchedule);
+            setPreferredSchedule(data.profile.schedule);
           }
           setPic(data.pic);
         });
@@ -91,7 +68,7 @@ function Profile() {
             <br></br>
             <div>
               <FaRegCalendarCheck />{" "}
-              {profile.preferredSchedule
+              {preferredSchedule
                 ? "My preferred schedule is " + preferredSchedule.join(", ")
                 : "Please select your preferred schedule in Edit Profile"}
               .
@@ -105,12 +82,13 @@ function Profile() {
             />
             <div className="policy">
               <h2>Policy:</h2>
-              <ol>
-                <li>Lesson cancellation: 1 hour notice required</li>
-              </ol>
+              <MdOutlineFreeCancellation /> Lesson cancellation: 1 hour notice
+              required
               <div className="innerTextPolicy">
-                <AiOutlineMessage /> Send tutor a message<br></br>
-                <AiOutlineSchedule /> Book a Trial
+                <AiOutlineSchedule />{" "}
+                <Link to="/book" className="bookATrial">
+                  Book a Trial
+                </Link>
               </div>
             </div>
           </div>

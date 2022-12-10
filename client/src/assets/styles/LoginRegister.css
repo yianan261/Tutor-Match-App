@@ -31,17 +31,10 @@
   font-size: 15px;
 }
 
-#reg-link {
-  color: orange;
-}
-
+#reg-link,
 #sign-in {
-  color: orange;
+  color: #b95e04;
   align-items: right;
-}
-
-#no-ac {
-  color: rgb(189, 187, 187);
 }
 
 #acc-holder {
@@ -77,12 +70,7 @@
 
   border: 0px;
   box-shadow: 0px 0px 14px -7px #f09819;
-  background-image: linear-gradient(
-    45deg,
-    #ff512f 0%,
-    #f09819 51%,
-    #ff512f 100%
-  );
+  background-color: #b95e04;
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;

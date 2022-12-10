@@ -87,7 +87,7 @@
   background-color: #b5c3f5;
 }
 
-.checkClassBtn{
+.checkClassBtn {
   display: inline-block;
   padding: 0.3em 0.8em;
   border-radius: 0.2em;
@@ -103,7 +103,7 @@
   position: relative;
 }
 
-.checkClassBtn:hover{
+.checkClassBtn:hover {
   background-color: #b5c3f5;
 }
 
@@ -113,7 +113,7 @@
   margin-top: 1.2%;
 }
 
-.detailBtnSpanBook{
+.detailBtnSpanBook {
   position: fixed;
   right: 16vw;
   margin-top: 1.2%;

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "../assets/styles/EditProfile.css";
 import bulb2 from "../assets/images/bulb2.png";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../utils/auth.js";
 
 /**
  * Amanda Au-Yeung
@@ -11,7 +12,8 @@ import { useNavigate } from "react-router-dom";
  */
 function EditProfile() {
   const navigate = useNavigate();
-  const [user, setUser] = useState("");
+  // const [user, setUser] = useState("");
+  const auth = useAuth();
   const [profile, setProfile] = useState({
     username: "",
     fName: "",
@@ -24,46 +26,30 @@ function EditProfile() {
   const [pic, setPic] = useState(null);
   const form = useRef(null);
 
-  // if there is no user, then we redirect to login,
-  // else we are fetching the existing data
+  // setting default values
   useEffect(() => {
-    const getCurrentUser = async () => {
-      await fetch("/api/getUser")
-        .then((res) => {
-          return res.json();
-        })
+    console.log("test");
+    const fetchExistData = async () => {
+      await fetch("/api/profile/editProfile")
+        .then((res) => res.json())
         .then((data) => {
-          if (data.user === null) {
-            navigate("/login");
-          } else {
-            setUser(data.user);
-            fetchExistData();
+          if (data.profile) {
+            let profileInDB = data.profile;
+            let profileData = new Map();
+            profileData["username"] = profileInDB.displayName;
+            profileData["fName"] = profileInDB.fName;
+            profileData["lName"] = profileInDB.lName;
+            profileData["email"] = profileInDB.email;
+            profileData["subjects"] = profileInDB.subjects;
+            profileData["location"] = profileInDB.location;
+            setProfile(profileData);
+            setPreferredSchedule(data.profile.preferredSchedule);
           }
+          setPic(data.pic);
         });
     };
-    getCurrentUser();
+    fetchExistData();
   }, []);
-
-  // setting default values
-  const fetchExistData = async () => {
-    await fetch("/api/profile/editProfile")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.profile) {
-          let profileInDB = data.profile;
-          let profileData = new Map();
-          profileData["username"] = profileInDB.displayName;
-          profileData["fName"] = profileInDB.fName;
-          profileData["lName"] = profileInDB.lName;
-          profileData["email"] = profileInDB.email;
-          profileData["subjects"] = profileInDB.subjects;
-          profileData["location"] = profileInDB.location;
-          setProfile(profileData);
-          setPreferredSchedule(data.profile.preferredSchedule);
-        }
-        setPic(data.pic);
-      });
-  };
 
   // updates the value
   const handleSaveProfile = async (e) => {
@@ -118,16 +104,18 @@ function EditProfile() {
     });
     const uploadStatus = await res.json();
     if (uploadStatus.status === "OK") {
+      alert("Profile Picture Saved!");
       navigate("/profile/editProfile");
     }
   };
 
   const delPic = async (e) => {
     e.preventDefault();
-    await fetch(`/api/delPic?id=${user}`, {
+    await fetch(`/api/delPic?id=${auth.user}`, {
       method: "POST",
     });
     setPic(bulb2);
+    alert("Your profile picture was removed.");
   };
 
   return (
@@ -290,6 +278,7 @@ function EditProfile() {
                       Schedule Preference
                     </label>
                     <select
+                      aria-label="selectPreferredSchedule"
                       id="inputState"
                       multiple={true}
                       className="form-control"
