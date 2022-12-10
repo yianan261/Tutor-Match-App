@@ -325,11 +325,11 @@ function BookClass() {
     if (command === "prev" && page - 1 >= 0) {
       setPage((prev) => prev - 1);
       setSearchParams({ query: query, page: page - 1 });
-      handleSubmit(query);
+      handleSubmit(query, page - 1);
     } else if (command === "next") {
       setPage((prev) => prev + 1);
       setSearchParams({ query: query, page: page + 1 });
-      handleSubmit(query);
+      handleSubmit(query, page + 1);
     }
   };
 
@@ -338,7 +338,7 @@ function BookClass() {
    * fetchs API endpoint to query search
    * @param {String} searchword
    */
-  const handleSubmit = async (searchword) => {
+  const handleSubmit = async (searchword, newPage) => {
     if (!searchword) {
       setNotFound(true);
       return setTimeout(() => {
@@ -348,9 +348,7 @@ function BookClass() {
 
     try {
       const res = await fetch(
-        `/book/tutors/?query=${searchParams.get(
-          "query"
-        )}&page=${searchParams.get("page")}`,
+        `/book/tutors/?query=${searchParams.get("query")}&page=${newPage}`,
         {
           method: "POST",
           body: searchParams,

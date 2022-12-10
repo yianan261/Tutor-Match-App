@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../utils/auth";
 import "../assets/styles/ClassHistory.css";
 import ReviewModal from "./ReviewModal";
-import { useNavigate } from "react-router-dom";
 
 /**Yian Chen
  * component that renders user class history
@@ -13,25 +12,6 @@ function ClassHistory() {
   const [history, setHistory] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [currTutor, setCurrTutor] = useState({ tutor: "", tutor_lastname: "" });
-  const navigate = useNavigate();
-
-  //This function gets the user in session
-  useEffect(() => {
-    const getCurrentUser = async () => {
-      await fetch("/api/getUser")
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          if (data.user === null) {
-            alert("please login");
-            navigate("/login");
-          }
-        });
-    };
-
-    getCurrentUser();
-  }, [auth]);
 
   /**Yian
    * this function gets the history of the user
@@ -51,7 +31,7 @@ function ClassHistory() {
     } catch (err) {
       console.error(err);
     }
-  }, [auth]);
+  }, []);
 
   /**Yian Chen
    * function that renders comment button
