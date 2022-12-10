@@ -120,12 +120,19 @@ Full report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG
    
 10. Edit Profile updates <br>
     Per usability study, users felt that they were not notified when saving the profile picture. An alert will be shown after user saves a Profile Picture.<br>
-    To improve accessibility, an h1 tag of Profile was used to distingusish the header. Per WCAG (Web Content Accessibility Guidelines), buttons color contrast were increased to 4.5:1.<br>
+    To improve accessibility, an h1 tag of Profile was used to distingusish the header. <br>
+    Per WCAG (Web Content Accessibility Guidelines), buttons color contrast were increased to 4.5:1.<br>
     Before:
     <img width="1420" alt="Screen Shot 2022-11-28 at 3 11 35 PM" src="https://user-images.githubusercontent.com/58647320/204400133-a0d911c5-815c-4ec3-8d9b-728fd257ced2.png">
     After:
 <img width="1435" alt="Screen Shot 2022-12-10 at 12 26 27 AM" src="https://user-images.githubusercontent.com/58647320/206841144-3dd81b92-4644-4a79-8b7c-5e7412fa0606.png">
 
+11. Account Settings <br>
+    Per WCAG (Web Content Accessibility Guidelines), color contrast were increased to 4.5:1.<br>
+    Before:
+![Price panel](https://i.postimg.cc/wBs9GZhS/Screen-Shot-2022-11-28-at-3-44-01-PM.png)
+    After:
+    <img width="1890" alt="Screen Shot 2022-12-09 at 8 08 51 PM" src="https://user-images.githubusercontent.com/58647320/206841487-9a7f4cec-5ddd-4200-8321-6fb2c367770e.png">
 
 
 
