@@ -195,7 +195,7 @@ function MyMongoDB() {
    * function that queries tutors when users type key word and also returns how many searches there are
    * @param {string} key search word
    * @param {int} page number (for pagination)
-   * @returns array of objects of related searches
+   * @returns array of objects of related searches and search size
    */
   myDB.findTutors = async (word, page = 0) => {
     let client;
