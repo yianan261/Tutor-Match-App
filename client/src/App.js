@@ -85,7 +85,6 @@ function App() {
           }
         ></Route>
         <Route path="/" element={<Landing />}></Route>
-
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </AuthProvider>
