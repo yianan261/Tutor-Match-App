@@ -38,6 +38,7 @@ function MyMongoDB() {
         profile: displayName,
         pic: null,
         schedule: [],
+        history: [],
       });
       return res;
     } catch (err) {
