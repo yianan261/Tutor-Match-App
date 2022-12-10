@@ -12,7 +12,6 @@ import { useAuth } from "../utils/auth.js";
  */
 function EditProfile() {
   const navigate = useNavigate();
-  // const [user, setUser] = useState("");
   const auth = useAuth();
   const [profile, setProfile] = useState({
     username: "",
@@ -28,7 +27,6 @@ function EditProfile() {
 
   // setting default values
   useEffect(() => {
-    console.log("test");
     const fetchExistData = async () => {
       await fetch("/api/profile/editProfile")
         .then((res) => res.json())
