@@ -125,7 +125,8 @@ Full report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG
     Before:
     <img width="1420" alt="Screen Shot 2022-11-28 at 3 11 35 PM" src="https://user-images.githubusercontent.com/58647320/204400133-a0d911c5-815c-4ec3-8d9b-728fd257ced2.png">
     After:
-<img width="1416" alt="Screen Shot 2022-12-10 at 1 03 41 AM" src="https://user-images.githubusercontent.com/58647320/206842410-c2abc8f1-2793-45dd-9473-c4200cc6b8df.png">
+<img width="1421" alt="Screen Shot 2022-12-10 at 1 08 33 AM" src="https://user-images.githubusercontent.com/58647320/206842597-f749bd6e-f4fc-49b2-a8b9-f71f3dc5865f.png">
+
 
 
 11. Account Settings <br>
