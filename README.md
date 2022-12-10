@@ -100,7 +100,7 @@ Full report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG
    after: A pop up window will ask users to confirm
    [![Screen-Shot-2022-12-09-at-12-08-45-AM.png](https://i.postimg.cc/7L94GCG8/Screen-Shot-2022-12-09-at-12-08-45-AM.png)](https://postimg.cc/zLy64GF0)
    
-8. Sign Up and Login page
+8. Sign Up and Login page <br>
    Per usability study, users pointed out that the buttons should be replaced as a login and sign up instead of a "submit" button. Another user also pointed out the "No account" and "Already have an account" should be clickable. <br>
    Changes made to improve accessibility, including increase color contrast of the buttons and the "No account" and "Already have an account" link.<br>
    Before:
