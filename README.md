@@ -130,9 +130,10 @@ Full report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG
 11. Account Settings <br>
     Per WCAG (Web Content Accessibility Guidelines), color contrast were increased to 4.5:1.<br>
     Before:
-    
+    ![Price panel](https://i.postimg.cc/wBs9GZhS/Screen-Shot-2022-11-28-at-3-44-01-PM.png)
     After:
-    <img width="1890" alt="Screen Shot 2022-12-09 at 8 08 51 PM" src="https://user-images.githubusercontent.com/58647320/206841487-9a7f4cec-5ddd-4200-8321-6fb2c367770e.png">
+    <img width="1463" alt="Screen Shot 2022-12-10 at 12 37 11 AM" src="https://user-images.githubusercontent.com/58647320/206841535-f1eae039-9aa9-4e77-8c5b-a5ea74b9b25b.png">
+
 
 
 
