@@ -66,9 +66,9 @@ function Register() {
   return (
     <main className="card" id="signupCard">
       <div className="alternate-text">
-        <p id="acc-holder">Already have an account?</p>
         <Link id="sign-in" to="/login">
-          Sign In
+          <div>Already have an account?</div>
+          <div>Sign In</div>
         </Link>
       </div>
       <div className="signUp-title">
@@ -86,7 +86,6 @@ function Register() {
               type="email"
               className="form-control"
               id="exampleInputEmail1"
-              aria-describedby="emailHelp"
               placeholder="Enter Email"
               value={user.email}
               onChange={onInputChange}
@@ -103,7 +102,6 @@ function Register() {
               type="password"
               id="inputPassword5"
               className="form-control"
-              aria-describedby="passwordHelpBlock"
               placeholder="Enter your password"
               name="password"
               value={user.password}
@@ -117,7 +115,6 @@ function Register() {
               type="password"
               id="inputConfirmedPassword5"
               className="form-control"
-              aria-describedby="passwordHelpBlock"
               placeholder="Confirm your password"
               name="confirmedPassword"
               value={user.confirmedPassword}

@@ -5,6 +5,7 @@ import {
   delPic,
   retrieveProfileInfo,
   redirectEditProfile,
+  // getEmail
 } from "../controllers/editProfile.js";
 import upload from "../controllers/utils/multer.js";
 
@@ -35,5 +36,10 @@ router.get("/api/profile/editProfile", retrieveProfileInfo);
  * redirect to editprofile
  */
 router.get("/api/profile/editProfile", redirectEditProfile);
+
+/**
+ * redirect to get email
+ */
+// router.get("/api/profile/getEmail", getEmail);
 
 export default router;

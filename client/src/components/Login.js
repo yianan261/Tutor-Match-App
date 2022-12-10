@@ -49,9 +49,9 @@ function Login() {
   return (
     <div className="card" id="loginCard">
       <div className="alternate-text">
-        <p id="no-ac">No Account?</p>
         <Link id="reg-link" to="/register">
-          Sign Up!
+          <div>No Account?</div>
+          <div>Sign Up!</div>
         </Link>
       </div>
       <h1 className="card-title" id="signIn">

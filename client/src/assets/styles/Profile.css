@@ -56,6 +56,10 @@
   border-radius: 50%;
 }
 
+.bookATrial {
+  color: rgb(86, 90, 77);
+}
+
 .innerTextPolicy {
   line-height: 2;
 }
