@@ -23,16 +23,18 @@ export const AuthProvider = ({ children }) => {
         });
     };
     getCurrentUser();
-  }, [user]);
+  }, []);
 
   const login = (user) => {
     setUser(user);
+    localStorage.setItem("userID", user);
   };
 
   const logout = async () => {
     await fetch("/api/logout", {
       method: "POST",
     });
+    localStorage.removeItem("userID");
     setUser(null);
   };
 
