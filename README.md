@@ -104,6 +104,8 @@ Full report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG
    Per usability study, users pointed out that the buttons should be replaced as a login and sign up instead of a "submit" button. Another user also pointed out the "No account" and "Already have an account" should be clickable. <br>
    Changes made to improve accessibility, including increase color contrast of the buttons and the "No account" and "Already have an account" link.<br>
    Before:
+   <img width="1374" alt="Screen Shot 2022-11-28 at 3 03 59 PM" src="https://user-images.githubusercontent.com/58647320/204399797-5234684a-7d16-4dce-86d8-1282c50e0dca.png">
+<img width="1353" alt="Screen Shot 2022-11-28 at 3 03 48 PM" src="https://user-images.githubusercontent.com/58647320/204399806-8c0b61b5-9e43-422c-8097-c05bd8671973.png">
    After:
    <img width="1882" alt="Screen Shot 2022-12-09 at 8 09 04 PM" src="https://user-images.githubusercontent.com/58647320/206828400-c296ac25-1b87-4efb-8c6f-34ce62925ce4.png">
 <img width="1890" alt="Screen Shot 2022-12-09 at 8 08 51 PM" src="https://user-images.githubusercontent.com/58647320/206828402-52131916-5240-47a0-849c-8035de3e0d81.png">
