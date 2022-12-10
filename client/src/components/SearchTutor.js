@@ -40,7 +40,7 @@ function SearchTutor({ notFound, search, handleSubmit, page }) {
     const keyDownHandler = (evt) => {
       if (evt.key === "Enter") {
         evt.preventDefault();
-        handleSubmit(searchword);
+        handleSubmit(searchword, 0);
       }
     };
     window.addEventListener("keydown", keyDownHandler);
@@ -53,7 +53,7 @@ function SearchTutor({ notFound, search, handleSubmit, page }) {
   //function for when search button is clicked
   const handleClick = (evt) => {
     evt.preventDefault();
-    handleSubmit(searchword);
+    handleSubmit(searchword, 0);
   };
 
   //renders no result

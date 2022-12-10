@@ -38,7 +38,7 @@ function ManageBook() {
     } catch (err) {
       console.error(err);
     }
-  }, [remove, auth]);
+  }, [remove]);
 
   /**
    * Yian Chen
