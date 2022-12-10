@@ -110,6 +110,16 @@ Full report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG
    <img width="1882" alt="Screen Shot 2022-12-09 at 8 09 04 PM" src="https://user-images.githubusercontent.com/58647320/206828400-c296ac25-1b87-4efb-8c6f-34ce62925ce4.png">
 <img width="1890" alt="Screen Shot 2022-12-09 at 8 08 51 PM" src="https://user-images.githubusercontent.com/58647320/206828402-52131916-5240-47a0-849c-8035de3e0d81.png">
 
+9. My profile updates <br>
+   Per usability study, users pointed out that send a message to the tutor and book a trial was misleading, so "send a message to the tutor" was removed and "book a trial" was updated to redirect to the book class link. <br>
+   To improve accessibility, font size were increased. <br>
+   Before: <br>
+   ![User profile](https://i.postimg.cc/SRbRdq3T/Screen-Shot-2022-11-28-at-3-43-39-PM.png)
+   After: <br>
+   <img width="1410" alt="Screen Shot 2022-12-09 at 10 54 40 PM" src="https://user-images.githubusercontent.com/58647320/206836344-c469f754-759b-408d-8205-d4df4ab36e68.png">
+
+
+
 
 # 60% completion by Nov 15
 
