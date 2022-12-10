@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
         });
     };
     getCurrentUser();
-  }, [user]);
+  }, []);
 
   const login = (user) => {
     setUser(user);
