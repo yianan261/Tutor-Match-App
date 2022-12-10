@@ -99,6 +99,43 @@ Full report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG
    <br>
    after: A pop up window will ask users to confirm
    [![Screen-Shot-2022-12-09-at-12-08-45-AM.png](https://i.postimg.cc/7L94GCG8/Screen-Shot-2022-12-09-at-12-08-45-AM.png)](https://postimg.cc/zLy64GF0)
+   
+8. Sign Up and Login page <br>
+   Per usability study, users pointed out that the buttons should be replaced as a login and sign up instead of a "submit" button. Another user also pointed out the "No account" and "Already have an account" should be clickable. <br>
+   To improve accessibility, changes were made including increase color contrast of the buttons and the "No account" and "Already have an account" link.<br>
+   Before:
+   <img width="1374" alt="Screen Shot 2022-11-28 at 3 03 59 PM" src="https://user-images.githubusercontent.com/58647320/204399797-5234684a-7d16-4dce-86d8-1282c50e0dca.png">
+<img width="1353" alt="Screen Shot 2022-11-28 at 3 03 48 PM" src="https://user-images.githubusercontent.com/58647320/204399806-8c0b61b5-9e43-422c-8097-c05bd8671973.png">
+   After:
+   <img width="1882" alt="Screen Shot 2022-12-09 at 8 09 04 PM" src="https://user-images.githubusercontent.com/58647320/206828400-c296ac25-1b87-4efb-8c6f-34ce62925ce4.png">
+<img width="1890" alt="Screen Shot 2022-12-09 at 8 08 51 PM" src="https://user-images.githubusercontent.com/58647320/206828402-52131916-5240-47a0-849c-8035de3e0d81.png">
+
+9. My profile updates <br>
+   Per usability study, users pointed out that send a message to the tutor and book a trial was misleading, so "send a message to the tutor" was removed and "book a trial" was updated to redirect to the book class link. <br>
+   To improve accessibility, font size were increased. <br>
+   Before: <br>
+   ![User profile](https://i.postimg.cc/SRbRdq3T/Screen-Shot-2022-11-28-at-3-43-39-PM.png)
+   After: <br>
+   <img width="1410" alt="Screen Shot 2022-12-09 at 10 54 40 PM" src="https://user-images.githubusercontent.com/58647320/206836344-c469f754-759b-408d-8205-d4df4ab36e68.png">
+   
+10. Edit Profile updates <br>
+    Per usability study, users felt that they were not notified when saving the profile picture. An alert will be shown after user saves a Profile Picture.<br>
+    To improve accessibility, an h1 tag of Profile was used to distingusish the header. <br>
+    Per WCAG (Web Content Accessibility Guidelines), buttons color contrast were increased to 4.5:1.<br>
+    Before:
+    <img width="1420" alt="Screen Shot 2022-11-28 at 3 11 35 PM" src="https://user-images.githubusercontent.com/58647320/204400133-a0d911c5-815c-4ec3-8d9b-728fd257ced2.png">
+    After:
+<img width="1419" alt="Screen Shot 2022-12-10 at 1 13 15 AM" src="https://user-images.githubusercontent.com/58647320/206842734-cd7cc344-5958-4609-b099-0fa5ff01be28.png">
+
+11. Account Settings <br>
+    Per WCAG (Web Content Accessibility Guidelines), color contrast were increased to 4.5:1.<br>
+    Before:
+    ![Price panel](https://i.postimg.cc/wBs9GZhS/Screen-Shot-2022-11-28-at-3-44-01-PM.png)
+    After:
+    <img width="1463" alt="Screen Shot 2022-12-10 at 12 37 11 AM" src="https://user-images.githubusercontent.com/58647320/206841535-f1eae039-9aa9-4e77-8c5b-a5ea74b9b25b.png">
+
+
+
 
 # 60% completion by Nov 15
 
