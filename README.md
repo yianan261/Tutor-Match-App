@@ -49,6 +49,8 @@ Our color palette is inspired by the blackboard, which is a dark green color. Th
 
 ## Usability study report
 
+[Generic Unsigned Consent Form given to users](https://docs.google.com/document/d/1vSiJ5FD9-o2regxNmQeYB7730IRJr_8O/edit?usp=sharing&ouid=114395334820745796472&rtpof=true&sd=true)
+
 Usability report conducted on 6 participants by Amanda and Yian collectively
 
 Full report [here](https://docs.google.com/document/d/1-BwJbtHX0ZD1FOHyiWaW36SRG15W0IR8cTAHbie6vwo/edit#)
