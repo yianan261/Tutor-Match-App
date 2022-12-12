@@ -32,6 +32,9 @@ manipulation to get tutor data
 
 https://tutorapp-zwr3.onrender.com/
 
+# Updated Deployment Link
+https://tutormatchapp.onrender.com/
+
 # Design Document
 
 Design Docs in the DesignDoc file and also [here](https://docs.google.com/document/d/1TX83QjBXnOxksskJH8em_gzH6H0qPJJN0GKg5r-C-mE/edit)
