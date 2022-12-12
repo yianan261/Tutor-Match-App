@@ -82,17 +82,3 @@ export const retrieveProfileInfo = async (req, res) => {
 export const redirectEditProfile = async (req, res) => {
   res.status(200).redirect("/api/profile/editProfile");
 };
-
-// /**
-//  * Amanda Au-Yeung
-//  * fetch email from register to profile
-//  * @param {obj} req
-//  * @param {obj} res
-//  */
-//  export const getEmail = async (req, res) => {
-//   try {
-//       return res.status(201).json({email: req.body.email});
-//   } catch (err) {
-//       res.status(400).send({err: err});
-//   }
-// };
