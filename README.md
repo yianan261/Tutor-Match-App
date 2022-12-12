@@ -182,6 +182,9 @@ Yian Chen & So Man Amanda Au-Yeung
 
 https://docs.google.com/presentation/d/1_Ht--i4RtaW4VXUX7TEaVxc8PrCrZrVgcXAEmqJYUpA/edit#slide=id.p
 
+# Presentation Video
+https://www.youtube.com/watch?v=J88GZya1jVo
+
 # References
 
 Picture references:
