@@ -49,7 +49,7 @@ Our color palette is inspired by the blackboard, which is a dark green color. Th
 
 ## Usability study report
 
-[Generic Unsigned Consent Form given to users](https://docs.google.com/document/d/1vSiJ5FD9-o2regxNmQeYB7730IRJr_8O/edit?usp=sharing&ouid=114395334820745796472&rtpof=true&sd=true)
+[Unsigned Consent Form given to users](https://docs.google.com/document/d/1vSiJ5FD9-o2regxNmQeYB7730IRJr_8O/edit?usp=sharing&ouid=114395334820745796472&rtpof=true&sd=true)
 
 Usability report conducted on 6 participants by Amanda and Yian collectively
 
@@ -181,6 +181,9 @@ Yian Chen & So Man Amanda Au-Yeung
 # Google Slides
 
 https://docs.google.com/presentation/d/1_Ht--i4RtaW4VXUX7TEaVxc8PrCrZrVgcXAEmqJYUpA/edit#slide=id.p
+
+# Updated Slides
+https://docs.google.com/presentation/d/1XQjXYT5RAmvWul5nFMSSMDTBmEJw9rnNUnSKGrvS0Rk/edit?usp=sharing
 
 # Presentation Video
 https://www.youtube.com/watch?v=J88GZya1jVo
