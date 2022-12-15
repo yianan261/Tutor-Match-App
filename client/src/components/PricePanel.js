@@ -10,7 +10,7 @@ function PricePanel() {
     <div className="PricePanel">
       {pricePanelData.map((each, index) => {
         return (
-          <div key={index} className="price-panelDiv">
+          <div key={index} className="price-panelDiv"> // Consider using consistant naming convention
             <ol>
               <li>{each.icon}</li>
               <li className="pricing-features">{each.plan}</li>
