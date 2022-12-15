@@ -287,7 +287,7 @@ function EditProfile() {
                       }}
                     >
                       <option value="weekdays AM">Weekdays AM</option>
-                      <option value="weekdays PM">Weekends PM</option>
+                      <option value="weekdays PM">Weekdays PM</option>
                       <option value="weekends AM">Weekends AM</option>
                       <option value="weekends PM">Weekends PM</option>
                       <option value="flexible">Flexible</option>
