@@ -49,7 +49,8 @@ function ReviewModal({ handleModal, currTutor }) {
   return ReactDOM.createPortal(
     <div
       className="overlay"
-      style={{
+      // Consider putting style in .css file
+      style={{ 
         position: "fixed",
         top: "0",
         bottom: "0",
