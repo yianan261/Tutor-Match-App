@@ -10,6 +10,7 @@ function Landing() {
     <>
       <Navbar />
       <div className="mainContainer" role="main">
+//     The landing page is good, looks like a page of a real business
         <div className="banner">
           <div className="subContainer">
             <h1>Tutor Match helps you get the help you need</h1>

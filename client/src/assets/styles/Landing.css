@@ -66,6 +66,8 @@ body {
   text-align: center;
   transition: all 0.15s;
 }
+
+/* Really like the hover effect and active effect that you added to your buttons, they are really beautiful */
 .bookBtn:hover {
   border-color: #fcfbfb;
   transform: scale(1.05, 1.05);
