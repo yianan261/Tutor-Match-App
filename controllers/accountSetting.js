@@ -24,7 +24,7 @@ export const delProfile = async (req, res) => {
     }
   } catch (err) {
     res
-      .status(400)
+      .status(400) // Use 500 error code when it is server side error
       .send({ err: `There is an ${err} when you delete your account.` });
   }
 };
