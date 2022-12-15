@@ -22,8 +22,8 @@ function AccountSetting() {
   };
 
   const delAC = async () => {
-    const del = await fetch(`/api/profile/deleteAccount/${auth.user}`, {
-      method: "POST",
+    const del = await fetch(`/api/profile/deleteAccount/${auth.user}`, { // Consider using standard REST design pattern, the URL should be a resource identifier and does not contain verb.
+      method: "POST", // Consider using DELETE method.
     });
     const delRes = await del.json();
     alert(delRes.message);
@@ -32,7 +32,8 @@ function AccountSetting() {
   };
 
   return (
-    <main className="AccountSetting">
+    <main className="AccountSetting"> // Consider using consistant naming convention. e.g. do not mix camelCase and kebab-case for className
+
       <h1 className="plan-selection">Select your plan</h1>
       <div className="price-container">
         <PricePanel />
