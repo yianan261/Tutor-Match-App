@@ -47,7 +47,7 @@ function Register() {
     }));
     validateInput(evt);
   };
-
+// This is a very good design that you validated the user's password, this is a good practice and our group should add this function too.
   const validateInput = (evt) => {
     let { name, value } = evt.target;
     setError((prev) => {
