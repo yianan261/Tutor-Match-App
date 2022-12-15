@@ -83,6 +83,7 @@ function ManageBook() {
       <button
         className="deleteBtnBook"
         onClick={() => {
+//       Good to know that I can use this window.confirm thing to handle the confirmation for delete actions
           const confirmBox = window.confirm("Are you sure you want to cancel?");
           if (confirmBox === true) {
             removeClass(date, time, tutor);
