@@ -21,14 +21,14 @@ function BookModal({
   if (!open) return null;
 
   /**
-   * function that renders time buttons
-   * adds time to bookClassMap when clicked
-   * removes from bookClassMap when clicked again
+   * function that renders time buttons.            // Consider just "Renders time buttions."
+   * adds time to bookClassMap when clicked.        // "Adds"
+   * removes from bookClassMap when clicked again.  // "Removes"
    * @param {string} _date
    * @param {string} _time
    * @returns button UI
    */
-  const renderButton = (_date, _time) => {
+  const renderButton = (_date, _time) => { // Consider removing _ in variable names
     return (
       <button
         className={
