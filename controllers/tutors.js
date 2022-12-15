@@ -59,6 +59,6 @@ export const getSchedule = async (req, res) => {
     }
   } catch (err) {
     console.error(err);
-    res.status(404).json({ msg: `User not logged in ${err}` });
+    res.status(404).json({ msg: `User not logged in ${err}` }); // Use 401 for unauthenticated error
   }
 };
