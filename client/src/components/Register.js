@@ -62,6 +62,8 @@ function Register() {
   const handleRegister = () => {
     navigate("/login", { replace: true });
   };
+  
+//   The align of the components still needs more adjustment
 
   return (
     <main className="card" id="signupCard">
