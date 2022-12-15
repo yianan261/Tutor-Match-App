@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { NavLink } from "react-router-dom";
 
+<!-- See comment about contrast between text and background image -->
+
 //Yian
 function Landing() {
   return (
